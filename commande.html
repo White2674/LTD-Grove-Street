@@ -1,94 +1,98 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Stations essence - LTD Grove Street">
-  <title>Stations Essence | LTD Grove Street</title>
-  <link href="assets/css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <script defer src="assets/js/theme-toggle.js"></script>
-  <script defer src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LTD Grove Street - Commande</title>
 
-<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
-  <header class="p-4 flex justify-between items-center shadow-md">
-    <h1 class="text-2xl font-bold">LTD Grove Street</h1>
-    <div class="flex items-center gap-4">
-      <button id="theme-toggle" class="text-xl">🌓</button>
-      <a href="index.html" class="text-sm bg-green-600 text-white px-3 py-1 rounded">Accueil</a>
-    </div>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Style custom -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
+
+  <header class="p-6 bg-indigo-600 text-white text-center font-bold text-2xl">
+    Formulaire de Commande
   </header>
 
-  <main class="p-8 max-w-7xl mx-auto">
-    <h2 class="text-3xl font-semibold mb-6">Nos Stations Essence</h2>
+  <main class="max-w-3xl mx-auto p-6 mt-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+    <form id="orderForm" action="https://formspree.io/f/yourFormId" method="POST" class="space-y-6">
 
-    <div id="map" class="h-96 mb-8 rounded shadow"></div>
+      <!-- Produit + quantité -->
+      <div>
+        <label for="product" class="block mb-2 font-semibold">Produit</label>
+        <select id="product" name="Produit" required class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+          <option value="" disabled selected>Choisir un produit</option>
+          <option value="Essence Sans Plomb 95">Essence Sans Plomb 95</option>
+          <option value="Diesel Standard">Diesel Standard</option>
+          <option value="Huile Moteur 5W-30">Huile Moteur 5W-30</option>
+          <option value="Additif Carburant">Additif Carburant</option>
+        </select>
+      </div>
 
-    <h3 class="text-2xl font-semibold mb-4">Grille tarifaire des carburants</h3>
-    <div class="overflow-x-auto">
-      <table class="min-w-full text-left border">
-        <thead class="bg-gray-200 dark:bg-gray-700">
-          <tr>
-            <th class="px-4 py-2">Station</th>
-            <th class="px-4 py-2">Adresse</th>
-            <th class="px-4 py-2">SP95</th>
-            <th class="px-4 py-2">Gazole</th>
-            <th class="px-4 py-2">E85</th>
-          </tr>
-        </thead>
-        <tbody class="bg-white dark:bg-gray-800">
-          <tr>
-            <td class="px-4 py-2">Station Nord</td>
-            <td class="px-4 py-2">12 Rue de Lille</td>
-            <td class="px-4 py-2">1.89 €</td>
-            <td class="px-4 py-2">1.75 €</td>
-            <td class="px-4 py-2">0.89 €</td>
-          </tr>
-          <tr>
-            <td class="px-4 py-2">Station Sud</td>
-            <td class="px-4 py-2">88 Avenue de Marseille</td>
-            <td class="px-4 py-2">1.91 €</td>
-            <td class="px-4 py-2">1.77 €</td>
-            <td class="px-4 py-2">0.92 €</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <div>
+        <label for="quantity" class="block mb-2 font-semibold">Quantité</label>
+        <input type="number" id="quantity" name="Quantité" min="1" value="1" required class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100" />
+      </div>
+
+      <!-- Coordonnées client -->
+      <fieldset class="space-y-4 border border-gray-300 dark:border-gray-700 p-4 rounded">
+        <legend class="font-semibold text-lg mb-2">Coordonnées client</legend>
+
+        <div>
+          <label for="name" class="block mb-1 font-medium">Nom complet</label>
+          <input type="text" id="name" name="Nom" required class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100" />
+        </div>
+
+        <div>
+          <label for="email" class="block mb-1 font-medium">Email</label>
+          <input type="email" id="email" name="Email" required class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100" />
+        </div>
+
+        <div>
+          <label for="phone" class="block mb-1 font-medium">Téléphone</label>
+          <input type="tel" id="phone" name="Téléphone" class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100" />
+        </div>
+      </fieldset>
+
+      <!-- Livraison -->
+      <fieldset class="space-y-4 border border-gray-300 dark:border-gray-700 p-4 rounded">
+        <legend class="font-semibold text-lg mb-2">Adresse de livraison</legend>
+
+        <div>
+          <label for="address" class="block mb-1 font-medium">Adresse</label>
+          <input type="text" id="address" name="Adresse" required class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100" />
+        </div>
+
+        <div>
+          <label for="city" class="block mb-1 font-medium">Ville</label>
+          <input type="text" id="city" name="Ville" required class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100" />
+        </div>
+
+        <div>
+          <label for="postal" class="block mb-1 font-medium">Code Postal</label>
+          <input type="text" id="postal" name="Code Postal" required class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100" />
+        </div>
+      </fieldset>
+
+      <!-- Commentaire -->
+      <div>
+        <label for="comment" class="block mb-2 font-semibold">Commentaire / Instructions</label>
+        <textarea id="comment" name="Commentaire" rows="4" placeholder="Détails supplémentaires (optionnel)" class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100"></textarea>
+      </div>
+
+      <!-- Bouton submit -->
+      <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded transition-colors duration-300">
+        Envoyer la commande
+      </button>
+    </form>
   </main>
 
-  <footer class="bg-gray-100 dark:bg-gray-800 text-center text-sm py-6 mt-8">
+  <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-12">
     &copy; 2025 LTD Grove Street. Tous droits réservés.
   </footer>
 
-  <script>
-    const map = L.map('map').setView([48.8566, 2.3522], 6); // Centré sur la France
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-
-    const stations = [
-      {
-        nom: "Station Nord",
-        lat: 50.6292,
-        lon: 3.0573,
-        adresse: "12 Rue de Lille"
-      },
-      {
-        nom: "Station Sud",
-        lat: 43.2965,
-        lon: 5.3698,
-        adresse: "88 Avenue de Marseille"
-      }
-    ];
-
-    stations.forEach(station => {
-      L.marker([station.lat, station.lon])
-        .addTo(map)
-        .bindPopup(`<strong>${station.nom}</strong><br>${station.adresse}`);
-    });
-  </script>
 </body>
-
 </html>
