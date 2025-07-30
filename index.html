@@ -17,6 +17,42 @@
 </head>
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
+  <!-- Barre de navigation -->
+  <header class="fixed top-0 left-0 w-full bg-indigo-600 text-white shadow-md z-50">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+      <a href="index.html" class="text-2xl font-bold hover:text-indigo-300">LTD Grove Street</a>
+      <ul class="hidden md:flex space-x-8 font-semibold text-lg">
+        <li><a href="index.html" class="hover:text-indigo-300">Accueil</a></li>
+        <li><a href="catalogue.html" class="hover:text-indigo-300">Catalogue</a></li>
+        <li><a href="stations.html" class="hover:text-indigo-300">Stations Essence</a></li>
+        <li><a href="commande.html" class="hover:text-indigo-300">Commande</a></li>
+        <li><a href="avis.html" class="hover:text-indigo-300">Avis Clients</a></li>
+        <li><a href="equipe.html" class="hover:text-indigo-300">Notre Équipe</a></li>
+        <li><a href="actualites.html" class="hover:text-indigo-300">Actualités</a></li>
+        <li><a href="contact.html" class="hover:text-indigo-300">Contact</a></li>
+      </ul>
+      <button id="nav-toggle" class="md:hidden focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </nav>
+    <div id="nav-menu" class="hidden md:hidden bg-indigo-700">
+      <ul class="flex flex-col px-6 py-4 space-y-4 font-semibold">
+        <li><a href="index.html" class="block hover:text-indigo-300">Accueil</a></li>
+        <li><a href="catalogue.html" class="block hover:text-indigo-300">Catalogue</a></li>
+        <li><a href="stations.html" class="block hover:text-indigo-300">Stations Essence</a></li>
+        <li><a href="commande.html" class="block hover:text-indigo-300">Commande</a></li>
+        <li><a href="avis.html" class="block hover:text-indigo-300">Avis Clients</a></li>
+        <li><a href="equipe.html" class="block hover:text-indigo-300">Notre Équipe</a></li>
+        <li><a href="actualites.html" class="block hover:text-indigo-300">Actualités</a></li>
+        <li><a href="contact.html" class="block hover:text-indigo-300">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
   <!-- Thème toggle -->
   <button id="theme-toggle" aria-label="Toggle Dark Mode" class="theme-toggle">
     🌗
@@ -171,6 +207,13 @@
       } else {
         setTheme('dark');
       }
+    });
+
+    // Menu mobile toggle
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('hidden');
     });
   </script>
 </body>
