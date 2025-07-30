@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LTD Grove Street - Accueil">
+  <title>Accueil | LTD Grove Street</title>
+  <link href="assets/css/style.css" rel="stylesheet">
+  <script defer src="assets/js/theme-toggle.js"></script>
+  <script defer src="assets/js/faq.js"></script>
+  <script defer src="assets/js/carousel.js"></script>
+</head>
+
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
+  <header class="p-4 flex justify-between items-center shadow-md">
+    <h1 class="text-2xl font-bold">LTD Grove Street</h1>
+    <div class="flex items-center gap-4">
+      <button id="theme-toggle" class="text-xl">🌓</button>
+      <a href="/intranet" class="text-sm bg-green-600 text-white px-3 py-1 rounded">Intranet</a>
+    </div>
+  </header>
+
+  <section class="hero h-[70vh] bg-cover bg-center flex items-center justify-center text-white text-center" style="background-image: url('assets/img/hero.jpg');">
+    <div class="bg-black/50 p-6 rounded-xl">
+      <h2 class="text-4xl font-bold mb-4">Bienvenue chez LTD Grove Street</h2>
+      <p class="text-lg mb-6">Votre partenaire logistique et énergétique</p>
+      <a href="catalogue.html" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">Voir le Catalogue</a>
+    </div>
+  </section>
+
+  <section class="p-8 max-w-4xl mx-auto">
+    <h3 class="text-2xl font-semibold mb-4">Présentation</h3>
+    <p>LTD Grove Street est une entreprise spécialisée dans la logistique, la distribution et les services énergétiques. Nous collaborons avec de nombreux partenaires à travers le pays pour assurer la qualité de nos produits et services.</p>
+  </section>
+
+  <section class="p-8 max-w-4xl mx-auto">
+    <h3 class="text-2xl font-semibold mb-4">FAQ</h3>
+    <div id="faq" class="space-y-4">
+      <div class="faq-item border-b pb-2">
+        <button class="faq-question font-semibold w-full text-left">Quels services proposez-vous ?</button>
+        <div class="faq-answer hidden mt-2 text-sm">Nous proposons des services logistiques, stations essence, livraison de produits, etc.</div>
+      </div>
+      <div class="faq-item border-b pb-2">
+        <button class="faq-question font-semibold w-full text-left">Où sont situées vos stations ?</button>
+        <div class="faq-answer hidden mt-2 text-sm">Consultez la page Stations pour découvrir notre carte interactive.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-8 max-w-6xl mx-auto">
+    <h3 class="text-2xl font-semibold mb-6">Nos Partenaires</h3>
+    <div class="carousel flex overflow-x-auto gap-6" id="partners-carousel">
+      <img src="assets/img/partner1.png" class="h-16" alt="Partenaire 1">
+      <img src="assets/img/partner2.png" class="h-16" alt="Partenaire 2">
+      <img src="assets/img/partner3.png" class="h-16" alt="Partenaire 3">
+      <!-- Ajouter d'autres logos ici -->
+    </div>
+  </section>
+
+  <section class="p-8 text-center">
+    <a href="commande.html" class="text-white bg-blue-600 px-6 py-3 rounded hover:bg-blue-700">Passer une commande</a>
+  </section>
+
+  <footer class="bg-gray-100 dark:bg-gray-800 text-center text-sm py-6 mt-8">
+    &copy; 2025 LTD Grove Street. Tous droits réservés.
+  </footer>
+</body>
+
+</html>
