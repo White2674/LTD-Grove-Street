@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Stations essence - LTD Grove Street">
+  <title>Stations Essence | LTD Grove Street</title>
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script defer src="assets/js/theme-toggle.js"></script>
+  <script defer src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
+  <header class="p-4 flex justify-between items-center shadow-md">
+    <h1 class="text-2xl font-bold">LTD Grove Street</h1>
+    <div class="flex items-center gap-4">
+      <button id="theme-toggle" class="text-xl">🌓</button>
+      <a href="index.html" class="text-sm bg-green-600 text-white px-3 py-1 rounded">Accueil</a>
+    </div>
+  </header>
+
+  <main class="p-8 max-w-7xl mx-auto">
+    <h2 class="text-3xl font-semibold mb-6">Nos Stations Essence</h2>
+
+    <div id="map" class="h-96 mb-8 rounded shadow"></div>
+
+    <h3 class="text-2xl font-semibold mb-4">Grille tarifaire des carburants</h3>
+    <div class="overflow-x-auto">
+      <table class="min-w-full text-left border">
+        <thead class="bg-gray-200 dark:bg-gray-700">
+          <tr>
+            <th class="px-4 py-2">Station</th>
+            <th class="px-4 py-2">Adresse</th>
+            <th class="px-4 py-2">SP95</th>
+            <th class="px-4 py-2">Gazole</th>
+            <th class="px-4 py-2">E85</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white dark:bg-gray-800">
+          <tr>
+            <td class="px-4 py-2">Station Nord</td>
+            <td class="px-4 py-2">12 Rue de Lille</td>
+            <td class="px-4 py-2">1.89 €</td>
+            <td class="px-4 py-2">1.75 €</td>
+            <td class="px-4 py-2">0.89 €</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2">Station Sud</td>
+            <td class="px-4 py-2">88 Avenue de Marseille</td>
+            <td class="px-4 py-2">1.91 €</td>
+            <td class="px-4 py-2">1.77 €</td>
+            <td class="px-4 py-2">0.92 €</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="bg-gray-100 dark:bg-gray-800 text-center text-sm py-6 mt-8">
+    &copy; 2025 LTD Grove Street. Tous droits réservés.
+  </footer>
+
+  <script>
+    const map = L.map('map').setView([48.8566, 2.3522], 6); // Centré sur la France
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const stations = [
+      {
+        nom: "Station Nord",
+        lat: 50.6292,
+        lon: 3.0573,
+        adresse: "12 Rue de Lille"
+      },
+      {
+        nom: "Station Sud",
+        lat: 43.2965,
+        lon: 5.3698,
+        adresse: "88 Avenue de Marseille"
+      }
+    ];
+
+    stations.forEach(station => {
+      L.marker([station.lat, station.lon])
+        .addTo(map)
+        .bindPopup(`<strong>${station.nom}</strong><br>${station.adresse}`);
+    });
+  </script>
+</body>
+
+</html>
