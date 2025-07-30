@@ -1,70 +1,177 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
-
+<html lang="fr" class="scroll-smooth" >
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="LTD Grove Street - Accueil">
-  <title>Accueil | LTD Grove Street</title>
-  <link href="assets/css/style.css" rel="stylesheet">
-  <script defer src="assets/js/theme-toggle.js"></script>
-  <script defer src="assets/js/faq.js"></script>
-  <script defer src="assets/js/carousel.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LTD Grove Street - Accueil</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Style custom -->
+  <link rel="stylesheet" href="css/style.css" />
+  
+  <!-- Splide.js pour carousel -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
+  
 </head>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
-<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
-  <header class="p-4 flex justify-between items-center shadow-md">
-    <h1 class="text-2xl font-bold">LTD Grove Street</h1>
-    <div class="flex items-center gap-4">
-      <button id="theme-toggle" class="text-xl">🌓</button>
-      <a href="/intranet" class="text-sm bg-green-600 text-white px-3 py-1 rounded">Intranet</a>
-    </div>
+  <!-- Thème toggle -->
+  <button id="theme-toggle" aria-label="Toggle Dark Mode" class="theme-toggle">
+    🌗
+  </button>
+
+  <!-- Bouton Intranet -->
+  <a href="https://intranet.ltdgrovestreet.com" target="_blank" rel="noopener" class="intranet-button">
+    Accéder à l’Intranet
+  </a>
+
+  <!-- Bannière -->
+  <header class="hero bg-[url('images/banner.jpg')] bg-cover bg-center min-h-[60vh] flex flex-col justify-center items-center px-6 text-white text-center shadow-lg">
+    <h1 class="text-4xl md:text-6xl font-extrabold drop-shadow-lg">Bienvenue chez LTD Grove Street</h1>
+    <p class="mt-4 max-w-xl text-lg md:text-2xl drop-shadow-md">Votre partenaire de confiance pour les carburants et services associés</p>
+    <a href="catalogue.html" class="mt-8 inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition">
+      Voir notre Catalogue
+    </a>
   </header>
 
-  <section class="hero h-[70vh] bg-cover bg-center flex items-center justify-center text-white text-center" style="background-image: url('assets/img/hero.jpg');">
-    <div class="bg-black/50 p-6 rounded-xl">
-      <h2 class="text-4xl font-bold mb-4">Bienvenue chez LTD Grove Street</h2>
-      <p class="text-lg mb-6">Votre partenaire logistique et énergétique</p>
-      <a href="catalogue.html" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">Voir le Catalogue</a>
-    </div>
+  <!-- Présentation -->
+  <section class="max-w-6xl mx-auto p-6 mt-12">
+    <h2 class="text-3xl font-semibold mb-6 text-center">Qui sommes-nous ?</h2>
+    <p class="text-center max-w-3xl mx-auto text-gray-700 dark:text-gray-300 leading-relaxed">
+      LTD Grove Street est une entreprise familiale dédiée à la distribution de carburants de qualité et aux services de proximité. Depuis plus de 20 ans, nous nous engageons à fournir un service irréprochable à nos clients, avec un réseau étendu de stations essence et une gamme complète de produits.
+    </p>
   </section>
 
-  <section class="p-8 max-w-4xl mx-auto">
-    <h3 class="text-2xl font-semibold mb-4">Présentation</h3>
-    <p>LTD Grove Street est une entreprise spécialisée dans la logistique, la distribution et les services énergétiques. Nous collaborons avec de nombreux partenaires à travers le pays pour assurer la qualité de nos produits et services.</p>
-  </section>
-
-  <section class="p-8 max-w-4xl mx-auto">
-    <h3 class="text-2xl font-semibold mb-4">FAQ</h3>
+  <!-- FAQ Accordéon -->
+  <section class="max-w-4xl mx-auto p-6 mt-12">
+    <h2 class="text-3xl font-semibold mb-6 text-center">Foire aux Questions</h2>
     <div id="faq" class="space-y-4">
-      <div class="faq-item border-b pb-2">
-        <button class="faq-question font-semibold w-full text-left">Quels services proposez-vous ?</button>
-        <div class="faq-answer hidden mt-2 text-sm">Nous proposons des services logistiques, stations essence, livraison de produits, etc.</div>
+      <div class="faq-item">
+        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false">
+          Quels sont vos horaires d'ouverture ?
+          <span class="faq-icon text-2xl">+</span>
+        </button>
+        <div class="faq-answer mt-2 text-gray-600 dark:text-gray-300" hidden>
+          Nos stations sont ouvertes de 6h à 22h tous les jours.
+        </div>
       </div>
-      <div class="faq-item border-b pb-2">
-        <button class="faq-question font-semibold w-full text-left">Où sont situées vos stations ?</button>
-        <div class="faq-answer hidden mt-2 text-sm">Consultez la page Stations pour découvrir notre carte interactive.</div>
+      <div class="faq-item">
+        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false">
+          Proposez-vous des services de livraison ?
+          <span class="faq-icon text-2xl">+</span>
+        </button>
+        <div class="faq-answer mt-2 text-gray-600 dark:text-gray-300" hidden>
+          Oui, nous assurons la livraison à domicile sur commande.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false">
+          Puis-je payer en ligne ?
+          <span class="faq-icon text-2xl">+</span>
+        </button>
+        <div class="faq-answer mt-2 text-gray-600 dark:text-gray-300" hidden>
+          Pour l’instant, le paiement se fait en station ou à la livraison.
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="p-8 max-w-6xl mx-auto">
-    <h3 class="text-2xl font-semibold mb-6">Nos Partenaires</h3>
-    <div class="carousel flex overflow-x-auto gap-6" id="partners-carousel">
-      <img src="assets/img/partner1.png" class="h-16" alt="Partenaire 1">
-      <img src="assets/img/partner2.png" class="h-16" alt="Partenaire 2">
-      <img src="assets/img/partner3.png" class="h-16" alt="Partenaire 3">
-      <!-- Ajouter d'autres logos ici -->
+  <!-- Logos partenaires Carousel -->
+  <section class="max-w-6xl mx-auto p-6 mt-16">
+    <h2 class="text-3xl font-semibold mb-6 text-center">Nos partenaires</h2>
+    <div id="partners-carousel" class="splide" aria-label="Logos de nos partenaires">
+      <div class="splide__track">
+        <ul class="splide__list flex items-center">
+          <li class="splide__slide flex justify-center items-center p-4">
+            <img src="images/partner1.png" alt="Partenaire 1" class="max-h-16 object-contain" />
+          </li>
+          <li class="splide__slide flex justify-center items-center p-4">
+            <img src="images/partner2.png" alt="Partenaire 2" class="max-h-16 object-contain" />
+          </li>
+          <li class="splide__slide flex justify-center items-center p-4">
+            <img src="images/partner3.png" alt="Partenaire 3" class="max-h-16 object-contain" />
+          </li>
+          <li class="splide__slide flex justify-center items-center p-4">
+            <img src="images/partner4.png" alt="Partenaire 4" class="max-h-16 object-contain" />
+          </li>
+          <!-- Ajoute d’autres partenaires ici -->
+        </ul>
+      </div>
     </div>
   </section>
 
-  <section class="p-8 text-center">
-    <a href="commande.html" class="text-white bg-blue-600 px-6 py-3 rounded hover:bg-blue-700">Passer une commande</a>
-  </section>
-
-  <footer class="bg-gray-100 dark:bg-gray-800 text-center text-sm py-6 mt-8">
+  <!-- Footer simple -->
+  <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-20">
     &copy; 2025 LTD Grove Street. Tous droits réservés.
   </footer>
-</body>
 
+  <!-- Scripts -->
+
+  <!-- Splide.js Carousel -->
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+
+  <script>
+    // Initialiser carousel partenaires
+    document.addEventListener('DOMContentLoaded', function () {
+      new Splide('#partners-carousel', {
+        type: 'loop',
+        perPage: 4,
+        perMove: 1,
+        gap: '1rem',
+        autoplay: true,
+        interval: 3000,
+        pauseOnHover: true,
+        breakpoints: {
+          640: { perPage: 2 },
+          480: { perPage: 1 }
+        }
+      }).mount();
+    });
+
+    // FAQ Accordéon
+    const faqItems = document.querySelectorAll('.faq-question');
+    faqItems.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !expanded);
+        const answer = btn.nextElementSibling;
+        if (answer.hasAttribute('hidden')) {
+          answer.removeAttribute('hidden');
+          btn.querySelector('.faq-icon').textContent = '−';
+        } else {
+          answer.setAttribute('hidden', '');
+          btn.querySelector('.faq-icon').textContent = '+';
+        }
+      });
+    });
+
+    // Thème clair / sombre
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+
+    function setTheme(theme) {
+      if (theme === 'dark') {
+        htmlElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        htmlElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    // Charger préférence
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    setTheme(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      if (htmlElement.classList.contains('dark')) {
+        setTheme('light');
+      } else {
+        setTheme('dark');
+      }
+    });
+  </script>
+</body>
 </html>
