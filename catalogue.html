@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Catalogue produits - LTD Grove Street">
+  <title>Catalogue | LTD Grove Street</title>
+  <link href="assets/css/style.css" rel="stylesheet">
+  <script defer src="assets/js/theme-toggle.js"></script>
+  <script defer src="assets/js/catalogue.js"></script>
+</head>
+
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
+  <header class="p-4 flex justify-between items-center shadow-md">
+    <h1 class="text-2xl font-bold">LTD Grove Street</h1>
+    <div class="flex items-center gap-4">
+      <button id="theme-toggle" class="text-xl">🌓</button>
+      <a href="index.html" class="text-sm bg-green-600 text-white px-3 py-1 rounded">Accueil</a>
+    </div>
+  </header>
+
+  <main class="p-8 max-w-7xl mx-auto">
+    <h2 class="text-3xl font-semibold mb-6">Catalogue Produits</h2>
+
+    <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <input type="text" id="search" placeholder="Rechercher un produit..." class="w-full sm:w-1/2 px-4 py-2 border rounded">
+      <select id="sort" class="px-4 py-2 border rounded">
+        <option value="">Trier par</option>
+        <option value="asc">Prix croissant</option>
+        <option value="desc">Prix décroissant</option>
+      </select>
+    </div>
+
+    <div id="product-list" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- Produits insérés dynamiquement via JS -->
+    </div>
+  </main>
+
+  <footer class="bg-gray-100 dark:bg-gray-800 text-center text-sm py-6 mt-8">
+    &copy; 2025 LTD Grove Street. Tous droits réservés.
+  </footer>
+
+  <script>
+    // Exemple simple de données produits
+    const produits = [
+      { nom: "Bidon 20L", prix: 25.90, image: "assets/img/produit1.jpg" },
+      { nom: "Lubrifiant moteur", prix: 12.50, image: "assets/img/produit2.jpg" },
+      { nom: "Filtre à air", prix: 8.99, image: "assets/img/produit3.jpg" }
+    ];
+
+    const container = document.getElementById('product-list');
+    const searchInput = document.getElementById('search');
+    const sortSelect = document.getElementById('sort');
+
+    function renderProduits(list) {
+      container.innerHTML = '';
+      list.forEach(p => {
+        container.innerHTML += `
+          <div class="bg-white dark:bg-gray-800 shadow rounded p-4">
+            <img src="${p.image}" alt="${p.nom}" class="w-full h-40 object-cover rounded">
+            <h3 class="mt-4 text-lg font-semibold">${p.nom}</h3>
+            <p class="text-green-600 font-bold">${p.prix.toFixed(2)} €</p>
+          </div>`;
+      });
+    }
+
+    function filterAndSort() {
+      let filtered = produits.filter(p => p.nom.toLowerCase().includes(searchInput.value.toLowerCase()));
+      if (sortSelect.value === 'asc') filtered.sort((a, b) => a.prix - b.prix);
+      if (sortSelect.value === 'desc') filtered.sort((a, b) => b.prix - a.prix);
+      renderProduits(filtered);
+    }
+
+    searchInput.addEventListener('input', filterAndSort);
+    sortSelect.addEventListener('change', filterAndSort);
+
+    renderProduits(produits);
+  </script>
+</body>
+
+</html>
