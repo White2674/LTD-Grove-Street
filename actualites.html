@@ -1,93 +1,58 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Actualités, promos, événements - LTD Grove Street">
-  <title>Actualités | LTD Grove Street</title>
-  <link href="assets/css/style.css" rel="stylesheet">
-  <script defer src="assets/js/theme-toggle.js"></script>
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LTD Grove Street - Actualités</title>
 
-<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
-  <header class="p-4 flex justify-between items-center shadow-md">
-    <h1 class="text-2xl font-bold">LTD Grove Street</h1>
-    <div class="flex items-center gap-4">
-      <button id="theme-toggle" class="text-xl">🌓</button>
-      <a href="index.html" class="text-sm bg-green-600 text-white px-3 py-1 rounded">Accueil</a>
-      <a href="catalogue.html" class="text-sm bg-green-600 text-white px-3 py-1 rounded">Catalogue</a>
-    </div>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Style custom -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
+
+  <header class="p-6 bg-indigo-600 text-white text-center font-bold text-2xl">
+    Actualités
   </header>
 
-  <main class="p-8 max-w-7xl mx-auto">
-    <h2 class="text-3xl font-semibold mb-6">Actualités</h2>
+  <main class="max-w-6xl mx-auto p-6 mt-6 space-y-8">
 
-    <div class="mb-6 flex justify-between items-center gap-4">
-      <select id="tri-date" class="px-4 py-2 border rounded">
-        <option value="desc">Trier par date (récent d'abord)</option>
-        <option value="asc">Trier par date (ancien d'abord)</option>
-      </select>
-    </div>
+    <!-- Actualité 1 -->
+    <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+      <h2 class="text-2xl font-semibold mb-2">Promotion sur l’Essence Sans Plomb 95</h2>
+      <time datetime="2025-07-25" class="block text-indigo-600 italic mb-4">25 juillet 2025</time>
+      <p class="text-gray-700 dark:text-gray-300">
+        Profitez d’une remise de 10% sur l’Essence Sans Plomb 95 jusqu’à la fin du mois. Offre valable dans toutes nos stations.
+      </p>
+    </article>
 
-    <div id="actualites-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Articles insérés via JS -->
-    </div>
+    <!-- Actualité 2 -->
+    <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+      <h2 class="text-2xl font-semibold mb-2">Nouveau site web lancé !</h2>
+      <time datetime="2025-07-15" class="block text-indigo-600 italic mb-4">15 juillet 2025</time>
+      <p class="text-gray-700 dark:text-gray-300">
+        Découvrez notre tout nouveau site internet, moderne et facile à utiliser, avec catalogue en ligne et formulaire de commande.
+      </p>
+    </article>
+
+    <!-- Actualité 3 -->
+    <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+      <h2 class="text-2xl font-semibold mb-2">Événement client - Journée portes ouvertes</h2>
+      <time datetime="2025-06-30" class="block text-indigo-600 italic mb-4">30 juin 2025</time>
+      <p class="text-gray-700 dark:text-gray-300">
+        Venez rencontrer notre équipe lors de notre journée portes ouvertes le 10 août 2025. Ateliers, démonstrations et surprises au programme !
+      </p>
+    </article>
+
+    <!-- Ajoute autant d’articles que tu veux -->
+
   </main>
 
-  <footer class="bg-gray-100 dark:bg-gray-800 text-center text-sm py-6 mt-8">
+  <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-12">
     &copy; 2025 LTD Grove Street. Tous droits réservés.
   </footer>
 
-  <script>
-    const actualites = [
-      {
-        titre: "Promo Été 2025",
-        date: "2025-07-15",
-        contenu: "Profitez de -20% sur tous les lubrifiants pendant tout l'été.",
-        image: "assets/img/promo1.jpg"
-      },
-      {
-        titre: "Ouverture nouvelle station",
-        date: "2025-06-30",
-        contenu: "Inauguration de notre nouvelle station essence à Paris.",
-        image: "assets/img/station-paris.jpg"
-      },
-      {
-        titre: "Salon de l'énergie 2025",
-        date: "2025-05-20",
-        contenu: "Retrouvez-nous au salon de l'énergie pour découvrir nos nouveautés.",
-        image: "assets/img/salon-energie.jpg"
-      }
-    ];
-
-    const container = document.getElementById('actualites-list');
-    const triSelect = document.getElementById('tri-date');
-
-    function renderActualites(list) {
-      container.innerHTML = '';
-      list.forEach(a => {
-        container.innerHTML += `
-          <article class="bg-white dark:bg-gray-800 rounded shadow p-4 flex flex-col">
-            <img src="${a.image}" alt="${a.titre}" class="rounded mb-4 object-cover h-48 w-full">
-            <h3 class="text-xl font-bold mb-2">${a.titre}</h3>
-            <time datetime="${a.date}" class="text-gray-600 dark:text-gray-400 mb-2">${new Date(a.date).toLocaleDateString('fr-FR')}</time>
-            <p class="flex-grow">${a.contenu}</p>
-          </article>
-        `;
-      });
-    }
-
-    function sortActualites() {
-      const ordre = triSelect.value;
-      const sorted = [...actualites].sort((a,b) => ordre === 'asc' ? new Date(a.date) - new Date(b.date) : new Date(b.date) - new Date(a.date));
-      renderActualites(sorted);
-    }
-
-    triSelect.addEventListener('change', sortActualites);
-
-    sortActualites();
-  </script>
 </body>
-
 </html>
