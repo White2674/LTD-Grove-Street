@@ -121,9 +121,9 @@ body {
   right: 1rem;
 }
 
-/* === Bouton Switch Thème === */
+/* === Bouton Toggle Thème === */
 
-.theme-switch {
+#theme-toggle {
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
@@ -137,11 +137,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.5rem;
+  border: none;
   transition: background-color 0.3s ease;
   z-index: 100;
 }
 
-.theme-switch:hover {
+#theme-toggle:hover {
   background: #4338ca;
 }
 
@@ -177,7 +179,7 @@ input:focus, textarea:focus, select:focus {
 
 /* === Petit bouton intranet (exemple) === */
 
-#btn-intranet {
+.intranet-button {
   position: fixed;
   top: 1rem;
   right: 1rem;
@@ -191,8 +193,9 @@ input:focus, textarea:focus, select:focus {
   z-index: 50;
   transition: background-color 0.3s ease;
   text-decoration: none;
+  font-size: 0.875rem;
 }
 
-#btn-intranet:hover {
+.intranet-button:hover {
   background: #4338ca;
 }
