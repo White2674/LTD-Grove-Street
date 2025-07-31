@@ -14,18 +14,22 @@ body {
   padding: 1rem 0;
 }
 
+body.dark .faq-item {
+  border-bottom: 1px solid #444;
+}
+
 .faq-question {
   cursor: pointer;
   font-weight: 600;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.125rem; /* 18px */
+  font-size: 1.125rem;
   transition: color 0.3s ease;
 }
 
 .faq-question:hover {
-  color: #4f46e5; /* indigo-600 */
+  color: #4f46e5;
 }
 
 .faq-answer {
@@ -37,8 +41,12 @@ body {
   font-size: 1rem;
 }
 
+body.dark .faq-answer {
+  color: #ccc;
+}
+
 .faq-item.open .faq-answer {
-  max-height: 500px; /* assez grand pour contenir le contenu */
+  max-height: 500px;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
@@ -162,7 +170,9 @@ body {
 
 /* === Formulaires === */
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.5);
   transition: box-shadow 0.3s ease;
