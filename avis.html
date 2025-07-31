@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>LTD Grove Street - Avis Clients</title>
+  <title>LTD Grove Street - Actualités</title>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -13,58 +13,113 @@
 </head>
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
-  <header class="p-6 bg-indigo-600 text-white text-center font-bold text-2xl">
-    Avis Clients
+  <!-- Navbar fixe -->
+  <header class="fixed top-0 left-0 w-full bg-indigo-600 text-white shadow-md z-50">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+      <a href="index.html" class="text-2xl font-bold hover:text-indigo-300">LTD Grove Street</a>
+      <ul class="hidden md:flex space-x-8 font-semibold text-lg">
+        <li><a href="index.html" class="hover:text-indigo-300">Accueil</a></li>
+        <li><a href="catalogue.html" class="hover:text-indigo-300">Catalogue</a></li>
+        <li><a href="stations.html" class="hover:text-indigo-300">Stations Essence</a></li>
+        <li><a href="commande.html" class="hover:text-indigo-300">Commande</a></li>
+        <li><a href="avis.html" class="hover:text-indigo-300">Avis Clients</a></li>
+        <li><a href="equipe.html" class="hover:text-indigo-300">Notre Équipe</a></li>
+        <li><a href="actualites.html" class="hover:text-indigo-300">Actualités</a></li>
+        <li><a href="contact.html" class="hover:text-indigo-300">Contact</a></li>
+      </ul>
+
+      <!-- Boutons : menu mobile + thème -->
+      <div class="flex items-center space-x-4">
+        <button id="theme-toggle" class="text-white text-xl focus:outline-none">
+          <span id="theme-icon">🌙</span>
+        </button>
+        <button id="nav-toggle" class="md:hidden focus:outline-none">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Menu mobile -->
+    <div id="nav-menu" class="hidden md:hidden bg-indigo-700">
+      <ul class="flex flex-col px-6 py-4 space-y-4 font-semibold text-lg">
+        <li><a href="index.html" class="block hover:text-indigo-300">Accueil</a></li>
+        <li><a href="catalogue.html" class="block hover:text-indigo-300">Catalogue</a></li>
+        <li><a href="stations.html" class="block hover:text-indigo-300">Stations Essence</a></li>
+        <li><a href="commande.html" class="block hover:text-indigo-300">Commande</a></li>
+        <li><a href="avis.html" class="block hover:text-indigo-300">Avis Clients</a></li>
+        <li><a href="equipe.html" class="block hover:text-indigo-300">Notre Équipe</a></li>
+        <li><a href="actualites.html" class="block hover:text-indigo-300">Actualités</a></li>
+        <li><a href="contact.html" class="block hover:text-indigo-300">Contact</a></li>
+      </ul>
+    </div>
   </header>
 
-  <main class="max-w-6xl mx-auto p-6 mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+  <!-- Contenu actualités -->
+  <main class="max-w-6xl mx-auto p-6 mt-20 space-y-8">
 
-    <!-- Avis 1 -->
-    <article class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
-      <div class="flex items-center mb-4">
-        <div class="text-yellow-400 mr-2">
-          ★★★★★
-        </div>
-        <h3 class="font-semibold text-lg">Jean Dupont</h3>
-      </div>
+    <!-- Actualité 1 -->
+    <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+      <h2 class="text-2xl font-semibold mb-2">Promotion sur l’Essence Sans Plomb 95</h2>
+      <time datetime="2025-07-25" class="block text-indigo-600 italic mb-4">25 juillet 2025</time>
       <p class="text-gray-700 dark:text-gray-300">
-        Service impeccable, livraison rapide et produits de qualité. Je recommande sans hésiter !
+        Profitez d’une remise de 10% sur l’Essence Sans Plomb 95 jusqu’à la fin du mois. Offre valable dans toutes nos stations.
       </p>
     </article>
 
-    <!-- Avis 2 -->
-    <article class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
-      <div class="flex items-center mb-4">
-        <div class="text-yellow-400 mr-2">
-          ★★★★☆
-        </div>
-        <h3 class="font-semibold text-lg">Sophie Martin</h3>
-      </div>
+    <!-- Actualité 2 -->
+    <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+      <h2 class="text-2xl font-semibold mb-2">Nouveau site web lancé !</h2>
+      <time datetime="2025-07-15" class="block text-indigo-600 italic mb-4">15 juillet 2025</time>
       <p class="text-gray-700 dark:text-gray-300">
-        Très bon catalogue, j’ai trouvé exactement ce dont j’avais besoin. Petit bémol sur le délai de livraison.
+        Découvrez notre tout nouveau site internet, moderne et facile à utiliser, avec catalogue en ligne et formulaire de commande.
       </p>
     </article>
 
-    <!-- Avis 3 -->
-    <article class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
-      <div class="flex items-center mb-4">
-        <div class="text-yellow-400 mr-2">
-          ★★★★★
-        </div>
-        <h3 class="font-semibold text-lg">Ahmed K.</h3>
-      </div>
+    <!-- Actualité 3 -->
+    <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+      <h2 class="text-2xl font-semibold mb-2">Événement client - Journée portes ouvertes</h2>
+      <time datetime="2025-06-30" class="block text-indigo-600 italic mb-4">30 juin 2025</time>
       <p class="text-gray-700 dark:text-gray-300">
-        Excellent rapport qualité/prix. Le personnel est très à l’écoute et professionnel.
+        Venez rencontrer notre équipe lors de notre journée portes ouvertes le 10 août 2025. Ateliers, démonstrations et surprises au programme !
       </p>
     </article>
-
-    <!-- Ajoute autant d'avis que tu veux ici -->
 
   </main>
 
   <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-12">
     &copy; 2025 LTD Grove Street. Tous droits réservés.
   </footer>
+
+  <!-- Script menu mobile -->
+  <script>
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('hidden');
+    });
+  </script>
+
+  <!-- Script switch thème clair/sombre -->
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const htmlEl = document.documentElement;
+
+    if (localStorage.getItem('theme') === 'dark') {
+      htmlEl.classList.add('dark');
+      themeIcon.textContent = '🌞';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      htmlEl.classList.toggle('dark');
+      const isDark = htmlEl.classList.contains('dark');
+      themeIcon.textContent = isDark ? '🌞' : '🌙';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  </script>
 
 </body>
 </html>
