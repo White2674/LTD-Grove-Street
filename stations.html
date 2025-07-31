@@ -28,33 +28,71 @@
 </head>
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
-  <header class="p-6 bg-indigo-600 text-white text-center font-bold text-2xl">
-    Nos Stations Essence
+  <!-- Header global -->
+  <header class="fixed top-0 left-0 w-full bg-indigo-600 text-white shadow-md z-50">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+      <a href="index.html" class="text-2xl font-bold hover:text-indigo-300">LTD Grove Street</a>
+      <ul class="hidden md:flex space-x-8 font-semibold text-lg">
+        <li><a href="index.html" class="hover:text-indigo-300">Accueil</a></li>
+        <li><a href="catalogue.html" class="hover:text-indigo-300">Catalogue</a></li>
+        <li><a href="stations.html" class="hover:text-indigo-300">Stations Essence</a></li>
+        <li><a href="commande.html" class="hover:text-indigo-300">Commande</a></li>
+        <li><a href="avis.html" class="hover:text-indigo-300">Avis Clients</a></li>
+        <li><a href="equipe.html" class="hover:text-indigo-300">Notre Équipe</a></li>
+        <li><a href="actualites.html" class="hover:text-indigo-300">Actualités</a></li>
+        <li><a href="contact.html" class="hover:text-indigo-300">Contact</a></li>
+      </ul>
+      <button id="nav-toggle" class="md:hidden focus:outline-none">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Menu mobile -->
+    <div id="nav-menu" class="hidden md:hidden bg-indigo-700">
+      <ul class="flex flex-col px-6 py-4 space-y-4 font-semibold text-lg">
+        <li><a href="index.html" class="block hover:text-indigo-300">Accueil</a></li>
+        <li><a href="catalogue.html" class="block hover:text-indigo-300">Catalogue</a></li>
+        <li><a href="stations.html" class="block hover:text-indigo-300">Stations Essence</a></li>
+        <li><a href="commande.html" class="block hover:text-indigo-300">Commande</a></li>
+        <li><a href="avis.html" class="block hover:text-indigo-300">Avis Clients</a></li>
+        <li><a href="equipe.html" class="block hover:text-indigo-300">Notre Équipe</a></li>
+        <li><a href="actualites.html" class="block hover:text-indigo-300">Actualités</a></li>
+        <li><a href="contact.html" class="block hover:text-indigo-300">Contact</a></li>
+      </ul>
+    </div>
   </header>
 
-  <!-- Carte -->
-  <section class="max-w-6xl mx-auto p-6 mt-6">
-    <div id="map"></div>
-  </section>
+  <!-- Contenu -->
+  <main class="mt-20">
+    <!-- Carte -->
+    <section class="max-w-6xl mx-auto p-6">
+      <h1 class="text-2xl font-bold text-center text-indigo-600 mb-4">Nos Stations Essence</h1>
+      <div id="map"></div>
+    </section>
 
-  <!-- Grille tarifaire -->
-  <section class="max-w-6xl mx-auto p-6 mt-12">
-    <h2 class="text-3xl font-semibold mb-4 text-center">Tarifs des carburants</h2>
-    <div class="overflow-x-auto">
-      <table class="min-w-full border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden text-left">
-        <thead class="bg-indigo-600 text-white">
-          <tr>
-            <th class="px-4 py-2">Carburant</th>
-            <th class="px-4 py-2">Prix (€ / litre)</th>
-          </tr>
-        </thead>
-        <tbody id="priceTableBody" class="bg-white dark:bg-gray-800">
-          <!-- Remplissage dynamique -->
-        </tbody>
-      </table>
-    </div>
-  </section>
+    <!-- Grille tarifaire -->
+    <section class="max-w-6xl mx-auto p-6 mt-12">
+      <h2 class="text-3xl font-semibold mb-4 text-center">Tarifs des carburants</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden text-left">
+          <thead class="bg-indigo-600 text-white">
+            <tr>
+              <th class="px-4 py-2">Carburant</th>
+              <th class="px-4 py-2">Prix (€ / litre)</th>
+            </tr>
+          </thead>
+          <tbody id="priceTableBody" class="bg-white dark:bg-gray-800">
+            <!-- Remplissage dynamique -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
 
+  <!-- Footer -->
   <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-12">
     &copy; 2025 LTD Grove Street. Tous droits réservés.
   </footer>
@@ -67,7 +105,6 @@
   ></script>
 
   <script>
-    // Données stations avec localisation + photo
     const stations = [
       {
         id: 1,
@@ -92,7 +129,6 @@
       },
     ];
 
-    // Prix carburants (fixes ici, ou dynamiques)
     const fuelPrices = [
       { fuel: "Essence Sans Plomb 95", price: 1.59 },
       { fuel: "Diesel Standard", price: 1.42 },
@@ -100,16 +136,12 @@
       { fuel: "Essence Sans Plomb 98", price: 1.72 },
     ];
 
-    // Initialiser la carte
     const map = L.map('map').setView([40.7128, -74.006], 12);
-
-    // Tile layer OpenStreetMap
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    // Ajouter des marqueurs
     stations.forEach(station => {
       const popupContent = `
         <strong>${station.name}</strong><br/>
@@ -118,7 +150,6 @@
       L.marker([station.lat, station.lng]).addTo(map).bindPopup(popupContent);
     });
 
-    // Remplir la table des prix
     const priceTableBody = document.getElementById('priceTableBody');
     fuelPrices.forEach(item => {
       const tr = document.createElement('tr');
@@ -128,6 +159,15 @@
         <td class="px-4 py-2">${item.price.toFixed(2)} €</td>
       `;
       priceTableBody.appendChild(tr);
+    });
+  </script>
+
+  <!-- Script menu mobile -->
+  <script>
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('hidden');
     });
   </script>
 </body>
