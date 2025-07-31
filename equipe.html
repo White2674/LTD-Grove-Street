@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="css/style.css" />
 
   <style>
-    /* Lightbox simple */
     #lightbox {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -35,13 +34,47 @@
 </head>
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
-  <header class="p-6 bg-indigo-600 text-white text-center font-bold text-2xl">
-    Notre Équipe
+  <!-- Header global -->
+  <header class="fixed top-0 left-0 w-full bg-indigo-600 text-white shadow-md z-50">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+      <a href="index.html" class="text-2xl font-bold hover:text-indigo-300">LTD Grove Street</a>
+      <ul class="hidden md:flex space-x-8 font-semibold text-lg">
+        <li><a href="index.html" class="hover:text-indigo-300">Accueil</a></li>
+        <li><a href="catalogue.html" class="hover:text-indigo-300">Catalogue</a></li>
+        <li><a href="stations.html" class="hover:text-indigo-300">Stations Essence</a></li>
+        <li><a href="commande.html" class="hover:text-indigo-300">Commande</a></li>
+        <li><a href="avis.html" class="hover:text-indigo-300">Avis Clients</a></li>
+        <li><a href="equipe.html" class="hover:text-indigo-300">Notre Équipe</a></li>
+        <li><a href="actualites.html" class="hover:text-indigo-300">Actualités</a></li>
+        <li><a href="contact.html" class="hover:text-indigo-300">Contact</a></li>
+      </ul>
+      <button id="nav-toggle" class="md:hidden focus:outline-none">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Menu mobile -->
+    <div id="nav-menu" class="hidden md:hidden bg-indigo-700">
+      <ul class="flex flex-col px-6 py-4 space-y-4 font-semibold text-lg">
+        <li><a href="index.html" class="block hover:text-indigo-300">Accueil</a></li>
+        <li><a href="catalogue.html" class="block hover:text-indigo-300">Catalogue</a></li>
+        <li><a href="stations.html" class="block hover:text-indigo-300">Stations Essence</a></li>
+        <li><a href="commande.html" class="block hover:text-indigo-300">Commande</a></li>
+        <li><a href="avis.html" class="block hover:text-indigo-300">Avis Clients</a></li>
+        <li><a href="equipe.html" class="block hover:text-indigo-300">Notre Équipe</a></li>
+        <li><a href="actualites.html" class="block hover:text-indigo-300">Actualités</a></li>
+        <li><a href="contact.html" class="block hover:text-indigo-300">Contact</a></li>
+      </ul>
+    </div>
   </header>
 
-  <main class="max-w-6xl mx-auto p-6 mt-6">
+  <!-- Contenu -->
+  <main class="max-w-6xl mx-auto p-6 mt-20">
 
-    <!-- Hiérarchie / Sections -->
+    <!-- Hiérarchie -->
     <section class="mb-12">
       <h2 class="text-3xl font-semibold mb-6 text-center">Direction</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
@@ -75,9 +108,46 @@
       </div>
     </section>
 
-    <!-- Galerie photos -->
+    <!-- Galerie -->
     <section>
       <h2 class="text-3xl font-semibold mb-6 text-center">Album Photos</h2>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
         <img src="images/team-event1.jpg" alt="Événement 1" class="rounded-lg cursor-pointer hover:opacity-80 transition-opacity duration-300" onclick="openLightbox(this.src)" />
-        <img
+        <img src="images/team-event2.jpg" alt="Événement 2" class="rounded-lg cursor-pointer hover:opacity-80 transition-opacity duration-300" onclick="openLightbox(this.src)" />
+        <img src="images/team-event3.jpg" alt="Événement 3" class="rounded-lg cursor-pointer hover:opacity-80 transition-opacity duration-300" onclick="openLightbox(this.src)" />
+        <img src="images/team-event4.jpg" alt="Événement 4" class="rounded-lg cursor-pointer hover:opacity-80 transition-opacity duration-300" onclick="openLightbox(this.src)" />
+      </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" onclick="closeLightbox()">
+      <img id="lightbox-img" src="" alt="Zoom" />
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-12">
+    &copy; 2025 LTD Grove Street. Tous droits réservés.
+  </footer>
+
+  <!-- Lightbox JS -->
+  <script>
+    function openLightbox(src) {
+      document.getElementById("lightbox-img").src = src;
+      document.getElementById("lightbox").classList.add("show");
+    }
+    function closeLightbox() {
+      document.getElementById("lightbox").classList.remove("show");
+    }
+  </script>
+
+  <!-- Script menu mobile -->
+  <script>
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
