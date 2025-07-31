@@ -31,7 +31,7 @@
         <li><a href="actualites.html" class="hover:text-indigo-300">Actualités</a></li>
         <li><a href="contact.html" class="hover:text-indigo-300">Contact</a></li>
       </ul>
-      <button id="nav-toggle" class="md:hidden focus:outline-none">
+      <button id="nav-toggle" class="md:hidden focus:outline-none" aria-label="Ouvrir le menu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
           <line x1="3" y1="6" x2="21" y2="6" />
           <line x1="3" y1="12" x2="21" y2="12" />
@@ -54,17 +54,17 @@
   </header>
 
   <!-- Thème toggle -->
-  <button id="theme-toggle" aria-label="Toggle Dark Mode" class="theme-toggle">
+  <button id="theme-toggle" aria-label="Toggle Dark Mode" class="fixed bottom-5 right-5 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition" title="Changer le thème">
     🌗
   </button>
 
   <!-- Bouton Intranet -->
-  <a href="https://intranet.ltdgrovestreet.com" target="_blank" rel="noopener" class="intranet-button">
+  <a href="https://intranet.ltdgrovestreet.com" target="_blank" rel="noopener" class="fixed bottom-5 left-5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-5 rounded shadow-lg transition">
     Accéder à l’Intranet
   </a>
 
   <!-- Bannière -->
-  <header class="hero bg-[url('images/banner.jpg')] bg-cover bg-center min-h-[60vh] flex flex-col justify-center items-center px-6 text-white text-center shadow-lg">
+  <header class="hero bg-[url('images/banner.jpg')] bg-cover bg-center min-h-[60vh] flex flex-col justify-center items-center px-6 text-white text-center shadow-lg mt-16">
     <h1 class="text-4xl md:text-6xl font-extrabold drop-shadow-lg">Bienvenue chez LTD Grove Street</h1>
     <p class="mt-4 max-w-xl text-lg md:text-2xl drop-shadow-md">Votre partenaire de confiance pour les carburants et services associés</p>
     <a href="catalogue.html" class="mt-8 inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition">
@@ -85,29 +85,29 @@
     <h2 class="text-3xl font-semibold mb-6 text-center">Foire aux Questions</h2>
     <div id="faq" class="space-y-4">
       <div class="faq-item">
-        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false">
+        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false" aria-controls="faq1">
           Quels sont vos horaires d'ouverture ?
           <span class="faq-icon text-2xl">+</span>
         </button>
-        <div class="faq-answer mt-2 text-gray-600 dark:text-gray-300" hidden>
+        <div id="faq1" class="faq-answer mt-2 text-gray-600 dark:text-gray-300" hidden>
           Nos stations sont ouvertes de 6h à 22h tous les jours.
         </div>
       </div>
       <div class="faq-item">
-        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false">
+        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false" aria-controls="faq2">
           Proposez-vous des services de livraison ?
           <span class="faq-icon text-2xl">+</span>
         </button>
-        <div class="faq-answer mt-2 text-gray-600 dark:text-gray-300" hidden>
+        <div id="faq2" class="faq-answer mt-2 text-gray-600 dark:text-gray-300" hidden>
           Oui, nous assurons la livraison à domicile sur commande.
         </div>
       </div>
       <div class="faq-item">
-        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false">
+        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false" aria-controls="faq3">
           Puis-je payer en ligne ?
           <span class="faq-icon text-2xl">+</span>
         </button>
-        <div class="faq-answer mt-2 text-gray-600 dark:text-gray-300" hidden>
+        <div id="faq3" class="faq-answer mt-2 text-gray-600 dark:text-gray-300" hidden>
           Pour l’instant, le paiement se fait en station ou à la livraison.
         </div>
       </div>
