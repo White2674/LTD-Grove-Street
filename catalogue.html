@@ -13,73 +13,86 @@
 </head>
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
-  <!-- Header -->
-  <header class="p-6 bg-indigo-600 text-white text-center font-bold text-2xl">
-    Catalogue des produits
+  <!-- Header global -->
+  <header class="fixed top-0 left-0 w-full bg-indigo-600 text-white shadow-md z-50">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+      <a href="index.html" class="text-2xl font-bold hover:text-indigo-300">LTD Grove Street</a>
+      <ul class="hidden md:flex space-x-8 font-semibold text-lg">
+        <li><a href="index.html" class="hover:text-indigo-300">Accueil</a></li>
+        <li><a href="catalogue.html" class="hover:text-indigo-300">Catalogue</a></li>
+        <li><a href="stations.html" class="hover:text-indigo-300">Stations Essence</a></li>
+        <li><a href="commande.html" class="hover:text-indigo-300">Commande</a></li>
+        <li><a href="avis.html" class="hover:text-indigo-300">Avis Clients</a></li>
+        <li><a href="equipe.html" class="hover:text-indigo-300">Notre Équipe</a></li>
+        <li><a href="actualites.html" class="hover:text-indigo-300">Actualités</a></li>
+        <li><a href="contact.html" class="hover:text-indigo-300">Contact</a></li>
+      </ul>
+      <button id="nav-toggle" class="md:hidden focus:outline-none">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Menu mobile -->
+    <div id="nav-menu" class="hidden md:hidden bg-indigo-700">
+      <ul class="flex flex-col px-6 py-4 space-y-4 font-semibold text-lg">
+        <li><a href="index.html" class="block hover:text-indigo-300">Accueil</a></li>
+        <li><a href="catalogue.html" class="block hover:text-indigo-300">Catalogue</a></li>
+        <li><a href="stations.html" class="block hover:text-indigo-300">Stations Essence</a></li>
+        <li><a href="commande.html" class="block hover:text-indigo-300">Commande</a></li>
+        <li><a href="avis.html" class="block hover:text-indigo-300">Avis Clients</a></li>
+        <li><a href="equipe.html" class="block hover:text-indigo-300">Notre Équipe</a></li>
+        <li><a href="actualites.html" class="block hover:text-indigo-300">Actualités</a></li>
+        <li><a href="contact.html" class="block hover:text-indigo-300">Contact</a></li>
+      </ul>
+    </div>
   </header>
 
-  <!-- Recherche et filtres -->
-  <section class="max-w-6xl mx-auto p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-    <input
-      type="search"
-      id="searchInput"
-      placeholder="Rechercher un produit..."
-      class="w-full sm:w-1/2 p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-      aria-label="Rechercher un produit"
-    />
-    <select id="sortSelect" class="w-full sm:w-1/4 p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
-      <option value="name-asc">Trier par nom (A → Z)</option>
-      <option value="name-desc">Trier par nom (Z → A)</option>
-      <option value="price-asc">Trier par prix (croissant)</option>
-      <option value="price-desc">Trier par prix (décroissant)</option>
-    </select>
-  </section>
+  <!-- Contenu -->
+  <main class="mt-20">
+    <h1 class="text-center font-bold text-2xl text-indigo-600 mb-6">Catalogue des produits</h1>
 
-  <!-- Grille produits -->
-  <main class="max-w-6xl mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="productGrid">
-    <!-- Les cartes produits seront insérées ici par JS -->
+    <!-- Recherche et filtres -->
+    <section class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+      <input type="search" id="searchInput" placeholder="Rechercher un produit..."
+        class="w-full sm:w-1/2 p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        aria-label="Rechercher un produit"
+      />
+      <select id="sortSelect"
+        class="w-full sm:w-1/4 p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+        <option value="name-asc">Trier par nom (A → Z)</option>
+        <option value="name-desc">Trier par nom (Z → A)</option>
+        <option value="price-asc">Trier par prix (croissant)</option>
+        <option value="price-desc">Trier par prix (décroissant)</option>
+      </select>
+    </section>
+
+    <!-- Grille produits -->
+    <section class="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="productGrid">
+      <!-- Les cartes produits seront insérées ici par JS -->
+    </section>
   </main>
 
-  <!-- Footer simple -->
+  <!-- Footer -->
   <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-12">
     &copy; 2025 LTD Grove Street. Tous droits réservés.
   </footer>
 
+  <!-- Script catalogue -->
   <script>
-    // Exemple de produits
     const products = [
-      {
-        id: 1,
-        name: "Essence Sans Plomb 95",
-        price: 1.59,
-        image: "images/essence95.jpg"
-      },
-      {
-        id: 2,
-        name: "Diesel Standard",
-        price: 1.42,
-        image: "images/diesel.jpg"
-      },
-      {
-        id: 3,
-        name: "Huile Moteur 5W-30",
-        price: 25.00,
-        image: "images/huile.jpg"
-      },
-      {
-        id: 4,
-        name: "Additif Carburant",
-        price: 12.50,
-        image: "images/additif.jpg"
-      },
-      // Ajoute autant de produits que tu veux
+      { id: 1, name: "Essence Sans Plomb 95", price: 1.59, image: "images/essence95.jpg" },
+      { id: 2, name: "Diesel Standard", price: 1.42, image: "images/diesel.jpg" },
+      { id: 3, name: "Huile Moteur 5W-30", price: 25.00, image: "images/huile.jpg" },
+      { id: 4, name: "Additif Carburant", price: 12.50, image: "images/additif.jpg" }
     ];
 
     const productGrid = document.getElementById('productGrid');
     const searchInput = document.getElementById('searchInput');
     const sortSelect = document.getElementById('sortSelect');
 
-    // Fonction pour afficher les produits dans la grille
     function displayProducts(items) {
       productGrid.innerHTML = '';
       if (items.length === 0) {
@@ -89,7 +102,6 @@
       items.forEach(product => {
         const card = document.createElement('article');
         card.className = 'card';
-
         card.innerHTML = `
           <img src="${product.image}" alt="${product.name}" class="rounded w-full h-48 object-cover" />
           <h3 class="card-title mt-2">${product.name}</h3>
@@ -99,30 +111,29 @@
       });
     }
 
-    // Fonction pour filtrer et trier les produits
     function filterAndSort() {
       const query = searchInput.value.toLowerCase();
       let filtered = products.filter(p => p.name.toLowerCase().includes(query));
-
       const sortValue = sortSelect.value;
-      if (sortValue === 'name-asc') {
-        filtered.sort((a, b) => a.name.localeCompare(b.name));
-      } else if (sortValue === 'name-desc') {
-        filtered.sort((a, b) => b.name.localeCompare(a.name));
-      } else if (sortValue === 'price-asc') {
-        filtered.sort((a, b) => a.price - b.price);
-      } else if (sortValue === 'price-desc') {
-        filtered.sort((a, b) => b.price - a.price);
-      }
+      if (sortValue === 'name-asc') filtered.sort((a, b) => a.name.localeCompare(b.name));
+      else if (sortValue === 'name-desc') filtered.sort((a, b) => b.name.localeCompare(a.name));
+      else if (sortValue === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+      else if (sortValue === 'price-desc') filtered.sort((a, b) => b.price - a.price);
       displayProducts(filtered);
     }
 
-    // Initial display
     displayProducts(products);
-
-    // Events
     searchInput.addEventListener('input', filterAndSort);
     sortSelect.addEventListener('change', filterAndSort);
+  </script>
+
+  <!-- Script menu mobile -->
+  <script>
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('hidden');
+    });
   </script>
 </body>
 </html>
