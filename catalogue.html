@@ -55,17 +55,33 @@
     <h1 class="text-center font-bold text-2xl text-indigo-600 mb-6">Catalogue des produits</h1>
 
     <!-- Recherche et filtres -->
-    <section class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+    <section class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 flex-wrap">
+      
+      <!-- Recherche -->
       <input type="search" id="searchInput" placeholder="Rechercher un produit..."
         class="w-full sm:w-1/2 p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
         aria-label="Rechercher un produit"
       />
+
+      <!-- Tri -->
       <select id="sortSelect"
         class="w-full sm:w-1/4 p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
         <option value="name-asc">Trier par nom (A → Z)</option>
         <option value="name-desc">Trier par nom (Z → A)</option>
         <option value="price-asc">Trier par prix (croissant)</option>
         <option value="price-desc">Trier par prix (décroissant)</option>
+      </select>
+
+      <!-- Filtre catégorie -->
+      <select id="categorySelect"
+        class="w-full sm:w-1/4 p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+      >
+        <option value="all">Toutes catégories</option>
+        <option value="Quincaillerie">Quincaillerie</option>
+        <option value="Papeterie">Papeterie</option>
+        <option value="Divers Utiles">Divers Utiles</option>
+        <option value="Jardinage">Jardinage</option>
+        <option value="Autres">Autres</option>
       </select>
     </section>
 
@@ -83,15 +99,22 @@
   <!-- Script catalogue -->
   <script>
     const products = [
-      { id: 1, name: "Bagel", price: 1.59, image: "https://i.goopics.net/7lkekl.png" },
-      { id: 2, name: "Diesel Standard", price: 1.42, image: "images/diesel.jpg" },
-      { id: 3, name: "Huile Moteur 5W-30", price: 25.00, image: "images/huile.jpg" },
-      { id: 4, name: "Additif Carburant", price: 12.50, image: "images/additif.jpg" }
+      { id: 1, name: "Bagel", price: 1.59, image: "https://i.goopics.net/7lkekl.png", category: "Divers Utiles" },
+      { id: 2, name: "Diesel Standard", price: 1.42, image: "images/diesel.jpg", category: "Quincaillerie" },
+      { id: 3, name: "Huile Moteur 5W-30", price: 25.00, image: "images/huile.jpg", category: "Quincaillerie" },
+      { id: 4, name: "Additif Carburant", price: 12.50, image: "images/additif.jpg", category: "Quincaillerie" },
+      { id: 5, name: "Cahier A4", price: 3.25, image: "images/cahier.jpg", category: "Papeterie" },
+      { id: 6, name: "Gants de jardin", price: 7.80, image: "images/gants.jpg", category: "Jardinage" },
+      { id: 7, name: "Clé à molette", price: 15.00, image: "images/cle.jpg", category: "Quincaillerie" },
+      { id: 8, name: "Stylo bille", price: 0.95, image: "images/stylo.jpg", category: "Papeterie" },
+      { id: 9, name: "Spray nettoyant", price: 4.50, image: "images/spray.jpg", category: "Divers Utiles" },
+      { id: 10, name: "Arrosoir", price: 13.00, image: "images/arrosoir.jpg", category: "Jardinage" }
     ];
 
     const productGrid = document.getElementById('productGrid');
     const searchInput = document.getElementById('searchInput');
     const sortSelect = document.getElementById('sortSelect');
+    const categorySelect = document.getElementById('categorySelect');
 
     function displayProducts(items) {
       productGrid.innerHTML = '';
@@ -115,18 +138,26 @@
 
     function filterAndSort() {
       const query = searchInput.value.toLowerCase();
+      const selectedCategory = categorySelect.value;
       let filtered = products.filter(p => p.name.toLowerCase().includes(query));
+
+      if (selectedCategory !== 'all') {
+        filtered = filtered.filter(p => p.category === selectedCategory);
+      }
+
       const sortValue = sortSelect.value;
       if (sortValue === 'name-asc') filtered.sort((a, b) => a.name.localeCompare(b.name));
       else if (sortValue === 'name-desc') filtered.sort((a, b) => b.name.localeCompare(a.name));
       else if (sortValue === 'price-asc') filtered.sort((a, b) => a.price - b.price);
       else if (sortValue === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+
       displayProducts(filtered);
     }
 
     displayProducts(products);
     searchInput.addEventListener('input', filterAndSort);
     sortSelect.addEventListener('change', filterAndSort);
+    categorySelect.addEventListener('change', filterAndSort);
   </script>
 
   <!-- Script menu mobile -->
