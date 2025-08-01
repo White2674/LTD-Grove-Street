@@ -32,36 +32,38 @@
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
 <!-- Barre de navigation modernisée -->
-<header class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
-  <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+<!-- Navbar glassmorphism + animation -->
+<header class="fixed top-0 left-0 w-full backdrop-blur-md bg-white/60 shadow-sm z-50 transition-all duration-300">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex justify-between items-center animate-fade-in">
+    
     <!-- Logo -->
-    <a href="index.html" class="flex items-center space-x-2">
-      <!-- Logo SVG simple -->
-      <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg">
+    <a href="index.html" class="flex items-center space-x-2 group transition-all duration-300">
+      <svg class="w-6 h-6 text-indigo-600 group-hover:scale-110 transition-transform" fill="none"
+        stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round"
           d="M4 4h16v16H4V4zm4 5h8M8 12h8M8 15h8M6 20h12" />
       </svg>
-      <span class="text-xl font-bold text-indigo-600 hover:text-indigo-800 transition">LTD Grove Street</span>
+      <span class="text-base font-semibold text-gray-800 group-hover:text-indigo-600 transition-colors">
+        LTD Grove Street
+      </span>
     </a>
 
-    <!-- Menu desktop -->
-    <ul class="hidden md:flex items-center space-x-6 font-medium text-gray-700 text-base">
-      <li><a href="index.html" class="hover:text-indigo-600 transition">Accueil</a></li>
-      <li><a href="catalogue.html" class="hover:text-indigo-600 transition">Catalogue</a></li>
-      <li><a href="stations.html" class="hover:text-indigo-600 transition">Stations Essence</a></li>
-      <li><a href="commande.html" class="hover:text-indigo-600 transition">Commande</a></li>
-      <li><a href="avis.html" class="hover:text-indigo-600 transition">Avis Clients</a></li>
-      <li><a href="equipe.html" class="hover:text-indigo-600 transition">Notre Équipe</a></li>
-      <li><a href="actualites.html" class="hover:text-indigo-600 transition">Actualités</a></li>
-      <li><a href="contact.html" class="hover:text-indigo-600 transition">Contact</a></li>
+    <!-- Desktop nav -->
+    <ul class="hidden md:flex items-center space-x-4 text-sm text-gray-700 font-medium">
+      <li><a href="index.html" class="hover:text-indigo-500 transition-all duration-200">Accueil</a></li>
+      <li><a href="catalogue.html" class="hover:text-indigo-500 transition-all duration-200">Catalogue</a></li>
+      <li><a href="stations.html" class="hover:text-indigo-500 transition-all duration-200">Stations</a></li>
+      <li><a href="commande.html" class="hover:text-indigo-500 transition-all duration-200">Commande</a></li>
+      <li><a href="avis.html" class="hover:text-indigo-500 transition-all duration-200">Avis</a></li>
+      <li><a href="equipe.html" class="hover:text-indigo-500 transition-all duration-200">Équipe</a></li>
+      <li><a href="actualites.html" class="hover:text-indigo-500 transition-all duration-200">Actus</a></li>
+      <li><a href="contact.html" class="hover:text-indigo-500 transition-all duration-200">Contact</a></li>
     </ul>
 
-    <!-- Menu mobile toggle -->
-    <button id="nav-toggle" class="md:hidden focus:outline-none text-indigo-600" aria-label="Ouvrir le menu"
-      aria-expanded="false" aria-controls="nav-menu">
-      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-        stroke-linejoin="round">
+    <!-- Mobile burger -->
+    <button id="nav-toggle" class="md:hidden text-indigo-600 focus:outline-none transition-transform hover:scale-105">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+        viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
         <line x1="3" y1="6" x2="21" y2="6" />
         <line x1="3" y1="12" x2="21" y2="12" />
         <line x1="3" y1="18" x2="21" y2="18" />
@@ -69,17 +71,17 @@
     </button>
   </nav>
 
-  <!-- Menu mobile -->
-  <div id="nav-menu" class="hidden md:hidden bg-indigo-50 border-t border-indigo-200">
-    <ul class="flex flex-col px-6 py-4 space-y-3 text-indigo-700 font-medium">
-      <li><a href="index.html" class="block hover:text-indigo-500">Accueil</a></li>
-      <li><a href="catalogue.html" class="block hover:text-indigo-500">Catalogue</a></li>
-      <li><a href="stations.html" class="block hover:text-indigo-500">Stations Essence</a></li>
-      <li><a href="commande.html" class="block hover:text-indigo-500">Commande</a></li>
-      <li><a href="avis.html" class="block hover:text-indigo-500">Avis Clients</a></li>
-      <li><a href="equipe.html" class="block hover:text-indigo-500">Notre Équipe</a></li>
-      <li><a href="actualites.html" class="block hover:text-indigo-500">Actualités</a></li>
-      <li><a href="contact.html" class="block hover:text-indigo-500">Contact</a></li>
+  <!-- Mobile nav (hidden by default) -->
+  <div id="nav-menu" class="hidden md:hidden px-6 pt-2 pb-4 bg-white/80 backdrop-blur-sm animate-fade-in-down">
+    <ul class="flex flex-col space-y-2 text-gray-800 text-sm font-medium">
+      <li><a href="index.html" class="hover:text-indigo-500 transition">Accueil</a></li>
+      <li><a href="catalogue.html" class="hover:text-indigo-500 transition">Catalogue</a></li>
+      <li><a href="stations.html" class="hover:text-indigo-500 transition">Stations</a></li>
+      <li><a href="commande.html" class="hover:text-indigo-500 transition">Commande</a></li>
+      <li><a href="avis.html" class="hover:text-indigo-500 transition">Avis</a></li>
+      <li><a href="equipe.html" class="hover:text-indigo-500 transition">Équipe</a></li>
+      <li><a href="actualites.html" class="hover:text-indigo-500 transition">Actus</a></li>
+      <li><a href="contact.html" class="hover:text-indigo-500 transition">Contact</a></li>
     </ul>
   </div>
 </header>
