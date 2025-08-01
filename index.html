@@ -13,7 +13,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
 
   <style>
-    /* Style custom intégré (extrait de css/style.css si besoin) */
     .faq-question {
       cursor: pointer;
     }
@@ -23,15 +22,14 @@
     .faq-question[aria-expanded="true"] .faq-icon {
       transform: rotate(180deg);
     }
-    /* Pour que le header ne cache pas le contenu */
     body {
-      padding-top: 4rem; /* hauteur approximative du header */
+      padding-top: 4rem; /* header height */
     }
   </style>
 </head>
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
-  <!-- Barre de navigation -->
+  <!-- Navigation -->
   <header class="fixed top-0 left-0 w-full bg-indigo-600 text-white shadow-md z-50">
     <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
       <a href="index.html" class="text-2xl font-bold hover:text-indigo-300">LTD Grove Street</a>
@@ -53,7 +51,7 @@
         </svg>
       </button>
     </nav>
-    <div id="nav-menu" class="hidden md:hidden bg-indigo-700" >
+    <div id="nav-menu" class="hidden md:hidden bg-indigo-700">
       <ul class="flex flex-col px-6 py-4 space-y-4 font-semibold">
         <li><a href="index.html" class="block hover:text-indigo-300">Accueil</a></li>
         <li><a href="catalogue.html" class="block hover:text-indigo-300">Catalogue</a></li>
@@ -151,7 +149,7 @@
     </div>
   </section>
 
-  <!-- Footer simple -->
+  <!-- Footer -->
   <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-20">
     &copy; 2025 LTD Grove Street. Tous droits réservés.
   </footer>
@@ -162,8 +160,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 
   <script>
-    // Initialiser carousel partenaires
     document.addEventListener('DOMContentLoaded', function () {
+      // Carousel partenaires
       new Splide('#partners-carousel', {
         type: 'loop',
         perPage: 4,
@@ -178,11 +176,11 @@
         }
       }).mount();
 
-      // FAQ Accordéon accessible clic + clavier
+      // FAQ accordéon accessible
       const faqItems = document.querySelectorAll('.faq-question');
       faqItems.forEach(btn => {
         btn.addEventListener('click', toggleFaq);
-        btn.addEventListener('keydown', (e) => {
+        btn.addEventListener('keydown', e => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             toggleFaq.call(btn);
@@ -203,7 +201,7 @@
         }
       }
 
-      // Thème clair / sombre
+      // Thème clair/sombre
       const themeToggle = document.getElementById('theme-toggle');
       const htmlElement = document.documentElement;
 
@@ -217,7 +215,7 @@
         }
       }
 
-      // Charger préférence
+      // Charger thème
       const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       setTheme(savedTheme);
 
@@ -229,7 +227,7 @@
         }
       });
 
-      // Menu mobile toggle avec aria-expanded à jour
+      // Menu mobile toggle
       const navToggle = document.getElementById('nav-toggle');
       const navMenu = document.getElementById('nav-menu');
       navToggle.addEventListener('click', () => {
@@ -238,5 +236,6 @@
       });
     });
   </script>
+
 </body>
 </html>
