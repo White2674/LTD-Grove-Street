@@ -17,11 +17,7 @@
   <link rel="stylesheet" href="css/style.css" />
 
   <!-- Leaflet CSS -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    crossorigin=""
-  />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
 
   <style>
     #map {
@@ -56,8 +52,7 @@
       </ul>
       <button id="nav-toggle" class="md:hidden focus:outline-none">
         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </nav>
@@ -92,12 +87,14 @@
         <table class="min-w-full border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden text-left">
           <thead class="bg-indigo-600 text-white">
             <tr>
+              <th class="px-4 py-2">Station</th>
               <th class="px-4 py-2">Carburant</th>
               <th class="px-4 py-2">Prix (€ / litre)</th>
+              <th class="px-4 py-2">Photo</th>
             </tr>
           </thead>
           <tbody id="priceTableBody" class="bg-white dark:bg-gray-800">
-            <!-- Remplissage dynamique -->
+            <!-- Contenu dynamique JS -->
           </tbody>
         </table>
       </div>
@@ -116,86 +113,46 @@
   <script defer>
     const stations = [
       {
-        id: 1,
         name: "Station Grove Street - Centre",
-        lat: 40.7128,
-        lng: -74.006,
+        lat: 40.7128, lng: -74.006,
         photo: "images/station1.jpg",
-        prices: [
-          { fuel: "Essence 95", price: 1.59 },
-          { fuel: "Diesel", price: 1.42 },
-          { fuel: "GPL", price: 0.85 },
-        ]
+        prices: [{ fuel: "Essence 95", price: 1.59 }, { fuel: "Diesel", price: 1.42 }, { fuel: "GPL", price: 0.85 }]
       },
       {
-        id: 2,
         name: "Station Grove Street - Nord",
-        lat: 40.73061,
-        lng: -73.935242,
+        lat: 40.73061, lng: -73.935242,
         photo: "images/station2.jpg",
-        prices: [
-          { fuel: "Essence 95", price: 1.62 },
-          { fuel: "Diesel", price: 1.45 },
-          { fuel: "GPL", price: 0.87 },
-        ]
+        prices: [{ fuel: "Essence 95", price: 1.62 }, { fuel: "Diesel", price: 1.45 }, { fuel: "GPL", price: 0.87 }]
       },
       {
-        id: 3,
         name: "Station Grove Street - Sud",
-        lat: 40.706,
-        lng: -74.009,
+        lat: 40.706, lng: -74.009,
         photo: "images/station3.jpg",
-        prices: [
-          { fuel: "Essence 95", price: 1.58 },
-          { fuel: "Diesel", price: 1.40 },
-          { fuel: "GPL", price: 0.83 },
-        ]
+        prices: [{ fuel: "Essence 95", price: 1.58 }, { fuel: "Diesel", price: 1.40 }, { fuel: "GPL", price: 0.83 }]
       },
       {
-        id: 4,
         name: "Station Grove Street - Est",
-        lat: 40.720,
-        lng: -74.000,
+        lat: 40.720, lng: -74.000,
         photo: "images/station4.jpg",
-        prices: [
-          { fuel: "Essence 98", price: 1.74 },
-          { fuel: "Diesel", price: 1.43 },
-        ]
+        prices: [{ fuel: "Essence 98", price: 1.74 }, { fuel: "Diesel", price: 1.43 }]
       },
       {
-        id: 5,
         name: "Station Grove Street - Ouest",
-        lat: 40.700,
-        lng: -74.015,
+        lat: 40.700, lng: -74.015,
         photo: "images/station5.jpg",
-        prices: [
-          { fuel: "Essence 95", price: 1.61 },
-          { fuel: "Diesel", price: 1.44 },
-        ]
+        prices: [{ fuel: "Essence 95", price: 1.61 }, { fuel: "Diesel", price: 1.44 }]
       },
       {
-        id: 6,
         name: "Station Grove Street - Montagne",
-        lat: 40.735,
-        lng: -74.025,
+        lat: 40.735, lng: -74.025,
         photo: "images/station6.jpg",
-        prices: [
-          { fuel: "Essence 95", price: 1.66 },
-          { fuel: "Diesel", price: 1.50 },
-          { fuel: "GPL", price: 0.90 },
-        ]
+        prices: [{ fuel: "Essence 95", price: 1.66 }, { fuel: "Diesel", price: 1.50 }, { fuel: "GPL", price: 0.90 }]
       },
       {
-        id: 7,
         name: "Station Grove Street - Port",
-        lat: 40.700,
-        lng: -73.980,
+        lat: 40.700, lng: -73.980,
         photo: "images/station7.jpg",
-        prices: [
-          { fuel: "Essence 95", price: 1.60 },
-          { fuel: "Diesel", price: 1.41 },
-          { fuel: "GPL", price: 0.84 },
-        ]
+        prices: [{ fuel: "Essence 95", price: 1.60 }, { fuel: "Diesel", price: 1.41 }, { fuel: "GPL", price: 0.84 }]
       },
     ];
 
@@ -206,6 +163,7 @@
     }).addTo(map);
 
     const priceTableBody = document.getElementById('priceTableBody');
+
     stations.forEach(station => {
       const popupContent = `
         <strong>${station.name}</strong><br/>
@@ -213,17 +171,13 @@
       `;
       L.marker([station.lat, station.lng]).addTo(map).bindPopup(popupContent);
 
-      const trStation = document.createElement('tr');
-      trStation.className = 'bg-gray-100 dark:bg-gray-700';
-      trStation.innerHTML = `<td colspan="2" class="px-4 py-2 font-bold">${station.name}</td>`;
-      priceTableBody.appendChild(trStation);
-
-      station.prices.forEach(item => {
+      station.prices.forEach(price => {
         const tr = document.createElement('tr');
-        tr.className = 'border-t border-gray-300 dark:border-gray-700';
         tr.innerHTML = `
-          <td class="px-4 py-2 font-medium">${item.fuel}</td>
-          <td class="px-4 py-2">${item.price.toFixed(2)} €</td>
+          <td class="px-4 py-2 font-bold">${station.name}</td>
+          <td class="px-4 py-2">${price.fuel}</td>
+          <td class="px-4 py-2">${price.price.toFixed(2)} €</td>
+          <td class="px-4 py-2"><img src="${station.photo}" alt="${station.name}" class="w-20 h-12 object-cover rounded" /></td>
         `;
         priceTableBody.appendChild(tr);
       });
@@ -239,8 +193,7 @@
 
   <!-- Dark mode toggle -->
   <script defer>
-    const toggleDarkBtn = document.getElementById('toggle-dark');
-    toggleDarkBtn.addEventListener('click', () => {
+    document.getElementById('toggle-dark').addEventListener('click', () => {
       document.documentElement.classList.toggle('dark');
     });
   </script>
