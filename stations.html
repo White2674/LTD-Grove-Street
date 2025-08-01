@@ -15,16 +15,6 @@
 
   <!-- Style personnalisé -->
   <link rel="stylesheet" href="css/style.css" />
-
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
-
-  <style>
-    #map {
-      height: 400px;
-      border-radius: 0.5rem;
-    }
-  </style>
 </head>
 
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
@@ -74,29 +64,10 @@
 
   <!-- Contenu principal -->
   <main class="mt-24">
-    <!-- Carte -->
-    <section class="max-w-6xl mx-auto p-6">
-      <h1 class="text-2xl font-bold text-center text-indigo-600 mb-4">Nos Stations Essence</h1>
-      <div id="map"></div>
-    </section>
-
-    <!-- Grille tarifaire -->
-    <section class="max-w-6xl mx-auto p-6 mt-12">
-      <h2 class="text-3xl font-semibold mb-4 text-center">Tarifs des carburants</h2>
-      <div class="overflow-x-auto">
-        <table class="min-w-full border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden text-left">
-          <thead class="bg-indigo-600 text-white">
-            <tr>
-              <th class="px-4 py-2">Station</th>
-              <th class="px-4 py-2">Carburant</th>
-              <th class="px-4 py-2">Prix (€ / litre)</th>
-              <th class="px-4 py-2">Photo</th>
-            </tr>
-          </thead>
-          <tbody id="priceTableBody" class="bg-white dark:bg-gray-800">
-            <!-- Contenu dynamique JS -->
-          </tbody>
-        </table>
+    <section class="max-w-7xl mx-auto p-6 mt-10">
+      <h1 class="text-3xl font-bold text-center text-indigo-600 mb-10">Nos Stations Essence</h1>
+      <div id="stationsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- JS injectera les cartes ici -->
       </div>
     </section>
   </main>
@@ -106,82 +77,94 @@
     &copy; 2025 LTD Grove Street. Tous droits réservés.
   </footer>
 
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-
-  <!-- Script principal -->
+  <!-- Script pour affichage des stations -->
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       const stations = [
         {
           name: "Station Grove Street - Centre",
-          lat: 40.7128, lng: -74.006,
           photo: "images/station1.jpg",
-          prices: [{ fuel: "Essence 95", price: 1.59 }, { fuel: "Diesel", price: 1.42 }, { fuel: "GPL", price: 0.85 }]
+          prices: [
+            { fuel: "Essence 95", price: 1.59 },
+            { fuel: "Diesel", price: 1.42 },
+            { fuel: "GPL", price: 0.85 }
+          ]
         },
         {
           name: "Station Grove Street - Nord",
-          lat: 40.73061, lng: -73.935242,
           photo: "images/station2.jpg",
-          prices: [{ fuel: "Essence 95", price: 1.62 }, { fuel: "Diesel", price: 1.45 }, { fuel: "GPL", price: 0.87 }]
+          prices: [
+            { fuel: "Essence 95", price: 1.62 },
+            { fuel: "Diesel", price: 1.45 },
+            { fuel: "GPL", price: 0.87 }
+          ]
         },
         {
           name: "Station Grove Street - Sud",
-          lat: 40.706, lng: -74.009,
           photo: "images/station3.jpg",
-          prices: [{ fuel: "Essence 95", price: 1.58 }, { fuel: "Diesel", price: 1.40 }, { fuel: "GPL", price: 0.83 }]
+          prices: [
+            { fuel: "Essence 95", price: 1.58 },
+            { fuel: "Diesel", price: 1.40 },
+            { fuel: "GPL", price: 0.83 }
+          ]
         },
         {
           name: "Station Grove Street - Est",
-          lat: 40.720, lng: -74.000,
           photo: "images/station4.jpg",
-          prices: [{ fuel: "Essence 98", price: 1.74 }, { fuel: "Diesel", price: 1.43 }]
+          prices: [
+            { fuel: "Essence 98", price: 1.74 },
+            { fuel: "Diesel", price: 1.43 }
+          ]
         },
         {
           name: "Station Grove Street - Ouest",
-          lat: 40.700, lng: -74.015,
           photo: "images/station5.jpg",
-          prices: [{ fuel: "Essence 95", price: 1.61 }, { fuel: "Diesel", price: 1.44 }]
+          prices: [
+            { fuel: "Essence 95", price: 1.61 },
+            { fuel: "Diesel", price: 1.44 }
+          ]
         },
         {
           name: "Station Grove Street - Montagne",
-          lat: 40.735, lng: -74.025,
           photo: "images/station6.jpg",
-          prices: [{ fuel: "Essence 95", price: 1.66 }, { fuel: "Diesel", price: 1.50 }, { fuel: "GPL", price: 0.90 }]
+          prices: [
+            { fuel: "Essence 95", price: 1.66 },
+            { fuel: "Diesel", price: 1.50 },
+            { fuel: "GPL", price: 0.90 }
+          ]
         },
         {
           name: "Station Grove Street - Port",
-          lat: 40.700, lng: -73.980,
           photo: "images/station7.jpg",
-          prices: [{ fuel: "Essence 95", price: 1.60 }, { fuel: "Diesel", price: 1.41 }, { fuel: "GPL", price: 0.84 }]
+          prices: [
+            { fuel: "Essence 95", price: 1.60 },
+            { fuel: "Diesel", price: 1.41 },
+            { fuel: "GPL", price: 0.84 }
+          ]
         },
       ];
 
-      const map = L.map('map').setView([40.7128, -74.006], 12);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; OpenStreetMap contributors'
-      }).addTo(map);
-
-      const priceTableBody = document.getElementById('priceTableBody');
+      const grid = document.getElementById("stationsGrid");
 
       stations.forEach(station => {
-        const popupContent = `
-          <strong>${station.name}</strong><br/>
-          <img src="${station.photo}" alt="${station.name}" style="width: 200px; border-radius: 8px; margin-top: 8px;" />
-        `;
-        L.marker([station.lat, station.lng]).addTo(map).bindPopup(popupContent);
+        const card = document.createElement("div");
+        card.className = "bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition hover:scale-[1.02]";
 
-        station.prices.forEach((price, index) => {
-          const tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td class="px-4 py-2 font-bold">${index === 0 ? station.name : ""}</td>
-            <td class="px-4 py-2">${price.fuel}</td>
-            <td class="px-4 py-2">${price.price.toFixed(2)} €</td>
-            <td class="px-4 py-2">${index === 0 ? `<img src="${station.photo}" alt="${station.name}" class="w-20 h-12 object-cover rounded" />` : ""}</td>
-          `;
-          priceTableBody.appendChild(tr);
-        });
+        card.innerHTML = `
+          <img src="${station.photo}" alt="${station.name}" class="w-full h-48 object-cover" />
+          <div class="p-4">
+            <h3 class="text-xl font-semibold text-indigo-600 mb-2">${station.name}</h3>
+            <ul class="space-y-1">
+              ${station.prices.map(price => `
+                <li class="flex justify-between text-gray-700 dark:text-gray-300">
+                  <span>${price.fuel}</span>
+                  <span class="font-semibold">${price.price.toFixed(2)} €/L</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+        `;
+        grid.appendChild(card);
       });
     });
   </script>
