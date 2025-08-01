@@ -13,8 +13,17 @@
     }
   </script>
 
-  <!-- Style personnalisé -->
-  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Pour un effet subtil d'ombre et transition */
+    .station-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .station-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 20px rgba(99, 102, 241, 0.25);
+    }
+  </style>
+
 </head>
 
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
@@ -63,13 +72,21 @@
   </header>
 
   <!-- Contenu principal -->
-  <main class="mt-24">
-    <section class="max-w-7xl mx-auto p-6 mt-10">
-      <h1 class="text-3xl font-bold text-center text-indigo-600 mb-10">Nos Stations Essence</h1>
-      <div id="stationsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- JS injectera les cartes ici -->
-      </div>
+  <main class="mt-28 max-w-7xl mx-auto px-6 pb-16">
+
+    <!-- Zone carte screen en haut -->
+    <section class="mb-12 rounded-lg overflow-hidden shadow-lg">
+      <img src="images/map-screenshot.jpg" alt="Capture d'écran carte" class="w-full h-64 object-cover md:h-96" />
     </section>
+
+    <!-- Titre -->
+    <h1 class="text-4xl font-extrabold text-indigo-600 mb-10 text-center">Nos Stations Essence</h1>
+
+    <!-- Grille stations -->
+    <section id="stationsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      <!-- JS insérera ici -->
+    </section>
+
   </main>
 
   <!-- Footer -->
@@ -147,16 +164,16 @@
       const grid = document.getElementById("stationsGrid");
 
       stations.forEach(station => {
-        const card = document.createElement("div");
-        card.className = "bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition hover:scale-[1.02]";
+        const card = document.createElement("article");
+        card.className = "station-card bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden flex flex-col";
 
         card.innerHTML = `
           <img src="${station.photo}" alt="${station.name}" class="w-full h-48 object-cover" />
-          <div class="p-4">
-            <h3 class="text-xl font-semibold text-indigo-600 mb-2">${station.name}</h3>
-            <ul class="space-y-1">
+          <div class="p-6 flex-grow flex flex-col">
+            <h3 class="text-xl font-bold text-indigo-600 mb-4">${station.name}</h3>
+            <ul class="flex flex-col gap-2 mt-auto text-gray-700 dark:text-gray-300 font-medium">
               ${station.prices.map(price => `
-                <li class="flex justify-between text-gray-700 dark:text-gray-300">
+                <li class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-1">
                   <span>${price.fuel}</span>
                   <span class="font-semibold">${price.price.toFixed(2)} €/L</span>
                 </li>
