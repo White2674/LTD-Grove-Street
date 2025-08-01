@@ -57,38 +57,43 @@
     <!-- Recherche et filtres -->
     <section class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 flex-wrap">
       
-      <!-- Recherche -->
-      <input type="search" id="searchInput" placeholder="Rechercher un produit..."
-        class="w-full sm:w-1/2 p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-        aria-label="Rechercher un produit"
-      />
+<!-- Barre de recherche modernisée -->
+<section class="max-w-6xl mx-auto px-4 py-4 bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-gray-200 dark:border-gray-700 rounded-xl shadow-md flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 mb-8 transition">
+  
+  <!-- Recherche -->
+  <input
+    type="search"
+    id="searchInput"
+    placeholder="🔍 Rechercher un produit..."
+    class="flex-1 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+    aria-label="Rechercher un produit"
+  />
 
-      <!-- Tri -->
-      <select id="sortSelect"
-        class="w-full sm:w-1/4 p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
-        <option value="name-asc">Trier par nom (A → Z)</option>
-        <option value="name-desc">Trier par nom (Z → A)</option>
-        <option value="price-asc">Trier par prix (croissant)</option>
-        <option value="price-desc">Trier par prix (décroissant)</option>
-      </select>
+  <!-- Tri -->
+  <select
+    id="sortSelect"
+    class="w-full lg:w-60 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+  >
+    <option value="name-asc">Nom (A → Z)</option>
+    <option value="name-desc">Nom (Z → A)</option>
+    <option value="price-asc">Prix croissant</option>
+    <option value="price-desc">Prix décroissant</option>
+  </select>
 
-      <!-- Filtre catégorie -->
-      <select id="categorySelect"
-        class="w-full sm:w-1/4 p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-      >
-        <option value="all">Toutes catégories</option>
-        <option value="Quincaillerie">Quincaillerie</option>
-        <option value="Papeterie">Papeterie</option>
-        <option value="Divers Utiles">Divers Utiles</option>
-        <option value="Jardinage">Jardinage</option>
-        <option value="Autres">Autres</option>
-      </select>
-    </section>
+  <!-- Filtre catégorie -->
+  <select
+    id="categorySelect"
+    class="w-full lg:w-60 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+  >
+    <option value="all">Toutes catégories</option>
+    <option value="Quincaillerie">Quincaillerie</option>
+    <option value="Papeterie">Papeterie</option>
+    <option value="Divers Utiles">Divers Utiles</option>
+    <option value="Jardinage">Jardinage</option>
+    <option value="Autres">Autres</option>
+  </select>
 
-    <!-- Grille produits -->
-    <section class="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="productGrid">
-      <!-- Les cartes produits seront insérées ici par JS -->
-    </section>
+</section>
   </main>
 
   <!-- Footer -->
