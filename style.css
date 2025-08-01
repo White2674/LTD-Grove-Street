@@ -51,6 +51,9 @@ body.dark .faq-item {
   font-size: 1rem;
   line-height: 1.5;
   user-select: text;
+  /* Ajout padding-top/bottom initial à 0 pour animation fluide */
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 body.dark .faq-answer {
@@ -71,6 +74,9 @@ body.dark .faq-answer {
   color: #c4b5fd;
   transition: transform 0.35s ease, color 0.35s ease;
   transform-origin: center;
+  /* Pour s’assurer que l’icône soit bien alignée verticalement */
+  display: inline-block;
+  line-height: 1;
 }
 
 .faq-item.open .faq-icon {
