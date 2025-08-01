@@ -9,11 +9,25 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Style custom -->
-  <link rel="stylesheet" href="css/style.css" />
-
   <!-- Splide.js pour carousel -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
+
+  <style>
+    /* Style custom intégré (extrait de css/style.css si besoin) */
+    .faq-question {
+      cursor: pointer;
+    }
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+    .faq-question[aria-expanded="true"] .faq-icon {
+      transform: rotate(180deg);
+    }
+    /* Pour que le header ne cache pas le contenu */
+    body {
+      padding-top: 4rem; /* hauteur approximative du header */
+    }
+  </style>
 </head>
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
@@ -64,7 +78,7 @@
   </a>
 
   <!-- Bannière -->
-  <header class="hero bg-[url('images/banner.jpg')] bg-cover bg-center min-h-[60vh] flex flex-col justify-center items-center px-6 text-white text-center shadow-lg mt-16">
+  <header class="hero bg-[url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80')] bg-cover bg-center min-h-[60vh] flex flex-col justify-center items-center px-6 text-white text-center shadow-lg mt-16">
     <h1 class="text-4xl md:text-6xl font-extrabold drop-shadow-lg">Bienvenue sur le site du LTD Grove Street</h1>
     <p class="mt-4 max-w-xl text-lg md:text-2xl drop-shadow-md">Votre partenaire de confiance en stations et commerce</p>
     <a href="catalogue.html" class="mt-8 inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition">
@@ -124,15 +138,14 @@
             <img src="https://i.goopics.net/wmxv9x.png" alt="Entreprise N°01" class="max-h-16 object-contain" />
           </li>
           <li class="splide__slide flex justify-center items-center p-4">
-            <img src="images/partner2.png" alt="Partenaire 2" class="max-h-16 object-contain" />
+            <img src="https://via.placeholder.com/150x50?text=Partenaire+2" alt="Partenaire 2" class="max-h-16 object-contain" />
           </li>
           <li class="splide__slide flex justify-center items-center p-4">
-            <img src="images/partner3.png" alt="Partenaire 3" class="max-h-16 object-contain" />
+            <img src="https://via.placeholder.com/150x50?text=Partenaire+3" alt="Partenaire 3" class="max-h-16 object-contain" />
           </li>
           <li class="splide__slide flex justify-center items-center p-4">
-            <img src="images/partner4.png" alt="Partenaire 4" class="max-h-16 object-contain" />
+            <img src="https://via.placeholder.com/150x50?text=Partenaire+4" alt="Partenaire 4" class="max-h-16 object-contain" />
           </li>
-          <!-- Ajoute d’autres partenaires ici -->
         </ul>
       </div>
     </div>
@@ -164,65 +177,65 @@
           480: { perPage: 1 }
         }
       }).mount();
-    });
 
-    // FAQ Accordéon accessible clic + clavier
-    const faqItems = document.querySelectorAll('.faq-question');
-    faqItems.forEach(btn => {
-      btn.addEventListener('click', toggleFaq);
-      btn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          toggleFaq.call(btn);
+      // FAQ Accordéon accessible clic + clavier
+      const faqItems = document.querySelectorAll('.faq-question');
+      faqItems.forEach(btn => {
+        btn.addEventListener('click', toggleFaq);
+        btn.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleFaq.call(btn);
+          }
+        });
+      });
+
+      function toggleFaq() {
+        const expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !expanded);
+        const answer = this.nextElementSibling;
+        if (answer.hasAttribute('hidden')) {
+          answer.removeAttribute('hidden');
+          this.querySelector('.faq-icon').textContent = '−';
+        } else {
+          answer.setAttribute('hidden', '');
+          this.querySelector('.faq-icon').textContent = '+';
+        }
+      }
+
+      // Thème clair / sombre
+      const themeToggle = document.getElementById('theme-toggle');
+      const htmlElement = document.documentElement;
+
+      function setTheme(theme) {
+        if (theme === 'dark') {
+          htmlElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          htmlElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        }
+      }
+
+      // Charger préférence
+      const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      setTheme(savedTheme);
+
+      themeToggle.addEventListener('click', () => {
+        if (htmlElement.classList.contains('dark')) {
+          setTheme('light');
+        } else {
+          setTheme('dark');
         }
       });
-    });
 
-    function toggleFaq() {
-      const expanded = this.getAttribute('aria-expanded') === 'true';
-      this.setAttribute('aria-expanded', !expanded);
-      const answer = this.nextElementSibling;
-      if (answer.hasAttribute('hidden')) {
-        answer.removeAttribute('hidden');
-        this.querySelector('.faq-icon').textContent = '−';
-      } else {
-        answer.setAttribute('hidden', '');
-        this.querySelector('.faq-icon').textContent = '+';
-      }
-    }
-
-    // Thème clair / sombre
-    const themeToggle = document.getElementById('theme-toggle');
-    const htmlElement = document.documentElement;
-
-    function setTheme(theme) {
-      if (theme === 'dark') {
-        htmlElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        htmlElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      }
-    }
-
-    // Charger préférence
-    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    setTheme(savedTheme);
-
-    themeToggle.addEventListener('click', () => {
-      if (htmlElement.classList.contains('dark')) {
-        setTheme('light');
-      } else {
-        setTheme('dark');
-      }
-    });
-
-    // Menu mobile toggle avec aria-expanded à jour
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    navToggle.addEventListener('click', () => {
-      const isHidden = navMenu.classList.toggle('hidden');
-      navToggle.setAttribute('aria-expanded', !isHidden);
+      // Menu mobile toggle avec aria-expanded à jour
+      const navToggle = document.getElementById('nav-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      navToggle.addEventListener('click', () => {
+        const isHidden = navMenu.classList.toggle('hidden');
+        navToggle.setAttribute('aria-expanded', !isHidden);
+      });
     });
   </script>
 </body>
