@@ -242,36 +242,53 @@
   <a href="recrutement.html" class="block text-center mt-12">
     <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6
 
-<!-- Section Partenaires défilants -->
+<!-- Section Partenaires Modernisée -->
 <section class="w-full bg-white dark:bg-gray-950 py-24">
   <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-center text-5xl font-extrabold tracking-tight mb-14 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:from-yellow-400 dark:via-pink-500 dark:to-red-500 text-transparent bg-clip-text uppercase">
-      Nos Partenaires
+    <h2 class="text-center text-4xl sm:text-5xl font-bold tracking-tight mb-16 text-gray-900 dark:text-white uppercase">
+      Nos <span class="text-indigo-500 dark:text-yellow-400">Partenaires</span>
     </h2>
-    <div class="overflow-hidden rounded-3xl shadow-2xl ring-1 ring-gray-200 dark:ring-gray-700 relative">
-      <div class="flex items-center gap-28 animate-scroll-marquee whitespace-nowrap py-10 px-10 bg-white dark:bg-gray-900">
-        <img src="partenaire1.png" alt="Partenaire 1" class="h-28 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-in-out drop-shadow-xl" />
-        <img src="partenaire2.png" alt="Partenaire 2" class="h-28 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-in-out drop-shadow-xl" />
-        <img src="partenaire3.png" alt="Partenaire 3" class="h-28 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-in-out drop-shadow-xl" />
-        <img src="partenaire4.png" alt="Partenaire 4" class="h-28 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-in-out drop-shadow-xl" />
-        <img src="partenaire5.png" alt="Partenaire 5" class="h-28 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-in-out drop-shadow-xl" />
-        <!-- Clones pour boucle infinie -->
-        <img src="partenaire1.png" alt="Partenaire 1" class="h-28 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-in-out drop-shadow-xl" />
-        <img src="partenaire2.png" alt="Partenaire 2" class="h-28 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-in-out drop-shadow-xl" />
-        <img src="partenaire3.png" alt="Partenaire 3" class="h-28 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-in-out drop-shadow-xl" />
-        <img src="partenaire4.png" alt="Partenaire 4" class="h-28 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-in-out drop-shadow-xl" />
-        <img src="partenaire5.png" alt="Partenaire 5" class="h-28 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-in-out drop-shadow-xl" />
+
+    <div class="relative overflow-hidden group rounded-3xl shadow-xl ring-1 ring-gray-200 dark:ring-gray-700 bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-gray-900 dark:via-gray-950 dark:to-black">
+      <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-transparent via-white/30 to-transparent dark:via-white/5 z-10 pointer-events-none"></div>
+      
+      <div class="flex gap-20 py-12 animate-marquee whitespace-nowrap px-10">
+        <!-- Logos défilants -->
+        <template id="partner-logo">
+          <img src="" alt="Partenaire" class="h-24 sm:h-28 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 hover:scale-105 transition-transform duration-500 ease-in-out drop-shadow-md" />
+        </template>
+
+        <img src="partenaire1.png" alt="Partenaire 1" class="h-24 sm:h-28 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 hover:scale-105 transition-transform duration-500 ease-in-out drop-shadow-md" />
+        <img src="partenaire2.png" alt="Partenaire 2" class="h-24 sm:h-28 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 hover:scale-105 transition-transform duration-500 ease-in-out drop-shadow-md" />
+        <img src="partenaire3.png" alt="Partenaire 3" class="h-24 sm:h-28 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 hover:scale-105 transition-transform duration-500 ease-in-out drop-shadow-md" />
+        <img src="partenaire4.png" alt="Partenaire 4" class="h-24 sm:h-28 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 hover:scale-105 transition-transform duration-500 ease-in-out drop-shadow-md" />
+        <img src="partenaire5.png" alt="Partenaire 5" class="h-24 sm:h-28 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 hover:scale-105 transition-transform duration-500 ease-in-out drop-shadow-md" />
+
+        <!-- Clones pour boucle -->
+        <img src="partenaire1.png" alt="Partenaire 1" class="h-24 sm:h-28 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 hover:scale-105 transition-transform duration-500 ease-in-out drop-shadow-md" />
+        <img src="partenaire2.png" alt="Partenaire 2" class="h-24 sm:h-28 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 hover:scale-105 transition-transform duration-500 ease-in-out drop-shadow-md" />
+        <img src="partenaire3.png" alt="Partenaire 3" class="h-24 sm:h-28 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 hover:scale-105 transition-transform duration-500 ease-in-out drop-shadow-md" />
+        <img src="partenaire4.png" alt="Partenaire 4" class="h-24 sm:h-28 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 hover:scale-105 transition-transform duration-500 ease-in-out drop-shadow-md" />
+        <img src="partenaire5.png" alt="Partenaire 5" class="h-24 sm:h-28 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 hover:scale-105 transition-transform duration-500 ease-in-out drop-shadow-md" />
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  @keyframes scroll-marquee {
+  @keyframes marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
-  .animate-scroll-marquee {
-    animation: scroll-marquee 25s linear infinite;
+
+  .animate-marquee {
+    display: flex;
+    animation: marquee 30s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee {
+      animation: none;
+    }
   }
 </style>
