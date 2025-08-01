@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
 
   <style>
+    /* Style custom intégré (extrait de css/style.css si besoin) */
     .faq-question {
       cursor: pointer;
     }
@@ -22,58 +23,49 @@
     .faq-question[aria-expanded="true"] .faq-icon {
       transform: rotate(180deg);
     }
+    /* Pour que le header ne cache pas le contenu */
     body {
-      padding-top: 4rem; /* header height */
+      padding-top: 4rem; /* hauteur approximative du header */
     }
   </style>
 </head>
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
-  <!-- Navigation -->
-<header class="fixed top-0 left-0 w-full bg-white dark:bg-gray-900 shadow-md z-50 border-b border-gray-200 dark:border-gray-700">
-  <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-    <!-- Logo + Nom -->
-    <a href="index.html" class="flex items-center space-x-3">
-      <img src="https://cdn-icons-png.flaticon.com/512/833/833524.png" alt="Logo LTD Grove Street" class="h-10 w-10 object-contain" />
-      <span class="text-2xl font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 transition">LTD Grove Street</span>
-    </a>
-
-    <!-- Menu desktop -->
-    <ul class="hidden md:flex space-x-10 font-semibold text-gray-700 dark:text-gray-300">
-      <li><a href="index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Accueil</a></li>
-      <li><a href="catalogue.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Catalogue</a></li>
-      <li><a href="stations.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Stations Essence</a></li>
-      <li><a href="commande.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Commande</a></li>
-      <li><a href="avis.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Avis Clients</a></li>
-      <li><a href="equipe.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Notre Équipe</a></li>
-      <li><a href="actualites.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Actualités</a></li>
-      <li><a href="contact.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Contact</a></li>
-    </ul>
-
-    <!-- Burger mobile -->
-    <button id="nav-toggle" class="md:hidden focus:outline-none text-gray-700 dark:text-gray-300" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu">
-      <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" >
-        <line x1="3" y1="6" x2="21" y2="6" />
-        <line x1="3" y1="12" x2="21" y2="12" />
-        <line x1="3" y1="18" x2="21" y2="18" />
-      </svg>
-    </button>
-  </nav>
-
-  <!-- Menu mobile déroulant -->
-  <div id="nav-menu" class="hidden md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
-    <ul class="flex flex-col px-6 py-4 space-y-4 font-semibold text-gray-700 dark:text-gray-300">
-      <li><a href="index.html" class="block hover:text-indigo-600 dark:hover:text-indigo-400 transition">Accueil</a></li>
-      <li><a href="catalogue.html" class="block hover:text-indigo-600 dark:hover:text-indigo-400 transition">Catalogue</a></li>
-      <li><a href="stations.html" class="block hover:text-indigo-600 dark:hover:text-indigo-400 transition">Stations Essence</a></li>
-      <li><a href="commande.html" class="block hover:text-indigo-600 dark:hover:text-indigo-400 transition">Commande</a></li>
-      <li><a href="avis.html" class="block hover:text-indigo-600 dark:hover:text-indigo-400 transition">Avis Clients</a></li>
-      <li><a href="equipe.html" class="block hover:text-indigo-600 dark:hover:text-indigo-400 transition">Notre Équipe</a></li>
-      <li><a href="actualites.html" class="block hover:text-indigo-600 dark:hover:text-indigo-400 transition">Actualités</a></li>
-      <li><a href="contact.html" class="block hover:text-indigo-600 dark:hover:text-indigo-400 transition">Contact</a></li>
-    </ul>
-  </div>
-</header>
+  <!-- Barre de navigation -->
+  <header class="fixed top-0 left-0 w-full bg-indigo-600 text-white shadow-md z-50">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+      <a href="index.html" class="text-2xl font-bold hover:text-indigo-300">LTD Grove Street</a>
+      <ul class="hidden md:flex space-x-8 font-semibold text-lg">
+        <li><a href="index.html" class="hover:text-indigo-300">Accueil</a></li>
+        <li><a href="catalogue.html" class="hover:text-indigo-300">Catalogue</a></li>
+        <li><a href="stations.html" class="hover:text-indigo-300">Stations Essence</a></li>
+        <li><a href="commande.html" class="hover:text-indigo-300">Commande</a></li>
+        <li><a href="avis.html" class="hover:text-indigo-300">Avis Clients</a></li>
+        <li><a href="equipe.html" class="hover:text-indigo-300">Notre Équipe</a></li>
+        <li><a href="actualites.html" class="hover:text-indigo-300">Actualités</a></li>
+        <li><a href="contact.html" class="hover:text-indigo-300">Contact</a></li>
+      </ul>
+      <button id="nav-toggle" class="md:hidden focus:outline-none" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </nav>
+    <div id="nav-menu" class="hidden md:hidden bg-indigo-700" >
+      <ul class="flex flex-col px-6 py-4 space-y-4 font-semibold">
+        <li><a href="index.html" class="block hover:text-indigo-300">Accueil</a></li>
+        <li><a href="catalogue.html" class="block hover:text-indigo-300">Catalogue</a></li>
+        <li><a href="stations.html" class="block hover:text-indigo-300">Stations Essence</a></li>
+        <li><a href="commande.html" class="block hover:text-indigo-300">Commande</a></li>
+        <li><a href="avis.html" class="block hover:text-indigo-300">Avis Clients</a></li>
+        <li><a href="equipe.html" class="block hover:text-indigo-300">Notre Équipe</a></li>
+        <li><a href="actualites.html" class="block hover:text-indigo-300">Actualités</a></li>
+        <li><a href="contact.html" class="block hover:text-indigo-300">Contact</a></li>
+      </ul>
+    </div>
+  </header>
 
   <!-- Thème toggle -->
   <button id="theme-toggle" aria-label="Toggle Dark Mode" class="fixed bottom-5 right-5 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition" title="Changer le thème">
@@ -159,7 +151,7 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer simple -->
   <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-20">
     &copy; 2025 LTD Grove Street. Tous droits réservés.
   </footer>
@@ -170,8 +162,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 
   <script>
+    // Initialiser carousel partenaires
     document.addEventListener('DOMContentLoaded', function () {
-      // Carousel partenaires
       new Splide('#partners-carousel', {
         type: 'loop',
         perPage: 4,
@@ -186,11 +178,11 @@
         }
       }).mount();
 
-      // FAQ accordéon accessible
+      // FAQ Accordéon accessible clic + clavier
       const faqItems = document.querySelectorAll('.faq-question');
       faqItems.forEach(btn => {
         btn.addEventListener('click', toggleFaq);
-        btn.addEventListener('keydown', e => {
+        btn.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             toggleFaq.call(btn);
@@ -211,7 +203,7 @@
         }
       }
 
-      // Thème clair/sombre
+      // Thème clair / sombre
       const themeToggle = document.getElementById('theme-toggle');
       const htmlElement = document.documentElement;
 
@@ -225,7 +217,7 @@
         }
       }
 
-      // Charger thème
+      // Charger préférence
       const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       setTheme(savedTheme);
 
@@ -237,7 +229,7 @@
         }
       });
 
-      // Menu mobile toggle
+      // Menu mobile toggle avec aria-expanded à jour
       const navToggle = document.getElementById('nav-toggle');
       const navMenu = document.getElementById('nav-menu');
       navToggle.addEventListener('click', () => {
@@ -246,6 +238,5 @@
       });
     });
   </script>
-
 </body>
 </html>
