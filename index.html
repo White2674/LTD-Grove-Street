@@ -31,41 +31,58 @@
 </head>
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
-  <!-- Barre de navigation -->
-  <header class="fixed top-0 left-0 w-full bg-indigo-600 text-white shadow-md z-50">
-    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-      <a href="index.html" class="text-2xl font-bold hover:text-indigo-300">LTD Grove Street</a>
-      <ul class="hidden md:flex space-x-8 font-semibold text-lg">
-        <li><a href="index.html" class="hover:text-indigo-300">Accueil</a></li>
-        <li><a href="catalogue.html" class="hover:text-indigo-300">Catalogue</a></li>
-        <li><a href="stations.html" class="hover:text-indigo-300">Stations Essence</a></li>
-        <li><a href="commande.html" class="hover:text-indigo-300">Commande</a></li>
-        <li><a href="avis.html" class="hover:text-indigo-300">Avis Clients</a></li>
-        <li><a href="equipe.html" class="hover:text-indigo-300">Notre Équipe</a></li>
-        <li><a href="actualites.html" class="hover:text-indigo-300">Actualités</a></li>
-        <li><a href="contact.html" class="hover:text-indigo-300">Contact</a></li>
-      </ul>
-      <button id="nav-toggle" class="md:hidden focus:outline-none" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" y1="6" x2="21" y2="6" />
-          <line x1="3" y1="12" x2="21" y2="12" />
-          <line x1="3" y1="18" x2="21" y2="18" />
-        </svg>
-      </button>
-    </nav>
-    <div id="nav-menu" class="hidden md:hidden bg-indigo-700">
-      <ul class="flex flex-col px-6 py-4 space-y-4 font-semibold">
-        <li><a href="index.html" class="block hover:text-indigo-300">Accueil</a></li>
-        <li><a href="catalogue.html" class="block hover:text-indigo-300">Catalogue</a></li>
-        <li><a href="stations.html" class="block hover:text-indigo-300">Stations Essence</a></li>
-        <li><a href="commande.html" class="block hover:text-indigo-300">Commande</a></li>
-        <li><a href="avis.html" class="block hover:text-indigo-300">Avis Clients</a></li>
-        <li><a href="equipe.html" class="block hover:text-indigo-300">Notre Équipe</a></li>
-        <li><a href="actualites.html" class="block hover:text-indigo-300">Actualités</a></li>
-        <li><a href="contact.html" class="block hover:text-indigo-300">Contact</a></li>
-      </ul>
-    </div>
-  </header>
+<!-- Barre de navigation modernisée -->
+<header class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+  <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center space-x-2">
+      <!-- Logo SVG simple -->
+      <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M4 4h16v16H4V4zm4 5h8M8 12h8M8 15h8M6 20h12" />
+      </svg>
+      <span class="text-xl font-bold text-indigo-600 hover:text-indigo-800 transition">LTD Grove Street</span>
+    </a>
+
+    <!-- Menu desktop -->
+    <ul class="hidden md:flex items-center space-x-6 font-medium text-gray-700 text-base">
+      <li><a href="index.html" class="hover:text-indigo-600 transition">Accueil</a></li>
+      <li><a href="catalogue.html" class="hover:text-indigo-600 transition">Catalogue</a></li>
+      <li><a href="stations.html" class="hover:text-indigo-600 transition">Stations Essence</a></li>
+      <li><a href="commande.html" class="hover:text-indigo-600 transition">Commande</a></li>
+      <li><a href="avis.html" class="hover:text-indigo-600 transition">Avis Clients</a></li>
+      <li><a href="equipe.html" class="hover:text-indigo-600 transition">Notre Équipe</a></li>
+      <li><a href="actualites.html" class="hover:text-indigo-600 transition">Actualités</a></li>
+      <li><a href="contact.html" class="hover:text-indigo-600 transition">Contact</a></li>
+    </ul>
+
+    <!-- Menu mobile toggle -->
+    <button id="nav-toggle" class="md:hidden focus:outline-none text-indigo-600" aria-label="Ouvrir le menu"
+      aria-expanded="false" aria-controls="nav-menu">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Menu mobile -->
+  <div id="nav-menu" class="hidden md:hidden bg-indigo-50 border-t border-indigo-200">
+    <ul class="flex flex-col px-6 py-4 space-y-3 text-indigo-700 font-medium">
+      <li><a href="index.html" class="block hover:text-indigo-500">Accueil</a></li>
+      <li><a href="catalogue.html" class="block hover:text-indigo-500">Catalogue</a></li>
+      <li><a href="stations.html" class="block hover:text-indigo-500">Stations Essence</a></li>
+      <li><a href="commande.html" class="block hover:text-indigo-500">Commande</a></li>
+      <li><a href="avis.html" class="block hover:text-indigo-500">Avis Clients</a></li>
+      <li><a href="equipe.html" class="block hover:text-indigo-500">Notre Équipe</a></li>
+      <li><a href="actualites.html" class="block hover:text-indigo-500">Actualités</a></li>
+      <li><a href="contact.html" class="block hover:text-indigo-500">Contact</a></li>
+    </ul>
+  </div>
+</header>
 
   <!-- Thème toggle -->
   <button id="theme-toggle" aria-label="Toggle Dark Mode" class="fixed bottom-5 right-5 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition" title="Changer le thème">
