@@ -1,47 +1,90 @@
-<header class="fixed top-0 left-0 w-full bg-indigo-600 text-white shadow-md z-50">
-  <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-    
-    <!-- Logo + Nom -->
-    <a href="index.html" class="flex items-center space-x-3">
-      <img src="images/logo.png" alt="Logo LTD Grove Street" class="h-10 w-10 rounded-full object-cover" />
-      <span class="text-2xl font-extrabold hover:text-indigo-300 select-none">LTD Grove Street</span>
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="LTD Grove Street, votre partenaire de confiance pour les stations essence et commerce à Los Santos. Découvrez notre catalogue, services, et équipe." />
+  <title>LTD Grove Street - Accueil</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Splide.js pour carousel -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
+
+  <style>
+    /* Styles personnalisés */
+    .faq-question {
+      cursor: pointer;
+    }
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+    .faq-question[aria-expanded="true"] .faq-icon {
+      transform: rotate(180deg);
+    }
+    /* Padding pour ne pas que le header cache le contenu */
+    body {
+      padding-top: 4rem;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
+
+  <!-- Barre de navigation -->
+  <header class="fixed top-0 left-0 w-full bg-indigo-600 text-white shadow-md z-50">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+      <a href="index.html" class="text-2xl font-bold hover:text-indigo-300">LTD Grove Street</a>
+      <ul class="hidden md:flex space-x-8 font-semibold text-lg">
+        <li><a href="index.html" class="hover:text-indigo-300">Accueil</a></li>
+        <li><a href="catalogue.html" class="hover:text-indigo-300">Catalogue</a></li>
+        <li><a href="stations.html" class="hover:text-indigo-300">Stations Essence</a></li>
+        <li><a href="commande.html" class="hover:text-indigo-300">Commande</a></li>
+        <li><a href="avis.html" class="hover:text-indigo-300">Avis Clients</a></li>
+        <li><a href="equipe.html" class="hover:text-indigo-300">Notre Équipe</a></li>
+        <li><a href="actualites.html" class="hover:text-indigo-300">Actualités</a></li>
+        <li><a href="contact.html" class="hover:text-indigo-300">Contact</a></li>
+      </ul>
+      <button id="nav-toggle" class="md:hidden focus:outline-none" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </nav>
+    <div id="nav-menu" class="hidden md:hidden bg-indigo-700">
+      <ul class="flex flex-col px-6 py-4 space-y-4 font-semibold">
+        <li><a href="index.html" class="block hover:text-indigo-300">Accueil</a></li>
+        <li><a href="catalogue.html" class="block hover:text-indigo-300">Catalogue</a></li>
+        <li><a href="stations.html" class="block hover:text-indigo-300">Stations Essence</a></li>
+        <li><a href="commande.html" class="block hover:text-indigo-300">Commande</a></li>
+        <li><a href="avis.html" class="block hover:text-indigo-300">Avis Clients</a></li>
+        <li><a href="equipe.html" class="block hover:text-indigo-300">Notre Équipe</a></li>
+        <li><a href="actualites.html" class="block hover:text-indigo-300">Actualités</a></li>
+        <li><a href="contact.html" class="block hover:text-indigo-300">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Thème toggle -->
+  <button id="theme-toggle" aria-label="Toggle Dark Mode" class="fixed bottom-5 right-5 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition" title="Changer le thème">
+    🌗
+  </button>
+
+  <!-- Bouton Intranet -->
+  <a href="https://intranet.ltdgrovestreet.com" target="_blank" rel="noopener" class="fixed bottom-5 left-5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-5 rounded shadow-lg transition">
+    Accéder à l’Intranet
+  </a>
+
+  <!-- Bannière principale -->
+  <header class="hero bg-[url('https://i.goopics.net/1f686l.png')] bg-cover bg-center min-h-[30vh] flex flex-col justify-center items-center px-6 text-white text-center shadow-lg mt-16">
+    <h1 class="text-4xl md:text-6xl font-extrabold drop-shadow-lg">Bienvenue sur le site du LTD Grove Street</h1>
+    <p class="mt-4 max-w-xl text-lg md:text-2xl drop-shadow-md">Votre partenaire de confiance en stations et commerce</p>
+    <a href="catalogue.html" class="mt-8 inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition">
+      Voir notre Catalogue
     </a>
-
-    <!-- Menu desktop -->
-    <ul class="hidden md:flex space-x-10 font-semibold text-lg tracking-wide">
-      <li><a href="index.html" class="hover:text-indigo-300 transition">Accueil</a></li>
-      <li><a href="catalogue.html" class="hover:text-indigo-300 transition">Catalogue</a></li>
-      <li><a href="stations.html" class="hover:text-indigo-300 transition">Stations Essence</a></li>
-      <li><a href="commande.html" class="hover:text-indigo-300 transition">Commande</a></li>
-      <li><a href="avis.html" class="hover:text-indigo-300 transition">Avis Clients</a></li>
-      <li><a href="equipe.html" class="hover:text-indigo-300 transition">Notre Équipe</a></li>
-      <li><a href="actualites.html" class="hover:text-indigo-300 transition">Actualités</a></li>
-      <li><a href="contact.html" class="hover:text-indigo-300 transition">Contact</a></li>
-    </ul>
-
-    <!-- Hamburger menu mobile -->
-    <button id="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu" 
-      class="md:hidden flex flex-col justify-center items-center space-y-1 focus:outline-none">
-      <span class="block w-6 h-0.5 bg-white rounded transition-transform origin-left"></span>
-      <span class="block w-6 h-0.5 bg-white rounded transition-opacity"></span>
-      <span class="block w-6 h-0.5 bg-white rounded transition-transform origin-left"></span>
-    </button>
-  </nav>
-
-  <!-- Menu mobile -->
-  <div id="nav-menu" class="hidden md:hidden bg-indigo-700">
-    <ul class="flex flex-col px-6 py-5 space-y-4 font-semibold text-lg">
-      <li><a href="index.html" class="block hover:text-indigo-300 transition">Accueil</a></li>
-      <li><a href="catalogue.html" class="block hover:text-indigo-300 transition">Catalogue</a></li>
-      <li><a href="stations.html" class="block hover:text-indigo-300 transition">Stations Essence</a></li>
-      <li><a href="commande.html" class="block hover:text-indigo-300 transition">Commande</a></li>
-      <li><a href="avis.html" class="block hover:text-indigo-300 transition">Avis Clients</a></li>
-      <li><a href="equipe.html" class="block hover:text-indigo-300 transition">Notre Équipe</a></li>
-      <li><a href="actualites.html" class="block hover:text-indigo-300 transition">Actualités</a></li>
-      <li><a href="contact.html" class="block hover:text-indigo-300 transition">Contact</a></li>
-    </ul>
-  </div>
-</header>
+  </header>
 
   <!-- Présentation -->
 <section class="relative bg-gradient-to-r from-indigo-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-20 px-6 mt-12 overflow-hidden">
