@@ -243,33 +243,33 @@
     <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6
 
 <!-- Section Partenaires défilants -->
-<section class="w-full bg-gradient-to-r from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12">
+<section class="w-full bg-gradient-to-r from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-16">
   <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-3xl font-extrabold text-center text-indigo-700 dark:text-white mb-10 tracking-tight">Nos Partenaires</h2>
+    <h2 class="text-4xl font-extrabold text-center text-indigo-700 dark:text-white mb-12 tracking-tight uppercase">Nos Partenaires</h2>
     <div class="relative overflow-hidden">
-      <div class="flex items-center gap-16 animate-scroll-smooth whitespace-nowrap">
-        <img src="partenaire1.png" alt="Partenaire 1" class="h-20 grayscale opacity-80 hover:opacity-100 transition duration-300 ease-in-out" />
-        <img src="partenaire2.png" alt="Partenaire 2" class="h-20 grayscale opacity-80 hover:opacity-100 transition duration-300 ease-in-out" />
-        <img src="partenaire3.png" alt="Partenaire 3" class="h-20 grayscale opacity-80 hover:opacity-100 transition duration-300 ease-in-out" />
-        <img src="partenaire4.png" alt="Partenaire 4" class="h-20 grayscale opacity-80 hover:opacity-100 transition duration-300 ease-in-out" />
-        <img src="partenaire5.png" alt="Partenaire 5" class="h-20 grayscale opacity-80 hover:opacity-100 transition duration-300 ease-in-out" />
-        <!-- Cloner pour une boucle fluide -->
-        <img src="partenaire1.png" alt="Partenaire 1" class="h-20 grayscale opacity-80 hover:opacity-100 transition duration-300 ease-in-out" />
-        <img src="partenaire2.png" alt="Partenaire 2" class="h-20 grayscale opacity-80 hover:opacity-100 transition duration-300 ease-in-out" />
-        <img src="partenaire3.png" alt="Partenaire 3" class="h-20 grayscale opacity-80 hover:opacity-100 transition duration-300 ease-in-out" />
-        <img src="partenaire4.png" alt="Partenaire 4" class="h-20 grayscale opacity-80 hover:opacity-100 transition duration-300 ease-in-out" />
-        <img src="partenaire5.png" alt="Partenaire 5" class="h-20 grayscale opacity-80 hover:opacity-100 transition duration-300 ease-in-out" />
+      <div class="flex items-center gap-20 animate-scroll-marquee whitespace-nowrap">
+        <img src="partenaire1.png" alt="Partenaire 1" class="h-24 brightness-95 hover:brightness-110 transition-all duration-300 drop-shadow-lg" />
+        <img src="partenaire2.png" alt="Partenaire 2" class="h-24 brightness-95 hover:brightness-110 transition-all duration-300 drop-shadow-lg" />
+        <img src="partenaire3.png" alt="Partenaire 3" class="h-24 brightness-95 hover:brightness-110 transition-all duration-300 drop-shadow-lg" />
+        <img src="partenaire4.png" alt="Partenaire 4" class="h-24 brightness-95 hover:brightness-110 transition-all duration-300 drop-shadow-lg" />
+        <img src="partenaire5.png" alt="Partenaire 5" class="h-24 brightness-95 hover:brightness-110 transition-all duration-300 drop-shadow-lg" />
+        <!-- Duplicates for seamless loop -->
+        <img src="partenaire1.png" alt="Partenaire 1" class="h-24 brightness-95 hover:brightness-110 transition-all duration-300 drop-shadow-lg" />
+        <img src="partenaire2.png" alt="Partenaire 2" class="h-24 brightness-95 hover:brightness-110 transition-all duration-300 drop-shadow-lg" />
+        <img src="partenaire3.png" alt="Partenaire 3" class="h-24 brightness-95 hover:brightness-110 transition-all duration-300 drop-shadow-lg" />
+        <img src="partenaire4.png" alt="Partenaire 4" class="h-24 brightness-95 hover:brightness-110 transition-all duration-300 drop-shadow-lg" />
+        <img src="partenaire5.png" alt="Partenaire 5" class="h-24 brightness-95 hover:brightness-110 transition-all duration-300 drop-shadow-lg" />
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  @keyframes scroll-smooth {
+  @keyframes scroll-marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
-  .animate-scroll-smooth {
-    animation: scroll-smooth 40s linear infinite;
+  .animate-scroll-marquee {
+    animation: scroll-marquee 30s linear infinite;
   }
 </style>
