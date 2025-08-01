@@ -51,49 +51,30 @@
   </header>
 
   <!-- Contenu -->
-  <main class="mt-20">
-    <h1 class="text-center font-bold text-2xl text-indigo-600 mb-6">Catalogue des produits</h1>
+  <main class="mt-32 px-4">
+    <h1 class="text-center font-bold text-3xl text-indigo-600 mb-8">Catalogue des produits</h1>
 
-    <!-- Recherche et filtres -->
-    <section class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 flex-wrap">
-      
-<!-- Barre de recherche modernisée -->
-<section class="max-w-6xl mx-auto px-4 py-4 bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-gray-200 dark:border-gray-700 rounded-xl shadow-md flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 mb-8 transition">
-  
-  <!-- Recherche -->
-  <input
-    type="search"
-    id="searchInput"
-    placeholder="🔍 Rechercher un produit..."
-    class="flex-1 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
-    aria-label="Rechercher un produit"
-  />
+    <!-- Recherche, tri et filtre -->
+    <section class="max-w-6xl mx-auto px-4 py-6 bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-gray-200 dark:border-gray-700 rounded-xl shadow-md flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 mb-12 transition">
+      <input id="searchInput" type="search" placeholder="🔍 Rechercher un produit..." class="flex-1 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+      <select id="sortSelect" class="w-full lg:w-60 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+        <option value="name-asc">Nom (A → Z)</option>
+        <option value="name-desc">Nom (Z → A)</option>
+        <option value="price-asc">Prix croissant</option>
+        <option value="price-desc">Prix décroissant</option>
+      </select>
+      <select id="categorySelect" class="w-full lg:w-60 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+        <option value="all">Toutes catégories</option>
+        <option value="Quincaillerie">Quincaillerie</option>
+        <option value="Papeterie">Papeterie</option>
+        <option value="Divers Utiles">Divers Utiles</option>
+        <option value="Jardinage">Jardinage</option>
+        <option value="Autres">Autres</option>
+      </select>
+    </section>
 
-  <!-- Tri -->
-  <select
-    id="sortSelect"
-    class="w-full lg:w-60 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
-  >
-    <option value="name-asc">Nom (A → Z)</option>
-    <option value="name-desc">Nom (Z → A)</option>
-    <option value="price-asc">Prix croissant</option>
-    <option value="price-desc">Prix décroissant</option>
-  </select>
-
-  <!-- Filtre catégorie -->
-  <select
-    id="categorySelect"
-    class="w-full lg:w-60 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
-  >
-    <option value="all">Toutes catégories</option>
-    <option value="Quincaillerie">Quincaillerie</option>
-    <option value="Papeterie">Papeterie</option>
-    <option value="Divers Utiles">Divers Utiles</option>
-    <option value="Jardinage">Jardinage</option>
-    <option value="Autres">Autres</option>
-  </select>
-
-</section>
+    <!-- Grille des produits -->
+    <section id="productGrid" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-6xl mx-auto px-4"></section>
   </main>
 
   <!-- Footer -->
