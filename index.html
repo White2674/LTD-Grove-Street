@@ -1,502 +1,190 @@
 <!DOCTYPE html>
-<html lang="fr">
-
+<html lang="fr" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Violet Impact - Site qui déchire</title>
+  <meta name="description" content="LTD Grove Street, votre partenaire de confiance pour les stations essence et commerce à Los Santos. Découvrez notre catalogue, services, et équipe." />
+  <title>LTD Grove Street - Accueil</title>
 
-  <!-- Google Fonts: Montserrat & Poppins -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Google Fonts Poppins (déjà importé dans style.css) -->
+  <!-- On retire Tailwind CDN pour éviter conflits -->
 
-  <style>
-    /* === Reset & basics === */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+  <!-- Style custom -->
+  <link rel="stylesheet" href="css/style.css" />
 
-    html, body {
-      height: 100%;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #4b0082, #7b2ff7);
-      color: #fff;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: #fff;
-      text-decoration: none;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
-
-    a:hover {
-      color: #f0a;
-    }
-
-    /* === Container === */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* === Header === */
-    header {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(12px);
-      z-index: 999;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .logo {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: 1.8rem;
-      letter-spacing: 0.15em;
-      color: #e0aaff;
-      text-transform: uppercase;
-      user-select: none;
-      text-shadow: 0 0 10px #bb77ffaa;
-      cursor: default;
-    }
-
-    nav {
-      position: relative;
-    }
-
-    /* === Nav menu === */
-    ul.nav-menu {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    ul.nav-menu li a {
-      position: relative;
-      font-size: 1rem;
-      padding: 0.2rem 0;
-    }
-
-    ul.nav-menu li a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background: #ff77ff;
-      transition: width 0.3s ease;
-      border-radius: 3px;
-    }
-
-    ul.nav-menu li a:hover::after {
-      width: 100%;
-    }
-
-    /* === Hamburger === */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 28px;
-      height: 20px;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
-    .hamburger div {
-      width: 100%;
-      height: 3.5px;
-      background: #ff88ff;
-      border-radius: 2px;
-      transition: all 0.4s ease;
-      box-shadow: 0 0 8px #ff88ffaa;
-    }
-
-    /* Hamburger active state */
-    .hamburger.active div:nth-child(1) {
-      transform: translateY(8.25px) rotate(45deg);
-    }
-
-    .hamburger.active div:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger.active div:nth-child(3) {
-      transform: translateY(-8.25px) rotate(-45deg);
-    }
-
-    /* === Mobile nav === */
-    @media (max-width: 768px) {
-      ul.nav-menu {
-        position: fixed;
-        top: 70px;
-        right: 0;
-        background: linear-gradient(135deg, #4b0082ee, #7b2ff7ee);
-        height: calc(100vh - 70px);
-        width: 250px;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 2rem 1.5rem;
-        gap: 2.5rem;
-        transform: translateX(100%);
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        border-left: 2px solid #bb77ffcc;
-        box-shadow: -5px 0 20px rgba(187, 119, 255, 0.6);
-      }
-
-      ul.nav-menu.open {
-        transform: translateX(0);
-      }
-
-      .hamburger {
-        display: flex;
-      }
-    }
-
-    /* === Dark mode toggle === */
-    .toggle-theme {
-      cursor: pointer;
-      font-size: 1.6rem;
-      padding: 0.25rem 0.5rem;
-      background: transparent;
-      border: 2px solid #ff88ff;
-      border-radius: 8px;
-      color: #ff88ff;
-      text-shadow: 0 0 8px #ff88ffaa;
-      transition: all 0.3s ease;
-      user-select: none;
-      margin-left: 1.5rem;
-      box-shadow: 0 0 12px #ff88ff55;
-    }
-
-    .toggle-theme:hover {
-      background: #ff88ff44;
-      color: #fff;
-      box-shadow: 0 0 18px #ff88ffdd;
-    }
-
-    /* === Hero section === */
-    .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 1rem;
-      position: relative;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    /* Glitch text animation */
-    .glitch {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 4.5rem;
-      font-weight: 900;
-      color: #f0a;
-      position: relative;
-      animation: glitch 2.5s infinite;
-      user-select: none;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-shadow: 0 0 20px #f0a, 0 0 30px #bb77ffcc;
-      z-index: 1;
-    }
-
-    @keyframes glitch {
-      0% {
-        text-shadow: 2px 0 #ff66ff, -2px 0 #bb77ff, 0 2px #f0a, 0 -2px #bb55ff;
-      }
-
-      20% {
-        text-shadow: -2px 0 #ff66ff, 2px 0 #bb77ff, 0 -2px #f0a, 0 2px #bb55ff;
-      }
-
-      40% {
-        text-shadow: 2px 2px #ff66ff, -2px -2px #bb77ff, 2px -2px #f0a, -2px 2px #bb55ff;
-      }
-
-      60% {
-        text-shadow: -2px -2px #ff66ff, 2px 2px #bb77ff, -2px 2px #f0a, 2px -2px #bb55ff;
-      }
-
-      80% {
-        text-shadow: 2px 0 #ff66ff, -2px 0 #bb77ff, 0 2px #f0a, 0 -2px #bb55ff;
-      }
-
-      100% {
-        text-shadow: -2px 0 #ff66ff, 2px 0 #bb77ff, 0 -2px #f0a, 0 2px #bb55ff;
-      }
-    }
-
-    .hero p {
-      font-weight: 600;
-      font-size: 1.2rem;
-      margin: 1.5rem 0 3rem;
-      max-width: 480px;
-      line-height: 1.5;
-      text-shadow: 0 0 8px #bb77ffaa;
-    }
-
-    .btn-hero {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      text-transform: uppercase;
-      padding: 1rem 3rem;
-      font-size: 1.2rem;
-      color: #fff;
-      background: linear-gradient(45deg, #ff77ff, #bb55ff);
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 0 20px #ff77ffcc;
-      transition: background 0.4s ease, box-shadow 0.4s ease;
-      user-select: none;
-      letter-spacing: 0.15em;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-hero::before {
-      content: '';
-      position: absolute;
-      left: -100%;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transform: skewX(-20deg);
-      transition: left 0.5s ease;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .btn-hero:hover::before {
-      left: 200%;
-    }
-
-    .btn-hero:hover {
-      background: linear-gradient(45deg, #bb55ff, #ff77ff);
-      box-shadow: 0 0 40px #ff77ffdd;
-    }
-
-    /* === Sections === */
-    section {
-      padding: 6rem 1rem 8rem;
-      max-width: 900px;
-      margin: 0 auto;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    section h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: 2.4rem;
-      margin-bottom: 1rem;
-      color: #eeccff;
-      text-align: center;
-      letter-spacing: 0.1em;
-      text-shadow: 0 0 12px #bb77ffcc;
-    }
-
-    section p {
-      font-weight: 400;
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: #ddd;
-      text-align: center;
-      max-width: 650px;
-      margin: 0 auto;
-      user-select: none;
-    }
-
-    /* === FAQ === */
-    .faq-item {
-      margin: 1rem 0;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 0 20px #bb77ff33;
-      cursor: pointer;
-      user-select: none;
-      transition: background 0.3s ease;
-    }
-
-    .faq-item:hover {
-      background: rgba(255, 255, 255, 0.15);
-      box-shadow: 0 0 30px #ff77ff77;
-    }
-
-    .faq-question {
-      padding: 1.25rem 2rem;
-      font-weight: 600;
-      font-size: 1.1rem;
-      letter-spacing: 0.03em;
-      color: #fff;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .faq-question span {
-      font-size: 1.5rem;
-      transition: transform 0.3s ease;
-      user-select: none;
-      color: #ff88ff;
-    }
-
-    .faq-item.open .faq-question span {
-      transform: rotate(180deg);
-      color: #ff66ff;
-    }
-
-    .faq-answer {
-      padding: 0 2rem 1.5rem 2rem;
-      font-size: 1rem;
-      color: #ddd;
-      line-height: 1.5;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.4s ease;
-      user-select: text;
-    }
-
-    .faq-item.open .faq-answer {
-      max-height: 400px;
-      padding-top: 1rem;
-    }
-
-    /* === Footer === */
-    footer {
-      text-align: center;
-      padding: 2.5rem 1rem;
-      font-size: 0.9rem;
-      color: #ccc;
-      letter-spacing: 0.08em;
-      user-select: none;
-      text-shadow: 0 0 10px #bb77ff55;
-    }
-
-    /* === Scroll reveal JS helper classes (used with JS below) === */
-    .scroll-reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.7s ease-out;
-    }
-
-    .scroll-reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-  </style>
+  <!-- Splide.js pour carousel -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
 </head>
-
 <body>
+
+  <!-- Barre de navigation -->
   <header>
-    <div class="logo" aria-label="Logo Violet Impact">VIOLET IMPACT</div>
+    <a href="index.html" class="logo">LTD Grove Street</a>
     <nav>
-      <ul class="nav-menu" id="nav-menu">
-        <li><a href="#presentation">Présentation</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact">Contact</a></li>
+      <ul>
+        <li><a href="index.html" aria-current="page">Accueil</a></li>
+        <li><a href="catalogue.html">Catalogue</a></li>
+        <li><a href="stations.html">Stations Essence</a></li>
+        <li><a href="commande.html">Commande</a></li>
+        <li><a href="avis.html">Avis Clients</a></li>
+        <li><a href="equipe.html">Notre Équipe</a></li>
+        <li><a href="actualites.html">Actualités</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
-      <div class="hamburger" id="hamburger" aria-label="Menu Hamburger" role="button" tabindex="0">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
     </nav>
-    <button class="toggle-theme" id="toggle-theme" aria-label="Basculer le mode sombre">🌙</button>
+    <button id="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu">
+      <!-- simple hamburger icon -->
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+    <div id="nav-menu">
+      <ul>
+        <li><a href="index.html" aria-current="page">Accueil</a></li>
+        <li><a href="catalogue.html">Catalogue</a></li>
+        <li><a href="stations.html">Stations Essence</a></li>
+        <li><a href="commande.html">Commande</a></li>
+        <li><a href="avis.html">Avis Clients</a></li>
+        <li><a href="equipe.html">Notre Équipe</a></li>
+        <li><a href="actualites.html">Actualités</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
   </header>
 
-  <main>
-    <section class="hero" aria-label="Section principale">
-      <h1 class="glitch" aria-live="polite" aria-atomic="true">Bienvenue sur Violet Impact</h1>
-      <p>Une expérience visuelle hors du commun avec animations glitch et dégradés dynamiques.</p>
-      <button class="btn-hero" onclick="document.getElementById('presentation').scrollIntoView({behavior:'smooth'})">
-        Découvrir
-      </button>
-    </section>
+  <!-- Thème toggle -->
+  <button id="theme-toggle" aria-label="Toggle Dark Mode" title="Changer le thème"
+    style="position: fixed; bottom: 20px; right: 20px; background: var(--violet-light); color: white; border: none; padding: 0.8rem 1rem; border-radius: 9999px; box-shadow: 0 6px 20px var(--shadow-light); cursor: pointer; transition: background 0.3s ease;">
+    🌗
+  </button>
 
-    <section id="presentation" class="scroll-reveal" aria-label="Présentation">
-      <h2>Présentation</h2>
-      <p>
-        Violet Impact est un site créé pour offrir une expérience utilisateur immersive, originale et élégante. Chaque
-        élément a été pensé pour sortir des sentiers battus et vous impressionner à chaque scroll.
-      </p>
-    </section>
+  <!-- Bouton Intranet -->
+  <a href="https://intranet.ltdgrovestreet.com" target="_blank" rel="noopener"
+    style="position: fixed; bottom: 20px; left: 20px; background: var(--violet-light); color: white; font-weight: 600; padding: 0.8rem 1.5rem; border-radius: 12px; box-shadow: 0 6px 20px var(--shadow-light); text-decoration: none; user-select: none; transition: background 0.3s ease;">
+    Accéder à l’Intranet
+  </a>
 
-    <section id="faq" class="scroll-reveal" aria-label="Foire aux questions">
-      <h2>FAQ</h2>
+  <!-- Bannière -->
+  <section class="hero">
+    <h1>Bienvenue sur le site du LTD Grove Street</h1>
+    <p>Votre partenaire de confiance en stations et commerce</p>
+    <a href="catalogue.html">Voir notre Catalogue</a>
+  </section>
 
-      <div class="faq-item" tabindex="0" role="button" aria-expanded="false" aria-controls="faq1">
-        <div class="faq-question" onclick="toggleFaq(event)">
-          Comment changer le thème du site ?
-          <span aria-hidden="true">▼</span>
-        </div>
-        <div class="faq-answer" id="faq1" hidden>
-          Cliquez sur l’icône en haut à droite pour basculer entre le mode clair et sombre instantanément.
-        </div>
-      </div>
+  <!-- Présentation -->
+  <section>
+    <h2>Qui sommes-nous ?</h2>
+    <p>
+      Le LTD de Groove Street, implanté à Los Santos, est une entreprise spécialisée dans le ravitaillement en essence et la vente. Elle gère un réseau de 9 stations-service reconnues pour leur fiabilité et leur implantation stratégique, répondant efficacement aux besoins des habitants. En complément, un magasin situé à Groove Street propose une large sélection de produits essentiels et renforce le lien avec la communauté grâce à un service client attentif. Engagé dans la qualité, l’efficacité et l’innovation, le LTD de Groove Street s’impose comme une référence majeure à San Andreas.
+    </p>
+  </section>
 
-      <div class="faq-item" tabindex="0" role="button" aria-expanded="false" aria-controls="faq2">
-        <div class="faq-question" onclick="toggleFaq(event)">
-          Le site est-il responsive ?
-          <span aria-hidden="true">▼</span>
-        </div>
-        <div class="faq-answer" id="faq2" hidden>
-          Oui, il s’adapte parfaitement à toutes les tailles d’écran, du mobile au grand écran.
-        </div>
-      </div>
-
-      <div class="faq-item" tabindex="0" role="button" aria-expanded="false" aria-controls="faq3">
-        <div class="faq-question" onclick="toggleFaq(event)">
-          Puis-je personnaliser les couleurs ?
-          <span aria-hidden="true">▼</span>
-        </div>
-        <div class="faq-answer" id="faq3" hidden>
-          Absolument, les couleurs sont gérées via des variables CSS faciles à modifier.
+  <!-- FAQ Accordéon -->
+  <section>
+    <h2>FAQ – Questions courantes</h2>
+    <div id="faq">
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq1" role="button" tabindex="0">
+          Quels sont vos horaires d'ouverture ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div id="faq1" class="faq-answer" hidden>
+          Nous sommes ouverts 7 jours sur 7. Nos horaires varient en fonction de la présence et de l'activité de nos vendeurs, donc ils peuvent légèrement changer d’un jour à l’autre. N’hésitez pas à passer régulièrement — il y a souvent quelqu’un pour vous servir !
         </div>
       </div>
-    </section>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq2" role="button" tabindex="0">
+          Proposez-vous des services de livraison ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div id="faq2" class="faq-answer" hidden>
+          Oui, nous proposons un service de livraison ! Il vous suffit simplement de passer commande directement via notre site web. Une fois votre commande validée, un de nos vendeurs prendra en charge la livraison dans les plus brefs délais.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq3" role="button" tabindex="0">
+          Puis-je payer en ligne ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div id="faq3" class="faq-answer" hidden>
+          Non, le paiement se fait uniquement sur place, au moment de la livraison ou du retrait de votre commande.
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section id="contact" class="scroll-reveal" aria-label="Contact">
-      <h2>Contactez-nous</h2>
-      <p>Pour toute question, envoyez-nous un message à <a href="mailto:contact@violetimpact.fr">contact@violetimpact.fr</a>.</p>
-    </section>
-  </main>
+  <!-- Logos partenaires Carousel -->
+  <section>
+    <h2>Nos partenaires</h2>
+    <div id="partners-carousel" class="splide" aria-label="Logos de nos partenaires">
+      <div class="splide__track">
+        <ul class="splide__list">
+          <li class="splide__slide">
+            <img src="https://i.goopics.net/wmxv9x.png" alt="Entreprise N°01" />
+          </li>
+          <li class="splide__slide">
+            <img src="images/partner2.png" alt="Partenaire 2" />
+          </li>
+          <li class="splide__slide">
+            <img src="images/partner3.png" alt="Partenaire 3" />
+          </li>
+          <li class="splide__slide">
+            <img src="images/partner4.png" alt="Partenaire 4" />
+          </li>
+          <!-- Ajoute d’autres partenaires ici -->
+        </ul>
+      </div>
+    </div>
+  </section>
 
+  <!-- Footer simple -->
   <footer>
-    © 2025 Violet Impact - Tous droits réservés
+    &copy; 2025 LTD Grove Street. Tous droits réservés.
   </footer>
 
+  <!-- Scripts -->
+
+  <!-- Splide.js Carousel -->
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+
   <script>
-    // Hamburger toggle
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementBy
+    // Initialiser carousel partenaires
+    document.addEventListener('DOMContentLoaded', function () {
+      new Splide('#partners-carousel', {
+        type: 'loop',
+        perPage: 4,
+        perMove: 1,
+        gap: '1rem',
+        autoplay: true,
+        interval: 3000,
+        pauseOnHover: true,
+        breakpoints: {
+          640: { perPage: 2 },
+          480: { perPage: 1 }
+        }
+      }).mount();
+
+      // FAQ Accordéon accessible clic + clavier
+      const faqItems = document.querySelectorAll('.faq-question');
+      faqItems.forEach(btn => {
+        btn.addEventListener('click', toggleFaq);
+        btn.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleFaq.call(btn);
+          }
+        });
+      });
+
+      function toggleFaq() {
+        const expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !expanded);
+        const answer = this.nextElementSibling;
+        if (answer.hasAttribute('hidden')) {
+          answer.removeAttribute('hidden');
+          this.querySelector('.faq-icon').textContent = '−';
+        } else {
+          answer.setAttribute('hidden', '');
+          this.querySelector('.faq-icon').textContent
