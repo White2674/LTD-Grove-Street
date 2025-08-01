@@ -164,19 +164,23 @@
   <script>
     // Initialiser carousel partenaires
     document.addEventListener('DOMContentLoaded', function () {
-      new Splide('#partners-carousel', {
-        type: 'loop',
-        perPage: 4,
-        perMove: 1,
-        gap: '1rem',
-        autoplay: true,
-        interval: 3000,
-        pauseOnHover: true,
-        breakpoints: {
-          640: { perPage: 2 },
-          480: { perPage: 1 }
-        }
-      }).mount();
+new Splide('#partners-carousel', {
+  type: 'loop',
+  perPage: 4,
+  perMove: 1,
+  gap: '1rem',
+  autoplay: true,
+  interval: 2500,
+  speed: 800,
+  arrows: false,
+  pagination: false,
+  pauseOnHover: false,
+  breakpoints: {
+    1024: { perPage: 3 },
+    768: { perPage: 2 },
+    480: { perPage: 1 }
+  }
+}).mount();
 
       // FAQ Accordéon accessible clic + clavier
       const faqItems = document.querySelectorAll('.faq-question');
