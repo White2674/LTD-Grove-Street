@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth" >
+<html lang="fr" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="LTD Grove Street, votre partenaire de confiance pour les stations essence et commerce à Los Santos. Découvrez notre catalogue, services, et équipe." />
   <title>LTD Grove Street - Accueil</title>
-  
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <!-- Style custom -->
   <link rel="stylesheet" href="css/style.css" />
-  
+
   <!-- Splide.js pour carousel -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
-  
 </head>
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
@@ -31,7 +31,7 @@
         <li><a href="actualites.html" class="hover:text-indigo-300">Actualités</a></li>
         <li><a href="contact.html" class="hover:text-indigo-300">Contact</a></li>
       </ul>
-      <button id="nav-toggle" class="md:hidden focus:outline-none" aria-label="Ouvrir le menu">
+      <button id="nav-toggle" class="md:hidden focus:outline-none" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
           <line x1="3" y1="6" x2="21" y2="6" />
           <line x1="3" y1="12" x2="21" y2="12" />
@@ -39,7 +39,7 @@
         </svg>
       </button>
     </nav>
-    <div id="nav-menu" class="hidden md:hidden bg-indigo-700">
+    <div id="nav-menu" class="hidden md:hidden bg-indigo-700" >
       <ul class="flex flex-col px-6 py-4 space-y-4 font-semibold">
         <li><a href="index.html" class="block hover:text-indigo-300">Accueil</a></li>
         <li><a href="catalogue.html" class="block hover:text-indigo-300">Catalogue</a></li>
@@ -85,7 +85,7 @@
     <h2 class="text-3xl font-semibold mb-6 text-center">FAQ – Questions courantes</h2>
     <div id="faq" class="space-y-4">
       <div class="faq-item">
-        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false" aria-controls="faq1">
+        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false" aria-controls="faq1" role="button" tabindex="0">
           Quels sont vos horaires d'ouverture ?
           <span class="faq-icon text-2xl">+</span>
         </button>
@@ -94,7 +94,7 @@
         </div>
       </div>
       <div class="faq-item">
-        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false" aria-controls="faq2">
+        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false" aria-controls="faq2" role="button" tabindex="0">
           Proposez-vous des services de livraison ?
           <span class="faq-icon text-2xl">+</span>
         </button>
@@ -103,7 +103,7 @@
         </div>
       </div>
       <div class="faq-item">
-        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false" aria-controls="faq3">
+        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false" aria-controls="faq3" role="button" tabindex="0">
           Puis-je payer en ligne ?
           <span class="faq-icon text-2xl">+</span>
         </button>
@@ -166,22 +166,30 @@
       }).mount();
     });
 
-    // FAQ Accordéon
+    // FAQ Accordéon accessible clic + clavier
     const faqItems = document.querySelectorAll('.faq-question');
     faqItems.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', !expanded);
-        const answer = btn.nextElementSibling;
-        if (answer.hasAttribute('hidden')) {
-          answer.removeAttribute('hidden');
-          btn.querySelector('.faq-icon').textContent = '−';
-        } else {
-          answer.setAttribute('hidden', '');
-          btn.querySelector('.faq-icon').textContent = '+';
+      btn.addEventListener('click', toggleFaq);
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleFaq.call(btn);
         }
       });
     });
+
+    function toggleFaq() {
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', !expanded);
+      const answer = this.nextElementSibling;
+      if (answer.hasAttribute('hidden')) {
+        answer.removeAttribute('hidden');
+        this.querySelector('.faq-icon').textContent = '−';
+      } else {
+        answer.setAttribute('hidden', '');
+        this.querySelector('.faq-icon').textContent = '+';
+      }
+    }
 
     // Thème clair / sombre
     const themeToggle = document.getElementById('theme-toggle');
@@ -209,11 +217,12 @@
       }
     });
 
-    // Menu mobile toggle
+    // Menu mobile toggle avec aria-expanded à jour
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
     navToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('hidden');
+      const isHidden = navMenu.classList.toggle('hidden');
+      navToggle.setAttribute('aria-expanded', !isHidden);
     });
   </script>
 </body>
