@@ -107,94 +107,100 @@
   </footer>
 
   <!-- Leaflet JS -->
-  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
   <!-- Script principal -->
-  <script defer>
-    const stations = [
-      {
-        name: "Station Grove Street - Centre",
-        lat: 40.7128, lng: -74.006,
-        photo: "images/station1.jpg",
-        prices: [{ fuel: "Essence 95", price: 1.59 }, { fuel: "Diesel", price: 1.42 }, { fuel: "GPL", price: 0.85 }]
-      },
-      {
-        name: "Station Grove Street - Nord",
-        lat: 40.73061, lng: -73.935242,
-        photo: "images/station2.jpg",
-        prices: [{ fuel: "Essence 95", price: 1.62 }, { fuel: "Diesel", price: 1.45 }, { fuel: "GPL", price: 0.87 }]
-      },
-      {
-        name: "Station Grove Street - Sud",
-        lat: 40.706, lng: -74.009,
-        photo: "images/station3.jpg",
-        prices: [{ fuel: "Essence 95", price: 1.58 }, { fuel: "Diesel", price: 1.40 }, { fuel: "GPL", price: 0.83 }]
-      },
-      {
-        name: "Station Grove Street - Est",
-        lat: 40.720, lng: -74.000,
-        photo: "images/station4.jpg",
-        prices: [{ fuel: "Essence 98", price: 1.74 }, { fuel: "Diesel", price: 1.43 }]
-      },
-      {
-        name: "Station Grove Street - Ouest",
-        lat: 40.700, lng: -74.015,
-        photo: "images/station5.jpg",
-        prices: [{ fuel: "Essence 95", price: 1.61 }, { fuel: "Diesel", price: 1.44 }]
-      },
-      {
-        name: "Station Grove Street - Montagne",
-        lat: 40.735, lng: -74.025,
-        photo: "images/station6.jpg",
-        prices: [{ fuel: "Essence 95", price: 1.66 }, { fuel: "Diesel", price: 1.50 }, { fuel: "GPL", price: 0.90 }]
-      },
-      {
-        name: "Station Grove Street - Port",
-        lat: 40.700, lng: -73.980,
-        photo: "images/station7.jpg",
-        prices: [{ fuel: "Essence 95", price: 1.60 }, { fuel: "Diesel", price: 1.41 }, { fuel: "GPL", price: 0.84 }]
-      },
-    ];
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const stations = [
+        {
+          name: "Station Grove Street - Centre",
+          lat: 40.7128, lng: -74.006,
+          photo: "images/station1.jpg",
+          prices: [{ fuel: "Essence 95", price: 1.59 }, { fuel: "Diesel", price: 1.42 }, { fuel: "GPL", price: 0.85 }]
+        },
+        {
+          name: "Station Grove Street - Nord",
+          lat: 40.73061, lng: -73.935242,
+          photo: "images/station2.jpg",
+          prices: [{ fuel: "Essence 95", price: 1.62 }, { fuel: "Diesel", price: 1.45 }, { fuel: "GPL", price: 0.87 }]
+        },
+        {
+          name: "Station Grove Street - Sud",
+          lat: 40.706, lng: -74.009,
+          photo: "images/station3.jpg",
+          prices: [{ fuel: "Essence 95", price: 1.58 }, { fuel: "Diesel", price: 1.40 }, { fuel: "GPL", price: 0.83 }]
+        },
+        {
+          name: "Station Grove Street - Est",
+          lat: 40.720, lng: -74.000,
+          photo: "images/station4.jpg",
+          prices: [{ fuel: "Essence 98", price: 1.74 }, { fuel: "Diesel", price: 1.43 }]
+        },
+        {
+          name: "Station Grove Street - Ouest",
+          lat: 40.700, lng: -74.015,
+          photo: "images/station5.jpg",
+          prices: [{ fuel: "Essence 95", price: 1.61 }, { fuel: "Diesel", price: 1.44 }]
+        },
+        {
+          name: "Station Grove Street - Montagne",
+          lat: 40.735, lng: -74.025,
+          photo: "images/station6.jpg",
+          prices: [{ fuel: "Essence 95", price: 1.66 }, { fuel: "Diesel", price: 1.50 }, { fuel: "GPL", price: 0.90 }]
+        },
+        {
+          name: "Station Grove Street - Port",
+          lat: 40.700, lng: -73.980,
+          photo: "images/station7.jpg",
+          prices: [{ fuel: "Essence 95", price: 1.60 }, { fuel: "Diesel", price: 1.41 }, { fuel: "GPL", price: 0.84 }]
+        },
+      ];
 
-    const map = L.map('map').setView([40.7128, -74.006], 12);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+      const map = L.map('map').setView([40.7128, -74.006], 12);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
 
-    const priceTableBody = document.getElementById('priceTableBody');
+      const priceTableBody = document.getElementById('priceTableBody');
 
-    stations.forEach(station => {
-      const popupContent = `
-        <strong>${station.name}</strong><br/>
-        <img src="${station.photo}" alt="${station.name}" style="width: 200px; border-radius: 8px; margin-top: 8px;" />
-      `;
-      L.marker([station.lat, station.lng]).addTo(map).bindPopup(popupContent);
-
-      station.prices.forEach(price => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td class="px-4 py-2 font-bold">${station.name}</td>
-          <td class="px-4 py-2">${price.fuel}</td>
-          <td class="px-4 py-2">${price.price.toFixed(2)} €</td>
-          <td class="px-4 py-2"><img src="${station.photo}" alt="${station.name}" class="w-20 h-12 object-cover rounded" /></td>
+      stations.forEach(station => {
+        const popupContent = `
+          <strong>${station.name}</strong><br/>
+          <img src="${station.photo}" alt="${station.name}" style="width: 200px; border-radius: 8px; margin-top: 8px;" />
         `;
-        priceTableBody.appendChild(tr);
+        L.marker([station.lat, station.lng]).addTo(map).bindPopup(popupContent);
+
+        station.prices.forEach((price, index) => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td class="px-4 py-2 font-bold">${index === 0 ? station.name : ""}</td>
+            <td class="px-4 py-2">${price.fuel}</td>
+            <td class="px-4 py-2">${price.price.toFixed(2)} €</td>
+            <td class="px-4 py-2">${index === 0 ? `<img src="${station.photo}" alt="${station.name}" class="w-20 h-12 object-cover rounded" />` : ""}</td>
+          `;
+          priceTableBody.appendChild(tr);
+        });
       });
     });
   </script>
 
   <!-- Menu mobile toggle -->
-  <script defer>
-    document.getElementById('nav-toggle').addEventListener('click', () => {
-      document.getElementById('nav-menu').classList.toggle('hidden');
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('nav-toggle').addEventListener('click', () => {
+        document.getElementById('nav-menu').classList.toggle('hidden');
+      });
     });
   </script>
 
   <!-- Dark mode toggle -->
-  <script defer>
-    document.getElementById('toggle-dark').addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark');
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('toggle-dark').addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+      });
     });
   </script>
 </body>
