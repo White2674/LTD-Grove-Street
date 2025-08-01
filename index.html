@@ -3,324 +3,134 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="LTD Grove Street, votre partenaire de confiance pour les stations essence et commerce à Los Santos." />
+  <meta name="description" content="LTD Grove Street, votre partenaire de confiance pour les stations essence et commerce à Los Santos. Découvrez notre catalogue, services, et équipe." />
   <title>LTD Grove Street - Accueil</title>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Fonts + Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Style custom -->
+  <link rel="stylesheet" href="css/style.css" />
 
-  <!-- Splide.js for carousel -->
+  <!-- Splide.js pour carousel -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
-
-  <style>
-    /* Custom styles */
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #4c51bf, #6b46c1);
-      color: #f0f4f8;
-      overflow-x: hidden;
-    }
-
-    /* Header with dynamic shadow on scroll */
-    header {
-      backdrop-filter: saturate(180%) blur(20px);
-      background: rgba(55, 48, 163, 0.85);
-      box-shadow: 0 0 15px rgba(107, 70, 193, 0.4);
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-    }
-    header.scrolled {
-      background: rgba(31, 41, 55, 0.95);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
-    }
-
-    nav a {
-      transition: color 0.3s ease;
-    }
-    nav a:hover, nav a:focus {
-      color: #d6bcfa;
-      outline: none;
-    }
-
-    /* Hero Section */
-    .hero {
-      background: url('images/banner.jpg') center/cover no-repeat fixed;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      padding: 0 1.5rem;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(55, 48, 163, 0.85) 30%, rgba(55, 48, 163, 0.6) 70%);
-      z-index: 0;
-      pointer-events: none;
-    }
-    .hero > * {
-      position: relative;
-      z-index: 1;
-    }
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 900;
-      text-shadow: 0 0 12px rgba(107, 70, 193, 0.8);
-      animation: fadeInUp 1.2s ease forwards;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    .hero p {
-      font-size: clamp(1rem, 3vw, 1.5rem);
-      margin-top: 1rem;
-      color: #d6bcfa;
-      max-width: 600px;
-      animation: fadeInUp 1.6s ease forwards;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    .hero a {
-      margin-top: 2.5rem;
-      padding: 1rem 2rem;
-      background: #805ad5;
-      box-shadow: 0 8px 15px rgba(128, 90, 213, 0.5);
-      border-radius: 9999px;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: #fff;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      transition: background 0.3s ease, transform 0.2s ease;
-      animation: fadeInUp 2s ease forwards;
-      opacity: 0;
-      transform: translateY(20px);
-      display: inline-block;
-    }
-    .hero a:hover {
-      background: #6b46c1;
-      transform: scale(1.05);
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Section "Qui sommes-nous ?" with split layout */
-    .about-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 3rem;
-      max-width: 1200px;
-      margin: 5rem auto;
-      background: rgba(255 255 255 / 0.05);
-      border-radius: 1rem;
-      padding: 3rem 2rem;
-      box-shadow: 0 0 25px rgba(107, 70, 193, 0.3);
-      backdrop-filter: saturate(180%) blur(20px);
-    }
-    .about-text {
-      color: #e9d8fd;
-      font-size: 1.15rem;
-      line-height: 1.6;
-    }
-    .about-image {
-      position: relative;
-      border-radius: 1rem;
-      overflow: hidden;
-      box-shadow: 0 8px 30px rgba(107, 70, 193, 0.4);
-    }
-    .about-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(0.85) saturate(1.2);
-      transition: transform 0.5s ease;
-    }
-    .about-image:hover img {
-      transform: scale(1.1) rotate(1deg);
-    }
-
-    /* FAQ */
-    .faq-question {
-      background: rgba(107, 70, 193, 0.3);
-      padding: 1rem 1.5rem;
-      border-radius: 9999px;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: background 0.3s ease;
-      user-select: none;
-      box-shadow: 0 2px 12px rgba(128, 90, 213, 0.3);
-    }
-    .faq-question:hover,
-    .faq-question:focus {
-      background: rgba(107, 70, 193, 0.6);
-      outline: none;
-      box-shadow: 0 4px 25px rgba(128, 90, 213, 0.6);
-    }
-    .faq-answer {
-      margin-top: 0.5rem;
-      padding-left: 2rem;
-      color: #ddd6fe;
-      font-size: 1rem;
-      line-height: 1.5;
-      user-select: text;
-    }
-
-    /* Carousel */
-    .splide__slide img {
-      filter: drop-shadow(0 0 5px #6b46c1aa);
-      transition: transform 0.3s ease;
-      border-radius: 0.5rem;
-    }
-    .splide__slide img:hover {
-      transform: scale(1.1);
-      filter: drop-shadow(0 0 15px #9f7aea);
-    }
-
-    /* Theme toggle button */
-    #theme-toggle {
-      background: #6b46c1;
-      box-shadow: 0 4px 15px #805ad5aa;
-      font-size: 1.5rem;
-      transition: background 0.3s ease;
-    }
-    #theme-toggle:hover {
-      background: #553c9a;
-    }
-
-    /* Mobile menu styling */
-    #nav-menu {
-      background: rgba(55, 48, 163, 0.9);
-      box-shadow: 0 10px 30px rgba(107, 70, 193, 0.5);
-    }
-
-  </style>
 </head>
-<body>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
-  <!-- Header with dynamic scroll effect -->
-  <header class="fixed top-0 left-0 w-full z-50">
-    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 md:py-5 text-white">
-      <a href="index.html" class="text-3xl font-extrabold tracking-widest hover:text-purple-300 transition">LTD Grove Street</a>
-      <ul class="hidden md:flex space-x-10 font-semibold text-lg tracking-wide">
-        <li><a href="index.html" class="hover:text-purple-300 focus:text-purple-300 focus:outline-none">Accueil</a></li>
-        <li><a href="catalogue.html" class="hover:text-purple-300 focus:text-purple-300 focus:outline-none">Catalogue</a></li>
-        <li><a href="stations.html" class="hover:text-purple-300 focus:text-purple-300 focus:outline-none">Stations Essence</a></li>
-        <li><a href="commande.html" class="hover:text-purple-300 focus:text-purple-300 focus:outline-none">Commande</a></li>
-        <li><a href="avis.html" class="hover:text-purple-300 focus:text-purple-300 focus:outline-none">Avis Clients</a></li>
-        <li><a href="equipe.html" class="hover:text-purple-300 focus:text-purple-300 focus:outline-none">Notre Équipe</a></li>
-        <li><a href="actualites.html" class="hover:text-purple-300 focus:text-purple-300 focus:outline-none">Actualités</a></li>
-        <li><a href="contact.html" class="hover:text-purple-300 focus:text-purple-300 focus:outline-none">Contact</a></li>
+  <!-- Barre de navigation -->
+  <header class="fixed top-0 left-0 w-full bg-indigo-600 text-white shadow-md z-50">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+      <a href="index.html" class="text-2xl font-bold hover:text-indigo-300">LTD Grove Street</a>
+      <ul class="hidden md:flex space-x-8 font-semibold text-lg">
+        <li><a href="index.html" class="hover:text-indigo-300">Accueil</a></li>
+        <li><a href="catalogue.html" class="hover:text-indigo-300">Catalogue</a></li>
+        <li><a href="stations.html" class="hover:text-indigo-300">Stations Essence</a></li>
+        <li><a href="commande.html" class="hover:text-indigo-300">Commande</a></li>
+        <li><a href="avis.html" class="hover:text-indigo-300">Avis Clients</a></li>
+        <li><a href="equipe.html" class="hover:text-indigo-300">Notre Équipe</a></li>
+        <li><a href="actualites.html" class="hover:text-indigo-300">Actualités</a></li>
+        <li><a href="contact.html" class="hover:text-indigo-300">Contact</a></li>
       </ul>
       <button id="nav-toggle" class="md:hidden focus:outline-none" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu">
-        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" >
-          <line x1="3" y1="7" x2="21" y2="7" />
-          <line x1="3" y1="14" x2="21" y2="14" />
-          <line x1="3" y1="21" x2="21" y2="21" />
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
         </svg>
       </button>
     </nav>
-    <div id="nav-menu" class="hidden md:hidden py-4">
-      <ul class="flex flex-col space-y-5 font-semibold px-6 text-lg tracking-wide">
-        <li><a href="index.html" class="block hover:text-purple-300">Accueil</a></li>
-        <li><a href="catalogue.html" class="block hover:text-purple-300">Catalogue</a></li>
-        <li><a href="stations.html" class="block hover:text-purple-300">Stations Essence</a></li>
-        <li><a href="commande.html" class="block hover:text-purple-300">Commande</a></li>
-        <li><a href="avis.html" class="block hover:text-purple-300">Avis Clients</a></li>
-        <li><a href="equipe.html" class="block hover:text-purple-300">Notre Équipe</a></li>
-        <li><a href="actualites.html" class="block hover:text-purple-300">Actualités</a></li>
-        <li><a href="contact.html" class="block hover:text-purple-300">Contact</a></li>
+    <div id="nav-menu" class="hidden md:hidden bg-indigo-700" >
+      <ul class="flex flex-col px-6 py-4 space-y-4 font-semibold">
+        <li><a href="index.html" class="block hover:text-indigo-300">Accueil</a></li>
+        <li><a href="catalogue.html" class="block hover:text-indigo-300">Catalogue</a></li>
+        <li><a href="stations.html" class="block hover:text-indigo-300">Stations Essence</a></li>
+        <li><a href="commande.html" class="block hover:text-indigo-300">Commande</a></li>
+        <li><a href="avis.html" class="block hover:text-indigo-300">Avis Clients</a></li>
+        <li><a href="equipe.html" class="block hover:text-indigo-300">Notre Équipe</a></li>
+        <li><a href="actualites.html" class="block hover:text-indigo-300">Actualités</a></li>
+        <li><a href="contact.html" class="block hover:text-indigo-300">Contact</a></li>
       </ul>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>Bienvenue sur le site du LTD Grove Street</h1>
-    <p>Votre partenaire de confiance en stations et commerce</p>
-    <a href="catalogue.html" aria-label="Voir notre catalogue">Voir notre Catalogue</a>
+  <!-- Thème toggle -->
+  <button id="theme-toggle" aria-label="Toggle Dark Mode" class="fixed bottom-5 right-5 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition" title="Changer le thème">
+    🌗
+  </button>
+
+  <!-- Bouton Intranet -->
+  <a href="https://intranet.ltdgrovestreet.com" target="_blank" rel="noopener" class="fixed bottom-5 left-5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-5 rounded shadow-lg transition">
+    Accéder à l’Intranet
+  </a>
+
+  <!-- Bannière -->
+  <header class="hero bg-[url('images/banner.jpg')] bg-cover bg-center min-h-[60vh] flex flex-col justify-center items-center px-6 text-white text-center shadow-lg mt-16">
+    <h1 class="text-4xl md:text-6xl font-extrabold drop-shadow-lg">Bienvenue sur le site du LTD Grove Street</h1>
+    <p class="mt-4 max-w-xl text-lg md:text-2xl drop-shadow-md">Votre partenaire de confiance en stations et commerce</p>
+    <a href="catalogue.html" class="mt-8 inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition">
+      Voir notre Catalogue
+    </a>
+  </header>
+
+  <!-- Présentation -->
+  <section class="max-w-6xl mx-auto p-6 mt-12">
+    <h2 class="text-3xl font-semibold mb-6 text-center">Qui sommes-nous ?</h2>
+    <p class="text-center max-w-3xl mx-auto text-gray-700 dark:text-gray-300 leading-relaxed">
+      Le LTD de Groove Street, implanté à Los Santos, est une entreprise spécialisée dans le ravitaillement en essence et la vente. Elle gère un réseau de 9 stations-service reconnues pour leur fiabilité et leur implantation stratégique, répondant efficacement aux besoins des habitants.  En complément, un magasin situé à Groove Street propose une large sélection de produits essentiels et renforce le lien avec la communauté grâce à un service client attentif.  Engagé dans la qualité, l’efficacité et l’innovation, le LTD de Groove Street s’impose comme une référence majeure à San Andreas.
+    </p>
   </section>
 
-  <!-- Qui sommes-nous -->
-  <section class="about-section" aria-labelledby="about-title">
-    <div class="about-image" aria-hidden="true">
-      <img src="images/about-grove-street.jpg" alt="Vue de la station LTD Grove Street" />
-    </div>
-    <div class="about-text">
-      <h2 id="about-title" class="text-4xl font-bold mb-6 tracking-wide">Qui sommes-nous ?</h2>
-      <p>
-        Le LTD de Groove Street, implanté à Los Santos, est une entreprise spécialisée dans le ravitaillement en essence et la vente. Elle gère un réseau de 9 stations-service reconnues pour leur fiabilité et leur implantation stratégique, répondant efficacement aux besoins des habitants.  
-        En complément, un magasin situé à Groove Street propose une large sélection de produits essentiels et renforce le lien avec la communauté grâce à un service client attentif.  
-        Engagé dans la qualité, l’efficacité et l’innovation, le LTD de Groove Street s’impose comme une référence majeure à San Andreas.
-      </p>
-    </div>
-  </section>
-
-  <!-- FAQ Section -->
-  <section class="max-w-4xl mx-auto px-6 mt-20">
-    <h2 class="text-4xl font-bold mb-10 text-center tracking-wide">FAQ – Questions courantes</h2>
-    <div id="faq" class="space-y-5" role="list">
-      <div class="faq-item" role="listitem">
-        <button class="faq-question w-full" aria-expanded="false" aria-controls="faq1" id="faq1-btn">
+  <!-- FAQ Accordéon -->
+  <section class="max-w-4xl mx-auto p-6 mt-12">
+    <h2 class="text-3xl font-semibold mb-6 text-center">FAQ – Questions courantes</h2>
+    <div id="faq" class="space-y-4">
+      <div class="faq-item">
+        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false" aria-controls="faq1" role="button" tabindex="0">
           Quels sont vos horaires d'ouverture ?
-          <span class="faq-icon text-3xl select-none">+</span>
+          <span class="faq-icon text-2xl">+</span>
         </button>
-        <div id="faq1" class="faq-answer" hidden aria-labelledby="faq1-btn">
+        <div id="faq1" class="faq-answer mt-2 text-gray-600 dark:text-gray-300" hidden>
           Nous sommes ouverts 7 jours sur 7. Nos horaires varient en fonction de la présence et de l'activité de nos vendeurs, donc ils peuvent légèrement changer d’un jour à l’autre. N’hésitez pas à passer régulièrement — il y a souvent quelqu’un pour vous servir !
         </div>
       </div>
-      <div class="faq-item" role="listitem">
-        <button class="faq-question w-full" aria-expanded="false" aria-controls="faq2" id="faq2-btn">
+      <div class="faq-item">
+        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false" aria-controls="faq2" role="button" tabindex="0">
           Proposez-vous des services de livraison ?
-          <span class="faq-icon text-3xl select-none">+</span>
+          <span class="faq-icon text-2xl">+</span>
         </button>
-        <div id="faq2" class="faq-answer" hidden aria-labelledby="faq2-btn">
+        <div id="faq2" class="faq-answer mt-2 text-gray-600 dark:text-gray-300" hidden>
           Oui, nous proposons un service de livraison ! Il vous suffit simplement de passer commande directement via notre site web. Une fois votre commande validée, un de nos vendeurs prendra en charge la livraison dans les plus brefs délais.
         </div>
       </div>
-      <div class="faq-item" role="listitem">
-        <button class="faq-question w-full" aria-expanded="false" aria-controls="faq3" id="faq3-btn">
+      <div class="faq-item">
+        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false" aria-controls="faq3" role="button" tabindex="0">
           Puis-je payer en ligne ?
-          <span class="faq-icon text-3xl select-none">+</span>
+          <span class="faq-icon text-2xl">+</span>
         </button>
-        <div id="faq3" class="faq-answer" hidden aria-labelledby="faq3-btn">
+        <div id="faq3" class="faq-answer mt-2 text-gray-600 dark:text-gray-300" hidden>
           Non, le paiement se fait uniquement sur place, au moment de la livraison ou du retrait de votre commande.
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Partners Carousel -->
-  <section class="max-w-6xl mx-auto px-6 mt-24 mb-20">
-    <h2 class="text-4xl font-bold mb-12 text-center tracking-wide">Nos partenaires</h2>
+  <!-- Logos partenaires Carousel -->
+  <section class="max-w-6xl mx-auto p-6 mt-16">
+    <h2 class="text-3xl font-semibold mb-6 text-center">Nos partenaires</h2>
     <div id="partners-carousel" class="splide" aria-label="Logos de nos partenaires">
       <div class="splide__track">
         <ul class="splide__list flex items-center">
           <li class="splide__slide flex justify-center items-center p-4">
-            <img src="https://i.goopics.net/wmxv9x.png" alt="Entreprise N°01" />
+            <img src="https://i.goopics.net/wmxv9x.png" alt="Entreprise N°01" class="max-h-16 object-contain" />
           </li>
           <li class="splide__slide flex justify-center items-center p-4">
-            <img src="images/partner2.png" alt="Partenaire 2" />
+            <img src="images/partner2.png" alt="Partenaire 2" class="max-h-16 object-contain" />
           </li>
           <li class="splide__slide flex justify-center items-center p-4">
-            <img src="images/partner3.png" alt="Partenaire 3" />
+            <img src="images/partner3.png" alt="Partenaire 3" class="max-h-16 object-contain" />
           </li>
           <li class="splide__slide flex justify-center items-center p-4">
-            <img src="images/partner4.png" alt="Partenaire 4" />
+            <img src="images/partner4.png" alt="Partenaire 4" class="max-h-16 object-contain" />
           </li>
           <!-- Ajoute d’autres partenaires ici -->
         </ul>
@@ -328,15 +138,92 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="text-center py-8 text-purple-300 border-t border-purple-700">
+  <!-- Footer simple -->
+  <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-20">
     &copy; 2025 LTD Grove Street. Tous droits réservés.
   </footer>
 
-  <!-- Fixed buttons -->
-  <button id="theme-toggle" aria-label="Changer le thème" class="fixed bottom-5 right-5 p-4 rounded-full shadow-lg">
-    🌗
-  </button>
+  <!-- Scripts -->
 
-  <a href="https://intranet.ltdgrovestreet.com" target="_blank" rel="noopener" class="fixed bottom-5 left-5 bg-purple-700 hover:bg-purple-800 text-white font-semibold py-3 px-6 rounded shadow-lg transition">
-    Accéder à l
+  <!-- Splide.js Carousel -->
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+
+  <script>
+    // Initialiser carousel partenaires
+    document.addEventListener('DOMContentLoaded', function () {
+      new Splide('#partners-carousel', {
+        type: 'loop',
+        perPage: 4,
+        perMove: 1,
+        gap: '1rem',
+        autoplay: true,
+        interval: 3000,
+        pauseOnHover: true,
+        breakpoints: {
+          640: { perPage: 2 },
+          480: { perPage: 1 }
+        }
+      }).mount();
+    });
+
+    // FAQ Accordéon accessible clic + clavier
+    const faqItems = document.querySelectorAll('.faq-question');
+    faqItems.forEach(btn => {
+      btn.addEventListener('click', toggleFaq);
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleFaq.call(btn);
+        }
+      });
+    });
+
+    function toggleFaq() {
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', !expanded);
+      const answer = this.nextElementSibling;
+      if (answer.hasAttribute('hidden')) {
+        answer.removeAttribute('hidden');
+        this.querySelector('.faq-icon').textContent = '−';
+      } else {
+        answer.setAttribute('hidden', '');
+        this.querySelector('.faq-icon').textContent = '+';
+      }
+    }
+
+    // Thème clair / sombre
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+
+    function setTheme(theme) {
+      if (theme === 'dark') {
+        htmlElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        htmlElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    // Charger préférence
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    setTheme(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      if (htmlElement.classList.contains('dark')) {
+        setTheme('light');
+      } else {
+        setTheme('dark');
+      }
+    });
+
+    // Menu mobile toggle avec aria-expanded à jour
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    navToggle.addEventListener('click', () => {
+      const isHidden = navMenu.classList.toggle('hidden');
+      navToggle.setAttribute('aria-expanded', !isHidden);
+    });
+  </script>
+</body>
+</html>
