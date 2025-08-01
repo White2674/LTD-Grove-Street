@@ -1,21 +1,28 @@
-/* style.css */
+/* style.css modernisé violet / dark mode */
 
 /* Global */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
 body {
   font-family: 'Inter', sans-serif;
   scroll-behavior: smooth;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition: background-color 0.6s ease, color 0.6s ease;
+  background: linear-gradient(135deg, #6b46c1 0%, #805ad5 100%);
+  color: #f3f4f6;
+  min-height: 100vh;
+  margin: 0;
 }
 
 /* === FAQ Accordéon === */
 
 .faq-item {
-  border-bottom: 1px solid #ddd;
-  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255 255 255 / 0.15);
+  padding: 1.25rem 0;
+  transition: border-color 0.4s ease;
 }
 
 body.dark .faq-item {
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid rgba(255 255 255 / 0.3);
 }
 
 .faq-question {
@@ -25,43 +32,50 @@ body.dark .faq-item {
   justify-content: space-between;
   align-items: center;
   font-size: 1.125rem;
-  transition: color 0.3s ease;
+  transition: color 0.4s ease;
+  color: #e0d7ff;
+  user-select: none;
+  letter-spacing: 0.02em;
 }
 
 .faq-question:hover {
-  color: #4f46e5;
+  color: #c4b5fd; /* violet clair */
 }
 
 .faq-answer {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease, padding 0.4s ease;
-  padding-left: 1rem;
-  color: #555;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
+  padding-left: 1.25rem;
+  color: #d8d4f7;
   font-size: 1rem;
+  line-height: 1.5;
+  user-select: text;
 }
 
 body.dark .faq-answer {
-  color: #ccc;
+  color: #d1c4e9;
 }
 
 .faq-item.open .faq-answer {
-  max-height: 500px;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  max-height: 600px;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
 }
 
 /* Icône +/- pour FAQ */
 .faq-icon {
-  font-weight: bold;
-  font-size: 1.25rem;
+  font-weight: 700;
+  font-size: 1.5rem;
   user-select: none;
-  transition: transform 0.3s ease;
+  color: #c4b5fd;
+  transition: transform 0.35s ease, color 0.35s ease;
+  transform-origin: center;
 }
 
 .faq-item.open .faq-icon {
   transform: rotate(45deg);
-  color: #4f46e5;
+  color: #7c3aed; /* violet foncé */
 }
 
 /* === Carousel Logos partenaires === */
@@ -77,7 +91,7 @@ body.dark .faq-answer {
 .carousel-track {
   display: flex;
   gap: 2rem;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
   will-change: transform;
 }
 
@@ -88,45 +102,22 @@ body.dark .faq-answer {
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: grayscale(60%);
-  opacity: 0.7;
-  transition: filter 0.3s ease, opacity 0.3s ease;
+  filter: grayscale(70%);
+  opacity: 0.75;
+  border-radius: 8px;
+  background: rgba(255 255 255 / 0.08);
+  transition: filter 0.35s ease, opacity 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: 0 2px 6px rgba(124, 58, 237, 0.15);
 }
 
 .carousel-item:hover {
   filter: grayscale(0);
   opacity: 1;
-}
-
-/* Flèches carousel (si besoin) */
-.carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(79, 70, 229, 0.8);
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: rgba(255 255 255 / 0.15);
+  box-shadow: 0 6px 12px rgba(124, 58, 237, 0.4);
   cursor: pointer;
-  user-select: none;
-  transition: background-color 0.3s ease;
-  z-index: 10;
-}
-
-.carousel-arrow:hover {
-  background: rgba(79, 70, 229, 1);
-}
-
-.carousel-arrow.left {
-  left: 1rem;
-}
-
-.carousel-arrow.right {
-  right: 1rem;
+  transform: scale(1.05);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* === Bouton Toggle Thème === */
@@ -135,30 +126,32 @@ body.dark .faq-answer {
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
-  background: #4f46e5;
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
   color: white;
   border-radius: 9999px;
-  width: 48px;
-  height: 48px;
-  box-shadow: 0 4px 8px rgba(79, 70, 229, 0.4);
+  width: 52px;
+  height: 52px;
+  box-shadow: 0 6px 15px rgba(124, 58, 237, 0.5);
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   border: none;
-  transition: background-color 0.3s ease;
+  transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.25s ease;
   z-index: 100;
 }
 
 #theme-toggle:hover {
-  background: #4338ca;
+  background: linear-gradient(135deg, #9f7aea, #d8b4fe);
+  box-shadow: 0 10px 25px rgba(156, 163, 175, 0.8);
+  transform: scale(1.1);
 }
 
 /* === Animations douces === */
 
 .fade-in {
-  animation: fadeIn 0.8s ease forwards;
+  animation: fadeIn 0.9s ease forwards;
   opacity: 0;
 }
 
@@ -168,44 +161,122 @@ body.dark .faq-answer {
   }
 }
 
-/* === Formulaires === */
+/* === Menu mobile (bouton burger) === */
 
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.5);
-  transition: box-shadow 0.3s ease;
+#nav-toggle svg {
+  stroke: #ede9fe;
+  transition: stroke 0.3s ease;
+}
+
+#nav-toggle:hover svg {
+  stroke: #c4b5fd;
+}
+
+#nav-menu {
+  background: linear-gradient(180deg, #6b46c1 0%, #553c9a 100%);
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+  border-radius: 0 0 12px 12px;
+  transition: max-height 0.4s ease;
+  overflow: hidden;
+}
+
+/* Menu visible style */
+#nav-menu ul li a {
+  color: #e0d7ff;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  display: block;
+  border-radius: 8px;
+  transition: background 0.3s ease, color 0.3s ease;
+  user-select: none;
+}
+
+#nav-menu ul li a:hover {
+  background: rgba(196, 181, 253, 0.3);
+  color: #a78bfa;
+}
+
+/* === Petit bouton intranet === */
+
+.intranet-button {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(124, 58, 237, 0.6);
+  cursor: pointer;
+  z-index: 50;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.intranet-button:hover {
+  background: linear-gradient(135deg, #9f7aea, #d8b4fe);
+  box-shadow: 0 10px 25px rgba(156, 163, 175, 0.9);
 }
 
 /* === Responsive tweaks === */
 
 @media (max-width: 640px) {
   .carousel-item {
-    width: 80px;
-    height: 40px;
+    width: 90px;
+    height: 48px;
   }
 }
 
-/* === Petit bouton intranet (exemple) === */
+/* === Formulaires focus === */
 
-.intranet-button {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  background: #4f46e5;
-  color: white;
-  padding: 0.5rem 1rem;
-  font-weight: 600;
-  border-radius: 0.375rem;
-  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.6);
-  cursor: pointer;
-  z-index: 50;
-  transition: background-color 0.3s ease;
-  text-decoration: none;
-  font-size: 0.875rem;
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.7);
+  transition: box-shadow 0.4s ease;
 }
 
-.intranet-button:hover {
-  background: #4338ca;
+/* === Footer === */
+
+footer {
+  background: linear-gradient(135deg, #553c9a 0%, #6b46c1 100%);
+  color: #d8d4f7;
+  padding: 1.25rem 0;
+  box-shadow: inset 0 2px 6px rgba(124, 58, 237, 0.5);
+  font-weight: 600;
+}
+
+/* === Mode sombre === */
+
+body.dark {
+  background: #1e1b28;
+  color: #d1c4e9;
+}
+
+body.dark footer {
+  background: #311b92;
+  color: #b39ddb;
+}
+
+/* === Scrollbar personnalisé (optionnel) === */
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #2d264a;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #7c3aed;
+  border-radius: 9999px;
+  transition: background-color 0.3s ease;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #a78bfa;
 }
