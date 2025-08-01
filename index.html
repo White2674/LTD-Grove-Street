@@ -1,229 +1,110 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+<html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="LTD Grove Street, votre partenaire de confiance pour les stations essence et commerce à Los Santos. Découvrez notre catalogue, services, et équipe." />
-  <title>LTD Grove Street - Accueil</title>
+  <title>Mon site violet moderne</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer>
+    // Toggle nav mobile menu
+    document.addEventListener('DOMContentLoaded', () => {
+      const navToggle = document.getElementById('nav-toggle');
+      const navMenu = document.getElementById('nav-menu');
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+      navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('open');
+      });
 
-  <!-- Style custom -->
-  <link rel="stylesheet" href="css/style.css" />
-
-  <!-- Splide.js pour carousel -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
-</head>
-<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
-
-  <!-- Barre de navigation -->
-  <header class="fixed top-0 left-0 w-full bg-indigo-600 text-white shadow-md z-50">
-    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-      <a href="index.html" class="text-2xl font-bold hover:text-indigo-300">LTD Grove Street</a>
-      <ul class="hidden md:flex space-x-8 font-semibold text-lg">
-        <li><a href="index.html" class="hover:text-indigo-300">Accueil</a></li>
-        <li><a href="catalogue.html" class="hover:text-indigo-300">Catalogue</a></li>
-        <li><a href="stations.html" class="hover:text-indigo-300">Stations Essence</a></li>
-        <li><a href="commande.html" class="hover:text-indigo-300">Commande</a></li>
-        <li><a href="avis.html" class="hover:text-indigo-300">Avis Clients</a></li>
-        <li><a href="equipe.html" class="hover:text-indigo-300">Notre Équipe</a></li>
-        <li><a href="actualites.html" class="hover:text-indigo-300">Actualités</a></li>
-        <li><a href="contact.html" class="hover:text-indigo-300">Contact</a></li>
-      </ul>
-      <button id="nav-toggle" class="md:hidden focus:outline-none" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
-          <line x1="3" y1="6" x2="21" y2="6" />
-          <line x1="3" y1="12" x2="21" y2="12" />
-          <line x1="3" y1="18" x2="21" y2="18" />
-        </svg>
-      </button>
-    </nav>
-    <div id="nav-menu" class="hidden md:hidden bg-indigo-700" >
-      <ul class="flex flex-col px-6 py-4 space-y-4 font-semibold">
-        <li><a href="index.html" class="block hover:text-indigo-300">Accueil</a></li>
-        <li><a href="catalogue.html" class="block hover:text-indigo-300">Catalogue</a></li>
-        <li><a href="stations.html" class="block hover:text-indigo-300">Stations Essence</a></li>
-        <li><a href="commande.html" class="block hover:text-indigo-300">Commande</a></li>
-        <li><a href="avis.html" class="block hover:text-indigo-300">Avis Clients</a></li>
-        <li><a href="equipe.html" class="block hover:text-indigo-300">Notre Équipe</a></li>
-        <li><a href="actualites.html" class="block hover:text-indigo-300">Actualités</a></li>
-        <li><a href="contact.html" class="block hover:text-indigo-300">Contact</a></li>
-      </ul>
-    </div>
-  </header>
-
-  <!-- Thème toggle -->
-  <button id="theme-toggle" aria-label="Toggle Dark Mode" class="fixed bottom-5 right-5 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition" title="Changer le thème">
-    🌗
-  </button>
-
-  <!-- Bouton Intranet -->
-  <a href="https://intranet.ltdgrovestreet.com" target="_blank" rel="noopener" class="fixed bottom-5 left-5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-5 rounded shadow-lg transition">
-    Accéder à l’Intranet
-  </a>
-
-  <!-- Bannière -->
-  <header class="hero bg-[url('images/banner.jpg')] bg-cover bg-center min-h-[60vh] flex flex-col justify-center items-center px-6 text-white text-center shadow-lg mt-16">
-    <h1 class="text-4xl md:text-6xl font-extrabold drop-shadow-lg">Bienvenue sur le site du LTD Grove Street</h1>
-    <p class="mt-4 max-w-xl text-lg md:text-2xl drop-shadow-md">Votre partenaire de confiance en stations et commerce</p>
-    <a href="catalogue.html" class="mt-8 inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition">
-      Voir notre Catalogue
-    </a>
-  </header>
-
-  <!-- Présentation -->
-  <section class="max-w-6xl mx-auto p-6 mt-12">
-    <h2 class="text-3xl font-semibold mb-6 text-center">Qui sommes-nous ?</h2>
-    <p class="text-center max-w-3xl mx-auto text-gray-700 dark:text-gray-300 leading-relaxed">
-      Le LTD de Groove Street, implanté à Los Santos, est une entreprise spécialisée dans le ravitaillement en essence et la vente. Elle gère un réseau de 9 stations-service reconnues pour leur fiabilité et leur implantation stratégique, répondant efficacement aux besoins des habitants.  En complément, un magasin situé à Groove Street propose une large sélection de produits essentiels et renforce le lien avec la communauté grâce à un service client attentif.  Engagé dans la qualité, l’efficacité et l’innovation, le LTD de Groove Street s’impose comme une référence majeure à San Andreas.
-    </p>
-  </section>
-
-  <!-- FAQ Accordéon -->
-  <section class="max-w-4xl mx-auto p-6 mt-12">
-    <h2 class="text-3xl font-semibold mb-6 text-center">FAQ – Questions courantes</h2>
-    <div id="faq" class="space-y-4">
-      <div class="faq-item">
-        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false" aria-controls="faq1" role="button" tabindex="0">
-          Quels sont vos horaires d'ouverture ?
-          <span class="faq-icon text-2xl">+</span>
-        </button>
-        <div id="faq1" class="faq-answer mt-2 text-gray-600 dark:text-gray-300" hidden>
-          Nous sommes ouverts 7 jours sur 7. Nos horaires varient en fonction de la présence et de l'activité de nos vendeurs, donc ils peuvent légèrement changer d’un jour à l’autre. N’hésitez pas à passer régulièrement — il y a souvent quelqu’un pour vous servir !
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false" aria-controls="faq2" role="button" tabindex="0">
-          Proposez-vous des services de livraison ?
-          <span class="faq-icon text-2xl">+</span>
-        </button>
-        <div id="faq2" class="faq-answer mt-2 text-gray-600 dark:text-gray-300" hidden>
-          Oui, nous proposons un service de livraison ! Il vous suffit simplement de passer commande directement via notre site web. Une fois votre commande validée, un de nos vendeurs prendra en charge la livraison dans les plus brefs délais.
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false" aria-controls="faq3" role="button" tabindex="0">
-          Puis-je payer en ligne ?
-          <span class="faq-icon text-2xl">+</span>
-        </button>
-        <div id="faq3" class="faq-answer mt-2 text-gray-600 dark:text-gray-300" hidden>
-          Non, le paiement se fait uniquement sur place, au moment de la livraison ou du retrait de votre commande.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Logos partenaires Carousel -->
-  <section class="max-w-6xl mx-auto p-6 mt-16">
-    <h2 class="text-3xl font-semibold mb-6 text-center">Nos partenaires</h2>
-    <div id="partners-carousel" class="splide" aria-label="Logos de nos partenaires">
-      <div class="splide__track">
-        <ul class="splide__list flex items-center">
-          <li class="splide__slide flex justify-center items-center p-4">
-            <img src="https://i.goopics.net/wmxv9x.png" alt="Entreprise N°01" class="max-h-16 object-contain" />
-          </li>
-          <li class="splide__slide flex justify-center items-center p-4">
-            <img src="images/partner2.png" alt="Partenaire 2" class="max-h-16 object-contain" />
-          </li>
-          <li class="splide__slide flex justify-center items-center p-4">
-            <img src="images/partner3.png" alt="Partenaire 3" class="max-h-16 object-contain" />
-          </li>
-          <li class="splide__slide flex justify-center items-center p-4">
-            <img src="images/partner4.png" alt="Partenaire 4" class="max-h-16 object-contain" />
-          </li>
-          <!-- Ajoute d’autres partenaires ici -->
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer simple -->
-  <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-20">
-    &copy; 2025 LTD Grove Street. Tous droits réservés.
-  </footer>
-
-  <!-- Scripts -->
-
-  <!-- Splide.js Carousel -->
-  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-
-  <script>
-    // Initialiser carousel partenaires
-    document.addEventListener('DOMContentLoaded', function () {
-      new Splide('#partners-carousel', {
-        type: 'loop',
-        perPage: 4,
-        perMove: 1,
-        gap: '1rem',
-        autoplay: true,
-        interval: 3000,
-        pauseOnHover: true,
-        breakpoints: {
-          640: { perPage: 2 },
-          480: { perPage: 1 }
-        }
-      }).mount();
-    });
-
-    // FAQ Accordéon accessible clic + clavier
-    const faqItems = document.querySelectorAll('.faq-question');
-    faqItems.forEach(btn => {
-      btn.addEventListener('click', toggleFaq);
-      btn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          toggleFaq.call(btn);
-        }
+      // Dark mode toggle
+      const themeToggle = document.getElementById('theme-toggle');
+      themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        themeToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
       });
     });
 
-    function toggleFaq() {
-      const expanded = this.getAttribute('aria-expanded') === 'true';
-      this.setAttribute('aria-expanded', !expanded);
-      const answer = this.nextElementSibling;
-      if (answer.hasAttribute('hidden')) {
-        answer.removeAttribute('hidden');
-        this.querySelector('.faq-icon').textContent = '−';
-      } else {
-        answer.setAttribute('hidden', '');
-        this.querySelector('.faq-icon').textContent = '+';
-      }
+    // FAQ accordion toggle
+    function toggleFaq(e) {
+      const item = e.currentTarget.parentNode;
+      item.classList.toggle('open');
     }
-
-    // Thème clair / sombre
-    const themeToggle = document.getElementById('theme-toggle');
-    const htmlElement = document.documentElement;
-
-    function setTheme(theme) {
-      if (theme === 'dark') {
-        htmlElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        htmlElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      }
-    }
-
-    // Charger préférence
-    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    setTheme(savedTheme);
-
-    themeToggle.addEventListener('click', () => {
-      if (htmlElement.classList.contains('dark')) {
-        setTheme('light');
-      } else {
-        setTheme('dark');
-      }
-    });
-
-    // Menu mobile toggle avec aria-expanded à jour
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    navToggle.addEventListener('click', () => {
-      const isHidden = navMenu.classList.toggle('hidden');
-      navToggle.setAttribute('aria-expanded', !isHidden);
-    });
   </script>
+</head>
+
+<body>
+  <header>
+    <a href="#" class="logo">VioletSite</a>
+    <nav>
+      <ul id="nav-menu">
+        <li><a href="#presentation">Présentation</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button id="nav-toggle" aria-label="Menu">&#9776;</button>
+    </nav>
+    <button id="theme-toggle" aria-label="Toggle Dark Mode" style="font-size:1.3rem; background:none; border:none; cursor:pointer;">🌙</button>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Présentation principale">
+      <h1>Bienvenue sur VioletSite</h1>
+      <p>Découvrez une expérience moderne et élégante avec un design violet et un mode sombre intégré.</p>
+      <a href="#presentation" role="button">En savoir plus</a>
+    </section>
+
+    <section id="presentation" aria-label="Présentation du site" style="padding:4rem 1rem; max-width: 900px; margin: 0 auto;">
+      <h2>Présentation</h2>
+      <p>
+        Notre site est conçu pour offrir une interface moderne, épurée et agréable à utiliser, avec un focus sur la lisibilité et
+        le confort visuel. Profitez d’une navigation fluide, d’un design responsive et d’un mode sombre pour protéger vos yeux.
+      </p>
+    </section>
+
+    <section id="faq" aria-label="Foire aux questions" style="padding:4rem 1rem; max-width: 700px; margin: 0 auto;">
+      <h2>FAQ</h2>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(event)" aria-expanded="false" aria-controls="faq1">
+          Comment changer le thème du site ?
+          <span aria-hidden="true">▼</span>
+        </button>
+        <div id="faq1" class="faq-answer" hidden>
+          Cliquez sur l’icône en haut à droite pour basculer entre le mode clair et sombre instantanément.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(event)" aria-expanded="false" aria-controls="faq2">
+          Le site est-il responsive ?
+          <span aria-hidden="true">▼</span>
+        </button>
+        <div id="faq2" class="faq-answer" hidden>
+          Oui, il s’adapte parfaitement à toutes les tailles d’écran, du mobile au grand écran.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(event)" aria-expanded="false" aria-controls="faq3">
+          Puis-je personnaliser les couleurs ?
+          <span aria-hidden="true">▼</span>
+        </button>
+        <div id="faq3" class="faq-answer" hidden>
+          Absolument, les couleurs sont gérées via des variables CSS faciles à modifier.
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-label="Contact" style="padding:4rem 1rem; max-width: 600px; margin: 0 auto; text-align: center;">
+      <h2>Contactez-nous</h2>
+      <p>Pour toute question, envoyez-nous un message à contact@violetsite.fr.</p>
+    </section>
+  </main>
+
+  <footer style="text-align:center; padding:2rem; font-size:0.9rem; color:rgba(255,255,255,0.6);">
+    © 2025 VioletSite - Tous droits réservés
+  </footer>
+
 </body>
+
 </html>
