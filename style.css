@@ -1,140 +1,198 @@
-/* === Barre de navigation modernisée === */
+/* style.css modernisé violet / dark mode */
 
-header {
+/* Global */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+  transition: background-color 0.6s ease, color 0.6s ease;
   background: linear-gradient(135deg, #6b46c1 0%, #805ad5 100%);
-  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.4);
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 50;
-  transition: background-color 0.6s ease;
+  color: #f3f4f6;
+  min-height: 100vh;
+  margin: 0;
 }
 
-header nav {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 0.75rem 1.5rem;
+/* === FAQ Accordéon === */
+
+.faq-item {
+  border-bottom: 1px solid rgba(255 255 255 / 0.15);
+  padding: 1.25rem 0;
+  transition: border-color 0.4s ease;
+}
+
+body.dark .faq-item {
+  border-bottom: 1px solid rgba(255 255 255 / 0.3);
+}
+
+.faq-question {
+  cursor: pointer;
+  font-weight: 600;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 1.125rem;
+  transition: color 0.4s ease;
+  color: #e0d7ff;
+  user-select: none;
+  letter-spacing: 0.02em;
 }
 
-header nav a.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+.faq-question:hover {
+  color: #c4b5fd; /* violet clair */
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
+  padding-left: 1.25rem;
+  color: #d8d4f7;
+  font-size: 1rem;
+  line-height: 1.5;
+  user-select: text;
+  /* Ajout padding-top/bottom initial à 0 pour animation fluide */
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+body.dark .faq-answer {
+  color: #d1c4e9;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 600px;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+}
+
+/* Icône +/- pour FAQ */
+.faq-icon {
   font-weight: 700;
   font-size: 1.5rem;
-  color: #e0d7ff;
   user-select: none;
-  transition: color 0.3s ease;
-  text-decoration: none;
-}
-
-header nav a.logo img {
-  height: 40px;
-  width: 40px;
-  border-radius: 9999px;
-  object-fit: cover;
-  box-shadow: 0 2px 10px rgba(156, 163, 175, 0.25);
-}
-
-header nav a.logo:hover {
   color: #c4b5fd;
+  transition: transform 0.35s ease, color 0.35s ease;
+  transform-origin: center;
+  /* Pour s’assurer que l’icône soit bien alignée verticalement */
+  display: inline-block;
+  line-height: 1;
 }
 
-header nav ul {
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+  color: #7c3aed; /* violet foncé */
+}
+
+/* === Carousel Logos partenaires === */
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  user-select: none;
+}
+
+.carousel-track {
   display: flex;
   gap: 2rem;
-  font-weight: 600;
-  font-size: 1.125rem;
-  letter-spacing: 0.04em;
-  list-style: none;
+  transition: transform 0.6s ease;
+  will-change: transform;
 }
 
-header nav ul li a {
-  color: #e0d7ff;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  padding: 0.25rem 0;
-  user-select: none;
-}
-
-header nav ul li a:hover {
-  color: #a78bfa;
-}
-
-/* Hamburger menu button */
-#nav-toggle {
+.carousel-item {
+  flex: 0 0 auto;
+  width: 120px;
+  height: 60px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  filter: grayscale(70%);
+  opacity: 0.75;
+  border-radius: 8px;
+  background: rgba(255 255 255 / 0.08);
+  transition: filter 0.35s ease, opacity 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: 0 2px 6px rgba(124, 58, 237, 0.15);
+}
+
+.carousel-item:hover {
+  filter: grayscale(0);
+  opacity: 1;
+  background: rgba(255 255 255 / 0.15);
+  box-shadow: 0 6px 12px rgba(124, 58, 237, 0.4);
+  cursor: pointer;
+  transform: scale(1.05);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* === Bouton Toggle Thème === */
+
+#theme-toggle {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  color: white;
+  border-radius: 9999px;
+  width: 52px;
+  height: 52px;
+  box-shadow: 0 6px 15px rgba(124, 58, 237, 0.5);
+  cursor: pointer;
+  display: flex;
   justify-content: center;
   align-items: center;
-  gap: 6px;
-  background: transparent;
+  font-size: 1.8rem;
   border: none;
-  cursor: pointer;
-  padding: 0;
-  width: 28px;
-  height: 24px;
-  transition: transform 0.3s ease;
+  transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.25s ease;
+  z-index: 100;
 }
 
-#nav-toggle span {
-  display: block;
-  width: 100%;
-  height: 3px;
-  background-color: #ede9fe;
-  border-radius: 9999px;
-  transition: all 0.3s ease;
-  transform-origin: left;
+#theme-toggle:hover {
+  background: linear-gradient(135deg, #9f7aea, #d8b4fe);
+  box-shadow: 0 10px 25px rgba(156, 163, 175, 0.8);
+  transform: scale(1.1);
 }
 
-/* Toggle animation */
-#nav-toggle[aria-expanded="true"] span:nth-child(1) {
-  transform: rotate(45deg) translateY(7px);
-}
+/* === Animations douces === */
 
-#nav-toggle[aria-expanded="true"] span:nth-child(2) {
+.fade-in {
+  animation: fadeIn 0.9s ease forwards;
   opacity: 0;
 }
 
-#nav-toggle[aria-expanded="true"] span:nth-child(3) {
-  transform: rotate(-45deg) translateY(-7px);
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }
 
-/* Menu mobile */
+/* === Menu mobile (bouton burger) === */
+
+#nav-toggle svg {
+  stroke: #ede9fe;
+  transition: stroke 0.3s ease;
+}
+
+#nav-toggle:hover svg {
+  stroke: #c4b5fd;
+}
+
 #nav-menu {
   background: linear-gradient(180deg, #6b46c1 0%, #553c9a 100%);
-  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
-  border-radius: 0 0 1rem 1rem;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+  border-radius: 0 0 12px 12px;
+  transition: max-height 0.4s ease;
   overflow: hidden;
-  transition: max-height 0.4s ease, padding 0.3s ease;
-  max-height: 0;
-  padding: 0 1.5rem;
 }
 
-#nav-menu.open {
-  max-height: 500px; /* assez grand pour contenir tout le menu */
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-#nav-menu ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
+/* Menu visible style */
 #nav-menu ul li a {
   color: #e0d7ff;
   font-weight: 600;
-  font-size: 1.125rem;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  display: block;
+  border-radius: 8px;
   transition: background 0.3s ease, color 0.3s ease;
   user-select: none;
 }
@@ -144,58 +202,87 @@ header nav ul li a:hover {
   color: #a78bfa;
 }
 
-/* Responsive : masquer menu desktop, afficher hamburger */
-@media (max-width: 767px) {
-  header nav ul {
-    display: none;
-  }
-  #nav-toggle {
-    display: flex;
+/* === Petit bouton intranet === */
+
+.intranet-button {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(124, 58, 237, 0.6);
+  cursor: pointer;
+  z-index: 50;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.intranet-button:hover {
+  background: linear-gradient(135deg, #9f7aea, #d8b4fe);
+  box-shadow: 0 10px 25px rgba(156, 163, 175, 0.9);
+}
+
+/* === Responsive tweaks === */
+
+@media (max-width: 640px) {
+  .carousel-item {
+    width: 90px;
+    height: 48px;
   }
 }
 
-/* Desktop : afficher menu desktop, cacher hamburger */
-@media (min-width: 768px) {
-  #nav-toggle {
-    display: none;
-  }
-  #nav-menu {
-    display: none !important;
-  }
+/* === Formulaires focus === */
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.7);
+  transition: box-shadow 0.4s ease;
 }
 
-/* Dark mode */
-body.dark header {
+/* === Footer === */
+
+footer {
   background: linear-gradient(135deg, #553c9a 0%, #6b46c1 100%);
-  box-shadow: 0 2px 8px rgba(156, 163, 175, 0.25);
+  color: #d8d4f7;
+  padding: 1.25rem 0;
+  box-shadow: inset 0 2px 6px rgba(124, 58, 237, 0.5);
+  font-weight: 600;
 }
 
-body.dark header nav a.logo {
+/* === Mode sombre === */
+
+body.dark {
+  background: #1e1b28;
   color: #d1c4e9;
 }
 
-body.dark header nav a.logo:hover {
-  color: #b794f4;
+body.dark footer {
+  background: #311b92;
+  color: #b39ddb;
 }
 
-body.dark header nav ul li a {
-  color: #d1c4e9;
+/* === Scrollbar personnalisé (optionnel) === */
+
+body::-webkit-scrollbar {
+  width: 8px;
 }
 
-body.dark header nav ul li a:hover {
-  color: #b794f4;
+body::-webkit-scrollbar-track {
+  background: #2d264a;
 }
 
-body.dark #nav-toggle span {
-  background-color: #d1c4e9;
+body::-webkit-scrollbar-thumb {
+  background: #7c3aed;
+  border-radius: 9999px;
+  transition: background-color 0.3s ease;
 }
 
-body.dark #nav-menu {
-  background: linear-gradient(180deg, #553c9a 0%, #6b46c1 100%);
-  box-shadow: 0 4px 20px rgba(196, 181, 253, 0.4);
-}
-
-body.dark #nav-menu ul li a:hover {
-  background: rgba(183, 148, 255, 0.3);
-  color: #b794f4;
+body::-webkit-scrollbar-thumb:hover {
+  background: #a78bfa;
 }
