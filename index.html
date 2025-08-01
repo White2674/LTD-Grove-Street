@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
 
   <style>
-    /* Style custom intégré (extrait de css/style.css si besoin) */
+    /* Styles personnalisés */
     .faq-question {
       cursor: pointer;
     }
@@ -23,9 +23,9 @@
     .faq-question[aria-expanded="true"] .faq-icon {
       transform: rotate(180deg);
     }
-    /* Pour que le header ne cache pas le contenu */
+    /* Padding pour ne pas que le header cache le contenu */
     body {
-      padding-top: 4rem; /* hauteur approximative du header */
+      padding-top: 4rem;
     }
   </style>
 </head>
@@ -46,14 +46,14 @@
         <li><a href="contact.html" class="hover:text-indigo-300">Contact</a></li>
       </ul>
       <button id="nav-toggle" class="md:hidden focus:outline-none" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="6" x2="21" y2="6" />
           <line x1="3" y1="12" x2="21" y2="12" />
           <line x1="3" y1="18" x2="21" y2="18" />
         </svg>
       </button>
     </nav>
-    <div id="nav-menu" class="hidden md:hidden bg-indigo-700" >
+    <div id="nav-menu" class="hidden md:hidden bg-indigo-700">
       <ul class="flex flex-col px-6 py-4 space-y-4 font-semibold">
         <li><a href="index.html" class="block hover:text-indigo-300">Accueil</a></li>
         <li><a href="catalogue.html" class="block hover:text-indigo-300">Catalogue</a></li>
@@ -77,7 +77,7 @@
     Accéder à l’Intranet
   </a>
 
-  <!-- Bannière -->
+  <!-- Bannière principale -->
   <header class="hero bg-[url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80')] bg-cover bg-center min-h-[60vh] flex flex-col justify-center items-center px-6 text-white text-center shadow-lg mt-16">
     <h1 class="text-4xl md:text-6xl font-extrabold drop-shadow-lg">Bienvenue sur le site du LTD Grove Street</h1>
     <p class="mt-4 max-w-xl text-lg md:text-2xl drop-shadow-md">Votre partenaire de confiance en stations et commerce</p>
@@ -90,157 +90,71 @@
   <section class="max-w-6xl mx-auto p-6 mt-12">
     <h2 class="text-3xl font-semibold mb-6 text-center">Qui sommes-nous ?</h2>
     <p class="text-center max-w-3xl mx-auto text-gray-700 dark:text-gray-300 leading-relaxed">
-      Le LTD de Groove Street, implanté à Los Santos, est une entreprise spécialisée dans le ravitaillement en essence et la vente. Elle gère un réseau de 9 stations-service reconnues pour leur fiabilité et leur implantation stratégique, répondant efficacement aux besoins des habitants.  En complément, un magasin situé à Groove Street propose une large sélection de produits essentiels et renforce le lien avec la communauté grâce à un service client attentif.  Engagé dans la qualité, l’efficacité et l’innovation, le LTD de Groove Street s’impose comme une référence majeure à San Andreas.
+      Le LTD de Groove Street, implanté à Los Santos, est une entreprise spécialisée dans le ravitaillement en essence et la vente. Elle gère un réseau de 9 stations-service reconnues pour leur fiabilité et leur implantation stratégique, répondant efficacement aux besoins des habitants. En complément, un magasin situé à Groove Street propose une large sélection de produits essentiels et renforce le lien avec la communauté grâce à un service client attentif. Engagé dans la qualité, l’efficacité et l’innovation, le LTD de Groove Street s’impose comme une référence majeure à San Andreas.
     </p>
   </section>
 
-  <!-- FAQ Accordéon -->
-  <section class="max-w-4xl mx-auto p-6 mt-12">
-    <h2 class="text-3xl font-semibold mb-6 text-center">FAQ – Questions courantes</h2>
-    <div id="faq" class="space-y-4">
-      <div class="faq-item">
-        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false" aria-controls="faq1" role="button" tabindex="0">
-          Quels sont vos horaires d'ouverture ?
-          <span class="faq-icon text-2xl">+</span>
-        </button>
-        <div id="faq1" class="faq-answer mt-2 text-gray-600 dark:text-gray-300" hidden>
-          Nous sommes ouverts 7 jours sur 7. Nos horaires varient en fonction de la présence et de l'activité de nos vendeurs, donc ils peuvent légèrement changer d’un jour à l’autre. N’hésitez pas à passer régulièrement — il y a souvent quelqu’un pour vous servir !
-        </div>
+  <!-- Nouvelle section : Pourquoi choisir LTD Grove Street ? -->
+  <section class="max-w-6xl mx-auto px-6 py-12 mt-16 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-md">
+    <h2 class="text-3xl font-semibold text-center mb-10">Pourquoi choisir <span class="text-indigo-600">LTD Grove Street</span> ?</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white dark:bg-gray-900 rounded-lg shadow p-6 text-center">
+        <h3 class="text-xl font-bold mb-3 text-indigo-600">1. Fiabilité</h3>
+        <p class="text-gray-700 dark:text-gray-300">Un réseau de 9 stations opérationnelles 7j/7 avec un service constant et efficace.</p>
       </div>
-      <div class="faq-item">
-        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false" aria-controls="faq2" role="button" tabindex="0">
-          Proposez-vous des services de livraison ?
-          <span class="faq-icon text-2xl">+</span>
-        </button>
-        <div id="faq2" class="faq-answer mt-2 text-gray-600 dark:text-gray-300" hidden>
-          Oui, nous proposons un service de livraison ! Il vous suffit simplement de passer commande directement via notre site web. Une fois votre commande validée, un de nos vendeurs prendra en charge la livraison dans les plus brefs délais.
-        </div>
+      <div class="bg-white dark:bg-gray-900 rounded-lg shadow p-6 text-center">
+        <h3 class="text-xl font-bold mb-3 text-indigo-600">2. Livraison rapide</h3>
+        <p class="text-gray-700 dark:text-gray-300">Commandez en ligne et recevez votre livraison à domicile rapidement par notre équipe.</p>
       </div>
-      <div class="faq-item">
-        <button class="faq-question w-full text-left flex justify-between items-center" aria-expanded="false" aria-controls="faq3" role="button" tabindex="0">
-          Puis-je payer en ligne ?
-          <span class="faq-icon text-2xl">+</span>
-        </button>
-        <div id="faq3" class="faq-answer mt-2 text-gray-600 dark:text-gray-300" hidden>
-          Non, le paiement se fait uniquement sur place, au moment de la livraison ou du retrait de votre commande.
-        </div>
+      <div class="bg-white dark:bg-gray-900 rounded-lg shadow p-6 text-center">
+        <h3 class="text-xl font-bold mb-3 text-indigo-600">3. Produits variés</h3>
+        <p class="text-gray-700 dark:text-gray-300">Essence, nourriture, objets utiles — notre catalogue répond à tous vos besoins.</p>
+      </div>
+      <div class="bg-white dark:bg-gray-900 rounded-lg shadow p-6 text-center">
+        <h3 class="text-xl font-bold mb-3 text-indigo-600">4. Proximité</h3>
+        <p class="text-gray-700 dark:text-gray-300">Un magasin au cœur de Grove Street et une équipe proche de sa communauté.</p>
       </div>
     </div>
   </section>
 
-  <!-- Logos partenaires Carousel -->
-  <section class="max-w-6xl mx-auto p-6 mt-16">
-    <h2 class="text-3xl font-semibold mb-6 text-center">Nos partenaires</h2>
-    <div id="partners-carousel" class="splide" aria-label="Logos de nos partenaires">
-      <div class="splide__track">
-        <ul class="splide__list flex items-center">
-          <li class="splide__slide flex justify-center items-center p-4">
-            <img src="https://i.goopics.net/wmxv9x.png" alt="Entreprise N°01" class="max-h-16 object-contain" />
-          </li>
-          <li class="splide__slide flex justify-center items-center p-4">
-            <img src="https://via.placeholder.com/150x50?text=Partenaire+2" alt="Partenaire 2" class="max-h-16 object-contain" />
-          </li>
-          <li class="splide__slide flex justify-center items-center p-4">
-            <img src="https://via.placeholder.com/150x50?text=Partenaire+3" alt="Partenaire 3" class="max-h-16 object-contain" />
-          </li>
-          <li class="splide__slide flex justify-center items-center p-4">
-            <img src="https://via.placeholder.com/150x50?text=Partenaire+4" alt="Partenaire 4" class="max-h-16 object-contain" />
-          </li>
-        </ul>
+  <!-- Section Témoignages clients -->
+  <section class="max-w-5xl mx-auto px-6 py-16">
+    <h2 class="text-3xl font-semibold text-center mb-10">Ce que disent nos clients</h2>
+    <div class="space-y-6">
+      <blockquote class="bg-white dark:bg-gray-900 p-6 rounded shadow text-center">
+        <p class="italic text-lg text-gray-800 dark:text-gray-200">"Toujours là quand j’en ai besoin, essence ou snack à 3h du mat, les gars sont réactifs. 💪"</p>
+        <footer class="mt-3 text-sm text-gray-600 dark:text-gray-400">– Tyrone J.</footer>
+      </blockquote>
+      <blockquote class="bg-white dark:bg-gray-900 p-6 rounded shadow text-center">
+        <p class="italic text-lg text-gray-800 dark:text-gray-200">"Le seul endroit où j’ai jamais été servi avec un sourire à San Andreas."</p>
+        <footer class="mt-3 text-sm text-gray-600 dark:text-gray-400">– Clara M.</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Section Chiffres clés -->
+  <section class="max-w-6xl mx-auto px-6 py-12 bg-indigo-50 dark:bg-gray-800 rounded-xl mt-16">
+    <h2 class="text-3xl font-semibold text-center mb-10">Nos chiffres clés</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div>
+        <p class="text-4xl font-bold text-indigo-600">+9</p>
+        <p class="mt-2 text-gray-700 dark:text-gray-300">Stations actives</p>
+      </div>
+      <div>
+        <p class="text-4xl font-bold text-indigo-600">120+</p>
+        <p class="mt-2 text-gray-700 dark:text-gray-300">Commandes mensuelles</p>
+      </div>
+      <div>
+        <p class="text-4xl font-bold text-indigo-600">24h/24</p>
+        <p class="mt-2 text-gray-700 dark:text-gray-300">Disponibilité</p>
+      </div>
+      <div>
+        <p class="text-4xl font-bold text-indigo-600">100%</p>
+        <p class="mt-2 text-gray-700 dark:text-gray-300">Clients satisfaits</p>
       </div>
     </div>
   </section>
 
-  <!-- Footer simple -->
-  <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-20">
-    &copy; 2025 LTD Grove Street. Tous droits réservés.
-  </footer>
-
-  <!-- Scripts -->
-
-  <!-- Splide.js Carousel -->
-  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-
-  <script>
-    // Initialiser carousel partenaires
-    document.addEventListener('DOMContentLoaded', function () {
-new Splide('#partners-carousel', {
-  type: 'loop',
-  perPage: 4,
-  perMove: 1,
-  gap: '1rem',
-  autoplay: true,
-  interval: 2500,
-  speed: 800,
-  arrows: false,
-  pagination: false,
-  pauseOnHover: false,
-  breakpoints: {
-    1024: { perPage: 3 },
-    768: { perPage: 2 },
-    480: { perPage: 1 }
-  }
-}).mount();
-
-      // FAQ Accordéon accessible clic + clavier
-      const faqItems = document.querySelectorAll('.faq-question');
-      faqItems.forEach(btn => {
-        btn.addEventListener('click', toggleFaq);
-        btn.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggleFaq.call(btn);
-          }
-        });
-      });
-
-      function toggleFaq() {
-        const expanded = this.getAttribute('aria-expanded') === 'true';
-        this.setAttribute('aria-expanded', !expanded);
-        const answer = this.nextElementSibling;
-        if (answer.hasAttribute('hidden')) {
-          answer.removeAttribute('hidden');
-          this.querySelector('.faq-icon').textContent = '−';
-        } else {
-          answer.setAttribute('hidden', '');
-          this.querySelector('.faq-icon').textContent = '+';
-        }
-      }
-
-      // Thème clair / sombre
-      const themeToggle = document.getElementById('theme-toggle');
-      const htmlElement = document.documentElement;
-
-      function setTheme(theme) {
-        if (theme === 'dark') {
-          htmlElement.classList.add('dark');
-          localStorage.setItem('theme', 'dark');
-        } else {
-          htmlElement.classList.remove('dark');
-          localStorage.setItem('theme', 'light');
-        }
-      }
-
-      // Charger préférence
-      const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      setTheme(savedTheme);
-
-      themeToggle.addEventListener('click', () => {
-        if (htmlElement.classList.contains('dark')) {
-          setTheme('light');
-        } else {
-          setTheme('dark');
-        }
-      });
-
-      // Menu mobile toggle avec aria-expanded à jour
-      const navToggle = document.getElementById('nav-toggle');
-      const navMenu = document.getElementById('nav-menu');
-      navToggle.addEventListener('click', () => {
-        const isHidden = navMenu.classList.toggle('hidden');
-        navToggle.setAttribute('aria-expanded', !isHidden);
-      });
-    });
-  </script>
-</body>
-</html>
+  <!-- Bouton Rejoindre l'équipe -->
+  <a href="recrutement.html" class="block text-center mt-12">
+    <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6
