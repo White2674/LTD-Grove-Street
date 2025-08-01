@@ -25,13 +25,10 @@
       </ul>
       <button id="nav-toggle" class="md:hidden focus:outline-none">
         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </nav>
-
-    <!-- Menu mobile -->
     <div id="nav-menu" class="hidden md:hidden bg-indigo-700">
       <ul class="flex flex-col px-6 py-4 space-y-4 font-semibold text-lg">
         <li><a href="index.html" class="block hover:text-indigo-300">Accueil</a></li>
@@ -49,24 +46,14 @@
   <!-- Formulaire -->
   <main class="max-w-3xl mx-auto p-6 mt-20 bg-white dark:bg-gray-800 rounded-lg shadow-md">
     <form id="orderForm" method="POST" class="space-y-6">
-
-      <!-- Produits multiples -->
-      <div id="productsContainer" class="space-y-4">
-        <div class="product-group flex gap-4">
-          <select name="Produits[]" required class="w-2/3 p-3 rounded border bg-white dark:bg-gray-900 dark:border-gray-700">
-            <option value="" disabled selected>Choisir un produit</option>
-            <option value="Essence Sans Plomb 95" data-price="2.0">Essence Sans Plomb 95</option>
-            <option value="Diesel Standard" data-price="1.8">Diesel Standard</option>
-            <option value="Huile Moteur 5W-30" data-price="30">Huile Moteur 5W-30</option>
-            <option value="Additif Carburant" data-price="15">Additif Carburant</option>
-          </select>
-          <input type="number" name="Quantités[]" min="1" value="1" class="w-1/3 p-3 rounded border bg-white dark:bg-gray-900 dark:border-gray-700" required />
-        </div>
-      </div>
-
+      <div id="productsContainer" class="space-y-4"></div>
       <button type="button" id="addProduct" class="text-indigo-600 font-medium hover:underline">+ Ajouter un produit</button>
 
-      <!-- Coordonnées -->
+      <div>
+        <label for="deliveryTime" class="block mt-4 font-semibold">Heure de livraison souhaitée</label>
+        <input type="time" id="deliveryTime" name="Heure de livraison" class="w-full p-3 rounded border bg-white dark:bg-gray-900 dark:border-gray-700" />
+      </div>
+
       <fieldset class="space-y-4 border border-gray-300 dark:border-gray-700 p-4 rounded">
         <legend class="font-semibold text-lg mb-2">Coordonnées client</legend>
         <div>
@@ -79,19 +66,22 @@
         </div>
       </fieldset>
 
-      <!-- Commentaire -->
       <div>
         <label for="comment" class="block mb-2 font-semibold">Commentaire / Instructions</label>
         <textarea id="comment" name="Commentaire" rows="4" class="w-full p-3 rounded border bg-white dark:bg-gray-900 dark:border-gray-700"></textarea>
       </div>
 
-      <!-- Bouton envoyer -->
+      <div id="summary" class="mt-6 text-lg font-semibold text-gray-800 dark:text-gray-200">
+        Total produits: $<span id="totalProducts">0</span><br>
+        Frais de livraison: $500<br>
+        <span class="text-xl">Total commande: $<span id="totalOrder">0</span></span>
+      </div>
+
+      <p id="minError" class="text-red-500 font-medium hidden">Le montant minimum de commande est de 1000$.</p>
+
       <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded transition-colors duration-300">
         Envoyer la commande
       </button>
-
-      <!-- Message si commande trop faible -->
-      <p id="minError" class="text-red-500 font-medium hidden">Le montant minimum de commande est de 1000$.</p>
     </form>
   </main>
 
@@ -107,29 +97,67 @@
       "Additif Carburant": 15
     };
 
-    document.getElementById('addProduct').addEventListener('click', () => {
-      const container = document.getElementById('productsContainer');
-      const group = document.querySelector('.product-group');
-      const clone = group.cloneNode(true);
-      clone.querySelectorAll('select, input').forEach(el => {
-        el.value = el.tagName === "INPUT" ? 1 : '';
-      });
-      container.appendChild(clone);
-    });
-
-    document.getElementById('orderForm').addEventListener('submit', function (e) {
+    function updateTotals() {
       const selects = document.querySelectorAll('select[name="Produits[]"]');
       const quantities = document.querySelectorAll('input[name="Quantités[]"]');
       let total = 0;
 
       selects.forEach((select, index) => {
         const product = select.value;
-        const quantity = parseInt(quantities[index].value);
+        const quantity = parseInt(quantities[index].value) || 0;
         const price = productPrices[product] || 0;
         total += price * quantity;
+        select.closest('.product-group').querySelector('.item-total').textContent = `$${(price * quantity).toFixed(2)}`;
       });
 
-      if (total < 1000) {
+      document.getElementById('totalProducts').textContent = total.toFixed(2);
+      const totalOrder = total + 500;
+      document.getElementById('totalOrder').textContent = totalOrder.toFixed(2);
+
+      return totalOrder;
+    }
+
+    function createProductRow() {
+      const div = document.createElement('div');
+      div.className = 'product-group flex gap-4 items-center';
+      div.innerHTML = `
+        <select name="Produits[]" required class="w-1/3 p-3 rounded border bg-white dark:bg-gray-900 dark:border-gray-700">
+          <option value="" disabled selected>Choisir un produit</option>
+          <option value="Essence Sans Plomb 95">Essence Sans Plomb 95</option>
+          <option value="Diesel Standard">Diesel Standard</option>
+          <option value="Huile Moteur 5W-30">Huile Moteur 5W-30</option>
+          <option value="Additif Carburant">Additif Carburant</option>
+        </select>
+        <input type="number" name="Quantités[]" min="1" value="1" class="w-1/6 p-3 rounded border bg-white dark:bg-gray-900 dark:border-gray-700" required />
+        <span class="item-total w-1/4">$0.00</span>
+        <button type="button" class="removeProduct text-red-600 hover:underline">Supprimer</button>
+      `;
+      return div;
+    }
+
+    document.getElementById('addProduct').addEventListener('click', () => {
+      const container = document.getElementById('productsContainer');
+      const newRow = createProductRow();
+      container.appendChild(newRow);
+      attachEvents(newRow);
+    });
+
+    function attachEvents(row) {
+      row.querySelector('select').addEventListener('change', updateTotals);
+      row.querySelector('input').addEventListener('input', updateTotals);
+      row.querySelector('.removeProduct').addEventListener('click', () => {
+        row.remove();
+        updateTotals();
+      });
+    }
+
+    const firstRow = createProductRow();
+    document.getElementById('productsContainer').appendChild(firstRow);
+    attachEvents(firstRow);
+
+    document.getElementById('orderForm').addEventListener('submit', function (e) {
+      const totalOrder = updateTotals();
+      if (totalOrder < 1000) {
         e.preventDefault();
         document.getElementById('minError').classList.remove('hidden');
       }
