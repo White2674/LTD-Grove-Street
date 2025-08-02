@@ -7,8 +7,6 @@
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Style personnalisé -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
@@ -51,39 +49,107 @@
   </header>
 
   <!-- Contenu principal -->
-  <main class="mt-32 px-4 max-w-5xl mx-auto">
-    <h1 class="text-3xl font-bold text-center text-indigo-600 mb-8">Avis des Clients</h1>
+  <main class="mt-32 px-4 max-w-4xl mx-auto">
+    <!-- Titre -->
+    <h1 class="text-3xl font-bold text-center text-indigo-600 mb-6">Avis des Clients</h1>
+
+    <!-- Note globale -->
+    <section class="bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-300 rounded-xl shadow p-6 mb-8 text-center">
+      <h2 class="text-xl font-semibold mb-2">Note Globale</h2>
+      <div id="globalRating" class="text-2xl font-bold text-yellow-500">⭐⭐⭐⭐⭐ (5.0/5)</div>
+    </section>
+
+    <!-- Barre de recherche -->
+    <div class="mb-8">
+      <input id="searchInput" type="text" placeholder="🔍 Rechercher un avis (nom ou message)..."
+             class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" />
+    </div>
 
     <!-- Liste des avis -->
-    <section class="space-y-6">
-      <!-- Avis -->
-      <article class="p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow">
-        <h3 class="font-semibold text-lg text-indigo-700 dark:text-indigo-300">Jean Dupont</h3>
-        <p class="text-sm text-gray-500 dark:text-gray-400">Publié le 12 juillet 2025</p>
-        <p class="mt-2">Très bon service client et large choix de produits. Je recommande fortement LTD Grove Street !</p>
-        <div class="mt-2 text-yellow-400">⭐⭐⭐⭐⭐</div>
-      </article>
-
-      <article class="p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow">
-        <h3 class="font-semibold text-lg text-indigo-700 dark:text-indigo-300">Sophie Martin</h3>
-        <p class="text-sm text-gray-500 dark:text-gray-400">Publié le 28 juin 2025</p>
-        <p class="mt-2">Livraison rapide et produits de qualité. Je referai une commande sans hésiter.</p>
-        <div class="mt-2 text-yellow-400">⭐⭐⭐⭐</div>
-      </article>
-
-      <article class="p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow">
-        <h3 class="font-semibold text-lg text-indigo-700 dark:text-indigo-300">Alexandre Leroy</h3>
-        <p class="text-sm text-gray-500 dark:text-gray-400">Publié le 5 mai 2025</p>
-        <p class="mt-2">Quelques problèmes de stock, mais l’équipe a été très réactive. Bon suivi !</p>
-        <div class="mt-2 text-yellow-400">⭐⭐⭐</div>
-      </article>
-    </section>
+    <section id="avisList" class="space-y-6"></section>
   </main>
 
   <!-- Pied de page -->
   <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-12">
     &copy; 2025 LTD Grove Street. Tous droits réservés.
   </footer>
+
+  <!-- Script avis -->
+  <script>
+    const avis = [
+      {
+        nom: "Jean Dupont",
+        date: "12 juillet 2025",
+        message: "Très bon service client et large choix de produits. Je recommande fortement LTD Grove Street !",
+        note: 5
+      },
+      {
+        nom: "Sophie Martin",
+        date: "28 juin 2025",
+        message: "Livraison rapide et produits de qualité. Je referai une commande sans hésiter.",
+        note: 4
+      },
+      {
+        nom: "Alexandre Leroy",
+        date: "5 mai 2025",
+        message: "Quelques problèmes de stock, mais l’équipe a été très réactive. Bon suivi !",
+        note: 3
+      },
+      {
+        nom: "Lucas Fontaine",
+        date: "1 août 2025",
+        message: "Site très clair et efficace. Rien à dire.",
+        note: 5
+      }
+    ];
+
+    const avisList = document.getElementById("avisList");
+    const globalRating = document.getElementById("globalRating");
+    const searchInput = document.getElementById("searchInput");
+
+    function afficherEtoiles(n) {
+      return '⭐'.repeat(n) + '☆'.repeat(5 - n);
+    }
+
+    function afficherAvis(filtrés) {
+      avisList.innerHTML = "";
+      if (filtrés.length === 0) {
+        avisList.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400">Aucun avis trouvé.</p>`;
+        globalRating.innerHTML = "☆ ☆ ☆ ☆ ☆ (0/5)";
+        return;
+      }
+
+      let total = 0;
+      filtrés.forEach(a => {
+        total += a.note;
+        const card = document.createElement("article");
+        card.className = "p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow";
+        card.innerHTML = `
+          <h3 class="font-semibold text-lg text-indigo-700 dark:text-indigo-300">${a.nom}</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400">Publié le ${a.date}</p>
+          <p class="mt-2">${a.message}</p>
+          <div class="mt-2 text-yellow-400">${afficherEtoiles(a.note)}</div>
+        `;
+        avisList.appendChild(card);
+      });
+
+      const moyenne = (total / filtrés.length).toFixed(1);
+      const arrondie = Math.round(moyenne);
+      globalRating.innerHTML = `${afficherEtoiles(arrondie)} (${moyenne}/5)`;
+    }
+
+    function filtrerAvis() {
+      const query = searchInput.value.toLowerCase();
+      const filtrés = avis.filter(a =>
+        a.nom.toLowerCase().includes(query) ||
+        a.message.toLowerCase().includes(query)
+      );
+      afficherAvis(filtrés);
+    }
+
+    afficherAvis(avis);
+    searchInput.addEventListener("input", filtrerAvis);
+  </script>
 
   <!-- Script menu mobile -->
   <script>
