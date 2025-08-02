@@ -28,98 +28,92 @@
         <li><a href="contact.html" class="hover:text-indigo-300">Contact</a></li>
       </ul>
 
-      <!-- Boutons : menu mobile + thème -->
-      <div class="flex items-center space-x-4">
-        <button id="theme-toggle" class="text-white text-xl focus:outline-none">
-          <span id="theme-icon">🌙</span>
-        </button>
-        <button id="nav-toggle" class="md:hidden focus:outline-none">
-          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
-    </nav>
+  <section class="bg-gray-950 text-white py-16 px-6 md:px-12">
+  <div class="max-w-6xl mx-auto">
 
-    <!-- Menu mobile -->
-    <div id="nav-menu" class="hidden md:hidden bg-indigo-700">
-      <ul class="flex flex-col px-6 py-4 space-y-4 font-semibold text-lg">
-        <li><a href="index.html" class="block hover:text-indigo-300">Accueil</a></li>
-        <li><a href="catalogue.html" class="block hover:text-indigo-300">Catalogue</a></li>
-        <li><a href="stations.html" class="block hover:text-indigo-300">Stations Essence</a></li>
-        <li><a href="commande.html" class="block hover:text-indigo-300">Commande</a></li>
-        <li><a href="avis.html" class="block hover:text-indigo-300">Avis Clients</a></li>
-        <li><a href="equipe.html" class="block hover:text-indigo-300">Notre Équipe</a></li>
-        <li><a href="actualites.html" class="block hover:text-indigo-300">Actualités</a></li>
-        <li><a href="contact.html" class="block hover:text-indigo-300">Contact</a></li>
-      </ul>
+    <!-- Titre principal -->
+    <div class="text-center mb-12">
+      <svg class="mx-auto mb-4 w-10 h-10 text-indigo-400" fill="none" stroke="currentColor" stroke-width="1.5"
+        viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M7 8h10M7 12h4m1 8a9 9 0 100-18 9 9 0 000 18z" />
+      </svg>
+      <h2 class="text-3xl font-bold text-indigo-300">Vos avis comptent</h2>
+      <p class="text-indigo-200 mt-2">Rejoignez 1 client satisfait et partagez votre expérience</p>
     </div>
-  </header>
 
-  <!-- Contenu actualités -->
-  <main class="max-w-6xl mx-auto p-6 mt-20 space-y-8">
+    <!-- Bloc note globale + répartition -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+      
+      <!-- Note globale -->
+      <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 shadow-md">
+        <div class="text-indigo-300 font-medium mb-2">🏅 Note globale</div>
+        <div class="text-5xl font-bold">5.0<span class="text-xl text-gray-400"> /5</span></div>
+        <div class="text-yellow-400 text-2xl mt-2">★★★★★</div>
+      </div>
 
-    <!-- Actualité 1 -->
-    <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-      <h2 class="text-2xl font-semibold mb-2">Promotion sur l’Essence Sans Plomb 95</h2>
-      <time datetime="2025-07-25" class="block text-indigo-600 italic mb-4">25 juillet 2025</time>
-      <p class="text-gray-700 dark:text-gray-300">
-        Profitez d’une remise de 10% sur l’Essence Sans Plomb 95 jusqu’à la fin du mois. Offre valable dans toutes nos stations.
-      </p>
-    </article>
+      <!-- Répartition des notes -->
+      <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 shadow-md">
+        <div class="text-indigo-300 font-medium mb-4">👍 Répartition des notes</div>
+        <ul class="space-y-2 text-sm">
+          <!-- Note 5 -->
+          <li class="flex items-center">
+            <span class="text-yellow-400 w-5">★</span><span class="mr-2 text-white">5</span>
+            <div class="flex-1 h-2 bg-gray-700 rounded overflow-hidden">
+              <div class="h-full bg-indigo-400 w-[100%]"></div>
+            </div>
+            <span class="ml-2 text-indigo-200">1</span>
+          </li>
+          <!-- Notes 4 à 1 -->
+          <li class="flex items-center">
+            <span class="text-yellow-400 w-5">★</span><span class="mr-2 text-white">4</span>
+            <div class="flex-1 h-2 bg-gray-700 rounded"></div>
+            <span class="ml-2 text-indigo-200">0</span>
+          </li>
+          <li class="flex items-center">
+            <span class="text-yellow-400 w-5">★</span><span class="mr-2 text-white">3</span>
+            <div class="flex-1 h-2 bg-gray-700 rounded"></div>
+            <span class="ml-2 text-indigo-200">0</span>
+          </li>
+          <li class="flex items-center">
+            <span class="text-yellow-400 w-5">★</span><span class="mr-2 text-white">2</span>
+            <div class="flex-1 h-2 bg-gray-700 rounded"></div>
+            <span class="ml-2 text-indigo-200">0</span>
+          </li>
+          <li class="flex items-center">
+            <span class="text-yellow-400 w-5">★</span><span class="mr-2 text-white">1</span>
+            <div class="flex-1 h-2 bg-gray-700 rounded"></div>
+            <span class="ml-2 text-indigo-200">0</span>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-    <!-- Actualité 2 -->
-    <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-      <h2 class="text-2xl font-semibold mb-2">Nouveau site web lancé !</h2>
-      <time datetime="2025-07-15" class="block text-indigo-600 italic mb-4">15 juillet 2025</time>
-      <p class="text-gray-700 dark:text-gray-300">
-        Découvrez notre tout nouveau site internet, moderne et facile à utiliser, avec catalogue en ligne et formulaire de commande.
-      </p>
-    </article>
+    <!-- Avis client -->
+    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <!-- AVIS 1 -->
+      <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-5 rounded-xl shadow-md">
+        <h3 class="font-semibold text-indigo-300">Nathan Ribero</h3>
+        <p class="text-sm text-gray-400 mb-3">14 juil. 2025</p>
+        <p class="text-gray-200">Incroyable, toujours à l'écoute et les activités sont géniales ! Je recommande :)</p>
+        <div class="text-yellow-400 text-lg mt-2">★★★★★</div>
+      </div>
 
-    <!-- Actualité 3 -->
-    <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-      <h2 class="text-2xl font-semibold mb-2">Événement client - Journée portes ouvertes</h2>
-      <time datetime="2025-06-30" class="block text-indigo-600 italic mb-4">30 juin 2025</time>
-      <p class="text-gray-700 dark:text-gray-300">
-        Venez rencontrer notre équipe lors de notre journée portes ouvertes le 10 août 2025. Ateliers, démonstrations et surprises au programme !
-      </p>
-    </article>
+      <!-- AVIS 2 -->
+      <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-5 rounded-xl shadow-md">
+        <h3 class="font-semibold text-indigo-300">Sarah Leclerc</h3>
+        <p class="text-sm text-gray-400 mb-3">10 juil. 2025</p>
+        <p class="text-gray-200">Une équipe à l’écoute et un service rapide. Très satisfaite !</p>
+        <div class="text-yellow-400 text-lg mt-2">★★★★★</div>
+      </div>
 
-  </main>
-
-  <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-12">
-    &copy; 2025 LTD Grove Street. Tous droits réservés.
-  </footer>
-
-  <!-- Script menu mobile -->
-  <script>
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    navToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('hidden');
-    });
-  </script>
-
-  <!-- Script switch thème clair/sombre -->
-  <script>
-    const toggleBtn = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-    const htmlEl = document.documentElement;
-
-    if (localStorage.getItem('theme') === 'dark') {
-      htmlEl.classList.add('dark');
-      themeIcon.textContent = '🌞';
-    }
-
-    toggleBtn.addEventListener('click', () => {
-      htmlEl.classList.toggle('dark');
-      const isDark = htmlEl.classList.contains('dark');
-      themeIcon.textContent = isDark ? '🌞' : '🌙';
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    });
-  </script>
-
-</body>
-</html>
+      <!-- AVIS 3 -->
+      <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-5 rounded-xl shadow-md">
+        <h3 class="font-semibold text-indigo-300">Mehdi Z.</h3>
+        <p class="text-sm text-gray-400 mb-3">2 juil. 2025</p>
+        <p class="text-gray-200">Qualité au rendez-vous, service client impeccable. Merci !</p>
+        <div class="text-yellow-400 text-lg mt-2">★★★★★</div>
+      </div>
+    </div>
+  </div>
+</section>
