@@ -9,6 +9,7 @@
 </head>
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
+  <!-- En-tête -->
   <header class="fixed top-0 left-0 w-full bg-indigo-600 text-white shadow-md z-50">
     <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
       <a href="index.html" class="text-2xl font-bold hover:text-indigo-300">LTD Grove Street</a>
@@ -42,6 +43,7 @@
     </div>
   </header>
 
+  <!-- Catalogue -->
   <main class="mt-32 px-4">
     <h1 class="text-center font-bold text-3xl text-indigo-600 mb-8">Catalogue des produits</h1>
 
@@ -67,6 +69,7 @@
     <section id="productGrid" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-6xl mx-auto px-4"></section>
   </main>
 
+  <!-- Pied de page -->
   <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-12">
     &copy; 2025 LTD Grove Street. Tous droits réservés.
   </footer>
@@ -76,56 +79,36 @@
     🛒 <span id="cartCount">0</span>
   </button>
 
-  <!-- Panier modale -->
-  <div id="cartModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
-    <div class="bg-white dark:bg-gray-800 rounded-lg max-w-md w-full p-6 relative">
-      <button onclick="toggleCart()" class="absolute top-2 right-2 text-gray-600 dark:text-gray-300 text-xl">&times;</button>
-      <h2 class="text-2xl font-bold mb-4 text-indigo-600 dark:text-indigo-300">Votre Panier</h2>
-      <div id="cartItems" class="space-y-4 max-h-64 overflow-y-auto"></div>
-      <hr class="my-4">
-      <div class="mb-4">
-        <label class="block mb-1 font-semibold">Nom :</label>
-        <input type="text" placeholder="Votre nom" class="w-full p-2 border border-gray-300 rounded dark:bg-gray-900 dark:text-white">
+  <!-- Slide-over panier -->
+  <div id="cartModal" class="fixed inset-0 bg-black/50 hidden z-50">
+    <div class="absolute right-0 top-0 h-full w-full sm:w-[400px] bg-white dark:bg-gray-900 shadow-lg flex flex-col transition-transform translate-x-full" id="cartPanel">
+      <div class="flex items-center justify-between px-4 py-4 border-b border-gray-200 dark:border-gray-700">
+        <h2 class="text-xl font-semibold text-indigo-600 dark:text-indigo-300">🛒 Votre Panier</h2>
+        <button onclick="toggleCart()" class="text-gray-600 dark:text-gray-300 text-2xl hover:text-red-500">&times;</button>
       </div>
-      <div class="mb-4">
-        <label class="block mb-1 font-semibold">Adresse :</label>
-        <input type="text" placeholder="Votre adresse" class="w-full p-2 border border-gray-300 rounded dark:bg-gray-900 dark:text-white">
+      <div id="cartItems" class="flex-1 overflow-y-auto p-4 space-y-4"></div>
+      <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+        <div class="mb-3">
+          <label class="block mb-1 font-semibold text-sm">Nom</label>
+          <input type="text" placeholder="Votre nom" class="w-full p-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white">
+        </div>
+        <div class="mb-4">
+          <label class="block mb-1 font-semibold text-sm">Adresse</label>
+          <input type="text" placeholder="Votre adresse" class="w-full p-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white">
+        </div>
+        <button class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition">✅ Valider la commande</button>
       </div>
-      <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Valider la commande</button>
     </div>
   </div>
 
+  <!-- Script catalogue & panier -->
   <script>
-const products = [
-  {
-    id: 1,
-    name: "Marteau",
-    price: 9.99,
-    category: "Quincaillerie",
-    image: "https://via.placeholder.com/300x200?text=Marteau"
-  },
-  {
-    id: 2,
-    name: "Clé à molette",
-    price: 12.49,
-    category: "Quincaillerie",
-    image: "https://via.placeholder.com/300x200?text=Cl%C3%A9+%C3%A0+molette"
-  },
-  {
-    id: 3,
-    name: "Carnet A5",
-    price: 3.99,
-    category: "Papeterie",
-    image: "https://via.placeholder.com/300x200?text=Carnet+A5"
-  },
-  {
-    id: 4,
-    name: "Gants de jardin",
-    price: 5.95,
-    category: "Jardinage",
-    image: "https://via.placeholder.com/300x200?text=Gants+de+jardin"
-  }
-];
+    const products = [
+      { id: 1, name: "Marteau", price: 9.99, category: "Quincaillerie", image: "https://via.placeholder.com/300x200?text=Marteau" },
+      { id: 2, name: "Clé à molette", price: 12.49, category: "Quincaillerie", image: "https://via.placeholder.com/300x200?text=Cl%C3%A9+%C3%A0+molette" },
+      { id: 3, name: "Carnet A5", price: 3.99, category: "Papeterie", image: "https://via.placeholder.com/300x200?text=Carnet+A5" },
+      { id: 4, name: "Gants de jardin", price: 5.95, category: "Jardinage", image: "https://via.placeholder.com/300x200?text=Gants+de+jardin" }
+    ];
 
     const productGrid = document.getElementById('productGrid');
     const searchInput = document.getElementById('searchInput');
@@ -147,8 +130,7 @@ const products = [
             <h3 class="text-center font-semibold text-lg text-indigo-800 dark:text-indigo-300">${product.name}</h3>
             <p class="text-indigo-600 dark:text-indigo-400 font-semibold mt-1">${product.price.toFixed(2)} €</p>
             <button onclick="addToCart(${product.id})" class="mt-3 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">Ajouter au panier</button>
-          </div>
-        `;
+          </div>`;
         productGrid.appendChild(card);
       });
     }
@@ -182,7 +164,14 @@ const products = [
 
     function toggleCart() {
       const modal = document.getElementById('cartModal');
-      modal.classList.toggle('hidden');
+      const panel = document.getElementById('cartPanel');
+      if (modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+        setTimeout(() => panel.classList.remove('translate-x-full'), 10);
+      } else {
+        panel.classList.add('translate-x-full');
+        setTimeout(() => modal.classList.add('hidden'), 300);
+      }
       renderCartItems();
     }
 
@@ -190,22 +179,23 @@ const products = [
       const container = document.getElementById('cartItems');
       container.innerHTML = '';
       if (cart.length === 0) {
-        container.innerHTML = '<p class="text-gray-500">Votre panier est vide.</p>';
+        container.innerHTML = '<p class="text-gray-500 text-center">Votre panier est vide.</p>';
         return;
       }
       cart.forEach(item => {
         const div = document.createElement('div');
-        div.className = "flex items-center justify-between";
+        div.className = "flex gap-4 items-center border-b pb-3";
         div.innerHTML = `
-          <div>
-            <h4 class="font-semibold">${item.name}</h4>
-            <p>${item.price.toFixed(2)} € x 
-              <input type="number" min="1" value="${item.quantity}" onchange="changeQuantity(${item.id}, this.value)" class="w-16 p-1 border rounded text-center dark:bg-gray-700 dark:text-white">
-              = ${(item.price * item.quantity).toFixed(2)} €
-            </p>
+          <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded" />
+          <div class="flex-1">
+            <h4 class="font-semibold text-gray-800 dark:text-gray-200">${item.name}</h4>
+            <div class="text-sm text-gray-600 dark:text-gray-400">
+              ${item.price.toFixed(2)} € x 
+              <input type="number" min="1" value="${item.quantity}" onchange="changeQuantity(${item.id}, this.value)" class="w-14 ml-1 p-1 border border-gray-300 rounded dark:bg-gray-700 dark:text-white text-center" />
+              <span class="ml-2">= ${(item.price * item.quantity).toFixed(2)} €</span>
+            </div>
           </div>
-          <button onclick="removeFromCart(${item.id})" class="text-red-600 hover:underline">Retirer</button>
-        `;
+          <button onclick="removeFromCart(${item.id})" class="text-red-600 hover:text-red-800 text-sm font-semibold">✖</button>`;
         container.appendChild(div);
       });
     }
