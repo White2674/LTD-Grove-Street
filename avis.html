@@ -31,89 +31,85 @@
   <section class="bg-gray-950 text-white py-16 px-6 md:px-12">
   <div class="max-w-6xl mx-auto">
 
-    <!-- Titre principal -->
-    <div class="text-center mb-12">
-      <svg class="mx-auto mb-4 w-10 h-10 text-indigo-400" fill="none" stroke="currentColor" stroke-width="1.5"
-        viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round"
-          d="M7 8h10M7 12h4m1 8a9 9 0 100-18 9 9 0 000 18z" />
-      </svg>
-      <h2 class="text-3xl font-bold text-indigo-300">Vos avis comptent</h2>
-      <p class="text-indigo-200 mt-2">Rejoignez 1 client satisfait et partagez votre expérience</p>
+<section class="mb-12">
+  <h2 class="text-3xl font-semibold mb-6 text-center text-indigo-600 dark:text-indigo-400">Avis Clients</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+    <!-- Note globale -->
+    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md text-center">
+      <h3 class="text-xl font-semibold text-indigo-600 dark:text-indigo-300 mb-2">Note Globale</h3>
+      <p class="text-5xl font-bold text-yellow-400">5.0</p>
+      <p class="text-gray-700 dark:text-gray-300">Basé sur 1 avis</p>
+      <div class="text-yellow-400 text-2xl mt-2">★★★★★</div>
     </div>
 
-    <!-- Bloc note globale + répartition -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-      
-      <!-- Note globale -->
-      <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 shadow-md">
-        <div class="text-indigo-300 font-medium mb-2">🏅 Note globale</div>
-        <div class="text-5xl font-bold">5.0<span class="text-xl text-gray-400"> /5</span></div>
-        <div class="text-yellow-400 text-2xl mt-2">★★★★★</div>
-      </div>
-
-      <!-- Répartition des notes -->
-      <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 shadow-md">
-        <div class="text-indigo-300 font-medium mb-4">👍 Répartition des notes</div>
-        <ul class="space-y-2 text-sm">
-          <!-- Note 5 -->
-          <li class="flex items-center">
-            <span class="text-yellow-400 w-5">★</span><span class="mr-2 text-white">5</span>
-            <div class="flex-1 h-2 bg-gray-700 rounded overflow-hidden">
-              <div class="h-full bg-indigo-400 w-[100%]"></div>
-            </div>
-            <span class="ml-2 text-indigo-200">1</span>
-          </li>
-          <!-- Notes 4 à 1 -->
-          <li class="flex items-center">
-            <span class="text-yellow-400 w-5">★</span><span class="mr-2 text-white">4</span>
-            <div class="flex-1 h-2 bg-gray-700 rounded"></div>
-            <span class="ml-2 text-indigo-200">0</span>
-          </li>
-          <li class="flex items-center">
-            <span class="text-yellow-400 w-5">★</span><span class="mr-2 text-white">3</span>
-            <div class="flex-1 h-2 bg-gray-700 rounded"></div>
-            <span class="ml-2 text-indigo-200">0</span>
-          </li>
-          <li class="flex items-center">
-            <span class="text-yellow-400 w-5">★</span><span class="mr-2 text-white">2</span>
-            <div class="flex-1 h-2 bg-gray-700 rounded"></div>
-            <span class="ml-2 text-indigo-200">0</span>
-          </li>
-          <li class="flex items-center">
-            <span class="text-yellow-400 w-5">★</span><span class="mr-2 text-white">1</span>
-            <div class="flex-1 h-2 bg-gray-700 rounded"></div>
-            <span class="ml-2 text-indigo-200">0</span>
-          </li>
-        </ul>
-      </div>
+    <!-- Répartition des notes -->
+    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+      <h3 class="text-xl font-semibold text-indigo-600 dark:text-indigo-300 mb-4 text-center">Répartition des Notes</h3>
+      <ul class="space-y-2">
+        <!-- 5 étoiles -->
+        <li class="flex items-center">
+          <span class="text-yellow-400 mr-2">5 ★</span>
+          <div class="w-full h-2 bg-gray-300 dark:bg-gray-700 rounded">
+            <div class="h-full bg-indigo-500 rounded" style="width: 100%;"></div>
+          </div>
+          <span class="ml-2 text-gray-600 dark:text-gray-300">1</span>
+        </li>
+        <!-- 4 à 1 étoiles -->
+        <li class="flex items-center">
+          <span class="text-yellow-400 mr-2">4 ★</span>
+          <div class="w-full h-2 bg-gray-300 dark:bg-gray-700 rounded"></div>
+          <span class="ml-2 text-gray-600 dark:text-gray-300">0</span>
+        </li>
+        <li class="flex items-center">
+          <span class="text-yellow-400 mr-2">3 ★</span>
+          <div class="w-full h-2 bg-gray-300 dark:bg-gray-700 rounded"></div>
+          <span class="ml-2 text-gray-600 dark:text-gray-300">0</span>
+        </li>
+        <li class="flex items-center">
+          <span class="text-yellow-400 mr-2">2 ★</span>
+          <div class="w-full h-2 bg-gray-300 dark:bg-gray-700 rounded"></div>
+          <span class="ml-2 text-gray-600 dark:text-gray-300">0</span>
+        </li>
+        <li class="flex items-center">
+          <span class="text-yellow-400 mr-2">1 ★</span>
+          <div class="w-full h-2 bg-gray-300 dark:bg-gray-700 rounded"></div>
+          <span class="ml-2 text-gray-600 dark:text-gray-300">0</span>
+        </li>
+      </ul>
     </div>
+  </div>
 
-    <!-- Avis client -->
-    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      <!-- AVIS 1 -->
-      <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-5 rounded-xl shadow-md">
-        <h3 class="font-semibold text-indigo-300">Nathan Ribero</h3>
-        <p class="text-sm text-gray-400 mb-3">14 juil. 2025</p>
-        <p class="text-gray-200">Incroyable, toujours à l'écoute et les activités sont géniales ! Je recommande :)</p>
-        <div class="text-yellow-400 text-lg mt-2">★★★★★</div>
-      </div>
+  <!-- Liste des avis -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Avis 1 -->
+    <article class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+      <h4 class="font-bold text-lg text-indigo-600 dark:text-indigo-300">Nathan Ribero</h4>
+      <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">14 juillet 2025</p>
+      <p class="text-gray-700 dark:text-gray-200 mb-2">
+        Incroyable, toujours à l'écoute et les activités sont géniales ! Je recommande :)
+      </p>
+      <div class="text-yellow-400 text-lg">★★★★★</div>
+    </article>
 
-      <!-- AVIS 2 -->
-      <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-5 rounded-xl shadow-md">
-        <h3 class="font-semibold text-indigo-300">Sarah Leclerc</h3>
-        <p class="text-sm text-gray-400 mb-3">10 juil. 2025</p>
-        <p class="text-gray-200">Une équipe à l’écoute et un service rapide. Très satisfaite !</p>
-        <div class="text-yellow-400 text-lg mt-2">★★★★★</div>
-      </div>
+    <!-- Avis 2 -->
+    <article class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+      <h4 class="font-bold text-lg text-indigo-600 dark:text-indigo-300">Sarah Leclerc</h4>
+      <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">10 juillet 2025</p>
+      <p class="text-gray-700 dark:text-gray-200 mb-2">
+        Service rapide, équipe réactive. Je reviendrai sans hésiter !
+      </p>
+      <div class="text-yellow-400 text-lg">★★★★★</div>
+    </article>
 
-      <!-- AVIS 3 -->
-      <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-5 rounded-xl shadow-md">
-        <h3 class="font-semibold text-indigo-300">Mehdi Z.</h3>
-        <p class="text-sm text-gray-400 mb-3">2 juil. 2025</p>
-        <p class="text-gray-200">Qualité au rendez-vous, service client impeccable. Merci !</p>
-        <div class="text-yellow-400 text-lg mt-2">★★★★★</div>
-      </div>
-    </div>
+    <!-- Avis 3 -->
+    <article class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+      <h4 class="font-bold text-lg text-indigo-600 dark:text-indigo-300">Mehdi Z.</h4>
+      <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">2 juillet 2025</p>
+      <p class="text-gray-700 dark:text-gray-200 mb-2">
+        Très bonne expérience, accueil chaleureux et efficace.
+      </p>
+      <div class="text-yellow-400 text-lg">★★★★★</div>
+    </article>
   </div>
 </section>
