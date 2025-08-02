@@ -84,106 +84,95 @@
   </footer>
 
   <!-- Script catalogue -->
-  <script>
-    const products = [
-      { id: 1, name: "Foret de perceuse", price: 700, image: "https://i.goopics.net/7lkekl.png", category: "Quincaillerie" },
-      { id: 2, name: "Grosse Perceuse", price: 12, image: "images/diesel.jpg", category: "Quincaillerie" },
-      { id: 3, name: "Perceuse", price: 10, image: "images/huile.jpg", category: "Quincaillerie" },
-      { id: 4, name: "Coupeur", price: 14, image: "images/additif.jpg", category: "Quincaillerie" },
-      { id: 5, name: "Pince pour plaque", price: 22, image: "images/cahier.jpg", category: "Quincaillerie" },
-      { id: 6, name: "Pile Verte", price: 3, image: "images/gants.jpg", category: "Quincaillerie" },
-      { id: 7, name: "Batterie de voiture", price: 19, image: "images/cle.jpg", category: "Quincaillerie" },
-      { id: 8, name: "Batterie", price: 9, image: "images/stylo.jpg", category: "Papeterie" },
-      { id: 9, name: "Sachets Vide", price: 5, image: "images/spray.jpg", category: "Divers Utiles" },
-      { id: 10, name: "Huile", price: 8, image: "images/arrosoir.jpg", category: "Jardinage" },
-      { id: 11, name: "Huile Shell", price: 14, image: "images/arrosoir.jpg", category: "Jardinage" },
-      { id: 12, name: "Huile Noir", price: 12, image: "images/arrosoir.jpg", category: "Jardinage" },
-      { id: 13, name: "Outil", price: 5, image: "images/arrosoir.jpg", category: "Jardinage" },
-      { id: 14, name: "Bicarbonate", price: 2, image: "images/arrosoir.jpg", category: "Jardinage" },
-      { id: 15, name: "Canne à pêche", price: 60, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-      { id: 16, name: "Appâts", price: 10, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-      { id: 17, name: "Ballon de Basket", price: 60, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-      { id: 18, name: "Ballon de Foot", price: 60, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-      { id: 19, name: "Croquettes", price: 25, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-      { id: 20, name: "Papier à rouler", price: 2, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-      { id: 21, name: "Skateboard", price: 90, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-      { id: 22, name: "Spray Tag", price: 1900, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-      { id: 23, name: "Ticket à gratter", price: 25, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-      { id: 24, name: "Elastique", price: 20, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-      { id: 25, name: "Eponge", price: 1100, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-      { id: 26, name: "BMX", price: 200, image: "images/arrosoir.jpg", category: "Jardinage" },
-      { id: 27, name: "Fertilisant", price: 9, image: "images/arrosoir.jpg", category: "Jardinage" },
-      { id: 28, name: "Lumière Violette", price: 18, image: "images/arrosoir.jpg", category: "Jardinage" },
-      { id: 29, name: "Pot de Fleurs", price: 8, image: "images/arrosoir.jpg", category: "Jardinage" },
-      { id: 30, name: "Table", price: 10, image: "images/arrosoir.jpg", category: "Jardinage" },
-      { id: 31, name: "Terre", price: 13, image: "images/arrosoir.jpg", category: "Jardinage" },
-      { id: 32, name: "Bac de Jardinage", price: 16, image: "images/arrosoir.jpg", category: "Jardinage" },
-      { id: 33, name: "Colle", price: 3, image: "images/arrosoir.jpg", category: "Papeterie" },
-      { id: 34, name: "Porte Documents", price: 10, image: "images/arrosoir.jpg", category: "Papeterie" },
-      { id: 35, name: "Portefeuille", price: 10, image: "images/arrosoir.jpg", category: "Papeterie" },
-      { id: 36, name: "Trousseau de clés", price: 90, image: "images/arrosoir.jpg", category: "Papeterie" },
-      { id: 37, name: "Menu Découverte", price: 90, image: "images/arrosoir.jpg", category: "Menu" },
-      { id: 38, name: "Menu Festin", price: 120, image: "images/arrosoir.jpg", category: "Menu" },
-      { id: 39, name: "Coca Cola Zero", price: 3, image: "images/arrosoir.jpg", category: "Menu" },
-      { id: 40, name: "Bouteille d'eau", price: 10, image: "images/arrosoir.jpg", category: "Menu" }
-    ];
+<script>
+  const products = [
+    { id: 1, name: "Foret de perceuse", price: 700, image: "https://i.goopics.net/7lkekl.png", category: "Quincaillerie" },
+    { id: 2, name: "Grosse Perceuse", price: 12, image: "images/diesel.jpg", category: "Quincaillerie" },
+    { id: 3, name: "Perceuse", price: 10, image: "images/huile.jpg", category: "Quincaillerie" },
+    { id: 4, name: "Coupeur", price: 14, image: "images/additif.jpg", category: "Quincaillerie" },
+    { id: 5, name: "Pince pour plaque", price: 22, image: "images/cahier.jpg", category: "Quincaillerie" },
+    { id: 6, name: "Pile Verte", price: 3, image: "images/gants.jpg", category: "Quincaillerie" },
+    { id: 7, name: "Batterie de voiture", price: 19, image: "images/cle.jpg", category: "Quincaillerie" },
+    { id: 8, name: "Batterie", price: 9, image: "images/stylo.jpg", category: "Papeterie" },
+    { id: 9, name: "Sachets Vide", price: 5, image: "images/spray.jpg", category: "Divers Utiles" },
+    { id: 10, name: "Huile", price: 8, image: "images/arrosoir.jpg", category: "Jardinage" },
+    { id: 11, name: "Huile Shell", price: 14, image: "images/arrosoir.jpg", category: "Jardinage" },
+    { id: 12, name: "Huile Noir", price: 12, image: "images/arrosoir.jpg", category: "Jardinage" },
+    { id: 13, name: "Outil", price: 5, image: "images/arrosoir.jpg", category: "Jardinage" },
+    { id: 14, name: "Bicarbonate", price: 2, image: "images/arrosoir.jpg", category: "Jardinage" },
+    { id: 15, name: "Canne à pêche", price: 60, image: "images/arrosoir.jpg", category: "Divers Utiles" },
+    { id: 16, name: "Appâts", price: 10, image: "images/arrosoir.jpg", category: "Divers Utiles" },
+    { id: 17, name: "Ballon de Basket", price: 60, image: "images/arrosoir.jpg", category: "Divers Utiles" },
+    { id: 18, name: "Ballon de Foot", price: 60, image: "images/arrosoir.jpg", category: "Divers Utiles" },
+    { id: 19, name: "Croquettes", price: 25, image: "images/arrosoir.jpg", category: "Divers Utiles" },
+    { id: 20, name: "Papier à rouler", price: 2, image: "images/arrosoir.jpg", category: "Divers Utiles" },
+    { id: 21, name: "Skateboard", price: 90, image: "images/arrosoir.jpg", category: "Divers Utiles" },
+    { id: 22, name: "Spray Tag", price: 1900, image: "images/arrosoir.jpg", category: "Divers Utiles" },
+    { id: 23, name: "Ticket à gratter", price: 25, image: "images/arrosoir.jpg", category: "Divers Utiles" },
+    { id: 24, name: "Elastique", price: 20, image: "images/arrosoir.jpg", category: "Divers Utiles" },
+    { id: 25, name: "Eponge", price: 1100, image: "images/arrosoir.jpg", category: "Divers Utiles" },
+    { id: 26, name: "BMX", price: 200, image: "images/arrosoir.jpg", category: "Jardinage" },
+    { id: 27, name: "Fertilisant", price: 9, image: "images/arrosoir.jpg", category: "Jardinage" },
+    { id: 28, name: "Lumière Violette", price: 18, image: "images/arrosoir.jpg", category: "Jardinage" },
+    { id: 29, name: "Pot de Fleurs", price: 8, image: "images/arrosoir.jpg", category: "Jardinage" },
+    { id: 30, name: "Table", price: 10, image: "images/arrosoir.jpg", category: "Jardinage" },
+    { id: 31, name: "Terre", price: 13, image: "images/arrosoir.jpg", category: "Jardinage" },
+    { id: 32, name: "Bac de Jardinage", price: 16, image: "images/arrosoir.jpg", category: "Jardinage" },
+    { id: 33, name: "Colle", price: 3, image: "images/arrosoir.jpg", category: "Papeterie" },
+    { id: 34, name: "Porte Documents", price: 10, image: "images/arrosoir.jpg", category: "Papeterie" },
+    { id: 35, name: "Portefeuille", price: 10, image: "images/arrosoir.jpg", category: "Papeterie" },
+    { id: 36, name: "Trousseau de clés", price: 90, image: "images/arrosoir.jpg", category: "Papeterie" },
+    { id: 37, name: "Menu Découverte", price: 90, image: "images/arrosoir.jpg", category: "Menu" },
+    { id: 38, name: "Menu Festin", price: 120, image: "images/arrosoir.jpg", category: "Menu" },
+    { id: 39, name: "Coca Cola Zero", price: 3, image: "images/arrosoir.jpg", category: "Menu" },
+    { id: 40, name: "Bouteille d'eau", price: 10, image: "images/arrosoir.jpg", category: "Menu" }
+  ];
 
-    const productGrid = document.getElementById('productGrid');
-    const searchInput = document.getElementById('searchInput');
-    const sortSelect = document.getElementById('sortSelect');
-    const categorySelect = document.getElementById('categorySelect');
+  const productGrid = document.getElementById('productGrid');
+  const searchInput = document.getElementById('searchInput');
+  const sortSelect = document.getElementById('sortSelect');
+  const categorySelect = document.getElementById('categorySelect');
 
-    function displayProducts(items) {
-      productGrid.innerHTML = '';
-      if (items.length === 0) {
-        productGrid.innerHTML = '<p class="col-span-full text-center text-gray-500 dark:text-gray-400">Aucun produit trouvé.</p>';
-        return;
-      }
-      items.forEach(product => {
-        const card = document.createElement('article');
-        card.className = 'rounded overflow-hidden shadow-lg bg-white dark:bg-gray-800 flex flex-col';
-        card.innerHTML = 
-          <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover" />
-          <div class="p-4 bg-indigo-100 dark:bg-indigo-900 flex flex-col items-center justify-center mt-auto">
-            <h3 class="text-center font-semibold text-lg text-indigo-800 dark:text-indigo-300">${product.name}</h3>
-            <p class="text-indigo-600 dark:text-indigo-400 font-semibold mt-1">$${product.price.toFixed(2)}</p>
-          </div>
-        ;
-        productGrid.appendChild(card);
-      });
+  function displayProducts(items) {
+    productGrid.innerHTML = '';
+    if (items.length === 0) {
+      productGrid.innerHTML = '<p class="col-span-full text-center text-gray-500 dark:text-gray-400">Aucun produit trouvé.</p>';
+      return;
     }
-
-    function filterAndSort() {
-      const query = searchInput.value.toLowerCase();
-      const selectedCategory = categorySelect.value;
-      let filtered = products.filter(p => p.name.toLowerCase().includes(query));
-
-      if (selectedCategory !== 'all') {
-        filtered = filtered.filter(p => p.category === selectedCategory);
-      }
-
-      const sortValue = sortSelect.value;
-      if (sortValue === 'name-asc') filtered.sort((a, b) => a.name.localeCompare(b.name));
-      else if (sortValue === 'name-desc') filtered.sort((a, b) => b.name.localeCompare(a.name));
-      else if (sortValue === 'price-asc') filtered.sort((a, b) => a.price - b.price);
-      else if (sortValue === 'price-desc') filtered.sort((a, b) => b.price - a.price);
-
-      displayProducts(filtered);
-    }
-
-    displayProducts(products);
-    searchInput.addEventListener('input', filterAndSort);
-    sortSelect.addEventListener('change', filterAndSort);
-    categorySelect.addEventListener('change', filterAndSort);
-  </script>
-
-  <!-- Script menu mobile -->
-  <script>
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    navToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('hidden');
+    items.forEach(product => {
+      const card = document.createElement('article');
+      card.className = 'rounded overflow-hidden shadow-lg bg-white dark:bg-gray-800 flex flex-col';
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover" />
+        <div class="p-4 bg-indigo-100 dark:bg-indigo-900 flex flex-col items-center justify-center mt-auto">
+          <h3 class="text-center font-semibold text-lg text-indigo-800 dark:text-indigo-300">${product.name}</h3>
+          <p class="text-indigo-600 dark:text-indigo-400 font-semibold mt-1">${product.price.toFixed(2)} €</p>
+        </div>
+      `;
+      productGrid.appendChild(card);
     });
-  </script>
-</body>
-</html>
+  }
+
+  function filterAndSort() {
+    const query = searchInput.value.toLowerCase();
+    const selectedCategory = categorySelect.value;
+    let filtered = products.filter(p => p.name.toLowerCase().includes(query));
+
+    if (selectedCategory !== 'all') {
+      filtered = filtered.filter(p => p.category === selectedCategory);
+    }
+
+    const sortValue = sortSelect.value;
+    if (sortValue === 'name-asc') filtered.sort((a, b) => a.name.localeCompare(b.name));
+    else if (sortValue === 'name-desc') filtered.sort((a, b) => b.name.localeCompare(a.name));
+    else if (sortValue === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+    else if (sortValue === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+
+    displayProducts(filtered);
+  }
+
+  displayProducts(products);
+  searchInput.addEventListener('input', filterAndSort);
+  sortSelect.addEventListener('change', filterAndSort);
+  categorySelect.addEventListener('change', filterAndSort);
+</script>
