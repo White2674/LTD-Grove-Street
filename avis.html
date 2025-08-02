@@ -130,10 +130,10 @@
         card.className = "p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow";
         card.innerHTML = `
           <h3 class="font-semibold text-lg text-indigo-700 dark:text-indigo-300">${a.nom}</h3>
-          <p class="text-sm text-indigo-600 dark:text-indigo-400">Employé concerné : <span class="font-medium">${a.employe}</span></p>
-          <p class="text-sm text-gray-500 dark:text-gray-400">Publié le ${a.date}</p>
+          <p class="text-sm text-gray-400 mb-2">Employé concerné : <span class="font-medium">${a.employe}</span></p>
           <p class="mt-2">${a.message}</p>
           <div class="mt-2 text-yellow-400">${afficherEtoiles(a.note)}</div>
+          <p class="mt-3 text-sm text-blue-600 dark:text-blue-400">Publié le ${a.date}</p>
         `;
         avisList.appendChild(card);
       });
