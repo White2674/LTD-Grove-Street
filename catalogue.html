@@ -186,31 +186,67 @@
     renderCartItems();
   }
 
-  function renderCartItems() {
-    const container = document.getElementById('cartItems');
-    container.innerHTML = '';
-    if (cart.length === 0) {
-      container.innerHTML = '<p class="text-gray-500 text-center">Votre panier est vide.</p>';
-      return;
-    }
-    cart.forEach(item => {
-      const div = document.createElement('div');
-      div.className = "flex gap-4 items-center border-b pb-3";
-      div.innerHTML = `
-        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded" />
-        <div class="flex-1">
-          <h4 class="font-semibold text-gray-800 dark:text-gray-200">${item.name}</h4>
-          <div class="text-sm text-gray-600 dark:text-gray-400">
-            ${item.price.toFixed(2)} € x 
-            <input type="number" min="1" value="${item.quantity}" onchange="changeQuantity(${item.id}, this.value)" class="w-14 ml-1 p-1 border border-gray-300 rounded dark:bg-gray-700 dark:text-white text-center" />
-            <span class="ml-2">= ${(item.price * item.quantity).toFixed(2)} €</span>
-          </div>
-        </div>
-        <button onclick="removeFromCart(${item.id})" class="text-red-600 hover:text-red-800 text-sm font-semibold">✖</button>
-      `;
-      container.appendChild(div);
-    });
+function renderCartItems() {
+  const container = document.getElementById('cartItems');
+  container.innerHTML = '';
+  if (cart.length === 0) {
+    container.innerHTML = '<p class="text-gray-500 text-center">Votre panier est vide.</p>';
+    return;
   }
+
+  let total = 0;
+
+  cart.forEach(item => {
+    total += item.price * item.quantity;
+    const div = document.createElement('div');
+    div.className = "flex gap-4 items-center justify-between border-b pb-4";
+    div.innerHTML = `
+      <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded" />
+      <div class="flex-1">
+        <h4 class="font-semibold text-gray-800 dark:text-gray-100">${item.name}</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400">${item.price.toFixed(2)} €</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="changeQuantity(${item.id}, ${item.quantity - 1})" class="px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-gray-600">-</button>
+        <span class="min-w-[24px] text-center font-semibold">${item.quantity}</span>
+        <button onclick="changeQuantity(${item.id}, ${item.quantity + 1})" class="px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-gray-600">+</button>
+        <button onclick="removeFromCart(${item.id})" class="ml-2 text-red-600 hover:text-red-800 text-sm font-semibold">✖</button>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+
+  updateSummary();
+}
+function updateSummary() {
+  const summaryContainer = document.querySelector("#cartModal .p-4:last-of-type");
+  const productTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const deliveryFee = productTotal > 0 ? 2.5 : 0;
+  const grandTotal = productTotal + deliveryFee;
+
+  const recapHTML = `
+    <div class="border-t border-gray-300 dark:border-gray-600 pt-4 space-y-1 text-sm text-gray-800 dark:text-gray-200">
+      <div class="flex justify-between">
+        <span>Total produits</span>
+        <span>${productTotal.toFixed(2)} €</span>
+      </div>
+      <div class="flex justify-between">
+        <span>Frais de livraison</span>
+        <span>${deliveryFee.toFixed(2)} €</span>
+      </div>
+      <div class="flex justify-between font-bold text-lg pt-2 border-t border-gray-300 dark:border-gray-600">
+        <span>Total commande</span>
+        <span>${grandTotal.toFixed(2)} €</span>
+      </div>
+    </div>
+    <button class="mt-4 w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition">✅ Valider la commande</button>
+  `;
+
+  summaryContainer.innerHTML = `
+    ${summaryContainer.innerHTML.replace(/<button[\s\S]*?<\/button>/, '')}
+    ${recapHTML}
+  `;
+}
 
   function changeQuantity(id, newQty) {
     const item = cart.find(p => p.id === id);
