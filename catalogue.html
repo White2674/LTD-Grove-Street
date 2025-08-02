@@ -4,16 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>LTD Grove Street - Catalogue</title>
-
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Style custom -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
-  <!-- Header global -->
   <header class="fixed top-0 left-0 w-full bg-indigo-600 text-white shadow-md z-50">
     <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
       <a href="index.html" class="text-2xl font-bold hover:text-indigo-300">LTD Grove Street</a>
@@ -29,13 +24,10 @@
       </ul>
       <button id="nav-toggle" class="md:hidden focus:outline-none">
         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </nav>
-
-    <!-- Menu mobile -->
     <div id="nav-menu" class="hidden md:hidden bg-indigo-700">
       <ul class="flex flex-col px-6 py-4 space-y-4 font-semibold text-lg">
         <li><a href="index.html" class="block hover:text-indigo-300">Accueil</a></li>
@@ -50,11 +42,9 @@
     </div>
   </header>
 
-  <!-- Contenu -->
   <main class="mt-32 px-4">
     <h1 class="text-center font-bold text-3xl text-indigo-600 mb-8">Catalogue des produits</h1>
 
-    <!-- Recherche, tri et filtre -->
     <section class="max-w-6xl mx-auto px-4 py-6 bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-gray-200 dark:border-gray-700 rounded-xl shadow-md flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 mb-12 transition">
       <input id="searchInput" type="search" placeholder="🔍 Rechercher un produit..." class="flex-1 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
       <select id="sortSelect" class="w-full lg:w-60 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
@@ -74,105 +64,141 @@
       </select>
     </section>
 
-    <!-- Grille des produits -->
     <section id="productGrid" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-6xl mx-auto px-4"></section>
   </main>
 
-  <!-- Footer -->
   <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-12">
     &copy; 2025 LTD Grove Street. Tous droits réservés.
   </footer>
 
-  <!-- Script catalogue -->
-<script>
-  const products = [
-    { id: 1, name: "Foret de perceuse", price: 700, image: "https://i.goopics.net/7lkekl.png", category: "Quincaillerie" },
-    { id: 2, name: "Grosse Perceuse", price: 12, image: "images/diesel.jpg", category: "Quincaillerie" },
-    { id: 3, name: "Perceuse", price: 10, image: "images/huile.jpg", category: "Quincaillerie" },
-    { id: 4, name: "Coupeur", price: 14, image: "images/additif.jpg", category: "Quincaillerie" },
-    { id: 5, name: "Pince pour plaque", price: 22, image: "images/cahier.jpg", category: "Quincaillerie" },
-    { id: 6, name: "Pile Verte", price: 3, image: "images/gants.jpg", category: "Quincaillerie" },
-    { id: 7, name: "Batterie de voiture", price: 19, image: "images/cle.jpg", category: "Quincaillerie" },
-    { id: 8, name: "Batterie", price: 9, image: "images/stylo.jpg", category: "Papeterie" },
-    { id: 9, name: "Sachets Vide", price: 5, image: "images/spray.jpg", category: "Divers Utiles" },
-    { id: 10, name: "Huile", price: 8, image: "images/arrosoir.jpg", category: "Jardinage" },
-    { id: 11, name: "Huile Shell", price: 14, image: "images/arrosoir.jpg", category: "Jardinage" },
-    { id: 12, name: "Huile Noir", price: 12, image: "images/arrosoir.jpg", category: "Jardinage" },
-    { id: 13, name: "Outil", price: 5, image: "images/arrosoir.jpg", category: "Jardinage" },
-    { id: 14, name: "Bicarbonate", price: 2, image: "images/arrosoir.jpg", category: "Jardinage" },
-    { id: 15, name: "Canne à pêche", price: 60, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-    { id: 16, name: "Appâts", price: 10, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-    { id: 17, name: "Ballon de Basket", price: 60, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-    { id: 18, name: "Ballon de Foot", price: 60, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-    { id: 19, name: "Croquettes", price: 25, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-    { id: 20, name: "Papier à rouler", price: 2, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-    { id: 21, name: "Skateboard", price: 90, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-    { id: 22, name: "Spray Tag", price: 1900, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-    { id: 23, name: "Ticket à gratter", price: 25, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-    { id: 24, name: "Elastique", price: 20, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-    { id: 25, name: "Eponge", price: 1100, image: "images/arrosoir.jpg", category: "Divers Utiles" },
-    { id: 26, name: "BMX", price: 200, image: "images/arrosoir.jpg", category: "Jardinage" },
-    { id: 27, name: "Fertilisant", price: 9, image: "images/arrosoir.jpg", category: "Jardinage" },
-    { id: 28, name: "Lumière Violette", price: 18, image: "images/arrosoir.jpg", category: "Jardinage" },
-    { id: 29, name: "Pot de Fleurs", price: 8, image: "images/arrosoir.jpg", category: "Jardinage" },
-    { id: 30, name: "Table", price: 10, image: "images/arrosoir.jpg", category: "Jardinage" },
-    { id: 31, name: "Terre", price: 13, image: "images/arrosoir.jpg", category: "Jardinage" },
-    { id: 32, name: "Bac de Jardinage", price: 16, image: "images/arrosoir.jpg", category: "Jardinage" },
-    { id: 33, name: "Colle", price: 3, image: "images/arrosoir.jpg", category: "Papeterie" },
-    { id: 34, name: "Porte Documents", price: 10, image: "images/arrosoir.jpg", category: "Papeterie" },
-    { id: 35, name: "Portefeuille", price: 10, image: "images/arrosoir.jpg", category: "Papeterie" },
-    { id: 36, name: "Trousseau de clés", price: 90, image: "images/arrosoir.jpg", category: "Papeterie" },
-    { id: 37, name: "Menu Découverte", price: 90, image: "images/arrosoir.jpg", category: "Menu" },
-    { id: 38, name: "Menu Festin", price: 120, image: "images/arrosoir.jpg", category: "Menu" },
-    { id: 39, name: "Coca Cola Zero", price: 3, image: "images/arrosoir.jpg", category: "Menu" },
-    { id: 40, name: "Bouteille d'eau", price: 10, image: "images/arrosoir.jpg", category: "Menu" }
-  ];
+  <!-- Caddie flottant -->
+  <button id="cartButton" class="fixed bottom-6 right-6 bg-indigo-600 text-white p-3 rounded-full shadow-lg z-50 hover:bg-indigo-700">
+    🛒 <span id="cartCount">0</span>
+  </button>
 
-  const productGrid = document.getElementById('productGrid');
-  const searchInput = document.getElementById('searchInput');
-  const sortSelect = document.getElementById('sortSelect');
-  const categorySelect = document.getElementById('categorySelect');
+  <!-- Panier modale -->
+  <div id="cartModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
+    <div class="bg-white dark:bg-gray-800 rounded-lg max-w-md w-full p-6 relative">
+      <button onclick="toggleCart()" class="absolute top-2 right-2 text-gray-600 dark:text-gray-300 text-xl">&times;</button>
+      <h2 class="text-2xl font-bold mb-4 text-indigo-600 dark:text-indigo-300">Votre Panier</h2>
+      <div id="cartItems" class="space-y-4 max-h-64 overflow-y-auto"></div>
+      <hr class="my-4">
+      <div class="mb-4">
+        <label class="block mb-1 font-semibold">Nom :</label>
+        <input type="text" placeholder="Votre nom" class="w-full p-2 border border-gray-300 rounded dark:bg-gray-900 dark:text-white">
+      </div>
+      <div class="mb-4">
+        <label class="block mb-1 font-semibold">Adresse :</label>
+        <input type="text" placeholder="Votre adresse" class="w-full p-2 border border-gray-300 rounded dark:bg-gray-900 dark:text-white">
+      </div>
+      <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Valider la commande</button>
+    </div>
+  </div>
 
-  function displayProducts(items) {
-    productGrid.innerHTML = '';
-    if (items.length === 0) {
-      productGrid.innerHTML = '<p class="col-span-full text-center text-gray-500 dark:text-gray-400">Aucun produit trouvé.</p>';
-      return;
-    }
-    items.forEach(product => {
-      const card = document.createElement('article');
-      card.className = 'rounded overflow-hidden shadow-lg bg-white dark:bg-gray-800 flex flex-col';
-      card.innerHTML = `
-        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover" />
-        <div class="p-4 bg-indigo-100 dark:bg-indigo-900 flex flex-col items-center justify-center mt-auto">
-          <h3 class="text-center font-semibold text-lg text-indigo-800 dark:text-indigo-300">${product.name}</h3>
-          <p class="text-indigo-600 dark:text-indigo-400 font-semibold mt-1">${product.price.toFixed(2)} €</p>
-        </div>
-      `;
-      productGrid.appendChild(card);
-    });
-  }
+  <script>
+    const products = [...]; // garde ton tableau de produits complet ici comme tu l'avais
 
-  function filterAndSort() {
-    const query = searchInput.value.toLowerCase();
-    const selectedCategory = categorySelect.value;
-    let filtered = products.filter(p => p.name.toLowerCase().includes(query));
+    const productGrid = document.getElementById('productGrid');
+    const searchInput = document.getElementById('searchInput');
+    const sortSelect = document.getElementById('sortSelect');
+    const categorySelect = document.getElementById('categorySelect');
 
-    if (selectedCategory !== 'all') {
-      filtered = filtered.filter(p => p.category === selectedCategory);
+    function displayProducts(items) {
+      productGrid.innerHTML = '';
+      if (items.length === 0) {
+        productGrid.innerHTML = '<p class="col-span-full text-center text-gray-500 dark:text-gray-400">Aucun produit trouvé.</p>';
+        return;
+      }
+      items.forEach(product => {
+        const card = document.createElement('article');
+        card.className = 'rounded overflow-hidden shadow-lg bg-white dark:bg-gray-800 flex flex-col';
+        card.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover" />
+          <div class="p-4 bg-indigo-100 dark:bg-indigo-900 flex flex-col items-center justify-center mt-auto">
+            <h3 class="text-center font-semibold text-lg text-indigo-800 dark:text-indigo-300">${product.name}</h3>
+            <p class="text-indigo-600 dark:text-indigo-400 font-semibold mt-1">${product.price.toFixed(2)} €</p>
+            <button onclick="addToCart(${product.id})" class="mt-3 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">Ajouter au panier</button>
+          </div>
+        `;
+        productGrid.appendChild(card);
+      });
     }
 
-    const sortValue = sortSelect.value;
-    if (sortValue === 'name-asc') filtered.sort((a, b) => a.name.localeCompare(b.name));
-    else if (sortValue === 'name-desc') filtered.sort((a, b) => b.name.localeCompare(a.name));
-    else if (sortValue === 'price-asc') filtered.sort((a, b) => a.price - b.price);
-    else if (sortValue === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+    function filterAndSort() {
+      const query = searchInput.value.toLowerCase();
+      const selectedCategory = categorySelect.value;
+      let filtered = products.filter(p => p.name.toLowerCase().includes(query));
+      if (selectedCategory !== 'all') filtered = filtered.filter(p => p.category === selectedCategory);
+      const sortValue = sortSelect.value;
+      if (sortValue === 'name-asc') filtered.sort((a, b) => a.name.localeCompare(b.name));
+      else if (sortValue === 'name-desc') filtered.sort((a, b) => b.name.localeCompare(a.name));
+      else if (sortValue === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+      else if (sortValue === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+      displayProducts(filtered);
+    }
 
-    displayProducts(filtered);
-  }
+    let cart = [];
 
-  displayProducts(products);
-  searchInput.addEventListener('input', filterAndSort);
-  sortSelect.addEventListener('change', filterAndSort);
-  categorySelect.addEventListener('change', filterAndSort);
-</script>
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      const existing = cart.find(item => item.id === id);
+      if (existing) existing.quantity += 1;
+      else cart.push({ ...product, quantity: 1 });
+      updateCartCount();
+    }
+
+    function updateCartCount() {
+      document.getElementById('cartCount').textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+    }
+
+    function toggleCart() {
+      const modal = document.getElementById('cartModal');
+      modal.classList.toggle('hidden');
+      renderCartItems();
+    }
+
+    function renderCartItems() {
+      const container = document.getElementById('cartItems');
+      container.innerHTML = '';
+      if (cart.length === 0) {
+        container.innerHTML = '<p class="text-gray-500">Votre panier est vide.</p>';
+        return;
+      }
+      cart.forEach(item => {
+        const div = document.createElement('div');
+        div.className = "flex items-center justify-between";
+        div.innerHTML = `
+          <div>
+            <h4 class="font-semibold">${item.name}</h4>
+            <p>${item.price.toFixed(2)} € x 
+              <input type="number" min="1" value="${item.quantity}" onchange="changeQuantity(${item.id}, this.value)" class="w-16 p-1 border rounded text-center dark:bg-gray-700 dark:text-white">
+              = ${(item.price * item.quantity).toFixed(2)} €
+            </p>
+          </div>
+          <button onclick="removeFromCart(${item.id})" class="text-red-600 hover:underline">Retirer</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function changeQuantity(id, newQty) {
+      const item = cart.find(p => p.id === id);
+      if (item) item.quantity = parseInt(newQty) || 1;
+      renderCartItems();
+      updateCartCount();
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(p => p.id !== id);
+      renderCartItems();
+      updateCartCount();
+    }
+
+    displayProducts(products);
+    searchInput.addEventListener('input', filterAndSort);
+    sortSelect.addEventListener('change', filterAndSort);
+    categorySelect.addEventListener('change', filterAndSort);
+    document.getElementById('cartButton').addEventListener('click', toggleCart);
+  </script>
+</body>
+</html>
