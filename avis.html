@@ -61,7 +61,7 @@
 
     <!-- Barre de recherche -->
     <div class="mb-8">
-      <input id="searchInput" type="text" placeholder="🔍 Rechercher un avis (nom ou message)..."
+      <input id="searchInput" type="text" placeholder="🔍 Rechercher un avis (nom, message ou employé)..."
              class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" />
     </div>
 
@@ -81,25 +81,29 @@
         nom: "Allen Zayn",
         date: "14 Juillet 2025",
         message: "Rapide, Efficace, Sans faute un expert dans son métier. Un responsable exemplaire et respectueux ! Une pépite monumentale avec une efficacité remarquable. J’vois que lui au LTD il gère tout j’ai l’impression il boss dur et c’est le meilleur employé pour moi ! ",
-        note: 5
+        note: 5,
+        employe: "Allen Zayn"
       },
       {
         nom: "Sophie Martin",
         date: "28 juin 2025",
         message: "Livraison rapide et produits de qualité. Je referai une commande sans hésiter.",
-        note: 4
+        note: 4,
+        employe: "Lucas Garcia"
       },
       {
         nom: "Alexandre Leroy",
         date: "5 mai 2025",
         message: "Quelques problèmes de stock, mais l’équipe a été très réactive. Bon suivi !",
-        note: 3
+        note: 3,
+        employe: "Nina Bourdon"
       },
       {
         nom: "Lucas Fontaine",
         date: "1 août 2025",
         message: "Site très clair et efficace. Rien à dire.",
-        note: 5
+        note: 5,
+        employe: "Jules Masson"
       }
     ];
 
@@ -128,6 +132,7 @@
           <h3 class="font-semibold text-lg text-indigo-700 dark:text-indigo-300">${a.nom}</h3>
           <p class="text-sm text-gray-500 dark:text-gray-400">Publié le ${a.date}</p>
           <p class="mt-2">${a.message}</p>
+          <p class="mt-1 text-sm text-indigo-600 dark:text-indigo-400">Employé concerné : <span class="font-medium">${a.employe}</span></p>
           <div class="mt-2 text-yellow-400">${afficherEtoiles(a.note)}</div>
         `;
         avisList.appendChild(card);
@@ -142,7 +147,8 @@
       const query = searchInput.value.toLowerCase();
       const filtrés = avis.filter(a =>
         a.nom.toLowerCase().includes(query) ||
-        a.message.toLowerCase().includes(query)
+        a.message.toLowerCase().includes(query) ||
+        a.employe.toLowerCase().includes(query)
       );
       afficherAvis(filtrés);
     }
