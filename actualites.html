@@ -24,10 +24,10 @@
         <li><a href="commande.html" class="hover:text-indigo-300">Commande</a></li>
         <li><a href="avis.html" class="hover:text-indigo-300">Avis Clients</a></li>
         <li><a href="equipe.html" class="hover:text-indigo-300">Notre Équipe</a></li>
-        <li><a href="actualites.html" class="hover:text-indigo-300">Actualités</a></li>
+        <li><a href="actualites.html" class="hover:text-indigo-300 font-bold underline">Actualités</a></li>
         <li><a href="contact.html" class="hover:text-indigo-300">Contact</a></li>
       </ul>
-      <button id="nav-toggle" class="md:hidden focus:outline-none">
+      <button id="nav-toggle" class="md:hidden focus:outline-none" aria-label="Toggle menu">
         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M4 6h16M4 12h16M4 18h16" />
@@ -44,41 +44,39 @@
         <li><a href="commande.html" class="block hover:text-indigo-300">Commande</a></li>
         <li><a href="avis.html" class="block hover:text-indigo-300">Avis Clients</a></li>
         <li><a href="equipe.html" class="block hover:text-indigo-300">Notre Équipe</a></li>
-        <li><a href="actualites.html" class="block hover:text-indigo-300">Actualités</a></li>
+        <li><a href="actualites.html" class="block hover:text-indigo-300 font-bold underline">Actualités</a></li>
         <li><a href="contact.html" class="block hover:text-indigo-300">Contact</a></li>
       </ul>
     </div>
   </header>
 
   <!-- Contenu actualités -->
-  <main class="max-w-6xl mx-auto p-6 mt-20 space-y-8">
+  <main class="max-w-7xl mx-auto p-6 mt-24 space-y-6">
 
-    <!-- Actualité 1 -->
-    <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-      <h2 class="text-2xl font-semibold mb-2">Promotion sur l’Essence Sans Plomb 95</h2>
-      <time datetime="2025-07-25" class="block text-indigo-600 italic mb-4">25 juillet 2025</time>
-      <p class="text-gray-700 dark:text-gray-300">
-        Profitez d’une remise de 10% sur l’Essence Sans Plomb 95 jusqu’à la fin du mois. Offre valable dans toutes nos stations.
-      </p>
-    </article>
+    <h1 class="text-4xl font-extrabold text-indigo-600 text-center mb-8">Actualités LTD Grove Street</h1>
 
-    <!-- Actualité 2 -->
-    <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-      <h2 class="text-2xl font-semibold mb-2">Nouveau site web lancé !</h2>
-      <time datetime="2025-07-15" class="block text-indigo-600 italic mb-4">15 juillet 2025</time>
-      <p class="text-gray-700 dark:text-gray-300">
-        Découvrez notre tout nouveau site internet, moderne et facile à utiliser, avec catalogue en ligne et formulaire de commande.
-      </p>
-    </article>
+    <!-- Barre de recherche -->
+    <div class="max-w-xl mx-auto">
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="Rechercher une actualité..."
+        class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+        aria-label="Rechercher une actualité"
+      />
+    </div>
 
-    <!-- Actualité 3 -->
-    <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-      <h2 class="text-2xl font-semibold mb-2">Événement client - Journée portes ouvertes</h2>
-      <time datetime="2025-06-30" class="block text-indigo-600 italic mb-4">30 juin 2025</time>
-      <p class="text-gray-700 dark:text-gray-300">
-        Venez rencontrer notre équipe lors de notre journée portes ouvertes le 10 août 2025. Ateliers, démonstrations et surprises au programme !
-      </p>
-    </article>
+    <!-- Liste actualités -->
+    <section id="newsList" class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
+      <!-- Les actualités seront injectées ici par JS -->
+
+    </section>
+
+    <!-- Message si aucune actualité -->
+    <p id="noResultsMessage" class="hidden text-center text-gray-500 dark:text-gray-400 text-lg mt-12">
+      Aucun résultat trouvé pour votre recherche.
+    </p>
 
   </main>
 
@@ -93,6 +91,93 @@
     navToggle.addEventListener('click', () => {
       navMenu.classList.toggle('hidden');
     });
+  </script>
+
+  <!-- Script actualités + recherche -->
+  <script>
+    const news = [
+      {
+        id: 1,
+        title: "Promotion sur l’Essence Sans Plomb 95",
+        date: "2025-07-25",
+        content: "Profitez d’une remise de 10% sur l’Essence Sans Plomb 95 jusqu’à la fin du mois. Offre valable dans toutes nos stations.",
+        tags: ["Promotion", "Essence"]
+      },
+      {
+        id: 2,
+        title: "Nouveau site web lancé !",
+        date: "2025-07-15",
+        content: "Découvrez notre tout nouveau site internet, moderne et facile à utiliser, avec catalogue en ligne et formulaire de commande.",
+        tags: ["Site web", "Lancement"]
+      },
+      {
+        id: 3,
+        title: "Événement client - Journée portes ouvertes",
+        date: "2025-06-30",
+        content: "Venez rencontrer notre équipe lors de notre journée portes ouvertes le 10 août 2025. Ateliers, démonstrations et surprises au programme !",
+        tags: ["Événement", "Client"]
+      },
+      {
+        id: 4,
+        title: "Extension des horaires des stations",
+        date: "2025-08-01",
+        content: "Pour mieux vous servir, nos stations étendent leurs horaires d’ouverture jusqu’à 22h tous les jours.",
+        tags: ["Horaires", "Stations"]
+      }
+    ];
+
+    const newsList = document.getElementById('newsList');
+    const searchInput = document.getElementById('searchInput');
+    const noResultsMessage = document.getElementById('noResultsMessage');
+
+    // Fonction pour formater la date en français (ex: 25 juillet 2025)
+    function formatDate(dateString) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(dateString).toLocaleDateString('fr-FR', options);
+    }
+
+    // Fonction pour afficher les actualités filtrées
+    function displayNews(filteredNews) {
+      newsList.innerHTML = '';
+
+      if (filteredNews.length === 0) {
+        noResultsMessage.classList.remove('hidden');
+        return;
+      } else {
+        noResultsMessage.classList.add('hidden');
+      }
+
+      filteredNews.forEach(item => {
+        const article = document.createElement('article');
+        article.className = "bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow duration-300 flex flex-col";
+
+        article.innerHTML = `
+          <h2 class="text-xl font-semibold mb-2 text-indigo-600">${item.title}</h2>
+          <time datetime="${item.date}" class="block italic text-sm text-indigo-500 mb-4">${formatDate(item.date)}</time>
+          <p class="text-gray-700 dark:text-gray-300 flex-grow">${item.content}</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            ${item.tags.map(tag => `<span class="text-xs font-semibold bg-indigo-100 dark:bg-indigo-700 text-indigo-700 dark:text-indigo-200 rounded-full px-2 py-1 select-none">${tag}</span>`).join('')}
+          </div>
+        `;
+        newsList.appendChild(article);
+      });
+    }
+
+    // Recherche temps réel
+    searchInput.addEventListener('input', e => {
+      const query = e.target.value.trim().toLowerCase();
+
+      const filtered = news.filter(item =>
+        item.title.toLowerCase().includes(query) ||
+        item.content.toLowerCase().includes(query) ||
+        item.tags.some(tag => tag.toLowerCase().includes(query))
+      );
+
+      displayNews(filtered);
+    });
+
+    // Afficher toutes les actualités au chargement
+    displayNews(news);
   </script>
 
 </body>
