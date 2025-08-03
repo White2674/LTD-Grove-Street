@@ -108,6 +108,20 @@
         <h2 id="cartTitle" class="text-xl font-semibold text-indigo-600 dark:text-indigo-300">🛒 Votre Panier</h2>
         <button onclick="toggleCart()" class="text-gray-600 dark:text-gray-300 text-2xl hover:text-red-500" aria-label="Fermer le panier">&times;</button>
       </div>
+      <div id="cartSummary" class="space-y-2 text-sm bg-indigo-50 dark:bg-gray-800 p-3 rounded border border-indigo-200 dark:border-gray-700">
+        <div class="flex justify-between">
+          <span>Total des articles :</span>
+          <span id="cartTotalItems">0.00</span> €
+        </div>
+        <div class="flex justify-between">
+          <span>Frais de livraison :</span>
+          <span>250.00</span> €
+        </div>
+        <div class="flex justify-between font-semibold text-base border-t pt-2 border-gray-300 dark:border-gray-600">
+          <span>Total commande :</span>
+          <span id="cartGrandTotal">0.00</span> €
+        </div>
+      </div>
 
       <div class="px-4 space-y-4 mt-4">
         <div>
@@ -252,8 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Rendu du contenu du panier
   function renderCart() {
     // Supprimer ancien contenu (hors résumé et formulaire)
-const summary = document.getElementById('cartSummary');
-cartPanel.insertBefore(itemDiv, summary);
+    const existingItems = cartPanel.querySelectorAll('.cart-item');
     existingItems.forEach(el => el.remove());
 
     // Création liste produits
@@ -267,41 +280,13 @@ cartPanel.insertBefore(itemDiv, summary);
           <span class="text-sm text-gray-600 dark:text-gray-400">${item.price.toFixed(2)} € / unité</span>
         </div>
         <div class="flex items-center space-x-2">
-<input type="number" min="1" value="${item.quantity}" data-id="${item.id}" class="quantity-input w-16 text-center border rounded dark:bg-gray-700 dark:text-white" />
+          <button aria-label="Diminuer quantité" class="quantity-btn px-2 py-1 bg-red-600 hover:bg-red-700 rounded text-white font-bold" data-action="decrease" data-id="${item.id}">-</button>
+          <span class="font-semibold">${item.quantity}</span>
+          <button aria-label="Augmenter quantité" class="quantity-btn px-2 py-1 bg-green-600 hover:bg-green-700 rounded text-white font-bold" data-action="increase" data-id="${item.id}">+</button>
+          <button aria-label="Supprimer produit" class="remove-btn ml-4 text-red-600 hover:text-red-800 font-bold" data-id="${item.id}">&times;</button>
         </div>
       ;
-<!-- À déplacer : ce bloc -->
-<div id="cartSummary" class="space-y-2 text-sm bg-indigo-50 dark:bg-gray-800 p-3 rounded border border-indigo-200 dark:border-gray-700 mt-4">
-  <div class="flex justify-between">
-    <span>Total des articles :</span>
-    <span id="cartTotalItems">0.00</span> €
-  </div>
-  <div class="flex justify-between">
-    <span>Frais de livraison :</span>
-    <span>250.00</span> €
-  </div>
-  <div class="flex justify-between font-semibold text-base border-t pt-2 border-gray-300 dark:border-gray-600">
-    <span>Total commande :</span>
-    <span id="cartGrandTotal">0.00</span> €
-  </div>
-</div>
       cartPanel.insertBefore(itemDiv, cartPanel.querySelector('.px-4.space-y-4.mt-4'));
-cartPanel.querySelectorAll('.quantity-input').forEach(input => {
-  input.addEventListener('input', (e) => {
-    const id = parseInt(e.target.dataset.id);
-    const newQuantity = parseInt(e.target.value);
-    const item = cart.find(i => i.id === id);
-    if (!item) return;
-
-    if (newQuantity >= 1) {
-      item.quantity = newQuantity;
-    } else {
-      cart = cart.filter(i => i.id !== id); // supprime si valeur invalide
-    }
-    updateCartCount();
-    renderCart();
-  });
-});
 
     });
 
