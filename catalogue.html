@@ -218,20 +218,125 @@ document.addEventListener('DOMContentLoaded', () => {
     displayProducts(filtered);
   }
 
+  // --- Gestion du panier ---
+  const cartButton = document.getElementById('cartButton');
+  const cartModal = document.getElementById('cartModal');
+  const cartPanel = document.getElementById('cartPanel');
+  const cartTotalItemsEl = document.getElementById('cartTotalItems');
+  const cartGrandTotalEl = document.getElementById('cartGrandTotal');
+  const cartCountEl = document.getElementById('cartCount');
+
   window.addToCart = function(id) {
     const product = products.find(p => p.id === id);
     const existing = cart.find(item => item.id === id);
-    if (existing) existing.quantity += 1;
-    else cart.push({ ...product, quantity: 1 });
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({ ...product, quantity: 1 });
+    }
     updateCartCount();
+    renderCart();
   };
 
   function updateCartCount() {
     const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.getElementById('cartCount').textContent = count;
+    cartCountEl.textContent = count;
   }
 
-  // Événements
+  function toggleCart() {
+    if (cartModal.classList.contains('hidden')) {
+      renderCart();
+      cartModal.classList.remove('hidden');
+      cartModal.setAttribute('aria-hidden', 'false');
+      cartPanel.classList.remove('translate-x-full');
+    } else {
+      cartModal.classList.add('hidden');
+      cartModal.setAttribute('aria-hidden', 'true');
+      cartPanel.classList.add('translate-x-full');
+    }
+  }
+
+  cartButton.addEventListener('click', toggleCart);
+
+  // Fermer en cliquant hors panel
+  cartModal.addEventListener('click', (e) => {
+    if (e.target === cartModal) toggleCart();
+  });
+
+  // Rendu du contenu du panier
+  function renderCart() {
+    // Supprimer ancien contenu (hors résumé et formulaire)
+    const existingItems = cartPanel.querySelectorAll('.cart-item');
+    existingItems.forEach(el => el.remove());
+
+    // Création liste produits
+    cart.forEach(item => {
+      const itemDiv = document.createElement('div');
+      itemDiv.className = "cart-item flex justify-between items-center px-4 py-2 border-b border-gray-200 dark:border-gray-700";
+
+      itemDiv.innerHTML = `
+        <div class="flex flex-col max-w-[60%]">
+          <span class="font-semibold text-indigo-700 dark:text-indigo-300">${item.name}</span>
+          <span class="text-sm text-gray-600 dark:text-gray-400">${item.price.toFixed(2)} € / unité</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button aria-label="Diminuer quantité" class="quantity-btn px-2 py-1 bg-red-600 hover:bg-red-700 rounded text-white font-bold" data-action="decrease" data-id="${item.id}">-</button>
+          <span class="font-semibold">${item.quantity}</span>
+          <button aria-label="Augmenter quantité" class="quantity-btn px-2 py-1 bg-green-600 hover:bg-green-700 rounded text-white font-bold" data-action="increase" data-id="${item.id}">+</button>
+          <button aria-label="Supprimer produit" class="remove-btn ml-4 text-red-600 hover:text-red-800 font-bold" data-id="${item.id}">&times;</button>
+        </div>
+      `;
+      cartPanel.insertBefore(itemDiv, cartPanel.querySelector('.px-4.space-y-4.mt-4'));
+
+    });
+
+    // Met à jour les totaux
+    updateCartTotals();
+
+    // Ajoute les gestionnaires sur les boutons +/- et supprimer
+    cartPanel.querySelectorAll('.quantity-btn').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const id = parseInt(e.currentTarget.dataset.id);
+        const action = e.currentTarget.dataset.action;
+        const item = cart.find(i => i.id === id);
+        if (!item) return;
+
+        if (action === 'increase') {
+          item.quantity++;
+        } else if (action === 'decrease') {
+          item.quantity--;
+          if (item.quantity <= 0) {
+            cart = cart.filter(i => i.id !== id);
+          }
+        }
+        updateCartCount();
+        renderCart();
+      });
+    });
+
+    cartPanel.querySelectorAll('.remove-btn').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const id = parseInt(e.currentTarget.dataset.id);
+        cart = cart.filter(i => i.id !== id);
+        updateCartCount();
+        renderCart();
+      });
+    });
+  }
+
+  function updateCartTotals() {
+    const totalItems = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const shippingCost = 250.00;
+    const grandTotal = totalItems + shippingCost;
+
+    cartTotalItemsEl.textContent = totalItems.toFixed(2);
+    cartGrandTotalEl.textContent = grandTotal.toFixed(2);
+  }
+
+  // Permet de fermer le panier via le bouton "×"
+  window.toggleCart = toggleCart;
+
+  // Événements recherche, tri, catégorie
   searchInput.addEventListener('input', filterAndSort);
   sortSelect.addEventListener('change', filterAndSort);
   categorySelect.addEventListener('change', filterAndSort);
