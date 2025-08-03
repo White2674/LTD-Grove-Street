@@ -167,65 +167,98 @@
   </div>
 
   <!-- Script catalogue & panier -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const products = [
-        { id: 1, name: "Marteau", price: 9.99, category: "Quincaillerie", image: "https://via.placeholder.com/300x200?text=Marteau" },
-        { id: 2, name: "Clé à molette", price: 12.49, category: "Quincaillerie", image: "https://via.placeholder.com/300x200?text=Cl%C3%A9+%C3%A0+molette" },
-        { id: 3, name: "Carnet A5", price: 3.99, category: "Papeterie", image: "https://via.placeholder.com/300x200?text=Carnet+A5" },
-        { id: 4, name: "Gants de jardin", price: 5.95, category: "Jardinage", image: "https://via.placeholder.com/300x200?text=Gants+de+jardin" }
-      ];
+<!-- Filtrage, tri, recherche -->
+<input id="searchInput" type="text" placeholder="Rechercher..." class="p-2 border rounded" />
+<select id="categorySelect" class="p-2 border rounded">
+  <option value="all">Toutes catégories</option>
+  <option value="Quincaillerie">Quincaillerie</option>
+  <option value="Papeterie">Papeterie</option>
+  <option value="Jardinage">Jardinage</option>
+</select>
+<select id="sortSelect" class="p-2 border rounded">
+  <option value="name-asc">Nom A-Z</option>
+  <option value="name-desc">Nom Z-A</option>
+  <option value="price-asc">Prix croissant</option>
+  <option value="price-desc">Prix décroissant</option>
+</select>
 
-      const productGrid = document.getElementById('productGrid');
-      const searchInput = document.getElementById('searchInput');
-      const sortSelect = document.getElementById('sortSelect');
-      const categorySelect = document.getElementById('categorySelect');
+<!-- Compteur panier -->
+<div>Articles dans le panier : <span id="cartCount">0</span></div>
 
-      let cart = [];
+<!-- Grille produits -->
+<section id="productGrid" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-6xl mx-auto px-4"></section>
 
-      function displayProducts(items) {
-        productGrid.innerHTML = '';
-        if (items.length === 0) {
-          productGrid.innerHTML = '<p class="col-span-full text-center text-gray-500 dark:text-gray-400">Aucun produit trouvé.</p>';
-          return;
-        }
-        items.forEach(product => {
-          const card = document.createElement('article');
-          card.className = 'rounded overflow-hidden shadow-lg bg-white dark:bg-gray-800 flex flex-col';
-          card.innerHTML = `
-            <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover" />
-            <div class="p-4 bg-indigo-100 dark:bg-indigo-900 flex flex-col items-center justify-center mt-auto">
-              <h3 class="text-center font-semibold text-lg text-indigo-800 dark:text-indigo-300">${product.name}</h3>
-              <p class="text-indigo-600 dark:text-indigo-400 font-semibold mt-1">${product.price.toFixed(2)} €</p>
-              <button onclick="addToCart(${product.id})" class="mt-3 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">Ajouter au panier</button>
-            </div>
-          `;
-          productGrid.appendChild(card);
-        });
-      }
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const products = [
+    { id: 1, name: "Marteau", price: 9.99, category: "Quincaillerie", image: "https://via.placeholder.com/300x200?text=Marteau" },
+    { id: 2, name: "Clé à molette", price: 12.49, category: "Quincaillerie", image: "https://via.placeholder.com/300x200?text=Cl%C3%A9+%C3%A0+molette" },
+    { id: 3, name: "Carnet A5", price: 3.99, category: "Papeterie", image: "https://via.placeholder.com/300x200?text=Carnet+A5" },
+    { id: 4, name: "Gants de jardin", price: 5.95, category: "Jardinage", image: "https://via.placeholder.com/300x200?text=Gants+de+jardin" }
+  ];
 
-      function filterAndSort() {
-        const query = searchInput.value.toLowerCase();
-        const selectedCategory = categorySelect.value;
-        let filtered = products.filter(p => p.name.toLowerCase().includes(query));
-        if (selectedCategory !== 'all') filtered = filtered.filter(p => p.category === selectedCategory);
+  const productGrid = document.getElementById('productGrid');
+  const searchInput = document.getElementById('searchInput');
+  const sortSelect = document.getElementById('sortSelect');
+  const categorySelect = document.getElementById('categorySelect');
 
-        switch (sortSelect.value) {
-          case 'name-asc': filtered.sort((a, b) => a.name.localeCompare(b.name)); break;
-          case 'name-desc': filtered.sort((a, b) => b.name.localeCompare(a.name)); break;
-          case 'price-asc': filtered.sort((a, b) => a.price - b.price); break;
-          case 'price-desc': filtered.sort((a, b) => b.price - a.price); break;
-        }
-        displayProducts(filtered);
-      }
+  let cart = [];
 
-      window.addToCart = function(id) {
-        const product = products.find(p => p.id === id);
-        const existing = cart.find(item => item.id === id);
-        if (existing) existing.quantity += 1;
-        else cart.push({ ...product, quantity: 1 });
-        updateCartCount();
-      };
+  function displayProducts(items) {
+    productGrid.innerHTML = '';
+    if (items.length === 0) {
+      productGrid.innerHTML = '<p class="col-span-full text-center text-gray-500 dark:text-gray-400">Aucun produit trouvé.</p>';
+      return;
+    }
+    items.forEach(product => {
+      const card = document.createElement('article');
+      card.className = 'rounded overflow-hidden shadow-lg bg-white dark:bg-gray-800 flex flex-col';
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover" />
+        <div class="p-4 bg-indigo-100 dark:bg-indigo-900 flex flex-col items-center justify-center mt-auto">
+          <h3 class="text-center font-semibold text-lg text-indigo-800 dark:text-indigo-300">${product.name}</h3>
+          <p class="text-indigo-600 dark:text-indigo-400 font-semibold mt-1">${product.price.toFixed(2)} €</p>
+          <button onclick="addToCart(${product.id})" class="mt-3 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">Ajouter au panier</button>
+        </div>
+      `;
+      productGrid.appendChild(card);
+    });
+  }
 
-      function updateCartCount() {
-        document.getElementById('cartCount').textContent = cart.reduce((sum, item) => sum + item.quantity, 
+  function filterAndSort() {
+    const query = searchInput.value.toLowerCase();
+    const selectedCategory = categorySelect.value;
+    let filtered = products.filter(p => p.name.toLowerCase().includes(query));
+    if (selectedCategory !== 'all') filtered = filtered.filter(p => p.category === selectedCategory);
+
+    switch (sortSelect.value) {
+      case 'name-asc': filtered.sort((a, b) => a.name.localeCompare(b.name)); break;
+      case 'name-desc': filtered.sort((a, b) => b.name.localeCompare(a.name)); break;
+      case 'price-asc': filtered.sort((a, b) => a.price - b.price); break;
+      case 'price-desc': filtered.sort((a, b) => b.price - a.price); break;
+    }
+    displayProducts(filtered);
+  }
+
+  window.addToCart = function(id) {
+    const product = products.find(p => p.id === id);
+    const existing = cart.find(item => item.id === id);
+    if (existing) existing.quantity += 1;
+    else cart.push({ ...product, quantity: 1 });
+    updateCartCount();
+  };
+
+  function updateCartCount() {
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById('cartCount').textContent = count;
+  }
+
+  // Événements
+  searchInput.addEventListener('input', filterAndSort);
+  sortSelect.addEventListener('change', filterAndSort);
+  categorySelect.addEventListener('change', filterAndSort);
+
+  // Affiche tous les produits au départ
+  filterAndSort();
+});
+</script>
