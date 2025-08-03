@@ -267,10 +267,7 @@ cartPanel.insertBefore(itemDiv, summary);
           <span class="text-sm text-gray-600 dark:text-gray-400">${item.price.toFixed(2)} € / unité</span>
         </div>
         <div class="flex items-center space-x-2">
-          <button aria-label="Diminuer quantité" class="quantity-btn px-2 py-1 bg-red-600 hover:bg-red-700 rounded text-white font-bold" data-action="decrease" data-id="${item.id}">-</button>
-          <span class="font-semibold">${item.quantity}</span>
-          <button aria-label="Augmenter quantité" class="quantity-btn px-2 py-1 bg-green-600 hover:bg-green-700 rounded text-white font-bold" data-action="increase" data-id="${item.id}">+</button>
-          <button aria-label="Supprimer produit" class="remove-btn ml-4 text-red-600 hover:text-red-800 font-bold" data-id="${item.id}">&times;</button>
+<input type="number" min="1" value="${item.quantity}" data-id="${item.id}" class="quantity-input w-16 text-center border rounded dark:bg-gray-700 dark:text-white" />
         </div>
       ;
 <!-- À déplacer : ce bloc -->
@@ -289,6 +286,22 @@ cartPanel.insertBefore(itemDiv, summary);
   </div>
 </div>
       cartPanel.insertBefore(itemDiv, cartPanel.querySelector('.px-4.space-y-4.mt-4'));
+cartPanel.querySelectorAll('.quantity-input').forEach(input => {
+  input.addEventListener('input', (e) => {
+    const id = parseInt(e.target.dataset.id);
+    const newQuantity = parseInt(e.target.value);
+    const item = cart.find(i => i.id === id);
+    if (!item) return;
+
+    if (newQuantity >= 1) {
+      item.quantity = newQuantity;
+    } else {
+      cart = cart.filter(i => i.id !== id); // supprime si valeur invalide
+    }
+    updateCartCount();
+    renderCart();
+  });
+});
 
     });
 
