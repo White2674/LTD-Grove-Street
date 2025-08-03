@@ -10,6 +10,32 @@
 
   <!-- Style custom -->
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Overlay effet sur image au hover */
+    .news-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .news-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 20px rgba(99, 102, 241, 0.4); /* Indigo shadow */
+    }
+    .news-img-container {
+      position: relative;
+      overflow: hidden;
+      border-top-left-radius: 0.5rem; /* rounded-t-lg */
+      border-top-right-radius: 0.5rem;
+    }
+    .news-img-container img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: scale 0.5s ease;
+    }
+    .news-img-container:hover img {
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
@@ -69,7 +95,7 @@
     <!-- Liste actualités -->
     <section id="newsList" class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 
-      <!-- Les actualités seront injectées ici par JS -->
+      <!-- Actualités injectées par JS -->
 
     </section>
 
@@ -101,28 +127,32 @@
         title: "Promotion sur l’Essence Sans Plomb 95",
         date: "2025-07-25",
         content: "Profitez d’une remise de 10% sur l’Essence Sans Plomb 95 jusqu’à la fin du mois. Offre valable dans toutes nos stations.",
-        tags: ["Promotion", "Essence"]
+        tags: ["Promotion", "Essence"],
+        image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
       },
       {
         id: 2,
         title: "Nouveau site web lancé !",
         date: "2025-07-15",
         content: "Découvrez notre tout nouveau site internet, moderne et facile à utiliser, avec catalogue en ligne et formulaire de commande.",
-        tags: ["Site web", "Lancement"]
+        tags: ["Site web", "Lancement"],
+        image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
       },
       {
         id: 3,
         title: "Événement client - Journée portes ouvertes",
         date: "2025-06-30",
         content: "Venez rencontrer notre équipe lors de notre journée portes ouvertes le 10 août 2025. Ateliers, démonstrations et surprises au programme !",
-        tags: ["Événement", "Client"]
+        tags: ["Événement", "Client"],
+        image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
       },
       {
         id: 4,
         title: "Extension des horaires des stations",
         date: "2025-08-01",
         content: "Pour mieux vous servir, nos stations étendent leurs horaires d’ouverture jusqu’à 22h tous les jours.",
-        tags: ["Horaires", "Stations"]
+        tags: ["Horaires", "Stations"],
+        image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"
       }
     ];
 
@@ -130,13 +160,11 @@
     const searchInput = document.getElementById('searchInput');
     const noResultsMessage = document.getElementById('noResultsMessage');
 
-    // Fonction pour formater la date en français (ex: 25 juillet 2025)
     function formatDate(dateString) {
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       return new Date(dateString).toLocaleDateString('fr-FR', options);
     }
 
-    // Fonction pour afficher les actualités filtrées
     function displayNews(filteredNews) {
       newsList.innerHTML = '';
 
@@ -149,21 +177,26 @@
 
       filteredNews.forEach(item => {
         const article = document.createElement('article');
-        article.className = "bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow duration-300 flex flex-col";
+        article.className = "news-card bg-white dark:bg-gray-800 rounded-lg shadow-md flex flex-col overflow-hidden";
 
         article.innerHTML = `
-          <h2 class="text-xl font-semibold mb-2 text-indigo-600">${item.title}</h2>
-          <time datetime="${item.date}" class="block italic text-sm text-indigo-500 mb-4">${formatDate(item.date)}</time>
-          <p class="text-gray-700 dark:text-gray-300 flex-grow">${item.content}</p>
-          <div class="mt-4 flex flex-wrap gap-2">
-            ${item.tags.map(tag => `<span class="text-xs font-semibold bg-indigo-100 dark:bg-indigo-700 text-indigo-700 dark:text-indigo-200 rounded-full px-2 py-1 select-none">${tag}</span>`).join('')}
+          <div class="news-img-container">
+            <img src="${item.image}" alt="${item.title}" loading="lazy" />
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h2 class="text-xl font-semibold mb-2 text-indigo-600">${item.title}</h2>
+            <time datetime="${item.date}" class="block italic text-sm text-indigo-500 mb-4">${formatDate(item.date)}</time>
+            <p class="text-gray-700 dark:text-gray-300 flex-grow">${item.content}</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              ${item.tags.map(tag => `<span class="text-xs font-semibold bg-indigo-100 dark:bg-indigo-700 text-indigo-700 dark:text-indigo-200 rounded-full px-2 py-1 select-none">${tag}</span>`).join('')}
+            </div>
           </div>
         `;
+
         newsList.appendChild(article);
       });
     }
 
-    // Recherche temps réel
     searchInput.addEventListener('input', e => {
       const query = e.target.value.trim().toLowerCase();
 
@@ -176,7 +209,6 @@
       displayNews(filtered);
     });
 
-    // Afficher toutes les actualités au chargement
     displayNews(news);
   </script>
 
