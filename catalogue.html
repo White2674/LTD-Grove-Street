@@ -166,28 +166,6 @@
     </div>
   </div>
 
-  <!-- Script catalogue & panier -->
-<!-- Filtrage, tri, recherche -->
-<input id="searchInput" type="text" placeholder="Rechercher..." class="p-2 border rounded" />
-<select id="categorySelect" class="p-2 border rounded">
-  <option value="all">Toutes catégories</option>
-  <option value="Quincaillerie">Quincaillerie</option>
-  <option value="Papeterie">Papeterie</option>
-  <option value="Jardinage">Jardinage</option>
-</select>
-<select id="sortSelect" class="p-2 border rounded">
-  <option value="name-asc">Nom A-Z</option>
-  <option value="name-desc">Nom Z-A</option>
-  <option value="price-asc">Prix croissant</option>
-  <option value="price-desc">Prix décroissant</option>
-</select>
-
-<!-- Compteur panier -->
-<div>Articles dans le panier : <span id="cartCount">0</span></div>
-
-<!-- Grille produits -->
-<section id="productGrid" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-6xl mx-auto px-4"></section>
-
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const products = [
