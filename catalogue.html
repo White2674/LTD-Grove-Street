@@ -276,21 +276,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
 
-    <div id="cartSummary" class="space-y-2 text-sm bg-indigo-50 dark:bg-gray-800 p-3 rounded border border-indigo-200 dark:border-gray-700">
-        <div class="flex justify-between">
-          <span>Total des articles :</span>
-          <span id="cartTotalItems">0.00</span> €
-        </div>
-        <div class="flex justify-between">
-          <span>Frais de livraison :</span>
-          <span>250.00</span> €
-        </div>
-        <div class="flex justify-between font-semibold text-base border-t pt-2 border-gray-300 dark:border-gray-600">
-          <span>Total commande :</span>
-          <span id="cartGrandTotal">0.00</span> €
-        </div>
-      </div>
-
     // Met à jour les totaux
     updateCartTotals();
 
@@ -324,6 +309,20 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+    <div id="cartSummary" class="space-y-2 text-sm bg-indigo-50 dark:bg-gray-800 p-3 rounded border border-indigo-200 dark:border-gray-700">
+        <div class="flex justify-between">
+          <span>Total des articles :</span>
+          <span id="cartTotalItems">0.00</span> €
+        </div>
+        <div class="flex justify-between">
+          <span>Frais de livraison :</span>
+          <span>250.00</span> €
+        </div>
+        <div class="flex justify-between font-semibold text-base border-t pt-2 border-gray-300 dark:border-gray-600">
+          <span>Total commande :</span>
+          <span id="cartGrandTotal">0.00</span> €
+        </div>
+      </div>
 
   function updateCartTotals() {
     const totalItems = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
