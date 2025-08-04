@@ -121,23 +121,49 @@
   </div>
 </section>
 
-<!-- galerie -->
 <section>
-  <h2 class="text-4xl font-bold mb-10 text-center">Album Photos</h2>
-  <div class="columns-2 sm:columns-3 lg:columns-4 gap-4 space-y-4">
-    <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition duration-300 cursor-pointer">
-      <img src="https://i.goopics.net/bjp094.png" alt="Événement 1" class="w-full object-cover transition-transform duration-500 hover:scale-105" onclick="openLightbox(this.src)" />
+  <h2 class="text-4xl font-bold mb-10 text-center text-indigo-600">Album Photos</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    
+    <!-- Exemple d'image -->
+    <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer">
+      <img src="https://i.goopics.net/bjp094.png" alt="Événement 1"
+           class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
+           onclick="openLightbox(this.src)" />
+      <div class="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+        <span class="text-white text-lg font-medium">Voir l'image</span>
+      </div>
     </div>
-    <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition duration-300 cursor-pointer">
-      <img src="https://i.goopics.net/c8cqpd.png" alt="Événement 2" class="w-full object-cover transition-transform duration-500 hover:scale-105" onclick="openLightbox(this.src)" />
+
+    <!-- Répète avec d'autres images -->
+    <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer">
+      <img src="https://i.goopics.net/c8cqpd.png" alt="Événement 2"
+           class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
+           onclick="openLightbox(this.src)" />
+      <div class="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+        <span class="text-white text-lg font-medium">Voir l'image</span>
+      </div>
     </div>
-    <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition duration-300 cursor-pointer">
-      <img src="https://i.goopics.net/o19nen.png" alt="Événement 3" class="w-full object-cover transition-transform duration-500 hover:scale-105" onclick="openLightbox(this.src)" />
+
+    <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer">
+      <img src="https://i.goopics.net/o19nen.png" alt="Événement 3"
+           class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
+           onclick="openLightbox(this.src)" />
+      <div class="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+        <span class="text-white text-lg font-medium">Voir l'image</span>
+      </div>
     </div>
-    <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition duration-300 cursor-pointer">
-      <img src="images/team-event4.jpg" alt="Événement 4" class="w-full object-cover transition-transform duration-500 hover:scale-105" onclick="openLightbox(this.src)" />
+
+    <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer">
+      <img src="images/team-event4.jpg" alt="Événement 4"
+           class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
+           onclick="openLightbox(this.src)" />
+      <div class="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+        <span class="text-white text-lg font-medium">Voir l'image</span>
+      </div>
     </div>
-    <!-- Ajoute d'autres images si besoin -->
+
+    <!-- Ajoute d'autres images ici -->
   </div>
 </section>
 
