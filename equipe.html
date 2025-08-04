@@ -108,16 +108,25 @@
       </div>
     </section>
 
-    <!-- Galerie -->
-    <section>
-      <h2 class="text-3xl font-semibold mb-6 text-center">Album Photos</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-        <img src="images/team-event1.jpg" alt="Événement 1" class="rounded-lg cursor-pointer hover:opacity-80 transition-opacity duration-300" onclick="openLightbox(this.src)" />
-        <img src="images/team-event2.jpg" alt="Événement 2" class="rounded-lg cursor-pointer hover:opacity-80 transition-opacity duration-300" onclick="openLightbox(this.src)" />
-        <img src="images/team-event3.jpg" alt="Événement 3" class="rounded-lg cursor-pointer hover:opacity-80 transition-opacity duration-300" onclick="openLightbox(this.src)" />
-        <img src="images/team-event4.jpg" alt="Événement 4" class="rounded-lg cursor-pointer hover:opacity-80 transition-opacity duration-300" onclick="openLightbox(this.src)" />
-      </div>
-    </section>
+<!-- galerie -->
+<section>
+  <h2 class="text-4xl font-bold mb-10 text-center">Album Photos</h2>
+  <div class="columns-2 sm:columns-3 lg:columns-4 gap-4 space-y-4">
+    <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition duration-300 cursor-pointer">
+      <img src="images/team-event1.jpg" alt="Événement 1" class="w-full object-cover transition-transform duration-500 hover:scale-105" onclick="openLightbox(this.src)" />
+    </div>
+    <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition duration-300 cursor-pointer">
+      <img src="images/team-event2.jpg" alt="Événement 2" class="w-full object-cover transition-transform duration-500 hover:scale-105" onclick="openLightbox(this.src)" />
+    </div>
+    <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition duration-300 cursor-pointer">
+      <img src="images/team-event3.jpg" alt="Événement 3" class="w-full object-cover transition-transform duration-500 hover:scale-105" onclick="openLightbox(this.src)" />
+    </div>
+    <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition duration-300 cursor-pointer">
+      <img src="images/team-event4.jpg" alt="Événement 4" class="w-full object-cover transition-transform duration-500 hover:scale-105" onclick="openLightbox(this.src)" />
+    </div>
+    <!-- Ajoute d'autres images si besoin -->
+  </div>
+</section>
 
     <!-- Lightbox -->
     <div id="lightbox" onclick="closeLightbox()">
