@@ -296,4 +296,61 @@ function renderCart() {
           <input
             type="number"
             min="1"
-            value="${
+            value="${item.quantity}"
+            aria-label="Quantité de ${item.name}"
+            class="w-16 p-1 text-center border rounded border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+            oninput="updateQuantity(${item.id}, this.value)"
+          />
+          <button onclick="removeFromCart(${item.id})" aria-label="Supprimer ${item.name}" class="text-red-600 hover:text-red-800 text-xl font-bold px-1 leading-none">&times;</button>
+        </div>
+      `;
+      cartItemsEl.appendChild(itemEl);
+    });
+  }
+
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const grandTotal = total + 250;
+
+  cartTotalItemsEl.textContent = `${total.toFixed(2)} €`;
+  cartGrandTotalEl.textContent = `${grandTotal.toFixed(2)} €`;
+  cartCountEl.textContent = cart.reduce((sum, i) => sum + i.quantity, 0);
+}
+
+// Toggle du panneau panier
+function toggleCart() {
+  const modal = document.getElementById('cartModal');
+  const panel = document.getElementById('cartPanel');
+  const isOpen = !modal.classList.contains('hidden');
+
+  if (isOpen) {
+    panel.classList.add('translate-x-full');
+    setTimeout(() => modal.classList.add('hidden'), 300);
+  } else {
+    modal.classList.remove('hidden');
+    setTimeout(() => panel.classList.remove('translate-x-full'), 10);
+  }
+}
+
+// Valider commande
+function validateOrder() {
+  alert("Commande validée ! (Fonctionnalité à implémenter)");
+}
+
+// Événements
+document.getElementById('searchInput').addEventListener('input', renderProducts);
+document.getElementById('sortSelect').addEventListener('change', renderProducts);
+document.getElementById('categorySelect').addEventListener('change', renderProducts);
+document.getElementById('cartButton').addEventListener('click', toggleCart);
+
+// Responsive menu
+document.getElementById('nav-toggle').addEventListener('click', () => {
+  const menu = document.getElementById('nav-menu');
+  menu.classList.toggle('hidden');
+});
+
+// Lancement initial
+document.addEventListener('DOMContentLoaded', () => {
+  renderProducts();
+  renderCart();
+});
+</script>
