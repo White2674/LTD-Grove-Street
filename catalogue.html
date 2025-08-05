@@ -167,8 +167,33 @@
   </div>
 
 <script>
+let products = [];
+let cart = [];
+
+function addToCart(id) {
+  const prod = products.find(p => p.id === id);
+  const existing = cart.find(item => item.id === id);
+  if (existing) existing.quantity++;
+  else cart.push({ ...prod, quantity: 1 });
+  renderCart();
+}
+
+function renderCart() {
+  const cartTotalItemsEl = document.getElementById('cartTotalItems');
+  const cartGrandTotalEl = document.getElementById('cartGrandTotal');
+  cartTotalItemsEl.textContent = '';
+  cartGrandTotalEl.textContent = '';
+
+  let totalItems = 0;
+  cart.forEach(item => totalItems += item.price * item.quantity);
+  cartTotalItemsEl.textContent = totalItems.toFixed(2);
+
+  const fraisLivraison = 250.00;
+  cartGrandTotalEl.textContent = (totalItems + fraisLivraison).toFixed(2);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  const products = [
+  products = [
     { id: 1, name: "Marteau", price: 9.99, category: "Quincaillerie", image: "https://via.placeholder.com/300x200?text=Marteau" },
     { id: 2, name: "Clé à molette", price: 12.49, category: "Quincaillerie", image: "https://via.placeholder.com/300x200?text=Cl%C3%A9+%C3%A0+molette" },
     { id: 3, name: "Carnet A5", price: 3.99, category: "Papeterie", image: "https://via.placeholder.com/300x200?text=Carnet+A5" },
@@ -179,8 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('searchInput');
   const sortSelect = document.getElementById('sortSelect');
   const categorySelect = document.getElementById('categorySelect');
-
-  let cart = [];
 
   function displayProducts(items) {
     productGrid.innerHTML = '';
@@ -201,30 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       productGrid.appendChild(card);
     });
-  }
-
-  window.addToCart = function(id) {
-    const prod = products.find(p => p.id === id);
-    const existing = cart.find(item => item.id === id);
-    if (existing) existing.quantity++;
-    else cart.push({ ...prod, quantity: 1 });
-    renderCart();
-  };
-
-  function renderCart() {
-    const cartTotalItemsEl = document.getElementById('cartTotalItems');
-    const cartGrandTotalEl = document.getElementById('cartGrandTotal');
-    cartTotalItemsEl.textContent = '';
-    cartGrandTotalEl.textContent = '';
-
-    let totalItems = 0;
-    cart.forEach(item => totalItems += item.price * item.quantity);
-    cartTotalItemsEl.textContent = totalItems.toFixed(2);
-
-    const fraisLivraison = 250.00;
-    cartGrandTotalEl.textContent = (totalItems + fraisLivraison).toFixed(2);
-
-    // On ne gère pas le DOM panier détaillé ici
   }
 
   function filterAndSort() {
