@@ -175,170 +175,96 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 4, name: "Gants de jardin", price: 5.95, category: "Jardinage", image: "https://via.placeholder.com/300x200?text=Gants+de+jardin" }
   ];
 
-  const productGrid = document.getElementById('productGrid');
-  const searchInput = document.getElementById('searchInput');
-  const sortSelect = document.getElementById('sortSelect');
-  const categorySelect = document.getElementById('categorySelect');
+    const productGrid = document.getElementById("productGrid");
+    const cartContainer = document.getElementById("cart");
+    const cartSummary = document.getElementById("cartSummary");
+    const searchInput = document.getElementById("search");
+    let cart = [];
 
-  let cart = [];
-
-  function displayProducts(items) {
-    productGrid.innerHTML = '';
-    if (items.length === 0) {
-      productGrid.innerHTML = '<p class="col-span-full text-center text-gray-500 dark:text-gray-400">Aucun produit trouvé.</p>';
-      return;
+    function displayProducts(items) {
+      productGrid.innerHTML = '';
+      items.forEach(product => {
+        const card = document.createElement('article');
+        card.className = 'rounded overflow-hidden shadow-lg bg-white dark:bg-gray-800 flex flex-col';
+        card.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover" />
+          <div class="p-4 bg-indigo-100 dark:bg-indigo-900 flex flex-col items-center justify-center mt-auto">
+            <h3 class="text-center font-semibold text-lg text-indigo-800 dark:text-indigo-300">${product.name}</h3>
+            <p class="text-indigo-600 dark:text-indigo-400 font-semibold mt-1">${product.price.toFixed(2)} €</p>
+            <button onclick="addToCart(${product.id})" class="mt-3 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">Ajouter au panier</button>
+          </div>
+        `;
+        productGrid.appendChild(card);
+      });
     }
-    items.forEach(product => {
-      const card = document.createElement('article');
-      card.className = 'rounded overflow-hidden shadow-lg bg-white dark:bg-gray-800 flex flex-col';
-card.innerHTML = `
-  <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover" />
-  <div class="p-4 bg-indigo-100 dark:bg-indigo-900 flex flex-col items-center justify-center mt-auto">
-    <h3 class="text-center font-semibold text-lg text-indigo-800 dark:text-indigo-300">${product.name}</h3>
-    <p class="text-indigo-600 dark:text-indigo-400 font-semibold mt-1">${product.price.toFixed(2)} €</p>
-    <button onclick="addToCart(${product.id})" class="mt-3 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">Ajouter au panier</button>
-  </div>
-`;
-      productGrid.appendChild(card);
-    });
-  }
 
-  function filterAndSort() {
-    const query = searchInput.value.toLowerCase();
-    const selectedCategory = categorySelect.value;
-    let filtered = products.filter(p => p.name.toLowerCase().includes(query));
-    if (selectedCategory !== 'all') filtered = filtered.filter(p => p.category === selectedCategory);
-
-    switch (sortSelect.value) {
-      case 'name-asc': filtered.sort((a, b) => a.name.localeCompare(b.name)); break;
-      case 'name-desc': filtered.sort((a, b) => b.name.localeCompare(a.name)); break;
-      case 'price-asc': filtered.sort((a, b) => a.price - b.price); break;
-      case 'price-desc': filtered.sort((a, b) => b.price - a.price); break;
-    }
-    displayProducts(filtered);
-  }
-
-  // --- Gestion du panier ---
-  const cartButton = document.getElementById('cartButton');
-  const cartModal = document.getElementById('cartModal');
-  const cartPanel = document.getElementById('cartPanel');
-  const cartTotalItemsEl = document.getElementById('cartTotalItems');
-  const cartGrandTotalEl = document.getElementById('cartGrandTotal');
-  const cartCountEl = document.getElementById('cartCount');
-
-  window.addToCart = function(id) {
-    const product = products.find(p => p.id === id);
-    const existing = cart.find(item => item.id === id);
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      cart.push({ ...product, quantity: 1 });
-    }
-    updateCartCount();
-    renderCart();
-  };
-
-  function updateCartCount() {
-    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCountEl.textContent = count;
-  }
-
-  function toggleCart() {
-    if (cartModal.classList.contains('hidden')) {
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      const existingItem = cart.find(item => item.id === id);
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        cart.push({ ...product, quantity: 1 });
+      }
       renderCart();
-      cartModal.classList.remove('hidden');
-      cartModal.setAttribute('aria-hidden', 'false');
-      cartPanel.classList.remove('translate-x-full');
-    } else {
-      cartModal.classList.add('hidden');
-      cartModal.setAttribute('aria-hidden', 'true');
-      cartPanel.classList.add('translate-x-full');
     }
-  }
 
-  cartButton.addEventListener('click', toggleCart);
+    function renderCart() {
+      cartContainer.innerHTML = '';
+      let total = 0;
 
-  // Fermer en cliquant hors panel
-  cartModal.addEventListener('click', (e) => {
-    if (e.target === cartModal) toggleCart();
-  });
+      cart.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'flex justify-between items-center p-2 bg-white dark:bg-gray-700 rounded';
 
-  // Rendu du contenu du panier
-  function renderCart() {
-    // Supprimer ancien contenu (hors résumé et formulaire)
-    const existingItems = cartPanel.querySelectorAll('.cart-item');
-    existingItems.forEach(el => el.remove());
+        itemDiv.innerHTML = `
+          <div class="flex flex-col max-w-[60%]">
+            <span class="font-semibold text-indigo-700 dark:text-indigo-300">${item.name}</span>
+            <span class="text-sm text-gray-600 dark:text-gray-400">${item.price.toFixed(2)} € / unité</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <button aria-label="Diminuer quantité" class="quantity-btn px-2 py-1 bg-red-600 hover:bg-red-700 rounded text-white font-bold" data-action="decrease" data-id="${item.id}">-</button>
+            <span class="font-semibold">${item.quantity}</span>
+            <button aria-label="Augmenter quantité" class="quantity-btn px-2 py-1 bg-green-600 hover:bg-green-700 rounded text-white font-bold" data-action="increase" data-id="${item.id}">+</button>
+            <button aria-label="Supprimer produit" class="remove-btn ml-4 text-red-600 hover:text-red-800 font-bold" data-id="${item.id}">&times;</button>
+          </div>
+        `;
 
-    // Création liste produits
-    cart.forEach(item => {
-      const itemDiv = document.createElement('div');
-      itemDiv.className = "cart-item flex justify-between items-center px-4 py-2 border-b border-gray-200 dark:border-gray-700";
-
-itemDiv.innerHTML = `
-  <div class="flex flex-col max-w-[60%]">
-    <span class="font-semibold text-indigo-700 dark:text-indigo-300">${item.name}</span>
-    <span class="text-sm text-gray-600 dark:text-gray-400">${item.price.toFixed(2)} € / unité</span>
-  </div>
-  <div class="flex items-center space-x-2">
-    <button aria-label="Diminuer quantité" class="quantity-btn px-2 py-1 bg-red-600 hover:bg-red-700 rounded text-white font-bold" data-action="decrease" data-id="${item.id}">-</button>
-    <span class="font-semibold">${item.quantity}</span>
-    <button aria-label="Augmenter quantité" class="quantity-btn px-2 py-1 bg-green-600 hover:bg-green-700 rounded text-white font-bold" data-action="increase" data-id="${item.id}">+</button>
-    <button aria-label="Supprimer produit" class="remove-btn ml-4 text-red-600 hover:text-red-800 font-bold" data-id="${item.id}">&times;</button>
-  </div>
-`;
-
-    // Met à jour les totaux
-    updateCartTotals();
-
-    // Ajoute les gestionnaires sur les boutons +/- et supprimer
-    cartPanel.querySelectorAll('.quantity-btn').forEach(button => {
-      button.addEventListener('click', (e) => {
-        const id = parseInt(e.currentTarget.dataset.id);
-        const action = e.currentTarget.dataset.action;
-        const item = cart.find(i => i.id === id);
-        if (!item) return;
-
-        if (action === 'increase') {
-          item.quantity++;
-        } else if (action === 'decrease') {
-          item.quantity--;
-          if (item.quantity <= 0) {
-            cart = cart.filter(i => i.id !== id);
-          }
-        }
-        updateCartCount();
-        renderCart();
+        cartContainer.appendChild(itemDiv);
+        total += item.price * item.quantity;
       });
+
+      cartSummary.innerHTML = `Total : ${total.toFixed(2)} €`;
+
+      document.querySelectorAll('.quantity-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+          const id = parseInt(e.target.dataset.id);
+          const action = e.target.dataset.action;
+          const item = cart.find(p => p.id === id);
+          if (action === 'increase') item.quantity++;
+          if (action === 'decrease' && item.quantity > 1) item.quantity--;
+          renderCart();
+        });
+      });
+
+      document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+          const id = parseInt(e.target.dataset.id);
+          cart = cart.filter(item => item.id !== id);
+          renderCart();
+        });
+      });
+    }
+
+    searchInput.addEventListener('input', () => {
+      const keyword = searchInput.value.toLowerCase();
+      const filtered = products.filter(product => product.name.toLowerCase().includes(keyword));
+      displayProducts(filtered);
     });
 
-    cartPanel.querySelectorAll('.remove-btn').forEach(button => {
-      button.addEventListener('click', (e) => {
-        const id = parseInt(e.currentTarget.dataset.id);
-        cart = cart.filter(i => i.id !== id);
-        updateCartCount();
-        renderCart();
-      });
-    });
-  }
-
-  function updateCartTotals() {
-    const totalItems = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const shippingCost = 250.00;
-    const grandTotal = totalItems + shippingCost;
-
-    cartTotalItemsEl.textContent = totalItems.toFixed(2);
-    cartGrandTotalEl.textContent = grandTotal.toFixed(2);
-  }
-
-  // Permet de fermer le panier via le bouton "×"
-  window.toggleCart = toggleCart;
-
-  // Événements recherche, tri, catégorie
-  searchInput.addEventListener('input', filterAndSort);
-  sortSelect.addEventListener('change', filterAndSort);
-  categorySelect.addEventListener('change', filterAndSort);
-
-  // Affiche tous les produits au départ
-  filterAndSort();
-});
-</script>
+    // Initialisation
+    displayProducts(products);
+    renderCart();
+  </script>
+</body>
+</html>
