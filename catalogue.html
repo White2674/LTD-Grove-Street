@@ -274,21 +274,18 @@ card.innerHTML = `
       const itemDiv = document.createElement('div');
       itemDiv.className = "cart-item flex justify-between items-center px-4 py-2 border-b border-gray-200 dark:border-gray-700";
 
-      itemDiv.innerHTML = 
-        <div class="flex flex-col max-w-[60%]">
-          <span class="font-semibold text-indigo-700 dark:text-indigo-300">${item.name}</span>
-          <span class="text-sm text-gray-600 dark:text-gray-400">${item.price.toFixed(2)} € / unité</span>
-        </div>
-        <div class="flex items-center space-x-2">
-          <button aria-label="Diminuer quantité" class="quantity-btn px-2 py-1 bg-red-600 hover:bg-red-700 rounded text-white font-bold" data-action="decrease" data-id="${item.id}">-</button>
-          <span class="font-semibold">${item.quantity}</span>
-          <button aria-label="Augmenter quantité" class="quantity-btn px-2 py-1 bg-green-600 hover:bg-green-700 rounded text-white font-bold" data-action="increase" data-id="${item.id}">+</button>
-          <button aria-label="Supprimer produit" class="remove-btn ml-4 text-red-600 hover:text-red-800 font-bold" data-id="${item.id}">&times;</button>
-        </div>
-      ;
-      cartPanel.insertBefore(itemDiv, cartPanel.querySelector('.px-4.space-y-4.mt-4'));
-
-    });
+itemDiv.innerHTML = `
+  <div class="flex flex-col max-w-[60%]">
+    <span class="font-semibold text-indigo-700 dark:text-indigo-300">${item.name}</span>
+    <span class="text-sm text-gray-600 dark:text-gray-400">${item.price.toFixed(2)} € / unité</span>
+  </div>
+  <div class="flex items-center space-x-2">
+    <button aria-label="Diminuer quantité" class="quantity-btn px-2 py-1 bg-red-600 hover:bg-red-700 rounded text-white font-bold" data-action="decrease" data-id="${item.id}">-</button>
+    <span class="font-semibold">${item.quantity}</span>
+    <button aria-label="Augmenter quantité" class="quantity-btn px-2 py-1 bg-green-600 hover:bg-green-700 rounded text-white font-bold" data-action="increase" data-id="${item.id}">+</button>
+    <button aria-label="Supprimer produit" class="remove-btn ml-4 text-red-600 hover:text-red-800 font-bold" data-id="${item.id}">&times;</button>
+  </div>
+`;
 
     // Met à jour les totaux
     updateCartTotals();
