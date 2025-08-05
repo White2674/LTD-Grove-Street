@@ -175,96 +175,73 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 4, name: "Gants de jardin", price: 5.95, category: "Jardinage", image: "https://via.placeholder.com/300x200?text=Gants+de+jardin" }
   ];
 
-    const productGrid = document.getElementById("productGrid");
-    const cartContainer = document.getElementById("cart");
-    const cartSummary = document.getElementById("cartSummary");
-    const searchInput = document.getElementById("search");
-    let cart = [];
+  const productGrid = document.getElementById('productGrid');
+  const searchInput = document.getElementById('searchInput');
+  const sortSelect = document.getElementById('sortSelect');
+  const categorySelect = document.getElementById('categorySelect');
 
-    function displayProducts(items) {
-      productGrid.innerHTML = '';
-      items.forEach(product => {
-        const card = document.createElement('article');
-        card.className = 'rounded overflow-hidden shadow-lg bg-white dark:bg-gray-800 flex flex-col';
-        card.innerHTML = `
-          <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover" />
-          <div class="p-4 bg-indigo-100 dark:bg-indigo-900 flex flex-col items-center justify-center mt-auto">
-            <h3 class="text-center font-semibold text-lg text-indigo-800 dark:text-indigo-300">${product.name}</h3>
-            <p class="text-indigo-600 dark:text-indigo-400 font-semibold mt-1">${product.price.toFixed(2)} €</p>
-            <button onclick="addToCart(${product.id})" class="mt-3 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">Ajouter au panier</button>
-          </div>
-        `;
-        productGrid.appendChild(card);
-      });
+  let cart = [];
+
+  function displayProducts(items) {
+    productGrid.innerHTML = '';
+    if (items.length === 0) {
+      productGrid.innerHTML = '<p class="col-span-full text-center text-gray-500 dark:text-gray-400">Aucun produit trouvé.</p>';
+      return;
     }
-
-    function addToCart(id) {
-      const product = products.find(p => p.id === id);
-      const existingItem = cart.find(item => item.id === id);
-      if (existingItem) {
-        existingItem.quantity++;
-      } else {
-        cart.push({ ...product, quantity: 1 });
-      }
-      renderCart();
-    }
-
-    function renderCart() {
-      cartContainer.innerHTML = '';
-      let total = 0;
-
-      cart.forEach(item => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'flex justify-between items-center p-2 bg-white dark:bg-gray-700 rounded';
-
-        itemDiv.innerHTML = `
-          <div class="flex flex-col max-w-[60%]">
-            <span class="font-semibold text-indigo-700 dark:text-indigo-300">${item.name}</span>
-            <span class="text-sm text-gray-600 dark:text-gray-400">${item.price.toFixed(2)} € / unité</span>
-          </div>
-          <div class="flex items-center space-x-2">
-            <button aria-label="Diminuer quantité" class="quantity-btn px-2 py-1 bg-red-600 hover:bg-red-700 rounded text-white font-bold" data-action="decrease" data-id="${item.id}">-</button>
-            <span class="font-semibold">${item.quantity}</span>
-            <button aria-label="Augmenter quantité" class="quantity-btn px-2 py-1 bg-green-600 hover:bg-green-700 rounded text-white font-bold" data-action="increase" data-id="${item.id}">+</button>
-            <button aria-label="Supprimer produit" class="remove-btn ml-4 text-red-600 hover:text-red-800 font-bold" data-id="${item.id}">&times;</button>
-          </div>
-        `;
-
-        cartContainer.appendChild(itemDiv);
-        total += item.price * item.quantity;
-      });
-
-      cartSummary.innerHTML = `Total : ${total.toFixed(2)} €`;
-
-      document.querySelectorAll('.quantity-btn').forEach(btn => {
-        btn.addEventListener('click', e => {
-          const id = parseInt(e.target.dataset.id);
-          const action = e.target.dataset.action;
-          const item = cart.find(p => p.id === id);
-          if (action === 'increase') item.quantity++;
-          if (action === 'decrease' && item.quantity > 1) item.quantity--;
-          renderCart();
-        });
-      });
-
-      document.querySelectorAll('.remove-btn').forEach(btn => {
-        btn.addEventListener('click', e => {
-          const id = parseInt(e.target.dataset.id);
-          cart = cart.filter(item => item.id !== id);
-          renderCart();
-        });
-      });
-    }
-
-    searchInput.addEventListener('input', () => {
-      const keyword = searchInput.value.toLowerCase();
-      const filtered = products.filter(product => product.name.toLowerCase().includes(keyword));
-      displayProducts(filtered);
+    items.forEach(product => {
+      const card = document.createElement('article');
+      card.className = 'rounded overflow-hidden shadow-lg bg-white dark:bg-gray-800 flex flex-col';
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover" />
+        <div class="p-4 bg-indigo-100 dark:bg-indigo-900 flex flex-col items-center justify-center mt-auto">
+          <h3 class="text-center font-semibold text-lg text-indigo-800 dark:text-indigo-300">${product.name}</h3>
+          <p class="text-indigo-600 dark:text-indigo-400 font-semibold mt-1">${product.price.toFixed(2)} €</p>
+          <button onclick="addToCart(${product.id})" class="mt-3 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">Ajouter au panier</button>
+        </div>
+      `;
+      productGrid.appendChild(card);
     });
+  }
 
-    // Initialisation
-    displayProducts(products);
+  window.addToCart = function(id) {
+    const prod = products.find(p => p.id === id);
+    const existing = cart.find(item => item.id === id);
+    if (existing) existing.quantity++;
+    else cart.push({ ...prod, quantity: 1 });
     renderCart();
-  </script>
-</body>
-</html>
+  };
+
+  function renderCart() {
+    const cartTotalItemsEl = document.getElementById('cartTotalItems');
+    const cartGrandTotalEl = document.getElementById('cartGrandTotal');
+    cartTotalItemsEl.textContent = '';
+    cartGrandTotalEl.textContent = '';
+
+    let totalItems = 0;
+    cart.forEach(item => totalItems += item.price * item.quantity);
+    cartTotalItemsEl.textContent = totalItems.toFixed(2);
+
+    const fraisLivraison = 250.00;
+    cartGrandTotalEl.textContent = (totalItems + fraisLivraison).toFixed(2);
+
+    // On ne gère pas le DOM panier détaillé ici
+  }
+
+  function filterAndSort() {
+    let filtered = products.filter(p => p.name.toLowerCase().includes(searchInput.value.toLowerCase()));
+    if (categorySelect.value !== 'all') filtered = filtered.filter(p => p.category === categorySelect.value);
+    if (sortSelect.value === 'name-asc') filtered.sort((a,b) => a.name.localeCompare(b.name));
+    if (sortSelect.value === 'name-desc') filtered.sort((a,b) => b.name.localeCompare(a.name));
+    if (sortSelect.value === 'price-asc') filtered.sort((a,b) => a.price - b.price);
+    if (sortSelect.value === 'price-desc') filtered.sort((a,b) => b.price - a.price);
+    displayProducts(filtered);
+  }
+
+  searchInput.addEventListener('input', filterAndSort);
+  sortSelect.addEventListener('change', filterAndSort);
+  categorySelect.addEventListener('change', filterAndSort);
+
+  displayProducts(products);
+  renderCart();
+});
+</script>
