@@ -32,38 +32,39 @@
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
 <header class="fixed top-0 left-0 w-full bg-white shadow z-50">
-<nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-  <!-- Logo à gauche -->
-  <a href="index.html" class="flex items-center space-x-2">
-    <img src="https://i.goopics.net/5dh7x3.png" alt="Logo LTD Grove Street" class="w-8 h-8">
-    <span class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 transition">
-      LTD Grove Street
-    </span>
-  </a>
+  <nav class="max-w-7xl mx-auto flex items-center gap-x-8 px-6 py-3">
+    <!-- Logo + nom -->
+  <a href="index.html" class="flex items-center space-x-2 mr-1.5">
+  <img src="https://i.goopics.net/5dh7x3.png" alt="Logo LTD Grove Street" class="w-8 h-8">
+  <span class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 transition">
+    LTD Grove Street
+  </span>
+</a>
 
-  <!-- Menu centré -->
-  <ul class="hidden md:flex items-center space-x-6 font-medium text-gray-700 text-sm">
-    <li><a href="index.html" class="hover:text-indigo-600 transition">Accueil</a></li>
-    <li><a href="catalogue.html" class="hover:text-indigo-600 transition">Catalogue</a></li>
-    <li><a href="stations.html" class="hover:text-indigo-600 transition">Stations Essence</a></li>
-    <li><a href="commande.html" class="hover:text-indigo-600 transition">Commande</a></li>
-    <li><a href="avis.html" class="hover:text-indigo-600 transition">Avis Clients</a></li>
-    <li><a href="equipe.html" class="hover:text-indigo-600 transition">Notre Équipe</a></li>
-    <li><a href="actualites.html" class="hover:text-indigo-600 transition">Actualités</a></li>
-    <li><a href="contact.html" class="hover:text-indigo-600 transition">Contact</a></li>
-  </ul>
 
-  <!-- Bouton mobile -->
-  <button id="nav-toggle" class="md:hidden focus:outline-none text-indigo-600" aria-label="Menu"
-    aria-expanded="false" aria-controls="nav-menu">
-    <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-      stroke-linejoin="round">
-      <line x1="3" y1="6" x2="21" y2="6" />
-      <line x1="3" y1="12" x2="21" y2="12" />
-      <line x1="3" y1="18" x2="21" y2="18" />
-    </svg>
-  </button>
-</nav>
+    <!-- Menu desktop -->
+    <ul class="hidden md:flex items-center space-x-4 font-medium text-gray-700 text-sm">
+      <li><a href="index.html" class="hover:text-indigo-600 transition">Accueil</a></li>
+      <li><a href="catalogue.html" class="hover:text-indigo-600 transition">Catalogue</a></li>
+      <li><a href="stations.html" class="hover:text-indigo-600 transition">Stations Essence</a></li>
+      <li><a href="commande.html" class="hover:text-indigo-600 transition">Commande</a></li>
+      <li><a href="avis.html" class="hover:text-indigo-600 transition">Avis Clients</a></li>
+      <li><a href="equipe.html" class="hover:text-indigo-600 transition">Notre Équipe</a></li>
+      <li><a href="actualites.html" class="hover:text-indigo-600 transition">Actualités</a></li>
+      <li><a href="contact.html" class="hover:text-indigo-600 transition">Contact</a></li>
+    </ul>
+
+    <!-- Bouton mobile -->
+    <button id="nav-toggle" class="md:hidden focus:outline-none text-indigo-600" aria-label="Menu"
+      aria-expanded="false" aria-controls="nav-menu">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+    </button>
+  </nav>
 
   <!-- Menu mobile -->
   <div id="nav-menu" class="hidden md:hidden bg-indigo-50 border-t border-indigo-100">
