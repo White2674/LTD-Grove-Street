@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="fr" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
@@ -112,6 +112,13 @@
         <h2 id="cartTitle" class="text-xl font-semibold text-indigo-600 dark:text-indigo-300">🛒 Votre Panier</h2>
         <button onclick="toggleCart()" class="text-gray-600 dark:text-gray-300 text-2xl hover:text-red-500" aria-label="Fermer le panier">&times;</button>
       </div>
+
+      <!-- Liste des articles du panier avec possibilité de modifier la quantité -->
+      <div id="cartItems" class="px-4 py-3 overflow-auto flex-grow">
+        <!-- Les produits ajoutés apparaîtront ici -->
+      </div>
+
+      <!-- Résumé avec totaux -->
       <div id="cartSummary" class="space-y-2 text-sm bg-indigo-50 dark:bg-gray-800 p-3 rounded border border-indigo-200 dark:border-gray-700">
         <div class="flex justify-between">
           <span>Total des articles :</span>
@@ -174,36 +181,91 @@
 let products = [];
 let cart = [];
 
-// Fonction ajout panier
+// Ajout d'un produit au panier
 function addToCart(id) {
   const prod = products.find(p => p.id === id);
   const existing = cart.find(item => item.id === id);
-  if (existing) existing.quantity++;
-  else cart.push({ ...prod, quantity: 1 });
+  if (existing) {
+    existing.quantity++;
+  } else {
+    cart.push({ ...prod, quantity: 1 });
+  }
   renderCart();
 }
 
-// Affichage panier
+// Met à jour la quantité d'un produit dans le panier
+function updateQuantity(id, quantity) {
+  quantity = parseInt(quantity);
+  if (isNaN(quantity) || quantity < 1) quantity = 1;
+  const item = cart.find(i => i.id === id);
+  if (item) {
+    item.quantity = quantity;
+    renderCart();
+  }
+}
+
+// Supprime un produit du panier
+function removeFromCart(id) {
+  cart = cart.filter(item => item.id !== id);
+  renderCart();
+}
+
+// Affiche le panier avec possibilité de modifier la quantité
 function renderCart() {
+  const cartItemsEl = document.getElementById('cartItems');
   const cartTotalItemsEl = document.getElementById('cartTotalItems');
   const cartGrandTotalEl = document.getElementById('cartGrandTotal');
   const cartCountEl = document.getElementById('cartCount');
 
-  let totalItems = 0;
+  cartItemsEl.innerHTML = '';
+
+  if (cart.length === 0) {
+    cartItemsEl.innerHTML = '<p class="text-center text-gray-500 dark:text-gray-400 mt-4">Votre panier est vide.</p>';
+  } else {
+    cart.forEach(item => {
+      const itemEl = document.createElement('div');
+      itemEl.className = "flex items-center justify-between py-2 border-b border-gray-300 dark:border-gray-700";
+
+      itemEl.innerHTML = `
+        <div class="flex items-center space-x-3">
+          <img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-cover rounded" />
+          <div>
+            <h3 class="font-semibold text-indigo-700 dark:text-indigo-300">${item.name}</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">${item.price.toFixed(2)} €</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2">
+          <input
+            type="number"
+            min="1"
+            value="${item.quantity}"
+            aria-label="Quantité de ${item.name}"
+            class="w-16 p-1 text-center border rounded border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+            oninput="updateQuantity(${item.id}, this.value)"
+          />
+          <button onclick="removeFromCart(${item.id})" aria-label="Supprimer ${item.name}" class="text-red-600 hover:text-red-800 text-xl font-bold px-1 leading-none">&times;</button>
+        </div>
+      `;
+      cartItemsEl.appendChild(itemEl);
+    });
+  }
+
+  // Calcul des totaux
+  let totalItemsPrice = 0;
   let totalQuantity = 0;
   cart.forEach(item => {
-    totalItems += item.price * item.quantity;
+    totalItemsPrice += item.price * item.quantity;
     totalQuantity += item.quantity;
   });
-  cartTotalItemsEl.textContent = totalItems.toFixed(2) + " €";
 
   const fraisLivraison = 250.00;
-  cartGrandTotalEl.textContent = (totalItems + fraisLivraison).toFixed(2) + " €";
 
+  cartTotalItemsEl.textContent = totalItemsPrice.toFixed(2) + " €";
+  cartGrandTotalEl.textContent = (totalItemsPrice + fraisLivraison).toFixed(2) + " €";
   cartCountEl.textContent = totalQuantity;
 }
 
-// Toggle panier
+// Toggle affichage panier
 function toggleCart() {
   const cartModal = document.getElementById('cartModal');
   if (cartModal.classList.contains('hidden')) {
@@ -226,60 +288,4 @@ document.getElementById('nav-toggle').addEventListener('click', () => {
 });
 
 // Ouverture du panier au clic sur bouton
-document.getElementById('cartButton').addEventListener('click', toggleCart);
-
-document.addEventListener('DOMContentLoaded', () => {
-  products = [
-    { id: 1, name: "Marteau", price: 9.99, category: "Quincaillerie", image: "https://via.placeholder.com/300x200?text=Marteau" },
-    { id: 2, name: "Clé à molette", price: 12.49, category: "Quincaillerie", image: "https://via.placeholder.com/300x200?text=Cl%C3%A9+%C3%A0+molette" },
-    { id: 3, name: "Carnet A5", price: 3.99, category: "Papeterie", image: "https://via.placeholder.com/300x200?text=Carnet+A5" },
-    { id: 4, name: "Gants de jardin", price: 5.95, category: "Jardinage", image: "https://via.placeholder.com/300x200?text=Gants+de+jardin" }
-  ];
-
-  const productGrid = document.getElementById('productGrid');
-  const searchInput = document.getElementById('searchInput');
-  const sortSelect = document.getElementById('sortSelect');
-  const categorySelect = document.getElementById('categorySelect');
-
-  function displayProducts(items) {
-    productGrid.innerHTML = '';
-    if (items.length === 0) {
-      productGrid.innerHTML = '<p class="col-span-full text-center text-gray-500 dark:text-gray-400">Aucun produit trouvé.</p>';
-      return;
-    }
-    items.forEach(product => {
-      const card = document.createElement('article');
-      card.className = 'rounded overflow-hidden shadow-lg bg-white dark:bg-gray-800 flex flex-col';
-      card.innerHTML = `
-        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover" />
-        <div class="p-4 bg-indigo-100 dark:bg-indigo-900 flex flex-col items-center justify-center mt-auto">
-          <h3 class="text-center font-semibold text-lg text-indigo-800 dark:text-indigo-300">${product.name}</h3>
-          <p class="text-indigo-600 dark:text-indigo-400 font-semibold mt-1">${product.price.toFixed(2)} €</p>
-          <button onclick="addToCart(${product.id})" class="mt-3 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition" aria-label="Ajouter ${product.name} au panier">Ajouter au panier</button>
-        </div>
-      `;
-      productGrid.appendChild(card);
-    });
-  }
-
-  function filterAndSort() {
-    let filtered = products.filter(p => p.name.toLowerCase().includes(searchInput.value.toLowerCase()));
-    if (categorySelect.value !== 'all') filtered = filtered.filter(p => p.category === categorySelect.value);
-    if (sortSelect.value === 'name-asc') filtered.sort((a,b) => a.name.localeCompare(b.name));
-    if (sortSelect.value === 'name-desc') filtered.sort((a,b) => b.name.localeCompare(a.name));
-    if (sortSelect.value === 'price-asc') filtered.sort((a,b) => a.price - b.price);
-    if (sortSelect.value === 'price-desc') filtered.sort((a,b) => b.price - a.price);
-    displayProducts(filtered);
-  }
-
-  searchInput.addEventListener('input', filterAndSort);
-  sortSelect.addEventListener('change', filterAndSort);
-  categorySelect.addEventListener('change', filterAndSort);
-
-  displayProducts(products);
-  renderCart();
-});
-</script>
-
-</body>
-</html>
+document.getElementById('cartButton').
