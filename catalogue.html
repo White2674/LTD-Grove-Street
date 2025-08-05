@@ -170,7 +170,7 @@
             class="w-full p-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
           ></textarea>
         </div>
-        <button class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition">
+        <button class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition" onclick="validateOrder()">
           ✅ Valider la commande
         </button>
       </div>
@@ -178,12 +178,69 @@
   </div>
 
 <script>
-let products = [];
+let products = [
+  // Exemple de produits, à remplacer ou charger dynamiquement
+  { id: 1, name: "Marteau", price: 12.50, category: "Quincaillerie", image: "https://via.placeholder.com/100?text=Marteau" },
+  { id: 2, name: "Stylo", price: 1.20, category: "Papeterie", image: "https://via.placeholder.com/100?text=Stylo" },
+  { id: 3, name: "Gants de jardin", price: 7.99, category: "Jardinage", image: "https://via.placeholder.com/100?text=Gants" },
+  { id: 4, name: "Bloc-notes", price: 2.50, category: "Papeterie", image: "https://via.placeholder.com/100?text=Bloc-notes" },
+  { id: 5, name: "Clé à molette", price: 15.00, category: "Quincaillerie", image: "https://via.placeholder.com/100?text=Clé" }
+];
+
 let cart = [];
 
-// Ajout d'un produit au panier
+// Affichage des produits filtrés, triés et recherchés
+function renderProducts() {
+  const grid = document.getElementById('productGrid');
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const sort = document.getElementById('sortSelect').value;
+  const category = document.getElementById('categorySelect').value;
+
+  let filtered = products.filter(p => {
+    const matchesSearch = p.name.toLowerCase().includes(search);
+    const matchesCategory = category === "all" || p.category === category;
+    return matchesSearch && matchesCategory;
+  });
+
+  // Tri
+  if (sort === "name-asc") filtered.sort((a,b) => a.name.localeCompare(b.name));
+  else if (sort === "name-desc") filtered.sort((a,b) => b.name.localeCompare(a.name));
+  else if (sort === "price-asc") filtered.sort((a,b) => a.price - b.price);
+  else if (sort === "price-desc") filtered.sort((a,b) => b.price - a.price);
+
+  // Affichage
+  grid.innerHTML = "";
+
+  if(filtered.length === 0) {
+    grid.innerHTML = '<p class="col-span-full text-center text-gray-500 dark:text-gray-400">Aucun produit trouvé.</p>';
+    return;
+  }
+
+  filtered.forEach(p => {
+    const card = document.createElement('div');
+    card.className = "bg-white dark:bg-gray-800 rounded-lg shadow p-4 flex flex-col items-center";
+
+    card.innerHTML = `
+      <img src="${p.image}" alt="${p.name}" class="w-32 h-32 object-cover mb-4 rounded" />
+      <h3 class="text-indigo-700 dark:text-indigo-300 font-semibold text-lg mb-2">${p.name}</h3>
+      <p class="text-gray-700 dark:text-gray-300 mb-4">${p.price.toFixed(2)} €</p>
+      <button
+        onclick="addToCart(${p.id})"
+        class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded transition"
+        aria-label="Ajouter ${p.name} au panier"
+      >
+        Ajouter au panier
+      </button>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// Ajout au panier
 function addToCart(id) {
   const prod = products.find(p => p.id === id);
+  if (!prod) return;
+
   const existing = cart.find(item => item.id === id);
   if (existing) {
     existing.quantity++;
@@ -193,10 +250,11 @@ function addToCart(id) {
   renderCart();
 }
 
-// Met à jour la quantité d'un produit dans le panier
+// Mise à jour quantité
 function updateQuantity(id, quantity) {
   quantity = parseInt(quantity);
   if (isNaN(quantity) || quantity < 1) quantity = 1;
+
   const item = cart.find(i => i.id === id);
   if (item) {
     item.quantity = quantity;
@@ -204,20 +262,20 @@ function updateQuantity(id, quantity) {
   }
 }
 
-// Supprime un produit du panier
+// Suppression du panier
 function removeFromCart(id) {
   cart = cart.filter(item => item.id !== id);
   renderCart();
 }
 
-// Affiche le panier avec possibilité de modifier la quantité
+// Affichage du panier
 function renderCart() {
   const cartItemsEl = document.getElementById('cartItems');
   const cartTotalItemsEl = document.getElementById('cartTotalItems');
   const cartGrandTotalEl = document.getElementById('cartGrandTotal');
   const cartCountEl = document.getElementById('cartCount');
 
-  cartItemsEl.innerHTML = '';
+  cartItemsEl.innerHTML = "";
 
   if (cart.length === 0) {
     cartItemsEl.innerHTML = '<p class="text-center text-gray-500 dark:text-gray-400 mt-4">Votre panier est vide.</p>';
@@ -238,58 +296,4 @@ function renderCart() {
           <input
             type="number"
             min="1"
-            value="${item.quantity}"
-            aria-label="Quantité de ${item.name}"
-            class="w-16 p-1 text-center border rounded border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-            oninput="updateQuantity(${item.id}, this.value)"
-          />
-          <button onclick="removeFromCart(${item.id})" aria-label="Supprimer ${item.name}" class="text-red-600 hover:text-red-800 text-xl font-bold px-1 leading-none">&times;</button>
-        </div>
-      `;
-      cartItemsEl.appendChild(itemEl);
-    });
-  }
-
-  // Calcul des totaux
-  let totalItemsPrice = 0;
-  let totalQuantity = 0;
-  cart.forEach(item => {
-    totalItemsPrice += item.price * item.quantity;
-    totalQuantity += item.quantity;
-  });
-
-  const fraisLivraison = 250.00;
-
-  cartTotalItemsEl.textContent = totalItemsPrice.toFixed(2) + " €";
-  cartGrandTotalEl.textContent = (totalItemsPrice + fraisLivraison).toFixed(2) + " €";
-  cartCountEl.textContent = totalQuantity;
-}
-
-// Toggle affichage panier
-function toggleCart() {
-  const cartModal = document.getElementById('cartModal');
-  if (cartModal.classList.contains('hidden')) {
-    cartModal.classList.remove('hidden');
-    cartModal.setAttribute('aria-hidden', 'false');
-    document.getElementById('cartPanel').classList.remove('translate-x-full');
-  } else {
-    document.getElementById('cartPanel').classList.add('translate-x-full');
-    setTimeout(() => {
-      cartModal.classList.add('hidden');
-      cartModal.setAttribute('aria-hidden', 'true');
-    }, 300);
-  }
-}
-
-// Gestion menu hamburger
-document.getElementById('nav-toggle').addEventListener('click', () => {
-  const menu = document.getElementById('nav-menu');
-  menu.classList.toggle('hidden');
-});
-
-// Ouverture du panier au clic sur bouton
-document.getElementById('cartButton').addEventListener('click', toggleCart);
-</script>
-
-</body>
-</html>
+            value="${
