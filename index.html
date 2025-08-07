@@ -1,46 +1,15 @@
-<!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="LTD Grove Street, votre partenaire de confiance pour les stations essence et commerce à Los Santos. Découvrez notre catalogue, services, et équipe." />
-  <title>LTD Grove Street - Accueil</title>
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Splide.js pour carousel -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
-
-  <style>
-    /* Styles personnalisés */
-    .faq-question {
-      cursor: pointer;
-    }
-    .faq-icon {
-      transition: transform 0.3s ease;
-    }
-    .faq-question[aria-expanded="true"] .faq-icon {
-      transform: rotate(180deg);
-    }
-    /* Padding pour ne pas que le header cache le contenu */
-    body {
-      padding-top: 4rem;
-    }
-  </style>
-</head>
-<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
-
 <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/70 dark:bg-gray-900/80 shadow-sm transition-all duration-300">
-  <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+  <nav class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
     
-    <!-- Logo + nom -->
-    <a href="index.html" class="flex items-center gap-3">
-      <img src="https://i.goopics.net/5dh7x3.png" alt="Logo LTD Grove Street" class="w-9 h-9 rounded shadow-md" />
-      <span class="text-xl font-bold text-indigo-700 dark:text-indigo-300 hover:text-indigo-900 dark:hover:text-white transition-all">
-        LTD Grove Street
-      </span>
-    </a>
+    <!-- Conteneur logo -->
+    <div class="flex-shrink-0">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="https://i.goopics.net/5dh7x3.png" alt="Logo LTD Grove Street" class="w-9 h-9 rounded shadow-md" />
+        <span class="text-xl font-bold text-indigo-700 dark:text-indigo-300 hover:text-indigo-900 dark:hover:text-white transition-all">
+          LTD Grove Street
+        </span>
+      </a>
+    </div>
 
     <!-- Menu desktop -->
     <ul class="hidden md:flex items-center gap-6 text-sm font-semibold text-gray-700 dark:text-gray-200">
@@ -64,6 +33,21 @@
       </svg>
     </button>
   </nav>
+
+  <!-- Menu mobile -->
+  <div id="nav-menu" class="hidden md:hidden px-6 py-4 bg-white/90 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-sm">
+    <ul class="flex flex-col gap-3 text-sm font-semibold text-indigo-700 dark:text-indigo-300">
+      <li><a href="index.html" class="block hover:text-indigo-500">Accueil</a></li>
+      <li><a href="catalogue.html" class="block hover:text-indigo-500">Catalogue</a></li>
+      <li><a href="stations.html" class="block hover:text-indigo-500">Stations Essence</a></li>
+      <li><a href="commande.html" class="block hover:text-indigo-500">Commande</a></li>
+      <li><a href="avis.html" class="block hover:text-indigo-500">Avis Clients</a></li>
+      <li><a href="equipe.html" class="block hover:text-indigo-500">Notre Équipe</a></li>
+      <li><a href="actualites.html" class="block hover:text-indigo-500">Actualités</a></li>
+      <li><a href="contact.html" class="block hover:text-indigo-500">Contact</a></li>
+    </ul>
+  </div>
+</header>
 
   <!-- Menu mobile -->
   <div id="nav-menu" class="hidden md:hidden px-6 py-4 bg-white/90 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-sm">
