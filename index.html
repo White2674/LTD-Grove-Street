@@ -13,7 +13,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
 
   <style>
-    /* Styles personnalisés */
     .faq-question {
       cursor: pointer;
     }
@@ -23,26 +22,27 @@
     .faq-question[aria-expanded="true"] .faq-icon {
       transform: rotate(180deg);
     }
-    /* Padding pour ne pas que le header cache le contenu */
     body {
       padding-top: 4rem;
     }
   </style>
 </head>
+
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
-<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/70 dark:bg-gray-900/80 shadow-sm transition-all duration-300">
-  <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-    
-    <!-- Logo + nom -->
-    <a href="index.html" class="flex items-center gap-3">
+<!-- HEADER -->
+<header class="fixed top-0 left-0 w-full z-50 bg-white/70 dark:bg-gray-900/80 backdrop-blur-md shadow-sm transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center gap-3 shrink-0">
       <img src="https://i.goopics.net/5dh7x3.png" alt="Logo LTD Grove Street" class="w-9 h-9 rounded shadow-md" />
       <span class="text-xl font-bold text-indigo-700 dark:text-indigo-300 hover:text-indigo-900 dark:hover:text-white transition-all">
         LTD Grove Street
       </span>
     </a>
 
-    <!-- Menu desktop -->
+    <!-- Menu Desktop -->
     <ul class="hidden md:flex items-center gap-6 text-sm font-semibold text-gray-700 dark:text-gray-200">
       <li><a href="index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Accueil</a></li>
       <li><a href="catalogue.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Catalogue</a></li>
@@ -53,19 +53,17 @@
       <li><a href="contact.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Contact</a></li>
     </ul>
 
-    <!-- Bouton mobile -->
-    <button id="nav-toggle" class="md:hidden focus:outline-none text-indigo-600 dark:text-indigo-300" aria-label="Menu"
-      aria-expanded="false" aria-controls="nav-menu">
-      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-        stroke-linejoin="round">
+    <!-- Bouton Mobile -->
+    <button id="nav-toggle" class="md:hidden focus:outline-none text-indigo-600 dark:text-indigo-300" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="3" y1="6" x2="21" y2="6" />
         <line x1="3" y1="12" x2="21" y2="12" />
         <line x1="3" y1="18" x2="21" y2="18" />
       </svg>
     </button>
-  </nav>
+  </div>
 
-  <!-- Menu mobile -->
+  <!-- Menu Mobile -->
   <div id="nav-menu" class="hidden md:hidden px-6 py-4 bg-white/90 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-sm">
     <ul class="flex flex-col gap-3 text-sm font-semibold text-indigo-700 dark:text-indigo-300">
       <li><a href="index.html" class="block hover:text-indigo-500">Accueil</a></li>
@@ -80,6 +78,7 @@
   </div>
 </header>
 
+<!-- SCRIPT MENU BURGER -->
 <script>
   const navToggle = document.getElementById('nav-toggle');
   const navMenu = document.getElementById('nav-menu');
@@ -91,31 +90,9 @@
   });
 </script>
 
-  <!-- Menu mobile -->
-  <div id="nav-menu" class="hidden md:hidden px-6 py-4 bg-white/90 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-sm">
-    <ul class="flex flex-col gap-3 text-sm font-semibold text-indigo-700 dark:text-indigo-300">
-      <li><a href="index.html" class="block hover:text-indigo-500">Accueil</a></li>
-      <li><a href="catalogue.html" class="block hover:text-indigo-500">Catalogue</a></li>
-      <li><a href="stations.html" class="block hover:text-indigo-500">Stations Essence</a></li>
-      <li><a href="commande.html" class="block hover:text-indigo-500">Commande</a></li>
-      <li><a href="avis.html" class="block hover:text-indigo-500">Avis Clients</a></li>
-      <li><a href="equipe.html" class="block hover:text-indigo-500">Notre Équipe</a></li>
-      <li><a href="actualites.html" class="block hover:text-indigo-500">Actualités</a></li>
-      <li><a href="contact.html" class="block hover:text-indigo-500">Contact</a></li>
-    </ul>
-  </div>
-</header>
+</body>
+</html>
 
-<script>
-  const navToggle = document.getElementById('nav-toggle');
-  const navMenu = document.getElementById('nav-menu');
-
-  navToggle.addEventListener('click', () => {
-    const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-    navToggle.setAttribute('aria-expanded', !expanded);
-    navMenu.classList.toggle('hidden');
-  });
-</script>
 
   <!-- Thème toggle -->
   <button id="theme-toggle" aria-label="Toggle Dark Mode" class="fixed bottom-5 right-5 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition" title="Changer le thème">
