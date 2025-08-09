@@ -1,323 +1,205 @@
-/* style.css modernisé violet / dark mode - v2 */
+/* style.css modernisé clair / light mode avec bulles animées et header fixe */
+
+/* Import Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 /* Global */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-
 body {
-  font-family: 'Inter', sans-serif;
-  scroll-behavior: smooth;
-  transition: background-color 0.7s ease, color 0.7s ease;
-  background: linear-gradient(135deg, #7b4aed 0%, #9265f7 100%);
-  color: #f3f4f6;
+  font-family: 'Poppins', sans-serif;
+  padding-top: 4rem;
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+  overflow-x: hidden;
+  position: relative;
   min-height: 100vh;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
-/* === FAQ Accordéon === */
-
-.faq-item {
-  border-bottom: 1px solid rgba(255 255 255 / 0.12);
-  padding: 1.5rem 0;
-  transition: border-color 0.5s ease;
-}
-
-body.dark .faq-item {
-  border-bottom: 1px solid rgba(255 255 255 / 0.28);
-}
-
-.faq-question {
-  cursor: pointer;
-  font-weight: 700;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1.25rem;
-  transition: color 0.5s ease;
-  color: #d4c9ff;
-  user-select: none;
-  letter-spacing: 0.03em;
-  will-change: color;
-}
-
-.faq-question:hover {
-  color: #b9a7ff;
-}
-
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s ease;
-  padding-left: 1.5rem;
-  color: #cfc9ff;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  user-select: text;
-  padding-top: 0;
-  padding-bottom: 0;
-  will-change: max-height, padding;
-}
-
-body.dark .faq-answer {
-  color: #c3b9e8;
-}
-
-.faq-item.open .faq-answer {
-  max-height: 700px;
-  padding-top: 0.9rem;
-  padding-bottom: 0.9rem;
-  animation: fadeInContent 0.5s ease forwards;
-}
-
-@keyframes fadeInContent {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-
-/* Icône +/- pour FAQ */
-.faq-icon {
-  font-weight: 700;
-  font-size: 1.7rem;
-  user-select: none;
-  color: #b9a7ff;
-  transition: transform 0.4s ease, color 0.4s ease;
-  transform-origin: center;
-  display: inline-block;
-  line-height: 1;
-  will-change: transform, color;
-}
-
-.faq-item.open .faq-icon {
-  transform: rotate(45deg);
-  color: #6b46c1;
-}
-
-/* === Carousel Logos partenaires === */
-
-.carousel {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  max-width: 100%;
-  user-select: none;
-  padding: 1rem 0;
-  background: rgba(124, 58, 237, 0.05);
-  border-radius: 16px;
-  box-shadow: 0 6px 15px rgba(124, 58, 237, 0.1);
-}
-
-.carousel-track {
-  display: flex;
-  gap: 2.5rem;
-  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.carousel-item {
-  flex: 0 0 auto;
-  width: 130px;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  filter: grayscale(80%);
-  opacity: 0.65;
-  border-radius: 12px;
-  background: rgba(255 255 255 / 0.1);
-  transition: filter 0.4s ease, opacity 0.4s ease, background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
-  box-shadow: 0 3px 8px rgba(124, 58, 237, 0.12);
-  will-change: filter, opacity, transform;
-}
-
-.carousel-item:hover {
-  filter: grayscale(0);
-  opacity: 1;
-  background: rgba(255 255 255 / 0.18);
-  box-shadow: 0 10px 20px rgba(124, 58, 237, 0.4);
-  cursor: pointer;
-  transform: scale(1.08);
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* === Bouton Toggle Thème === */
-
-#theme-toggle {
+/* Bulles animées en arrière-plan */
+body::before {
+  content: '';
   position: fixed;
-  bottom: 1.7rem;
-  right: 1.7rem;
-  background: linear-gradient(135deg, #7c3aed, #b78eff);
-  color: white;
+  top: -100px;
+  left: -100px;
+  width: 300px;
+  height: 300px;
+  background: rgba(99, 102, 241, 0.2);
   border-radius: 50%;
-  width: 56px;
-  height: 56px;
-  box-shadow: 0 8px 22px rgba(124, 58, 237, 0.6);
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  border: none;
-  transition: background 0.5s ease, box-shadow 0.5s ease, transform 0.3s ease;
-  z-index: 110;
-  will-change: background, box-shadow, transform;
+  filter: blur(100px);
+  animation: float1 8s ease-in-out infinite alternate;
+  z-index: 0;
 }
-
-#theme-toggle:hover {
-  background: linear-gradient(135deg, #a079ff, #d6bdff);
-  box-shadow: 0 12px 30px rgba(156, 163, 175, 0.9);
-  transform: scale(1.15);
-}
-
-/* === Animations douces === */
-
-.fade-in {
-  animation: fadeIn 1s ease forwards;
-  opacity: 0;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-/* === Menu mobile (bouton burger) === */
-
-#nav-toggle svg {
-  stroke: #e0d7ff;
-  transition: stroke 0.35s ease;
-}
-
-#nav-toggle:hover svg {
-  stroke: #b9a7ff;
-}
-
-#nav-menu {
-  background: linear-gradient(180deg, #7b4aed 0%, #5f3dbb 100%);
-  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.35);
-  border-radius: 0 0 16px 16px;
-  transition: max-height 0.5s ease, box-shadow 0.5s ease;
-  overflow: hidden;
-  will-change: max-height;
-}
-
-/* Menu visible style */
-#nav-menu ul li a {
-  color: #d4c9ff;
-  font-weight: 700;
-  padding: 0.85rem 1.2rem;
-  display: block;
-  border-radius: 10px;
-  transition: background 0.35s ease, color 0.35s ease;
-  user-select: none;
-  letter-spacing: 0.02em;
-}
-
-#nav-menu ul li a:hover {
-  background: rgba(196, 181, 253, 0.35);
-  color: #c7b3ff;
-}
-
-/* === Petit bouton intranet === */
-
-.intranet-button {
+body::after {
+  content: '';
   position: fixed;
-  bottom: 1.7rem;
-  left: 1.7rem;
-  background: linear-gradient(135deg, #7c3aed, #b78eff);
-  color: white;
-  padding: 0.65rem 1.3rem;
-  font-weight: 700;
-  border-radius: 14px;
-  box-shadow: 0 8px 22px rgba(124, 58, 237, 0.65);
+  bottom: -120px;
+  right: -120px;
+  width: 350px;
+  height: 350px;
+  background: rgba(139, 92, 246, 0.15);
+  border-radius: 50%;
+  filter: blur(120px);
+  animation: float2 10s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes float1 {
+  0% { transform: translateY(0) translateX(0); }
+  100% { transform: translateY(20px) translateX(20px); }
+}
+
+@keyframes float2 {
+  0% { transform: translateY(0) translateX(0); }
+  100% { transform: translateY(-25px) translateX(-25px); }
+}
+
+/* Header */
+header {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  backdrop-filter: saturate(180%) blur(20px);
+  background: rgba(255 255 255 / 0.85);
+  z-index: 50;
+  box-shadow: 0 2px 15px rgb(0 0 0 / 0.05);
+  transition: background-color 0.3s ease;
+}
+
+/* Header container flex */
+.header-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Logo stylisé */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  font-size: 1.375rem;
+  color: #4f46e5; /* indigo-600 */
   cursor: pointer;
-  z-index: 60;
-  transition: background 0.35s ease, box-shadow 0.35s ease;
-  text-decoration: none;
-  font-size: 1.05rem;
-  letter-spacing: 0.02em;
-  will-change: background, box-shadow;
-}
-
-.intranet-button:hover {
-  background: linear-gradient(135deg, #a079ff, #d6bdff);
-  box-shadow: 0 14px 30px rgba(156, 163, 175, 1);
-}
-
-/* === Responsive tweaks === */
-
-@media (max-width: 640px) {
-  .carousel-item {
-    width: 95px;
-    height: 54px;
-  }
-  .faq-question {
-    font-size: 1.1rem;
-  }
-  .faq-answer {
-    font-size: 0.95rem;
-  }
-  #nav-menu ul li a {
-    padding: 0.7rem 1rem;
-  }
-}
-
-/* === Formulaires focus === */
-
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-  box-shadow: 0 0 0 3.5px rgba(156, 163, 175, 0.85);
-  transition: box-shadow 0.5s ease;
-  border-radius: 6px;
-}
-
-/* === Footer === */
-
-footer {
-  background: linear-gradient(135deg, #5f3dbb 0%, #7b4aed 100%);
-  color: #cfc9ff;
-  padding: 1.5rem 0;
-  box-shadow: inset 0 2px 8px rgba(124, 58, 237, 0.6);
-  font-weight: 700;
-  letter-spacing: 0.02em;
   user-select: none;
-  text-align: center;
+  transition: color 0.3s ease;
+  z-index: 55;
+}
+.logo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgb(79 70 229 / 0.25);
+  transition: transform 0.3s ease;
+}
+.logo:hover {
+  color: #4338ca;
+}
+.logo:hover img {
+  transform: scale(1.1);
+}
+
+/* Menu desktop */
+nav ul {
+  display: flex;
+  gap: 2rem;
+  font-weight: 600;
   font-size: 1rem;
+  color: #374151; /* gray-700 */
+  z-index: 55;
+}
+nav ul li a {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+  padding-bottom: 0.25rem;
+  transition: color 0.3s ease;
+}
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: #4f46e5;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+nav ul li a:hover,
+nav ul li a.active {
+  color: #4f46e5;
+}
+nav ul li a:hover::after,
+nav ul li a.active::after {
+  width: 100%;
 }
 
-/* === Mode sombre === */
-
-body.dark {
-  background: #1a1725;
-  color: #c3b9e8;
+/* Menu mobile - bouton hamburger */
+#nav-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #4f46e5;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  transition: color 0.3s ease;
+}
+#nav-toggle:hover {
+  color: #4338ca;
+}
+#nav-toggle svg {
+  width: 28px;
+  height: 28px;
 }
 
-body.dark footer {
-  background: #3a2a6f;
-  color: #b6a3e2;
+/* Menu mobile - menu déroulant */
+#nav-menu {
+  position: fixed;
+  top: 4rem;
+  right: 0;
+  width: 260px;
+  background: rgba(255 255 255 / 0.95);
+  backdrop-filter: blur(20px);
+  box-shadow: -4px 0 30px rgb(0 0 0 / 0.1);
+  border-radius: 0 0 0 12px;
+  padding: 1.5rem 2rem;
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: #4f46e5;
+  z-index: 55;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+#nav-menu.open {
+  transform: translateX(0);
+}
+#nav-menu a {
+  color: #4f46e5;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+#nav-menu a:hover {
+  color: #4338ca;
 }
 
-/* === Scrollbar personnalisé (optionnel) === */
-
-body::-webkit-scrollbar {
-  width: 8px;
-}
-
-body::-webkit-scrollbar-track {
-  background: #372f59;
-}
-
-body::-webkit-scrollbar-thumb {
-  background: #9265f7;
-  border-radius: 9999px;
-  transition: background-color 0.35s ease;
-}
-
-body::-webkit-scrollbar-thumb:hover {
-  background: #b78eff;
+/* Responsive */
+@media (min-width: 768px) {
+  #nav-toggle {
+    display: none;
+  }
+  #nav-menu {
+    display: none !important;
+  }
 }
