@@ -250,6 +250,7 @@ function renderProducts() {
   else if (sort === "price-desc") filtered.sort((a,b) => b.price - a.price);
 
   // Affichage
+const currencySymbol = "$";
   grid.innerHTML = "";
 
   if(filtered.length === 0) {
