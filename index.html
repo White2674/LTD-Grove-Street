@@ -1,27 +1,18 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth" >
+<html lang="fr" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="LTD Grove Street, votre partenaire de confiance pour les stations essence et commerce à Los Santos. Découvrez notre catalogue, services, et équipe." />
   <title>LTD Grove Street - Accueil</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Splide.js pour carousel (partenaires si besoin) -->
+  <!-- Splide.js pour carousel -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
 
   <style>
-    /* Polices */
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-
-    /* FAQ */
     .faq-question {
       cursor: pointer;
     }
@@ -31,30 +22,8 @@
     .faq-question[aria-expanded="true"] .faq-icon {
       transform: rotate(180deg);
     }
-    .faq-answer {
-      transition: max-height 0.35s ease, padding 0.35s ease;
-      overflow: hidden;
-    }
-
-    /* Header transparent + blur */
-    header {
-      backdrop-filter: saturate(180%) blur(8px);
-    }
-
-    /* Animation partenaires */
-    @keyframes partner-slide {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .partner-scroll {
-      animation: partner-slide 20s linear infinite;
-      width: max-content;
-    }
-
-    /* Focus outline accessible */
-    button:focus-visible, a:focus-visible {
-      outline: 2px solid #6366F1; /* indigo-500 */
-      outline-offset: 2px;
+    body {
+      padding-top: 4rem;
     }
   </style>
 </head>
@@ -62,29 +31,27 @@
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
 <!-- HEADER -->
-<header class="fixed top-0 left-0 w-full z-50 bg-white/70 dark:bg-gray-900/80 shadow-md transition-all duration-300">
+<header class="fixed top-0 left-0 w-full z-50 bg-white/70 dark:bg-gray-900/80 backdrop-blur-md shadow-sm transition-all duration-300">
   <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
 
     <!-- Logo -->
     <a href="index.html" class="flex items-center gap-3 shrink-0">
-      <img src="https://i.goopics.net/5dh7x3.png" alt="Logo LTD Grove Street" class="w-10 h-10 rounded shadow-md" />
-      <span class="text-2xl font-extrabold text-indigo-700 dark:text-indigo-300 hover:text-indigo-900 dark:hover:text-white transition-colors">
+      <img src="https://i.goopics.net/5dh7x3.png" alt="Logo LTD Grove Street" class="w-9 h-9 rounded shadow-md" />
+      <span class="text-xl font-bold text-indigo-700 dark:text-indigo-300 hover:text-indigo-900 dark:hover:text-white transition-all">
         LTD Grove Street
       </span>
     </a>
 
     <!-- Menu Desktop -->
-    <nav>
-      <ul class="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-700 dark:text-gray-200">
-        <li><a href="index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Accueil</a></li>
-        <li><a href="catalogue.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Catalogue</a></li>
-        <li><a href="stations.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Stations Essence</a></li>
-        <li><a href="avis.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Avis Clients</a></li>
-        <li><a href="equipe.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Notre Équipe</a></li>
-        <li><a href="actualites.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Actualités</a></li>
-        <li><a href="contact.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Contact</a></li>
-      </ul>
-    </nav>
+    <ul class="hidden md:flex items-center gap-6 text-sm font-semibold text-gray-700 dark:text-gray-200">
+      <li><a href="index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Accueil</a></li>
+      <li><a href="catalogue.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Catalogue</a></li>
+      <li><a href="stations.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Stations Essence</a></li>
+      <li><a href="avis.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Avis Clients</a></li>
+      <li><a href="equipe.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Notre Équipe</a></li>
+      <li><a href="actualites.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Actualités</a></li>
+      <li><a href="contact.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Contact</a></li>
+    </ul>
 
     <!-- Bouton Mobile -->
     <button id="nav-toggle" class="md:hidden focus:outline-none text-indigo-600 dark:text-indigo-300" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
@@ -97,8 +64,8 @@
   </div>
 
   <!-- Menu Mobile -->
-  <nav id="nav-menu" class="hidden md:hidden px-6 py-4 bg-white/90 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-md">
-    <ul class="flex flex-col gap-4 text-sm font-semibold text-indigo-700 dark:text-indigo-300">
+  <div id="nav-menu" class="hidden md:hidden px-6 py-4 bg-white/90 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-sm">
+    <ul class="flex flex-col gap-3 text-sm font-semibold text-indigo-700 dark:text-indigo-300">
       <li><a href="index.html" class="block hover:text-indigo-500">Accueil</a></li>
       <li><a href="catalogue.html" class="block hover:text-indigo-500">Catalogue</a></li>
       <li><a href="stations.html" class="block hover:text-indigo-500">Stations Essence</a></li>
@@ -108,7 +75,7 @@
       <li><a href="actualites.html" class="block hover:text-indigo-500">Actualités</a></li>
       <li><a href="contact.html" class="block hover:text-indigo-500">Contact</a></li>
     </ul>
-  </nav>
+  </div>
 </header>
 
 <!-- SCRIPT MENU BURGER -->
@@ -123,24 +90,28 @@
   });
 </script>
 
-<!-- Thème toggle -->
-<button id="theme-toggle" aria-label="Toggle Dark Mode" class="fixed bottom-5 right-5 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition" title="Changer le thème" >
-  🌗
-</button>
+</body>
+</html>
 
-<!-- Bouton Intranet -->
-<a href="https://discord.gg/6tdpPCZmV8" target="_blank" rel="noopener" class="fixed bottom-5 left-5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-5 rounded shadow-lg transition">
-  Accéder à l’Intranet
-</a>
 
-<!-- Bannière principale -->
-<section class="hero bg-[url('https://i.goopics.net/1f686l.png')] bg-cover bg-center min-h-[40vh] flex flex-col justify-center items-center px-6 text-white text-center shadow-lg mt-16 md:mt-20 rounded-lg mx-4 md:mx-auto max-w-7xl">
-  <h1 class="text-5xl md:text-7xl font-extrabold drop-shadow-lg leading-tight">Bienvenue sur le site du <span class="text-indigo-400">LTD Grove Street</span></h1>
-  <p class="mt-6 max-w-3xl text-xl md:text-2xl drop-shadow-md font-semibold">Votre partenaire de confiance en stations et commerce</p>
-  <a href="catalogue.html" class="mt-10 inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-10 rounded-lg shadow-xl transition duration-300">
-    Voir notre Catalogue
+  <!-- Thème toggle -->
+  <button id="theme-toggle" aria-label="Toggle Dark Mode" class="fixed bottom-5 right-5 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition" title="Changer le thème">
+    🌗
+  </button>
+
+  <!-- Bouton Intranet -->
+  <a href="https://discord.gg/6tdpPCZmV8" target="_blank" rel="noopener" class="fixed bottom-5 left-5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-5 rounded shadow-lg transition">
+    Accéder à l’Intranet
   </a>
-</section>
+
+  <!-- Bannière principale -->
+  <header class="hero bg-[url('https://i.goopics.net/1f686l.png')] bg-cover bg-center min-h-[30vh] flex flex-col justify-center items-center px-6 text-white text-center shadow-lg mt-16">
+    <h1 class="text-4xl md:text-6xl font-extrabold drop-shadow-lg">Bienvenue sur le site du LTD Grove Street</h1>
+    <p class="mt-4 max-w-xl text-lg md:text-2xl drop-shadow-md">Votre partenaire de confiance en stations et commerce</p>
+    <a href="catalogue.html" class="mt-8 inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition">
+      Voir notre Catalogue
+    </a>
+  </header>
 
   <!-- Présentation -->
 <section class="relative bg-gradient-to-r from-indigo-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-20 px-6 mt-12 overflow-hidden">
