@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth" >
+<html lang="fr" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,7 +13,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
 
   <style>
-    /* FAQ */
     .faq-question {
       cursor: pointer;
     }
@@ -23,50 +22,36 @@
     .faq-question[aria-expanded="true"] .faq-icon {
       transform: rotate(180deg);
     }
-
     body {
-      padding-top: 4.5rem;
+      padding-top: 4rem;
     }
-
-    /* Animation logos partenaires */
-    @keyframes partner-slide {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .partner-scroll {
-      animation: partner-slide 20s linear infinite;
-      width: max-content;
-    }
-
   </style>
 </head>
 
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-500 font-sans">
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
 <!-- HEADER -->
-<header class="fixed top-0 left-0 w-full z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-md transition-all duration-300">
+<header class="fixed top-0 left-0 w-full z-50 bg-white/70 dark:bg-gray-900/80 backdrop-blur-md shadow-sm transition-all duration-300">
   <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
 
     <!-- Logo -->
     <a href="index.html" class="flex items-center gap-3 shrink-0">
-      <img src="https://i.goopics.net/5dh7x3.png" alt="Logo LTD Grove Street" class="w-10 h-10 rounded-lg shadow-md" />
-      <span class="text-2xl font-extrabold text-indigo-700 dark:text-indigo-400 hover:text-indigo-900 dark:hover:text-indigo-300 transition-colors duration-300 select-none">
+      <img src="https://i.goopics.net/5dh7x3.png" alt="Logo LTD Grove Street" class="w-9 h-9 rounded shadow-md" />
+      <span class="text-xl font-bold text-indigo-700 dark:text-indigo-300 hover:text-indigo-900 dark:hover:text-white transition-all">
         LTD Grove Street
       </span>
     </a>
 
     <!-- Menu Desktop -->
-    <nav>
-      <ul class="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-700 dark:text-gray-300 tracking-wide">
-        <li><a href="index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Accueil</a></li>
-        <li><a href="catalogue.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Catalogue</a></li>
-        <li><a href="stations.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Stations Essence</a></li>
-        <li><a href="avis.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Avis Clients</a></li>
-        <li><a href="equipe.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Notre Équipe</a></li>
-        <li><a href="actualites.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Actualités</a></li>
-        <li><a href="contact.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Contact</a></li>
-      </ul>
-    </nav>
+    <ul class="hidden md:flex items-center gap-6 text-sm font-semibold text-gray-700 dark:text-gray-200">
+      <li><a href="index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Accueil</a></li>
+      <li><a href="catalogue.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Catalogue</a></li>
+      <li><a href="stations.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Stations Essence</a></li>
+      <li><a href="avis.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Avis Clients</a></li>
+      <li><a href="equipe.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Notre Équipe</a></li>
+      <li><a href="actualites.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Actualités</a></li>
+      <li><a href="contact.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline underline-offset-4 transition">Contact</a></li>
+    </ul>
 
     <!-- Bouton Mobile -->
     <button id="nav-toggle" class="md:hidden focus:outline-none text-indigo-600 dark:text-indigo-300" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
@@ -79,8 +64,8 @@
   </div>
 
   <!-- Menu Mobile -->
-  <nav id="nav-menu" class="hidden md:hidden px-6 py-5 bg-white/95 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-sm">
-    <ul class="flex flex-col gap-4 text-indigo-700 dark:text-indigo-300 font-semibold tracking-wide">
+  <div id="nav-menu" class="hidden md:hidden px-6 py-4 bg-white/90 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-sm">
+    <ul class="flex flex-col gap-3 text-sm font-semibold text-indigo-700 dark:text-indigo-300">
       <li><a href="index.html" class="block hover:text-indigo-500">Accueil</a></li>
       <li><a href="catalogue.html" class="block hover:text-indigo-500">Catalogue</a></li>
       <li><a href="stations.html" class="block hover:text-indigo-500">Stations Essence</a></li>
@@ -90,7 +75,7 @@
       <li><a href="actualites.html" class="block hover:text-indigo-500">Actualités</a></li>
       <li><a href="contact.html" class="block hover:text-indigo-500">Contact</a></li>
     </ul>
-  </nav>
+  </div>
 </header>
 
 <!-- SCRIPT MENU BURGER -->
@@ -105,135 +90,112 @@
   });
 </script>
 
-<!-- Bouton Thème toggle -->
-<button id="theme-toggle" aria-label="Toggle Dark Mode" 
-  class="fixed bottom-6 right-6 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition 
-         flex items-center justify-center text-xl select-none z-50"
-  title="Changer le thème">
-  🌗
-</button>
+</body>
+</html>
 
-<script>
-  const themeToggle = document.getElementById('theme-toggle');
-  const htmlEl = document.documentElement;
 
-  function toggleTheme() {
-    if (htmlEl.classList.contains('dark')) {
-      htmlEl.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    } else {
-      htmlEl.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    }
-  }
+  <!-- Thème toggle -->
+  <button id="theme-toggle" aria-label="Toggle Dark Mode" class="fixed bottom-5 right-5 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition" title="Changer le thème">
+    🌗
+  </button>
 
-  themeToggle.addEventListener('click', toggleTheme);
-
-  // On load, check saved theme
-  if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    htmlEl.classList.add('dark');
-  }
-</script>
-
-<!-- Bouton Intranet -->
-<a href="https://discord.gg/6tdpPCZmV8" target="_blank" rel="noopener"
-   class="fixed bottom-6 left-6 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition select-none z-50">
-  Accéder à l’Intranet
-</a>
-
-<!-- Bannière principale -->
-<section class="hero bg-[url('https://i.goopics.net/1f686l.png')] bg-cover bg-center min-h-[40vh] flex flex-col justify-center items-center px-6 text-white text-center shadow-lg mt-16 rounded-b-3xl">
-  <h1 class="text-5xl md:text-6xl font-extrabold drop-shadow-lg max-w-4xl leading-tight">
-    Bienvenue sur le site du <span class="text-indigo-400">LTD Grove Street</span>
-  </h1>
-  <p class="mt-5 max-w-3xl text-xl md:text-2xl drop-shadow-md font-light tracking-wide">
-    Votre partenaire de confiance en stations et commerce
-  </p>
-  <a href="catalogue.html" class="mt-10 inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-4 px-10 rounded-xl shadow-lg transition">
-    Voir notre Catalogue
+  <!-- Bouton Intranet -->
+  <a href="https://discord.gg/6tdpPCZmV8" target="_blank" rel="noopener" class="fixed bottom-5 left-5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-5 rounded shadow-lg transition">
+    Accéder à l’Intranet
   </a>
-</section>
 
-<!-- Présentation -->
-<section class="relative bg-gradient-to-r from-indigo-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-24 px-6 mt-20 overflow-hidden rounded-xl max-w-6xl mx-auto shadow-md">
+  <!-- Bannière principale -->
+  <header class="hero bg-[url('https://i.goopics.net/1f686l.png')] bg-cover bg-center min-h-[30vh] flex flex-col justify-center items-center px-6 text-white text-center shadow-lg mt-16">
+    <h1 class="text-4xl md:text-6xl font-extrabold drop-shadow-lg">Bienvenue sur le site du LTD Grove Street</h1>
+    <p class="mt-4 max-w-xl text-lg md:text-2xl drop-shadow-md">Votre partenaire de confiance en stations et commerce</p>
+    <a href="catalogue.html" class="mt-8 inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition">
+      Voir notre Catalogue
+    </a>
+  </header>
+
+  <!-- Présentation -->
+<section class="relative bg-gradient-to-r from-indigo-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-20 px-6 mt-12 overflow-hidden">
   <div class="absolute inset-0 pointer-events-none">
-    <svg class="absolute bottom-0 left-0 w-full h-28 text-indigo-200 dark:text-gray-700" preserveAspectRatio="none" viewBox="0 0 100 100" fill="currentColor">
+    <svg class="absolute bottom-0 left-0 w-full h-24 text-indigo-200 dark:text-gray-700" preserveAspectRatio="none" viewBox="0 0 100 100" fill="currentColor">
       <polygon points="0,100 100,0 100,100" />
     </svg>
   </div>
-  <div class="relative text-center max-w-4xl mx-auto">
-    <h2 class="text-4xl md:text-5xl font-extrabold text-indigo-700 dark:text-white mb-8 select-none">Qui sommes-nous ?</h2>
-    <p class="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed tracking-wide">
+  <div class="relative max-w-5xl mx-auto text-center">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-indigo-700 dark:text-white mb-6">Qui sommes-nous ?</h2>
+    <p class="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto">
       Le <span class="font-bold text-indigo-600">LTD de Grove Street</span>, implanté à Los Santos, est un acteur incontournable dans le ravitaillement en essence et la vente de produits essentiels. Fort de 9 stations-service stratégiquement réparties et d’un magasin ancré au cœur de Grove Street, nous allions proximité, efficacité et engagement communautaire. Notre mission ? Être chaque jour un pilier fiable pour les citoyens de San Andreas.
     </p>
   </div>
 </section>
 
-<!-- Pourquoi choisir LTD Grove Street -->
-<section class="max-w-7xl mx-auto px-6 py-16 mt-20 bg-white dark:bg-gray-900 rounded-2xl shadow-lg">
-  <h2 class="text-3xl font-semibold text-center mb-12 text-indigo-700 dark:text-indigo-400 select-none">Pourquoi choisir <span class="text-indigo-600">LTD Grove Street</span> ?</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-    <div class="bg-indigo-50 dark:bg-gray-800 rounded-xl p-8 shadow hover:shadow-xl transition-shadow">
-      <h3 class="text-xl font-bold mb-4 text-indigo-600">1. Fiabilité</h3>
-      <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-        Choisir le LTD Grove Street, c’est opter pour une équipe disponible et à l’écoute, prête à vous servir dans une ambiance conviviale.
-      </p>
+  <!-- Nouvelle section : Pourquoi choisir LTD Grove Street ? -->
+  <section class="max-w-6xl mx-auto px-6 py-12 mt-16 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-md">
+    <h2 class="text-3xl font-semibold text-center mb-10">Pourquoi choisir <span class="text-indigo-600">LTD Grove Street</span> ?</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white dark:bg-gray-900 rounded-lg shadow p-6 text-center">
+        <h3 class="text-xl font-bold mb-3 text-indigo-600">1. Fiabilité</h3>
+        <p class="text-gray-700 dark:text-gray-300">Choisir le LTD Grove Street, c’est opter pour une équipe disponible et à l’écoute, prête à vous servir dans une ambiance conviviale.</p>
+      </div>
+      <div class="bg-white dark:bg-gray-900 rounded-lg shadow p-6 text-center">
+        <h3 class="text-xl font-bold mb-3 text-indigo-600">2. Livraison rapide</h3>
+        <p class="text-gray-700 dark:text-gray-300">Commandez en ligne et recevez votre livraison à domicile rapidement par notre équipe.</p>
+      </div>
+      <div class="bg-white dark:bg-gray-900 rounded-lg shadow p-6 text-center">
+        <h3 class="text-xl font-bold mb-3 text-indigo-600">3. Produits variés</h3>
+        <p class="text-gray-700 dark:text-gray-300">Essence, nourriture, objets utiles — notre catalogue répond à tous vos besoins.</p>
+      </div>
+      <div class="bg-white dark:bg-gray-900 rounded-lg shadow p-6 text-center">
+        <h3 class="text-xl font-bold mb-3 text-indigo-600">4. Proximité</h3>
+        <p class="text-gray-700 dark:text-gray-300">Un magasin au cœur de Grove Street et une équipe proche de sa communauté.</p>
+      </div>
     </div>
-    <div class="bg-indigo-50 dark:bg-gray-800 rounded-xl p-8 shadow hover:shadow-xl transition-shadow">
-      <h3 class="text-xl font-bold mb-4 text-indigo-600">2. Livraison rapide</h3>
-      <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-        Commandez en ligne et recevez votre livraison à domicile rapidement par notre équipe.
-      </p>
-    </div>
-    <div class="
+  </section>
 
 <!-- Section FAQ -->
 <section class="max-w-5xl mx-auto px-6 py-16">
-  <h2 class="text-3xl font-semibold text-center mb-10 text-indigo-700 dark:text-indigo-400 select-none">
-    Foire aux Questions (FAQ)
-  </h2>
+  <h2 class="text-3xl font-semibold text-center mb-10">Foire aux Questions (FAQ)</h2>
   <div class="space-y-4">
-    <div class="border border-indigo-300 rounded-lg overflow-hidden shadow-sm dark:border-indigo-700">
+    <div class="border border-indigo-300 rounded-lg overflow-hidden">
       <button 
         aria-expanded="false" 
         class="faq-question flex justify-between items-center w-full px-6 py-4 text-left bg-indigo-50 dark:bg-gray-800 hover:bg-indigo-100 dark:hover:bg-gray-700 transition"
       >
-        <span class="font-medium text-indigo-700 dark:text-indigo-400">Quelle est l’atmosphère au LTD Grove Street ?</span>
-        <svg class="faq-icon w-6 h-6 text-indigo-600 dark:text-indigo-300 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <span class="font-medium text-indigo-700 dark:text-indigo-400">Quelle est l’atmosphère au LTD Groove Street ?</span>
+        <svg class="faq-icon w-6 h-6 text-indigo-600 dark:text-indigo-300" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
       </button>
       <div class="faq-answer max-h-0 overflow-hidden px-6 text-gray-700 dark:text-gray-300 transition-[max-height] duration-300">
         <p class="py-3">
-          Chez le LTD Grove Street, l’ambiance est conviviale et dynamique. Nous sommes proches de nos employés comme de nos clients, favorisant des relations authentiques, basées sur la confiance et le respect. Ici, chacun fait partie de la grande famille LTD Grove Street.
+          Chez le LTD Groove Street, l’ambiance est conviviale et dynamique. Nous sommes proches de nos employés comme de nos clients, favorisant des relations authentiques, basées sur la confiance et le respect. Ici, chacun fait partie de la grande famille LTD Groove Street.
         </p>
       </div>
     </div>
 
-    <div class="border border-indigo-300 rounded-lg overflow-hidden shadow-sm dark:border-indigo-700">
+    <div class="border border-indigo-300 rounded-lg overflow-hidden">
       <button 
         aria-expanded="false" 
         class="faq-question flex justify-between items-center w-full px-6 py-4 text-left bg-indigo-50 dark:bg-gray-800 hover:bg-indigo-100 dark:hover:bg-gray-700 transition"
       >
         <span class="font-medium text-indigo-700 dark:text-indigo-400">Comment passer une commande en ligne ?</span>
-        <svg class="faq-icon w-6 h-6 text-indigo-600 dark:text-indigo-300 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <svg class="faq-icon w-6 h-6 text-indigo-600 dark:text-indigo-300" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
       </button>
       <div class="faq-answer max-h-0 overflow-hidden px-6 text-gray-700 dark:text-gray-300 transition-[max-height] duration-300">
         <p class="py-3">
-          Rendez-vous sur notre page <a href="catalogue.html" class="text-indigo-600 underline hover:text-indigo-800 dark:hover:text-indigo-400">Catalogue</a>, sélectionnez vos produits, puis validez votre panier.
+          Rendez-vous sur notre page <a href="catalogue.html" class="text-indigo-600 underline">Catalogue</a>, sélectionnez vos produits, puis validez votre panier.
         </p>
       </div>
     </div>
 
-    <div class="border border-indigo-300 rounded-lg overflow-hidden shadow-sm dark:border-indigo-700">
+    <div class="border border-indigo-300 rounded-lg overflow-hidden">
       <button 
         aria-expanded="false" 
         class="faq-question flex justify-between items-center w-full px-6 py-4 text-left bg-indigo-50 dark:bg-gray-800 hover:bg-indigo-100 dark:hover:bg-gray-700 transition"
       >
         <span class="font-medium text-indigo-700 dark:text-indigo-400">Comment dois-je procéder pour faire une candidature ?</span>
-        <svg class="faq-icon w-6 h-6 text-indigo-600 dark:text-indigo-300 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <svg class="faq-icon w-6 h-6 text-indigo-600 dark:text-indigo-300" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
       </button>
@@ -244,13 +206,13 @@
       </div>
     </div>
 
-    <div class="border border-indigo-300 rounded-lg overflow-hidden shadow-sm dark:border-indigo-700">
+    <div class="border border-indigo-300 rounded-lg overflow-hidden">
       <button 
         aria-expanded="false" 
         class="faq-question flex justify-between items-center w-full px-6 py-4 text-left bg-indigo-50 dark:bg-gray-800 hover:bg-indigo-100 dark:hover:bg-gray-700 transition"
       >
-        <span class="font-medium text-indigo-700 dark:text-indigo-400">Puis-je organiser un événement ou une collaboration avec le LTD Grove Street ?</span>
-        <svg class="faq-icon w-6 h-6 text-indigo-600 dark:text-indigo-300 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <span class="font-medium text-indigo-700 dark:text-indigo-400">Puis-je organiser un événement ou une collaboration avec le LTD Groove Street ?</span>
+        <svg class="faq-icon w-6 h-6 text-indigo-600 dark:text-indigo-300" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
       </button>
@@ -264,26 +226,44 @@
 </section>
 
 <script>
-  // Accordéon FAQ avec fermeture automatique des autres ouvertures
+  // Script pour l'accordéon FAQ
   document.querySelectorAll('.faq-question').forEach(button => {
     button.addEventListener('click', () => {
-      const isExpanded = button.getAttribute('aria-expanded') === 'true';
-
-      // Fermer toutes les réponses
-      document.querySelectorAll('.faq-question').forEach(btn => {
-        btn.setAttribute('aria-expanded', 'false');
-        btn.nextElementSibling.style.maxHeight = null;
-      });
-
-      // Ouvrir la réponse cliquée si elle n'était pas ouverte
-      if (!isExpanded) {
-        button.setAttribute('aria-expanded', 'true');
-        const answer = button.nextElementSibling;
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', !expanded);
+      const answer = button.nextElementSibling;
+      if (!expanded) {
         answer.style.maxHeight = answer.scrollHeight + 'px';
+      } else {
+        answer.style.maxHeight = null;
       }
     });
   });
 </script>
+
+
+  <!-- Section Chiffres clés -->
+  <section class="max-w-6xl mx-auto px-6 py-12 bg-indigo-50 dark:bg-gray-800 rounded-xl mt-16">
+    <h2 class="text-3xl font-semibold text-center mb-10">Nos chiffres clés</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div>
+        <p class="text-4xl font-bold text-indigo-600">+7</p>
+        <p class="mt-2 text-gray-700 dark:text-gray-300">Stations Essences</p>
+      </div>
+      <div>
+        <p class="text-4xl font-bold text-indigo-600">+1000</p>
+        <p class="mt-2 text-gray-700 dark:text-gray-300">Clients par semaine</p>
+      </div>
+      <div>
+        <p class="text-4xl font-bold text-indigo-600">7 jours/7</p>
+        <p class="mt-2 text-gray-700 dark:text-gray-300">Disponibilité</p>
+      </div>
+      <div>
+        <p class="text-4xl font-bold text-indigo-600">99%</p>
+        <p class="mt-2 text-gray-700 dark:text-gray-300">Clients satisfaits</p>
+      </div>
+    </div>
+  </section>
 
 <!-- Partenaires -->
 <section class="max-w-5xl mx-auto px-6 py-10">
