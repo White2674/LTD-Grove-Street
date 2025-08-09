@@ -1,205 +1,221 @@
-/* style.css modernisé clair / light mode avec bulles animées et header fixe */
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth" >
 
-/* Import Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="LTD Grove Street, votre partenaire de confiance pour les stations essence et commerce à Los Santos. Découvrez notre catalogue, services, et équipe." />
+  <title>LTD Grove Street - Accueil</title>
 
-/* Global */
-body {
-  font-family: 'Poppins', sans-serif;
-  padding-top: 4rem;
-  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
-  overflow-x: hidden;
-  position: relative;
-  min-height: 100vh;
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
-}
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-/* Bulles animées en arrière-plan */
-body::before {
-  content: '';
-  position: fixed;
-  top: -100px;
-  left: -100px;
-  width: 300px;
-  height: 300px;
-  background: rgba(99, 102, 241, 0.2);
-  border-radius: 50%;
-  filter: blur(100px);
-  animation: float1 8s ease-in-out infinite alternate;
-  z-index: 0;
-}
-body::after {
-  content: '';
-  position: fixed;
-  bottom: -120px;
-  right: -120px;
-  width: 350px;
-  height: 350px;
-  background: rgba(139, 92, 246, 0.15);
-  border-radius: 50%;
-  filter: blur(120px);
-  animation: float2 10s ease-in-out infinite alternate;
-  z-index: 0;
-}
+  <!-- Police moderne depuis Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
-@keyframes float1 {
-  0% { transform: translateY(0) translateX(0); }
-  100% { transform: translateY(20px) translateX(20px); }
-}
+  <!-- Splide.js pour carousel -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
 
-@keyframes float2 {
-  0% { transform: translateY(0) translateX(0); }
-  100% { transform: translateY(-25px) translateX(-25px); }
-}
+  <style>
+    /* Appliquer la police Poppins */
+    body {
+      font-family: 'Poppins', sans-serif;
+      padding-top: 4rem;
+      background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
 
-/* Header */
-header {
-  position: fixed;
-  top: 0; left: 0; width: 100%;
-  backdrop-filter: saturate(180%) blur(20px);
-  background: rgba(255 255 255 / 0.85);
-  z-index: 50;
-  box-shadow: 0 2px 15px rgb(0 0 0 / 0.05);
-  transition: background-color 0.3s ease;
-}
+    /* Bulles animées en arrière-plan */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      background: rgba(99, 102, 241, 0.2);
+      border-radius: 50%;
+      filter: blur(100px);
+      animation: float1 8s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -120px;
+      right: -120px;
+      width: 350px;
+      height: 350px;
+      background: rgba(139, 92, 246, 0.15);
+      border-radius: 50%;
+      filter: blur(120px);
+      animation: float2 10s ease-in-out infinite alternate;
+      z-index: 0;
+    }
 
-/* Header container flex */
-.header-container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
+    @keyframes float1 {
+      0% { transform: translateY(0) translateX(0); }
+      100% { transform: translateY(20px) translateX(20px); }
+    }
 
-/* Logo stylisé */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-weight: 600;
-  font-size: 1.375rem;
-  color: #4f46e5; /* indigo-600 */
-  cursor: pointer;
-  user-select: none;
-  transition: color 0.3s ease;
-  z-index: 55;
-}
-.logo img {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgb(79 70 229 / 0.25);
-  transition: transform 0.3s ease;
-}
-.logo:hover {
-  color: #4338ca;
-}
-.logo:hover img {
-  transform: scale(1.1);
-}
+    @keyframes float2 {
+      0% { transform: translateY(0) translateX(0); }
+      100% { transform: translateY(-25px) translateX(-25px); }
+    }
 
-/* Menu desktop */
-nav ul {
-  display: flex;
-  gap: 2rem;
-  font-weight: 600;
-  font-size: 1rem;
-  color: #374151; /* gray-700 */
-  z-index: 55;
-}
-nav ul li a {
-  position: relative;
-  color: inherit;
-  text-decoration: none;
-  padding-bottom: 0.25rem;
-  transition: color 0.3s ease;
-}
-nav ul li a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 3px;
-  background: #4f46e5;
-  border-radius: 3px;
-  transition: width 0.3s ease;
-}
-nav ul li a:hover,
-nav ul li a.active {
-  color: #4f46e5;
-}
-nav ul li a:hover::after,
-nav ul li a.active::after {
-  width: 100%;
-}
+    /* Header */
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      backdrop-filter: saturate(180%) blur(20px);
+      background: rgba(255 255 255 / 0.85);
+      z-index: 50;
+      box-shadow: 0 2px 15px rgb(0 0 0 / 0.05);
+      transition: background-color 0.3s ease;
+    }
+    header.dark {
+      background: rgba(17 24 39 / 0.85);
+      box-shadow: 0 2px 15px rgb(0 0 0 / 0.5);
+    }
 
-/* Menu mobile - bouton hamburger */
-#nav-toggle {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #4f46e5;
-  z-index: 60;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.25rem;
-  transition: color 0.3s ease;
-}
-#nav-toggle:hover {
-  color: #4338ca;
-}
-#nav-toggle svg {
-  width: 28px;
-  height: 28px;
-}
+    /* Conteneur flex du header */
+    .header-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
 
-/* Menu mobile - menu déroulant */
-#nav-menu {
-  position: fixed;
-  top: 4rem;
-  right: 0;
-  width: 260px;
-  background: rgba(255 255 255 / 0.95);
-  backdrop-filter: blur(20px);
-  box-shadow: -4px 0 30px rgb(0 0 0 / 0.1);
-  border-radius: 0 0 0 12px;
-  padding: 1.5rem 2rem;
-  transform: translateX(100%);
-  transition: transform 0.35s ease;
-  font-weight: 600;
-  font-size: 1.125rem;
-  color: #4f46e5;
-  z-index: 55;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-#nav-menu.open {
-  transform: translateX(0);
-}
-#nav-menu a {
-  color: #4f46e5;
-  text-decoration: none;
-  transition: color 0.25s ease;
-}
-#nav-menu a:hover {
-  color: #4338ca;
-}
+    /* Logo stylisé */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 600;
+      font-size: 1.375rem;
+      color: #4f46e5; /* indigo-600 */
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.3s ease;
+      z-index: 55;
+    }
+    .logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgb(79 70 229 / 0.25);
+      transition: transform 0.3s ease;
+    }
+    .logo:hover {
+      color: #4338ca;
+    }
+    .logo:hover img {
+      transform: scale(1.1);
+    }
 
-/* Responsive */
-@media (min-width: 768px) {
-  #nav-toggle {
-    display: none;
-  }
-  #nav-menu {
-    display: none !important;
-  }
-}
+    /* Menu desktop */
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #374151; /* gray-700 */
+      z-index: 55;
+    }
+    nav ul li a {
+      position: relative;
+      color: inherit;
+      text-decoration: none;
+      padding-bottom: 0.25rem;
+      transition: color 0.3s ease;
+    }
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: #4f46e5;
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #4f46e5;
+    }
+    nav ul li a:hover::after,
+    nav ul li a.active::after {
+      width: 100%;
+    }
+
+    /* Menu mobile - bouton hamburger */
+    #nav-toggle {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: #4f46e5;
+      z-index: 60;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem;
+      transition: color 0.3s ease;
+    }
+    #nav-toggle:hover {
+      color: #4338ca;
+    }
+    #nav-toggle svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    /* Menu mobile - menu déroulant */
+    #nav-menu {
+      position: fixed;
+      top: 4rem;
+      right: 0;
+      width: 260px;
+      background: rgba(255 255 255 / 0.95);
+      backdrop-filter: blur(20px);
+      box-shadow: -4px 0 30px rgb(0 0 0 / 0.1);
+      border-radius: 0 0 0 12px;
+      padding: 1.5rem 2rem;
+      transform: translateX(100%);
+      transition: transform 0.35s ease;
+      font-weight: 600;
+      font-size: 1.125rem;
+      color: #4f46e5;
+      z-index: 55;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    #nav-menu.open {
+      transform: translateX(0);
+    }
+    #nav-menu a {
+      color: #4f46e5;
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+    #nav-menu a:hover {
+      color: #4338ca;
+    }
+
+    /* Responsive */
+    @media (min-width: 768px) {
+      #nav-toggle {
+        display: none;
+      }
+      #nav-menu {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
