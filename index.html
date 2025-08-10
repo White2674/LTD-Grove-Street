@@ -303,9 +303,9 @@ nav a {
 
 <!-- Partenaires -->
 <section class="max-w-5xl mx-auto px-6 py-10">
-  <h2 class="text-2xl font-bold text-center text-indigo-600 mb-6 text-white">Ils nous font confiance</h2>
+  <h2 class="text-2xl font-bold text-center mb-6 text-white">Ils nous font confiance</h2>
   
-  <div class="overflow-hidden relative mx-auto rounded-full bg-indigo-100/50 p-4">
+  <div class="overflow-hidden relative mx-auto rounded-full bg-white/10 backdrop-blur-md p-6 border border-white/20">
     <div class="partner-scroll flex items-center space-x-12">
       <!-- Logos originaux -->
       <img src="https://i.goopics.net/ja2b6l.png" alt="Uwu Café" class="h-14" />
@@ -320,6 +320,10 @@ nav a {
       <img src="images/partenaire4.png" alt="Partenaire 4" class="h-14" />
       <img src="images/partenaire5.png" alt="Partenaire 5" class="h-14" />
     </div>
+    
+    <!-- Masque dégradé à gauche et droite -->
+    <div class="pointer-events-none absolute top-0 left-0 h-full w-24 bg-gradient-to-r from-white/100 to-white/0"></div>
+    <div class="pointer-events-none absolute top-0 right-0 h-full w-24 bg-gradient-to-l from-white/100 to-white/0"></div>
   </div>
 </section>
 
@@ -329,7 +333,7 @@ nav a {
   100% { transform: translateX(-50%); }
 }
 .partner-scroll {
-  animation: partner-slide 15s linear infinite;
+  animation: partner-slide 20s linear infinite;
   width: max-content;
 }
 </style>
