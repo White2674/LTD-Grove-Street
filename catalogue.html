@@ -315,165 +315,119 @@ let products = [
 
 let cart = [];
 
-// Affichage des produits filtrés, triés et recherchés
-function renderProducts() {
-  const grid = document.getElementById('productGrid');
-  const search = document.getElementById('searchInput').value.toLowerCase();
-  const sort = document.getElementById('sortSelect').value;
-  const category = document.getElementById('categorySelect').value;
+// Affichage du panier
+function renderCart() {
+  const cartItems = document.getElementById('cartItems');
+  const cartCount = document.getElementById('cartCount');
+  const cartTotalItems = document.getElementById('cartTotalItems');
+  const cartGrandTotal = document.getElementById('cartGrandTotal');
 
-  let filtered = products.filter(p => {
-    const matchesSearch = p.name.toLowerCase().includes(search);
-    const matchesCategory = category === 'all' || p.category === category;
-    return matchesSearch && matchesCategory;
-  });
-
-  // Tri
-  if (sort === 'name-asc') filtered.sort((a,b) => a.name.localeCompare(b.name));
-  else if (sort === 'name-desc') filtered.sort((a,b) => b.name.localeCompare(a.name));
-  else if (sort === 'price-asc') filtered.sort((a,b) => a.price - b.price);
-  else if (sort === 'price-desc') filtered.sort((a,b) => b.price - a.price);
-
-  // Générer le HTML avec bouton et input quantité
-grid.innerHTML = filtered.map(p => `
-  <article class="bg-white/10 p-6 rounded-xl shadow-md text-white flex flex-col items-center border border-white/10 transition transform hover:-translate-y-2 hover:shadow-2xl">
-    <img src="${p.image}" alt="${p.name}" class="w-32 h-32 object-cover mb-6 rounded-xl shadow-sm" />
-    <h3 class="text-indigo-400 font-bold text-xl mb-3 text-center">${p.name}</h3>
-    <p class="text-gray-300 mb-3 font-medium">${p.price.toFixed(2)} $</p>
-
-    <button
-      onclick="addToCart(${p.id})"
-      class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-6 rounded-full font-semibold shadow-md transition-colors duration-300"
-      aria-label="Ajouter ${p.name} au panier"
-    >
-      Ajouter au panier
-    </button>
-  </article>
-`).join('');
-
-// Ajout au panier avec prise en compte de la quantité
-function addToCart(id) {
-  const quantityInput = document.getElementById(`quantity-${id}`);
-  const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
-
-  if (isNaN(quantity) || quantity < 1) {
-    alert("Veuillez entrer une quantité valide.");
+  if (cart.length === 0) {
+    cartItems.innerHTML = '<p class="text-center text-gray-500 mt-6">Votre panier est vide.</p>';
+    cartCount.textContent = '0';
+    cartTotalItems.textContent = '0$';
+    cartGrandTotal.textContent = '0$';
     return;
   }
 
-  const prod = products.find(p => p.id === id);
-  if (!prod) return;
+  // Générer la liste des articles dans le panier avec contrôle quantité et bouton supprimer
+  cartItems.innerHTML = cart.map(item => `
+    <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 py-3">
+      <div class="flex items-center gap-3">
+        <img src="${item.image}" alt="${item.name}" class="w-12 h-12 rounded object-cover" />
+        <div>
+          <h3 class="font-semibold text-indigo-600 dark:text-indigo-300">${item.name}</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400">${item.price.toFixed(2)} $</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <input
+          type="number"
+          min="1"
+          value="${item.quantity}"
+          onchange="updateQuantity(${item.id}, this.value)"
+          class="w-16 p-1 text-center border rounded border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+          aria-label="Quantité de ${item.name}"
+        />
+        <button
+          onclick="removeFromCart(${item.id})"
+          class="text-red-500 hover:text-red-700 text-lg font-bold"
+          aria-label="Supprimer ${item.name} du panier"
+        >
+          &times;
+        </button>
+      </div>
+    </div>
+  `).join('');
 
-  const existing = cart.find(item => item.id === id);
-  if (existing) {
-    existing.quantity += quantity;
+  // Mise à jour du compteur de produits dans le bouton panier
+  const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+  cartCount.textContent = totalQuantity;
+
+  // Calcul du total des articles
+  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  cartTotalItems.textContent = `${totalPrice.toFixed(2)}$`;
+
+  // Frais de livraison fixes
+  const shippingFee = 250;
+  const grandTotal = totalPrice + shippingFee;
+  cartGrandTotal.textContent = `${grandTotal.toFixed(2)}$`;
+}
+
+// Afficher ou cacher le panier (slide-over)
+function toggleCart() {
+  const cartModal = document.getElementById('cartModal');
+  const cartPanel = document.getElementById('cartPanel');
+
+  if (cartModal.classList.contains('hidden')) {
+    cartModal.classList.remove('hidden');
+    setTimeout(() => {
+      cartPanel.classList.remove('translate-x-full');
+    }, 10);
   } else {
-    cart.push({ ...prod, quantity });
-  }
-  renderCart();
-}
-
-// Mise à jour quantité dans le panier
-function updateQuantity(id, quantity) {
-  quantity = parseInt(quantity);
-  if (isNaN(quantity) || quantity < 1) quantity = 1;
-
-  const item = cart.find(i => i.id === id);
-  if (item) {
-    item.quantity = quantity;
-    renderCart();
+    cartPanel.classList.add('translate-x-full');
+    setTimeout(() => {
+      cartModal.classList.add('hidden');
+    }, 300);
   }
 }
 
-// Suppression d’un produit du panier
-function removeFromCart(id) {
-  cart = cart.filter(item => item.id !== id);
-  renderCart();
-}
+// Valider la commande (simple alerte)
+function validateOrder() {
+  const name = document.getElementById('customerName').value.trim();
+  const phone = document.getElementById('customerPhone').value.trim();
 
-// Affichage du panier
-function renderCart() {
-  const cartItemsEl = document.getElementById('cartItems');
-  const cartTotalItemsEl = document.getElementById('cartTotalItems');
-  const cartGrandTotalEl = document.getElementById('cartGrandTotal');
-  const cartCountEl = document.getElementById('cartCount');
-
-  cartItemsEl.innerHTML = "";
+  if (!name || !phone) {
+    alert("Veuillez remplir votre nom et votre numéro de téléphone.");
+    return;
+  }
 
   if (cart.length === 0) {
-    cartItemsEl.innerHTML = '<p class="text-center text-gray-500 dark:text-gray-400 mt-4">Votre panier est vide.</p>';
-  } else {
-    cart.forEach(item => {
-      const itemEl = document.createElement('div');
-      itemEl.className = "flex items-center justify-between py-2 border-b border-gray-300 dark:border-gray-700";
-
-itemEl.innerHTML = `
-  <div class="flex items-center space-x-3">
-    <img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-cover rounded" />
-    <div>
-      <h3 class="font-semibold text-indigo-700 dark:text-indigo-300">${item.name}</h3>
-      <p class="text-sm text-gray-600 dark:text-gray-400">${item.price.toFixed(2)} $</p>
-    </div>
-  </div>
-  <div class="flex items-center space-x-2">
-    <input
-      type="number"
-      min="1"
-      value="${item.quantity}"
-      aria-label="Quantité de ${item.name}"
-      class="w-16 p-1 text-center border rounded border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-      onchange="updateQuantity(${item.id}, this.value)"
-    />
-    <button onclick="removeFromCart(${item.id})" aria-label="Supprimer ${item.name}" class="text-red-600 hover:text-red-800 text-xl font-bold px-1 leading-none">&times;</button>
-  </div>
-`;
-      cartItemsEl.appendChild(itemEl);
-    });
+    alert("Votre panier est vide.");
+    return;
   }
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const grandTotal = total + 250; // exemple de frais fixes
+  alert(`Merci ${name} pour votre commande !\nNous vous contacterons au ${phone}.\nTotal à payer : ${document.getElementById('cartGrandTotal').textContent}`);
 
-  cartTotalItemsEl.textContent = `${total.toFixed(2)} $`;
-  cartGrandTotalEl.textContent = `${grandTotal.toFixed(2)} $`;
-  cartCountEl.textContent = cart.reduce((sum, i) => sum + i.quantity, 0);
+  // Réinitialiser le panier et formulaire
+  cart = [];
+  renderCart();
+  toggleCart();
+  document.getElementById('customerName').value = '';
+  document.getElementById('customerPhone').value = '';
+  document.getElementById('deliveryTime').value = '';
+  document.getElementById('comments').value = '';
 }
 
-// Toggle du panneau panier
-function toggleCart() {
-  const modal = document.getElementById('cartModal');
-  const panel = document.getElementById('cartPanel');
-  const isOpen = !modal.classList.contains('hidden');
+// Ouverture du panier au clic sur bouton panier
+document.getElementById('cartButton').addEventListener('click', toggleCart);
 
-  if (isOpen) {
-    panel.classList.add('translate-x-full');
-    setTimeout(() => modal.classList.add('hidden'), 300);
-  } else {
-    modal.classList.remove('hidden');
-    setTimeout(() => panel.classList.remove('translate-x-full'), 10);
-  }
-}
+// Initialisation
+renderProducts();
+renderCart();
 
-// Valider commande
-function validateOrder() {
-  alert("Commande validée ! (Fonctionnalité à implémenter)");
-}
-
-// Événements pour filtres et affichages
+// Écoute sur les filtres et recherche
 document.getElementById('searchInput').addEventListener('input', renderProducts);
 document.getElementById('sortSelect').addEventListener('change', renderProducts);
 document.getElementById('categorySelect').addEventListener('change', renderProducts);
-document.getElementById('cartButton').addEventListener('click', toggleCart);
-
-// Responsive menu
-document.getElementById('nav-toggle').addEventListener('click', () => {
-  const menu = document.getElementById('nav-menu');
-  menu.classList.toggle('hidden');
-});
-
-// Lancement initial
-document.addEventListener('DOMContentLoaded', () => {
-  renderProducts();
-  renderCart();
-});
 </script>
