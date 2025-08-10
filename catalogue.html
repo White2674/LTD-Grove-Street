@@ -359,7 +359,18 @@ filtered.forEach(p => {
   card.innerHTML = `
     <img src="${p.image}" alt="${p.name}" class="w-32 h-32 object-cover mb-6 rounded-xl shadow-sm" />
     <h3 class="text-indigo-400 font-bold text-xl mb-3 text-center">${p.name}</h3>
-    <p class="text-gray-300 mb-6 font-medium">${p.price.toFixed(2)} ${currencySymbol}</p>
+    <p class="text-gray-300 mb-3 font-medium">${p.price.toFixed(2)} ${currencySymbol}</p>
+    
+    <!-- Champ quantité -->
+    <input
+      type="number"
+      min="1"
+      value="1"
+      id="quantity-${p.id}"
+      class="mb-4 w-20 text-center rounded border border-gray-300"
+      aria-label="Quantité de ${p.name}"
+    />
+
     <button
       onclick="addToCart(${p.id})"
       class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-6 rounded-full font-semibold shadow-md transition-colors duration-300"
@@ -370,6 +381,7 @@ filtered.forEach(p => {
   `;
   grid.appendChild(card);
 });
+
 
 
 // Ajout au panier
