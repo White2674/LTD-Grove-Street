@@ -3,74 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>LTD Grove Street - Notre Équipe</title>
-
-  <!-- Tailwind CSS CDN -->
+  <title>LTD Grove Street</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Style custom -->
-  <link rel="stylesheet" href="css/style.css" />
-
   <style>
-    #lightbox {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.8);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 50;
+    body {
+      font-family: 'Inter', sans-serif;
     }
-    #lightbox img {
-      max-width: 90vw;
-      max-height: 90vh;
-      border-radius: 0.5rem;
-      box-shadow: 0 0 15px #000;
+    /* Underline animé */
+nav a {
+  position: relative;
+  color: white; /* texte blanc */
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background-color: #4f46e5;
+      transition: width 0.3s ease;
+      border-radius: 2px;
     }
-    #lightbox.show {
-      display: flex;
+    nav a:hover::after, nav a.active::after {
+      width: 100%;
+    }
+    nav a:hover {
+      color: #4338ca; /* indigo-700 */
+    }
+
+    /* Ombre barre navigation au scroll */
+    .nav-shadow {
+      box-shadow: 0 2px 10px rgb(0 0 0 / 0.1);
+      backdrop-filter: saturate(180%) blur(10px);
+      background-color: rgba(255 255 255 / 0.8);
+      transition: box-shadow 0.3s ease, background-color 0.3s ease;
     }
   </style>
 </head>
-<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
+<body class="bg-gray-900 shadow-md transition-colors duration-300">
 
-  <!-- Header global -->
-  <header class="fixed top-0 left-0 w-full bg-indigo-600 text-white shadow-md z-50">
-    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-      <a href="index.html" class="text-2xl font-bold hover:text-indigo-300">LTD Grove Street</a>
-      <ul class="hidden md:flex space-x-8 font-semibold text-lg">
-        <li><a href="index.html" class="hover:text-indigo-300">Accueil</a></li>
-        <li><a href="catalogue.html" class="hover:text-indigo-300">Catalogue</a></li>
-        <li><a href="stations.html" class="hover:text-indigo-300">Stations Essence</a></li>
-        <li><a href="commande.html" class="hover:text-indigo-300">Commande</a></li>
-        <li><a href="avis.html" class="hover:text-indigo-300">Avis Clients</a></li>
-        <li><a href="equipe.html" class="hover:text-indigo-300">Notre Équipe</a></li>
-        <li><a href="actualites.html" class="hover:text-indigo-300">Actualités</a></li>
-        <li><a href="contact.html" class="hover:text-indigo-300">Contact</a></li>
-      </ul>
-      <button id="nav-toggle" class="md:hidden focus:outline-none">
-        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </nav>
+<header id="header" class="fixed top-0 left-0 w-full z-50 bg-white/80 dark:bg-gray-900/80 shadow-md transition-colors duration-300">
+  <nav class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6 md:px-12 font-sans">
+    <!-- Logo + Nom -->
+    <a href="#" class="flex items-center gap-3">
+      <img src="https://i.goopics.net/5dh7x3.png" alt="Logo LTD Grove Street" class="w-10 h-10 rounded shadow-md" />
+      <span class="text-indigo-600 dark:text-indigo-400 text-2xl font-extrabold tracking-tight hover:text-indigo-800 dark:hover:text-indigo-300 transition duration-300">
+        LTD Grove Street
+      </span>
+    </a>
 
-    <!-- Menu mobile -->
-    <div id="nav-menu" class="hidden md:hidden bg-indigo-700">
-      <ul class="flex flex-col px-6 py-4 space-y-4 font-semibold text-lg">
-        <li><a href="index.html" class="block hover:text-indigo-300">Accueil</a></li>
-        <li><a href="catalogue.html" class="block hover:text-indigo-300">Catalogue</a></li>
-        <li><a href="stations.html" class="block hover:text-indigo-300">Stations Essence</a></li>
-        <li><a href="commande.html" class="block hover:text-indigo-300">Commande</a></li>
-        <li><a href="avis.html" class="block hover:text-indigo-300">Avis Clients</a></li>
-        <li><a href="equipe.html" class="block hover:text-indigo-300">Notre Équipe</a></li>
-        <li><a href="actualites.html" class="block hover:text-indigo-300">Actualités</a></li>
-        <li><a href="contact.html" class="block hover:text-indigo-300">Contact</a></li>
-      </ul>
-    </div>
-  </header>
+<nav class="hidden md:flex items-center justify-between gap-6 text-sm font-semibold text-white max-w-6xl mx-auto px-6 py-1,5">
+  <!-- Menu -->
+  <ul class="flex items-center gap-6">
+    <li><a href="index.html" class="hover:text-indigo-300 transition">Accueil</a></li>
+    <li><a href="catalogue.html" class="hover:text-indigo-300 transition">Catalogue</a></li>
+    <li><a href="stations.html" class="hover:text-indigo-300 transition">Stations Essence</a></li>
+    <li><a href="avis.html" class="hover:text-indigo-300 transition">Avis Clients</a></li>
+    <li><a href="equipe.html" class="hover:text-indigo-300 transition">Notre Équipe</a></li>
+    <li><a href="actualites.html" class="hover:text-indigo-300 transition">Actualités</a></li>
+    <li><a href="contact.html" class="hover:text-indigo-300 transition">Contact</a></li>
+  </ul>
 
+  <!-- Bouton Intranet -->
+  <a href="https://discord.gg/6tdpPCZmV8" target="_blank" rel="noopener"
+     class="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-purple-600 hover:to-indigo-500 text-white font-semibold text-sm py-2 px-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out whitespace-nowrap ml-6">
+    Accéder à l’Intranet
+  </a>
+</nav>
+
+    <!-- Hamburger mobile -->
+    <button id="burger" class="md:hidden focus:outline-none">
+      <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+        stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </nav>
+
+<!-- Menu Mobile -->
+  <div id="nav-menu" class="hidden md:hidden px-6 py-4 bg-indigo-900/90 border-t border-indigo-700 shadow-sm">
+    <ul class="flex flex-col gap-3 text-sm font-semibold text-indigo-700 dark:text-indigo-300">
+      <li><a href="index.html" class="block hover:text-indigo-500">Accueil</a></li>
+      <li><a href="catalogue.html" class="block hover:text-indigo-500">Catalogue</a></li>
+      <li><a href="stations.html" class="block hover:text-indigo-500">Stations Essence</a></li>
+      <li><a href="avis.html" class="block hover:text-indigo-500">Avis Clients</a></li>
+      <li><a href="equipe.html" class="block hover:text-indigo-500">Notre Équipe</a></li>
+      <li><a href="actualites.html" class="block hover:text-indigo-500">Actualités</a></li>
+      <li><a href="contact.html" class="block hover:text-indigo-500">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  // Toggle menu mobile
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  burger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  // Ombre barre au scroll
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      header.classList.add('nav-shadow');
+    } else {
+      header.classList.remove('nav-shadow');
+    }
+  });
+</script>
+
+</html>
   <!-- Contenu -->
   <main class="max-w-6xl mx-auto p-6 mt-20">
 
