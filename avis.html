@@ -156,91 +156,94 @@ nav a {
   </footer>
 
   <!-- Script avis -->
-  <script>
-    const avis = [
-      {
-        nom: "Allen Zayn",
-        date: "14 Juillet 2025",
-        message: "Rapide, Efficace, Sans faute un expert dans son métier. Un responsable exemplaire et respectueux !",
-        note: 5,
-        employe: "Ryan Hale"
-      },
-      {
-        nom: "Sophie Martin",
-        date: "30 Juillet 2025",
-        message: "Très réactif, professionnel et courtois. La communication était fluide, Je recommande vivement ce vendeur. Merci encore !",
-        note: 5,
-        employe: "Dravone Zayden"
-      },
-      {
-        nom: "Alexandre Leroy",
-        date: "30 Juillet 2025",
-        message: "Très réactif, professionnel et courtois. La communication était fluide, Je recommande vivement ce vendeur. Merci encore !",
-        note: 5,
-        employe: "Anthony Russo"
-      }
-    ];
+<script>
+  const avis = [
+    {
+      nom: "Allen Zayn",
+      date: "14 Juillet 2025",
+      message: "Rapide, Efficace, Sans faute un expert dans son métier. Un responsable exemplaire et respectueux !",
+      note: 5,
+      employe: "Ryan Hale"
+    },
+    {
+      nom: "Sophie Martin",
+      date: "30 Juillet 2025",
+      message: "Très réactif, professionnel et courtois. La communication était fluide, Je recommande vivement ce vendeur. Merci encore !",
+      note: 5,
+      employe: "Dravone Zayden"
+    },
+    {
+      nom: "Alexandre Leroy",
+      date: "30 Juillet 2025",
+      message: "Très réactif, professionnel et courtois. La communication était fluide, Je recommande vivement ce vendeur. Merci encore !",
+      note: 5,
+      employe: "Anthony Russo"
+    }
+  ];
 
-    const avisList = document.getElementById("avisList");
-    const globalRating = document.getElementById("globalRating");
-    const searchInput = document.getElementById("searchInput");
+  const avisList = document.getElementById("avisList");
+  const globalRating = document.getElementById("globalRating");
+  const searchInput = document.getElementById("searchInput");
 
-    function afficherEtoiles(n) {
-      return '⭐'.repeat(n) + '☆'.repeat(5 - n);
+  function afficherEtoiles(n) {
+    const fullStar = `<svg class="w-5 h-5 inline-block text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.167c.969 0 1.371 1.24.588 1.81l-3.376 2.455a1 1 0 00-.364 1.118l1.287 3.957c.3.922-.755 1.688-1.54 1.118l-3.376-2.455a1 1 0 00-1.176 0l-3.376 2.455c-.784.57-1.838-.196-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.038 9.384c-.783-.57-.38-1.81.588-1.81h4.167a1 1 0 00.95-.69l1.286-3.957z"/></svg>`;
+    const emptyStar = `<svg class="w-5 h-5 inline-block text-yellow-300/50" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.75.75 0 011.04 0l2.243 2.43a.75.75 0 00.53.22h3.56a.75.75 0 01.436 1.33l-2.88 2.1a.75.75 0 00-.267.748l.772 3.268a.75.75 0 01-1.14.813l-2.708-1.79a.75.75 0 00-.815 0l-2.707 1.79a.75.75 0 01-1.14-.814l.773-3.267a.75.75 0 00-.266-.748l-2.88-2.1a.75.75 0 01.436-1.331h3.56a.75.75 0 00.53-.22l2.243-2.43z"/></svg>`;
+
+    return fullStar.repeat(n) + emptyStar.repeat(5 - n);
+  }
+
+  function afficherAvis(filtrés) {
+    avisList.innerHTML = "";
+    if (filtrés.length === 0) {
+      avisList.innerHTML = `<p class="text-center text-gray-400 col-span-full">Aucun avis trouvé.</p>`;
+      if(globalRating) globalRating.innerHTML = "☆ ☆ ☆ ☆ ☆ (0/5)";
+      return;
     }
 
-    function afficherAvis(filtrés) {
-      avisList.innerHTML = "";
-      if (filtrés.length === 0) {
-        avisList.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400 col-span-full">Aucun avis trouvé.</p>`;
-        globalRating.innerHTML = "☆ ☆ ☆ ☆ ☆ (0/5)";
-        return;
-      }
+    let total = 0;
+    filtrés.forEach(a => {
+      total += a.note;
+      const card = document.createElement("article");
+      card.className = `
+        bg-white/10 backdrop-blur-md
+        border border-white/20
+        rounded-xl
+        shadow-lg
+        p-6
+        flex flex-col justify-between
+        transition transform hover:-translate-y-1 hover:shadow-2xl
+        h-full
+      `;
 
-      let total = 0;
-      filtrés.forEach(a => {
-        total += a.note;
-        const card = document.createElement("article");
-        card.className = "p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow h-full flex flex-col justify-between";
-
-        card.innerHTML = `
-          <div>
-            <h3 class="font-semibold text-lg text-indigo-700 dark:text-indigo-300">${a.nom}</h3>
-            <p class="text-sm text-gray-400 mb-2">Employé concerné : <span class="font-medium">${a.employe}</span></p>
-            <p class="mt-2">${a.message}</p>
-            <p class="mt-3 text-sm text-indigo-700 dark:text-indigo-300">Publié le ${a.date}</p>
-          </div>
-          <div class="mt-4 text-yellow-400 text-lg">${afficherEtoiles(a.note)}</div>
-        `;
-        avisList.appendChild(card);
-      });
-
-      const moyenne = (total / filtrés.length).toFixed(1);
-      const arrondie = Math.round(moyenne);
-      globalRating.innerHTML = `${afficherEtoiles(arrondie)} (${moyenne}/5)`;
-    }
-
-    function filtrerAvis() {
-      const query = searchInput.value.toLowerCase();
-      const filtrés = avis.filter(a =>
-        a.nom.toLowerCase().includes(query) ||
-        a.message.toLowerCase().includes(query) ||
-        a.employe.toLowerCase().includes(query)
-      );
-      afficherAvis(filtrés);
-    }
-
-    afficherAvis(avis);
-    searchInput.addEventListener("input", filtrerAvis);
-  </script>
-
-  <!-- Script menu mobile -->
-  <script>
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    navToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('hidden');
+      card.innerHTML = `
+        <div>
+          <h3 class="text-indigo-400 font-bold text-xl mb-2">${a.nom}</h3>
+          <p class="text-gray-300 mb-3">Employé concerné : <span class="font-semibold text-white">${a.employe}</span></p>
+          <p class="text-gray-200 leading-relaxed mb-4">${a.message}</p>
+        </div>
+        <div class="flex justify-between items-center">
+          <p class="text-indigo-300 text-sm">Publié le <span class="font-semibold">${a.date}</span></p>
+          <div class="text-yellow-400">${afficherEtoiles(a.note)}</div>
+        </div>
+      `;
+      avisList.appendChild(card);
     });
-  </script>
-</body>
-</html>
+
+    const moyenne = (total / filtrés.length).toFixed(1);
+    const arrondie = Math.round(moyenne);
+    if(globalRating) globalRating.innerHTML = `${afficherEtoiles(arrondie)} <span class="ml-2 text-white font-semibold">(${moyenne}/5)</span>`;
+  }
+
+  function filtrerAvis() {
+    const query = searchInput.value.toLowerCase();
+    const filtrés = avis.filter(a =>
+      a.nom.toLowerCase().includes(query) ||
+      a.message.toLowerCase().includes(query) ||
+      a.employe.toLowerCase().includes(query)
+    );
+    afficherAvis(filtrés);
+  }
+
+  afficherAvis(avis);
+  if(searchInput) searchInput.addEventListener("input", filtrerAvis);
+</script>
