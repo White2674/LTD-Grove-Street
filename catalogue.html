@@ -122,50 +122,52 @@ nav a {
 
 </html>
 
-  <!-- Catalogue -->
-  <main class="mt-32 px-4">
-    <h1 class="text-center font-bold text-3xl text-indigo-600 mb-8">Catalogue des produits</h1>
+ <!-- Catalogue -->
+<main class="mt-32 px-6">
+  <h1 class="text-center font-extrabold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-600 mb-12">
+    Catalogue des produits
+  </h1>
 
-    <section class="max-w-6xl mx-auto px-4 py-6 bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-gray-200 dark:border-gray-700 rounded-xl shadow-md flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 mb-12 transition">
-      <input
-        id="searchInput"
-        type="search"
-        placeholder="🔍 Rechercher un produit..."
-        class="flex-1 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
-        aria-label="Recherche de produit"
-      />
-      <select
-        id="sortSelect"
-        class="w-full lg:w-60 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
-        aria-label="Trier les produits"
-      >
-        <option value="name-asc">Nom (A → Z)</option>
-        <option value="name-desc">Nom (Z → A)</option>
-        <option value="price-asc">Prix croissant</option>
-        <option value="price-desc">Prix décroissant</option>
-      </select>
-      <select
-        id="categorySelect"
-        class="w-full lg:w-60 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
-        aria-label="Filtrer par catégorie"
-      >
-        <option value="all">Toutes catégories</option>
-        <option value="Quincaillerie">Quincaillerie</option>
-        <option value="Papeterie">Papeterie</option>
-        <option value="Divers Utiles">Divers Utiles</option>
-        <option value="Jardinage">Jardinage</option>
-        <option value="Autres">Autres</option>
-        <option value="Menu">Menu</option>
-      </select>
-    </section>
+  <section class="max-w-6xl mx-auto px-6 py-8 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl shadow-2xl backdrop-blur-lg border border-white/20 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6 mb-16 transition">
+    <input
+      id="searchInput"
+      type="search"
+      placeholder="🔍 Rechercher un produit..."
+      class="flex-1 p-4 rounded-xl border border-white/30 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-indigo-500 backdrop-blur-sm transition shadow-md hover:shadow-lg"
+      aria-label="Recherche de produit"
+    />
+    <select
+      id="sortSelect"
+      class="w-full lg:w-64 p-4 rounded-xl border border-white/30 bg-white/10 text-white focus:outline-none focus:ring-4 focus:ring-indigo-500 transition shadow-md hover:shadow-lg"
+      aria-label="Trier les produits"
+    >
+      <option value="name-asc">Nom (A → Z)</option>
+      <option value="name-desc">Nom (Z → A)</option>
+      <option value="price-asc">Prix croissant</option>
+      <option value="price-desc">Prix décroissant</option>
+    </select>
+    <select
+      id="categorySelect"
+      class="w-full lg:w-64 p-4 rounded-xl border border-white/30 bg-white/10 text-white focus:outline-none focus:ring-4 focus:ring-indigo-500 transition shadow-md hover:shadow-lg"
+      aria-label="Filtrer par catégorie"
+    >
+      <option value="all">Toutes catégories</option>
+      <option value="Quincaillerie">Quincaillerie</option>
+      <option value="Papeterie">Papeterie</option>
+      <option value="Divers Utiles">Divers Utiles</option>
+      <option value="Jardinage">Jardinage</option>
+      <option value="Autres">Autres</option>
+      <option value="Menu">Menu</option>
+    </select>
+  </section>
 
-    <section
-      id="productGrid"
-      class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-6xl mx-auto px-4"
-      aria-live="polite"
-      aria-label="Liste des produits"
-    ></section>
-  </main>
+  <section
+    id="productGrid"
+    class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-6xl mx-auto px-6"
+    aria-live="polite"
+    aria-label="Liste des produits"
+  ></section>
+</main>
 
   <!-- Pied de page -->
   <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-12">
