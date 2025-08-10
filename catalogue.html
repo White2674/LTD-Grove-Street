@@ -324,24 +324,33 @@ function renderProducts() {
 
   let filtered = products.filter(p => {
     const matchesSearch = p.name.toLowerCase().includes(search);
-    const matchesCategory = category === "all" || p.category === category;
+    const matchesCategory = category === 'all' || p.category === category;
     return matchesSearch && matchesCategory;
   });
 
   // Tri
-  if (sort === "name-asc") filtered.sort((a,b) => a.name.localeCompare(b.name));
-  else if (sort === "name-desc") filtered.sort((a,b) => b.name.localeCompare(a.name));
-  else if (sort === "price-asc") filtered.sort((a,b) => a.price - b.price);
-  else if (sort === "price-desc") filtered.sort((a,b) => b.price - a.price);
+  if (sort === 'name-asc') filtered.sort((a,b) => a.name.localeCompare(b.name));
+  else if (sort === 'name-desc') filtered.sort((a,b) => b.name.localeCompare(a.name));
+  else if (sort === 'price-asc') filtered.sort((a,b) => a.price - b.price);
+  else if (sort === 'price-desc') filtered.sort((a,b) => b.price - a.price);
 
-  // Affichage
-  const currencySymbol = "$";
-  grid.innerHTML = "";
+  // Générer le HTML pour chaque produit
+  grid.innerHTML = filtered.map(p => `
+    <article class="bg-white/10 p-4 rounded-xl shadow-md text-white flex flex-col items-center">
+      <img src="${p.image}" alt="${p.name}" class="w-24 h-24 object-contain mb-4 rounded" />
+      <h3 class="text-lg font-semibold">${p.name}</h3>
+      <p class="text-indigo-400 font-bold">${p.price} $</p>
+    </article>
+  `).join('');
+}
 
-  if(filtered.length === 0) {
-    grid.innerHTML = '<p class="col-span-full text-center text-gray-500 dark:text-gray-400">Aucun produit trouvé.</p>';
-    return;
-  }
+// Appeler au chargement
+renderProducts();
+
+// Ajouter des listeners sur les filtres/recherche
+document.getElementById('searchInput').addEventListener('input', renderProducts);
+document.getElementById('sortSelect').addEventListener('change', renderProducts);
+document.getElementById('categorySelect').addEventListener('change', renderProducts);
 
 filtered.forEach(p => {
   const card = document.createElement('div');
