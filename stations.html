@@ -122,120 +122,51 @@ nav a {
 
 </html>
 
-  <!-- Contenu principal -->
-  <main class="mt-28 max-w-7xl mx-auto px-6 pb-16">
+<!-- Nos Stations Essence -->
+<section class="max-w-7xl mx-auto px-6 py-16 mt-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl shadow-2xl">
+  <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-14 text-white tracking-tight">
+    Nos 
+    <span class="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
+      Stations Essence
+    </span>
+  </h2>
 
-    <!-- Titre -->
-    <h1 class="text-4xl font-extrabold text-indigo-600 mb-10 text-center">Nos Stations Essence</h1>
+  <div id="stationsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+    <!-- JS injectera les cartes ici -->
+  </div>
+</section>
 
-    <!-- Grille stations -->
-    <section id="stationsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-      <!-- JS insérera ici -->
-    </section>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const stations = [
+      { name: "Station Grove Street", photo: "https://i.goopics.net/sa1ggu.png", prices: [{ fuel: "Essence", price: 4 }] },
+      { name: "Station Innocence Boulevard", photo: "https://i.goopics.net/fu47m0.png", prices: [{ fuel: "Essence", price: 4.25 }] },
+      { name: "Station Davis Avenue", photo: "https://i.goopics.net/w15ws9.png", prices: [{ fuel: "Essence", price: 4.50 }] },
+      { name: "Station Vespucci Boulevard", photo: "https://i.goopics.net/10tahx.png", prices: [{ fuel: "Essence", price: 4.50 }] },
+      { name: "Station Mirror Park/Colina", photo: "https://i.goopics.net/3jtnha.png", prices: [{ fuel: "Essence", price: 4.25 }] },
+      { name: "Station El Rancho Boulevard", photo: "https://i.goopics.net/265uj6.png", prices: [{ fuel: "Essence", price: 4.50 }] },
+      { name: "Station Strawberry Avenue", photo: "https://i.goopics.net/pb8mt6.png", prices: [{ fuel: "Essence", price: 4 }] },
+    ];
 
-  </main>
+    const grid = document.getElementById("stationsGrid");
 
-  <!-- Footer -->
-  <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-12">
-    &copy; 2025 LTD Grove Street. Tous droits réservés.
-  </footer>
+    stations.forEach(station => {
+      const card = document.createElement("article");
+      card.className = "bg-white/10 backdrop-blur-md rounded-xl shadow-lg p-5 flex flex-col border border-white/20 transition transform hover:-translate-y-2 hover:shadow-2xl";
 
-  <!-- Script pour affichage des stations -->
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const stations = [
-        {
-          name: "Station Grove Street",
-          photo: "https://i.goopics.net/sa1ggu.png",
-          prices: [
-            { fuel: "Essence", price: 4 },
-          ]
-        },
-        {
-          name: "Station Innocence Boulevard",
-          photo: "https://i.goopics.net/fu47m0.png",
-          prices: [
-            { fuel: "Essence", price: 4.25 },
-          ]
-        },
-        {
-          name: "Station Davis Avenue",
-          photo: "https://i.goopics.net/w15ws9.png",
-          prices: [
-            { fuel: "Essence", price: 4.50 },
-          ]
-        },
-        {
-          name: "Station Vespucci Boulevard",
-          photo: "https://i.goopics.net/10tahx.png",
-          prices: [
-            { fuel: "Essence", price: 4.50 },
-          ]
-        },
-        {
-          name: "Station Mirror Park/Colina",
-          photo: "https://i.goopics.net/3jtnha.png",
-          prices: [
-            { fuel: "Essence", price: 4.25 },
-          ]
-        },
-        {
-          name: "Station El Rancho Boulevard",
-          photo: "https://i.goopics.net/265uj6.png",
-          prices: [
-            { fuel: "Essence", price: 4.50 },
-          ]
-        },
-        {
-          name: "Station Strawberry Avenue",
-          photo: "https://i.goopics.net/pb8mt6.png",
-          prices: [
-            { fuel: "Essence", price: 4 },
-          ]
-        },
-      ];
-
-      const grid = document.getElementById("stationsGrid");
-
-      stations.forEach(station => {
-        const card = document.createElement("article");
-        card.className = "station-card bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden flex flex-col";
-
-        card.innerHTML = `
-          <img src="${station.photo}" alt="${station.name}" class="w-full h-48 object-cover" />
-          <div class="p-6 flex-grow flex flex-col">
-            <h3 class="text-xl font-bold text-indigo-600 mb-4">${station.name}</h3>
-            <ul class="flex flex-col gap-2 mt-auto text-gray-700 dark:text-gray-300 font-medium">
-              ${station.prices.map(price => `
-                <li class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-1">
-                  <span>${price.fuel}</span>
-                  <span class="font-semibold">${price.price.toFixed(2)} $/L</span>
-                </li>
-              `).join('')}
-            </ul>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
+      card.innerHTML = `
+        <img src="${station.photo}" alt="${station.name}" class="w-full h-44 object-cover rounded-lg mb-5" />
+        <h3 class="text-xl font-extrabold text-indigo-400 mb-4 text-center">${station.name}</h3>
+        <ul class="flex flex-col gap-2 text-gray-200 font-semibold">
+          ${station.prices.map(price => `
+            <li class="flex justify-between border-b border-white/20 pb-1">
+              <span>${price.fuel}</span>
+              <span>${price.price.toFixed(2)} $/L</span>
+            </li>
+          `).join('')}
+        </ul>
+      `;
+      grid.appendChild(card);
     });
-  </script>
-
-  <!-- Menu mobile toggle -->
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('nav-toggle').addEventListener('click', () => {
-        document.getElementById('nav-menu').classList.toggle('hidden');
-      });
-    });
-  </script>
-
-  <!-- Dark mode toggle -->
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('toggle-dark').addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark');
-      });
-    });
-  </script>
-</body>
-</html>
+  });
+</script>
