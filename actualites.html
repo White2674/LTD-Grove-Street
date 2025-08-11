@@ -244,8 +244,10 @@ nav a {
         <p class="text-gray-300 flex-grow">${item.content}</p>
         <div class="mt-4 flex flex-wrap gap-2">
           ${item.tags.map(tag => `
-            <span class="text-xs font-semibold bg-indigo-700/50 text-indigo-200 rounded-full px-3 py-1 select-none">${tag}</span>
-          `).join('')}
+  <span class="text-xs font-semibold bg-white/10 backdrop-blur-sm border border-white/20 text-indigo-400 rounded-lg px-3 py-1 select-none transition transform hover:-translate-y-0.5 hover:shadow-lg cursor-default">
+    ${tag}
+  </span>
+`).join('')}
         </div>
       `;
 
