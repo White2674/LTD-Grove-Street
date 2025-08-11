@@ -477,9 +477,8 @@ document.getElementById('nav-toggle').addEventListener('click', () => {
 
 // Lancement initial
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('categorySelect').value = 'all'; // Forcer 'all' par défaut
-  renderProducts();
-  renderCart();
+  document.getElementById('categorySelect').value = 'all'; // Forcer la catégorie 'toutes'
+  renderProducts();  // Affiche les produits au chargement initial
 });
 
 </script>
