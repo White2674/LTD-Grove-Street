@@ -473,6 +473,7 @@ document.getElementById('nav-toggle').addEventListener('click', () => {
 
 // Lancement initial
 document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('categorySelect').value = 'all'; // Forcer 'all' par défaut
   renderProducts();
   renderCart();
 });
