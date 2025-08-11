@@ -122,129 +122,71 @@ nav a {
 
 </html>
 
-  <!-- FORMULAIRE DE COMMANDE -->
-  <main class="max-w-4xl mx-auto px-6 pt-28 pb-12">
-    <h1 class="text-3xl font-bold mb-8 text-center text-indigo-700 dark:text-indigo-400">Formulaire de Commande</h1>
+<section
+  class="max-w-4xl mx-auto px-8 py-16 mt-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl shadow-2xl backdrop-blur-md border border-white/20"
+>
+  <h2 class="text-4xl font-extrabold text-center mb-12 text-white tracking-tight">
+    Prendre un 
+    <span class="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
+      rendez-vous
+    </span> 
+    avec la Direction
+  </h2>
 
-    <form id="orderForm" method="POST" class="space-y-8 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-xl">
-      <!-- PRODUITS -->
-      <div>
-        <h2 class="text-lg font-semibold mb-4">Produits</h2>
-        <div id="productsContainer" class="space-y-4"></div>
-        <button type="button" id="addProduct" class="mt-3 text-indigo-600 font-semibold hover:underline">+ Ajouter un produit</button>
-      </div>
+  <form class="space-y-8" id="appointmentForm" method="POST" novalidate>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <input
+        type="text"
+        name="Nom"
+        placeholder="Nom complet"
+        required
+        class="p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+      />
+      <input
+        type="email"
+        name="Email"
+        placeholder="Adresse email"
+        required
+        class="p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+      />
+    </div>
 
-      <!-- CLIENT -->
-      <fieldset class="space-y-4">
-        <legend class="text-lg font-semibold mb-2">Coordonnées Client</legend>
-        <input type="text" id="name" name="Nom" placeholder="Nom complet" required class="w-full p-3 rounded-md border bg-white dark:bg-gray-900 dark:border-gray-700" />
-        <input type="tel" id="phone" name="Téléphone" placeholder="Téléphone" class="w-full p-3 rounded-md border bg-white dark:bg-gray-900 dark:border-gray-700" />
-        <input type="time" id="deliveryTime" name="Heure de livraison" class="w-full p-3 rounded-md border bg-white dark:bg-gray-900 dark:border-gray-700" />
-      </fieldset>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <input
+        type="date"
+        name="DateRendezVous"
+        required
+        class="p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+        min=""
+        id="dateInput"
+      />
+      <input
+        type="time"
+        name="HeureRendezVous"
+        required
+        class="p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+      />
+    </div>
 
-      <!-- COMMENTAIRE -->
-      <div>
-        <label for="comment" class="block font-semibold mb-1">Instructions supplémentaires</label>
-        <textarea id="comment" name="Commentaire" rows="4" class="w-full p-3 rounded-md border bg-white dark:bg-gray-900 dark:border-gray-700" placeholder="Commentaires..."></textarea>
-      </div>
+    <textarea
+      name="Commentaire"
+      rows="5"
+      placeholder="Objet ou commentaire (optionnel)"
+      class="w-full p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 resize-none focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+    ></textarea>
 
-      <!-- RÉCAP -->
-      <div id="summary" class="bg-gray-100 dark:bg-gray-700 p-5 rounded-md text-lg font-medium space-y-2">
-        <div>Total produits : <span class="font-bold">$<span id="totalProducts">0.00</span></span></div>
-        <div>Frais de livraison : <span class="font-bold">$500.00</span></div>
-        <div class="text-xl text-indigo-700 dark:text-indigo-400">Total commande : $<span id="totalOrder">0.00</span></div>
-      </div>
+    <button
+      type="submit"
+      class="w-full py-4 bg-indigo-600 hover:bg-indigo-700 rounded-lg font-semibold text-white transition shadow-lg"
+    >
+      Envoyer la demande
+    </button>
+  </form>
+</section>
 
-      <!-- ERREUR MIN -->
-      <p id="minError" class="text-red-500 font-medium hidden">Montant minimum de commande : $1000</p>
-
-      <!-- SUBMIT -->
-      <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-6 rounded-lg font-semibold transition">
-        Envoyer la commande
-      </button>
-    </form>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="text-center text-gray-600 dark:text-gray-400 py-6 border-t dark:border-gray-700">
-    &copy; 2025 LTD Grove Street — Tous droits réservés.
-  </footer>
-
-  <!-- SCRIPT -->
-  <script>
-    const productPrices = {
-      "Essence Sans Plomb 95": 2.0,
-      "Diesel Standard": 1.8,
-      "Huile Moteur 5W-30": 30,
-      "Additif Carburant": 15
-    };
-
-    function updateTotals() {
-      let total = 0;
-      document.querySelectorAll('.product-group').forEach(group => {
-        const select = group.querySelector('select');
-        const quantity = parseInt(group.querySelector('input').value) || 0;
-        const price = productPrices[select.value] || 0;
-        const subtotal = price * quantity;
-        total += subtotal;
-        group.querySelector('.item-total').textContent = `$${subtotal.toFixed(2)}`;
-      });
-      document.getElementById('totalProducts').textContent = total.toFixed(2);
-      document.getElementById('totalOrder').textContent = (total + 500).toFixed(2);
-      return total + 500;
-    }
-
-    function createProductRow() {
-      const row = document.createElement('div');
-      row.className = "product-group flex flex-wrap gap-4 items-center";
-      row.innerHTML = `
-        <select name="Produits[]" required class="w-full md:w-1/3 p-3 rounded border bg-white dark:bg-gray-900 dark:border-gray-700">
-          <option value="" disabled selected>Choisir un produit</option>
-          <option value="Essence Sans Plomb 95">Essence Sans Plomb 95</option>
-          <option value="Diesel Standard">Diesel Standard</option>
-          <option value="Huile Moteur 5W-30">Huile Moteur 5W-30</option>
-          <option value="Additif Carburant">Additif Carburant</option>
-        </select>
-        <input type="number" name="Quantités[]" min="1" value="1" required class="w-24 p-3 rounded border bg-white dark:bg-gray-900 dark:border-gray-700" />
-        <span class="item-total text-sm font-medium text-gray-700 dark:text-gray-200 w-28">$0.00</span>
-        <button type="button" class="removeProduct text-red-600 hover:underline">Supprimer</button>
-      `;
-      return row;
-    }
-
-    function attachEvents(row) {
-      row.querySelector('select').addEventListener('change', updateTotals);
-      row.querySelector('input').addEventListener('input', updateTotals);
-      row.querySelector('.removeProduct').addEventListener('click', () => {
-        row.remove();
-        updateTotals();
-      });
-    }
-
-    const productsContainer = document.getElementById('productsContainer');
-    const addProductBtn = document.getElementById('addProduct');
-
-    addProductBtn.addEventListener('click', () => {
-      const row = createProductRow();
-      productsContainer.appendChild(row);
-      attachEvents(row);
-    });
-
-    const firstRow = createProductRow();
-    productsContainer.appendChild(firstRow);
-    attachEvents(firstRow);
-
-    document.getElementById('orderForm').addEventListener('submit', function (e) {
-      const total = updateTotals();
-      if (total < 1000) {
-        e.preventDefault();
-        document.getElementById('minError').classList.remove('hidden');
-      }
-    });
-
-    document.getElementById('nav-toggle').addEventListener('click', () => {
-      document.getElementById('nav-menu').classList.toggle('hidden');
-    });
-  </script>
-</body>
-</html>
+<script>
+  // Optionnel : limiter la date minimum à aujourd'hui
+  const dateInput = document.getElementById('dateInput');
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.setAttribute('min', today);
+</script>
