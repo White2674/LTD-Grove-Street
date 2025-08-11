@@ -195,3 +195,63 @@ nav a {
   <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-12">
     &copy; 2025 LTD Grove Street. Tous droits réservés.
   </footer>
+
+
+<script>
+  const form = document.getElementById('appointmentForm');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Récupère les valeurs du formulaire
+    const formData = new FormData(form);
+    const Nom = formData.get('Nom');
+    const Tel = formData.get('Numéro de Téléphone');
+    const DateRdv = formData.get('DateRendezVous');
+    const HeureRdv = formData.get('HeureRendezVous');
+    const Commentaire = formData.get('Commentaire') || "Aucun";
+
+    if (!Nom || !Tel || !DateRdv || !HeureRdv) {
+      alert("Merci de remplir tous les champs obligatoires.");
+      return;
+    }
+
+    // Construire le message Discord au format embed
+    const payload = {
+      content: null,
+      embeds: [
+        {
+          title: "📅 Nouvelle demande de rendez-vous",
+          color: 0x5A67D8, // Indigo
+          fields: [
+            { name: "Nom complet", value: Nom, inline: true },
+            { name: "Téléphone", value: Tel, inline: true },
+            { name: "Date", value: DateRdv, inline: true },
+            { name: "Heure", value: HeureRdv, inline: true },
+            { name: "Commentaire", value: Commentaire, inline: false }
+          ],
+          timestamp: new Date().toISOString()
+        }
+      ]
+    };
+
+    // Ton webhook Discord (exemple)
+    const webhookUrl = "https://discord.com/api/webhooks/1404339997477306368/9JzH6SMMjKeyH3q-fSRCWVydAFSgrWly4F_IKnI_-pwLrPn6ihA20o_lJgeQ4K_CZQsf";
+
+    try {
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) throw new Error("Erreur lors de l'envoi au webhook Discord.");
+
+      alert("Demande envoyée avec succès !");
+      form.reset();
+    } catch (error) {
+      console.error(error);
+      alert("Une erreur est survenue lors de l'envoi de la demande.");
+    }
+  });
+</script>
