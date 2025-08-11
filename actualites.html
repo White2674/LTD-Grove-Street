@@ -171,98 +171,89 @@ nav a {
     });
   </script>
 
-  <!-- Script actualités + recherche -->
   <script>
-    const news = [
-      {
-        id: 1,
-        title: "Promotion sur l’Essence Sans Plomb 95",
-        date: "2025-07-25",
-        content: "Profitez d’une remise de 10% sur l’Essence Sans Plomb 95 jusqu’à la fin du mois. Offre valable dans toutes nos stations.",
-        tags: ["Promotion", "Essence"],
-        image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 2,
-        title: "Nouveau site web lancé !",
-        date: "2025-07-15",
-        content: "Découvrez notre tout nouveau site internet, moderne et facile à utiliser, avec catalogue en ligne et formulaire de commande.",
-        tags: ["Site web", "Lancement"],
-        image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 3,
-        title: "Événement client - Journée portes ouvertes",
-        date: "2025-06-30",
-        content: "Venez rencontrer notre équipe lors de notre journée portes ouvertes le 10 août 2025. Ateliers, démonstrations et surprises au programme !",
-        tags: ["Événement", "Client"],
-        image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 4,
-        title: "Bouteilles de plongés - Nouveauté Exclusive ! 🤿",
-        date: "2025-07-25",
-        content: "Le LTD Grove Street vous propose ses toutes nouvelles bouteilles de plongée — l'accessoire essentiel pour vos aventures sous-marines ou vos missions les plus extrêmes.",
-        tags: ["LTD Grove Street", "Bouteilles de Plongés"],
-        image: "https://i.goopics.net/5k4q4c.png"
-      }
-    ];
+  const news = [
+    {
+      id: 1,
+      title: "Promotion sur l’Essence Sans Plomb 95",
+      date: "2025-07-25",
+      content: "Profitez d’une remise de 10% sur l’Essence Sans Plomb 95 jusqu’à la fin du mois. Offre valable dans toutes nos stations.",
+      tags: ["Promotion", "Essence"],
+      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: 2,
+      title: "Nouveau site web lancé !",
+      date: "2025-07-15",
+      content: "Découvrez notre tout nouveau site internet, moderne et facile à utiliser, avec catalogue en ligne et formulaire de commande.",
+      tags: ["Site web", "Lancement"],
+      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: 3,
+      title: "Événement client - Journée portes ouvertes",
+      date: "2025-06-30",
+      content: "Venez rencontrer notre équipe lors de notre journée portes ouvertes le 10 août 2025. Ateliers, démonstrations et surprises au programme !",
+      tags: ["Événement", "Client"],
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: 4,
+      title: "Bouteilles de plongée - Nouveauté Exclusive ! 🤿",
+      date: "2025-07-25",
+      content: "Le LTD Grove Street vous propose ses toutes nouvelles bouteilles de plongée — l'accessoire essentiel pour vos aventures sous-marines ou vos missions les plus extrêmes.",
+      tags: ["LTD Grove Street", "Bouteilles de Plongée"],
+      image: "https://i.goopics.net/5k4q4c.png"
+    }
+  ];
 
-    const newsList = document.getElementById('newsList');
-    const searchInput = document.getElementById('searchInput');
-    const noResultsMessage = document.getElementById('noResultsMessage');
+  const newsList = document.getElementById('newsList');
+  const noResultsMessage = document.getElementById('noResultsMessage');
 
-    function formatDate(dateString) {
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      return new Date(dateString).toLocaleDateString('fr-FR', options);
+  function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('fr-FR', options);
+  }
+
+  function displayNews(filteredNews) {
+    newsList.innerHTML = '';
+
+    if (filteredNews.length === 0) {
+      noResultsMessage.classList.remove('hidden');
+      return;
+    } else {
+      noResultsMessage.classList.add('hidden');
     }
 
-    function displayNews(filteredNews) {
-      newsList.innerHTML = '';
+    filteredNews.forEach(item => {
+      const article = document.createElement('article');
+      article.className = `
+        bg-white/10 backdrop-blur-md rounded-xl shadow-lg flex flex-col border border-white/20
+        transition transform hover:-translate-y-2 hover:shadow-2xl cursor-pointer overflow-hidden
+      `;
 
-      if (filteredNews.length === 0) {
-        noResultsMessage.classList.remove('hidden');
-        return;
-      } else {
-        noResultsMessage.classList.add('hidden');
-      }
-
-      filteredNews.forEach(item => {
-        const article = document.createElement('article');
-        article.className = "news-card bg-white dark:bg-gray-800 rounded-lg shadow-md flex flex-col overflow-hidden";
-
-        article.innerHTML = `
-          <div class="news-img-container">
-            <img src="${item.image}" alt="${item.title}" loading="lazy" />
+      article.innerHTML = `
+        <div class="overflow-hidden h-44">
+          <img src="${item.image}" alt="${item.title}" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+        </div>
+        <div class="p-6 flex flex-col flex-grow">
+          <h3 class="text-indigo-400 font-extrabold text-xl mb-2">${item.title}</h3>
+          <time datetime="${item.date}" class="italic text-indigo-300 text-sm mb-4">${formatDate(item.date)}</time>
+          <p class="text-gray-200 flex-grow">${item.content}</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            ${item.tags.map(tag => `
+              <span class="text-xs font-semibold bg-indigo-700/50 text-indigo-200 rounded-full px-3 py-1 select-none">
+                ${tag}
+              </span>
+            `).join('')}
           </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h2 class="text-xl font-semibold mb-2 text-indigo-600">${item.title}</h2>
-            <time datetime="${item.date}" class="block italic text-sm text-indigo-500 mb-4">${formatDate(item.date)}</time>
-            <p class="text-gray-700 dark:text-gray-300 flex-grow">${item.content}</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              ${item.tags.map(tag => `<span class="text-xs font-semibold bg-indigo-100 dark:bg-indigo-700 text-indigo-700 dark:text-indigo-200 rounded-full px-2 py-1 select-none">${tag}</span>`).join('')}
-            </div>
-          </div>
-        `;
+        </div>
+      `;
 
-        newsList.appendChild(article);
-      });
-    }
-
-    searchInput.addEventListener('input', e => {
-      const query = e.target.value.trim().toLowerCase();
-
-      const filtered = news.filter(item =>
-        item.title.toLowerCase().includes(query) ||
-        item.content.toLowerCase().includes(query) ||
-        item.tags.some(tag => tag.toLowerCase().includes(query))
-      );
-
-      displayNews(filtered);
+      newsList.appendChild(article);
     });
+  }
 
-    displayNews(news);
-  </script>
-
-</body>
-</html>
+  // Affiche toutes les news au chargement
+  displayNews(news);
+</script>
