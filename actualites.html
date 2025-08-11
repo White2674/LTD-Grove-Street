@@ -162,10 +162,6 @@ nav a {
     &copy; 2025 LTD Grove Street. Tous droits réservés.
   </footer>
 
-  <div id="newsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <!-- Les cartes seront injectées ici -->
-  </div>
-
   <p id="noResultsMessage" class="text-center text-gray-400 mt-12 hidden">
     Aucune actualité ne correspond à votre recherche.
   </p>
@@ -207,47 +203,41 @@ nav a {
     }
   ];
 
-  const newsList = document.getElementById('newsList');
+  const grid = document.getElementById('newsGrid');
   const noResultsMessage = document.getElementById('noResultsMessage');
 
-  function formatDate(dateString) {
-    return new Date(dateString).toLocaleDateString('fr-FR', { year:'numeric', month:'long', day:'numeric' });
+  function formatDate(dateStr) {
+    return new Date(dateStr).toLocaleDateString('fr-FR', { year:'numeric', month:'long', day:'numeric' });
   }
 
   function displayNews(items) {
-    newsList.innerHTML = '';
+    grid.innerHTML = '';
 
-    if (items.length === 0) {
+    if(items.length === 0) {
       noResultsMessage.classList.remove('hidden');
       return;
-    } else {
-      noResultsMessage.classList.add('hidden');
     }
+    noResultsMessage.classList.add('hidden');
 
     items.forEach(item => {
       const card = document.createElement('article');
-      card.className = `
-        bg-white/10 backdrop-blur-md rounded-xl shadow-lg p-6 border border-white/10
-        transition transform hover:-translate-y-2 hover:shadow-2xl cursor-pointer flex flex-col
-      `;
+      card.className = "bg-white/10 backdrop-blur-md rounded-xl shadow-lg p-5 flex flex-col border border-white/20 transition transform hover:-translate-y-2 hover:shadow-2xl";
 
       card.innerHTML = `
-        <img src="${item.image}" alt="${item.title}" loading="lazy" 
-          class="rounded-lg mb-6 object-cover w-full h-44 transition-transform duration-500 hover:scale-105" />
-        <h3 class="text-indigo-400 font-bold text-xl mb-3">${item.title}</h3>
-        <time datetime="${item.date}" class="italic text-indigo-300 text-sm mb-4 block">${formatDate(item.date)}</time>
-        <p class="text-gray-300 flex-grow">${item.content}</p>
-        <div class="mt-4 flex flex-wrap gap-2">
+        <img src="${item.image}" alt="${item.title}" loading="lazy" class="w-full h-44 object-cover rounded-lg mb-5" />
+        <h3 class="text-xl font-extrabold text-indigo-400 mb-4 text-center">${item.title}</h3>
+        <time datetime="${item.date}" class="text-indigo-300 italic text-sm mb-4 block text-center">${formatDate(item.date)}</time>
+        <p class="text-gray-200 flex-grow">${item.content}</p>
+        <div class="mt-4 flex flex-wrap gap-2 justify-center">
           ${item.tags.map(tag => `
             <span class="text-xs font-semibold bg-indigo-700/50 text-indigo-200 rounded-full px-3 py-1 select-none">${tag}</span>
           `).join('')}
         </div>
       `;
 
-      newsList.appendChild(card);
+      grid.appendChild(card);
     });
   }
 
-  // Affiche toutes les actualités au chargement
   displayNews(news);
 </script>
