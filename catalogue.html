@@ -317,16 +317,20 @@ let cart = [];
 
 // Affichage des produits filtrés, triés et recherchés
 function renderProducts() {
-  const grid = document.getElementById('productGrid');
   const search = document.getElementById('searchInput').value.toLowerCase();
   const sort = document.getElementById('sortSelect').value;
   const category = document.getElementById('categorySelect').value;
+  
+  console.log('Category selected:', category);
+  console.log('Products:', products.length);
 
-  let filtered = products.filter(p => {
+  const filtered = products.filter(p => {
     const matchesSearch = p.name.toLowerCase().includes(search);
     const matchesCategory = category === 'all' || p.category === category;
     return matchesSearch && matchesCategory;
   });
+
+  console.log('Filtered products:', filtered.length);
 
   // Tri
   if (sort === 'name-asc') filtered.sort((a,b) => a.name.localeCompare(b.name));
