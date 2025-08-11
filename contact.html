@@ -218,13 +218,13 @@ nav a {
 
     // Construire le message Discord au format embed
 const payload = {
-  content: "<@&1298348457995800638>",  // Mention du rôle avec ping
+  content: "<@&1298348457995800638>",  // Ping du rôle
   embeds: [
     {
       title: "📅 __**Nouvelle demande de rendez-vous LTD**__",
-      color: 0x1ABC9C, // Couleur turquoise sympa
+      color: 0x1ABC9C,
       thumbnail: {
-        url: "https://i.goopics.net/5dh7x3.png"  // Logo LTD
+        url: "https://i.goopics.net/5dh7x3.png"
       },
       fields: [
         {
@@ -253,9 +253,12 @@ const payload = {
           inline: false
         }
       ],
+      image: {
+        url: "https://i.goopics.net/bk7273.png"
+      },
       footer: {
         text: "Demande envoyée via le site LTD",
-        icon_url: "https://i.goopics.net/5dh7x3.png"  // Logo en petit footer aussi
+        icon_url: "https://i.goopics.net/5dh7x3.png"
       },
       timestamp: new Date().toISOString()
     }
