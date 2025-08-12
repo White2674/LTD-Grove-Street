@@ -212,6 +212,8 @@ nav a {
     }
   ];
 
+<script>
+  const searchInput = document.getElementById('searchInput');
   const newsList = document.getElementById('newsList');
   const noResultsMessage = document.getElementById('noResultsMessage');
 
@@ -235,7 +237,6 @@ nav a {
         bg-white/10 backdrop-blur-md rounded-xl shadow-lg p-6 border border-white/10
         transition transform hover:-translate-y-2 hover:shadow-2xl cursor-pointer flex flex-col
       `;
-
       card.innerHTML = `
         <img src="${item.image}" alt="${item.title}" loading="lazy" 
           class="rounded-lg mb-6 object-cover w-full h-44 transition-transform duration-500 hover:scale-105" />
@@ -244,17 +245,27 @@ nav a {
         <p class="text-gray-300 flex-grow">${item.content}</p>
         <div class="mt-4 flex flex-wrap gap-2">
           ${item.tags.map(tag => `
-  <span class="text-xs font-semibold bg-transparent backdrop-blur-sm border border-white/20 text-indigo-400 rounded-lg px-3 py-1 select-none transition transform hover:-translate-y-0.5 hover:shadow-lg cursor-default">
-    ${tag}
-  </span>
-`).join('')}
+            <span class="text-xs font-semibold bg-transparent backdrop-blur-sm border border-white/20 text-indigo-400 rounded-lg px-3 py-1 select-none transition transform hover:-translate-y-0.5 hover:shadow-lg cursor-default">
+              ${tag}
+            </span>
+          `).join('')}
         </div>
       `;
-
       newsList.appendChild(card);
     });
   }
 
   // Affiche toutes les actualités au chargement
   displayNews(news);
+
+  // Écoute la recherche
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+    const filteredNews = news.filter(item =>
+      item.title.toLowerCase().includes(query) ||
+      item.content.toLowerCase().includes(query) ||
+      item.tags.some(tag => tag.toLowerCase().includes(query))
+    );
+    displayNews(filteredNews);
+  });
 </script>
