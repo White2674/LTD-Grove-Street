@@ -236,16 +236,6 @@ nav a {
       return;
     }
 
- // Mapping poste -> rôle Discord (ID du rôle)
-  const roleMentions = {
-    '🛒 Vendeur': '<@1310186028287393882 >',
-    '⛽ Pompiste': '<@1307291957122302032>',
-    '📦 Exportateur': '<@1353417086231249001>'
-  };
-
-  // Récupérer la mention du rôle, ou mettre un rôle générique si poste non trouvé
-  const mentionRole = roleMentions[Poste] || "<@&1298348457995800638>"; // ID générique
-
     // Construire la description en liste markdown
     const description = 
 👤 **__Nom complet :__**  
