@@ -211,6 +211,7 @@ nav a {
       image: "https://i.goopics.net/5k4q4c.png"
     }
   ];
+</script>
 
 <script>
   const searchInput = document.getElementById('searchInput');
@@ -223,49 +224,38 @@ nav a {
 
   function displayNews(items) {
     newsList.innerHTML = '';
-
     if (items.length === 0) {
       noResultsMessage.classList.remove('hidden');
       return;
-    } else {
-      noResultsMessage.classList.add('hidden');
     }
+    noResultsMessage.classList.add('hidden');
 
     items.forEach(item => {
       const card = document.createElement('article');
-      card.className = `
-        bg-white/10 backdrop-blur-md rounded-xl shadow-lg p-6 border border-white/10
-        transition transform hover:-translate-y-2 hover:shadow-2xl cursor-pointer flex flex-col
-      `;
+      card.className = `bg-white/10 backdrop-blur-md rounded-xl shadow-lg p-6 border border-white/10 transition transform hover:-translate-y-2 hover:shadow-2xl cursor-pointer flex flex-col`;
       card.innerHTML = `
-        <img src="${item.image}" alt="${item.title}" loading="lazy" 
-          class="rounded-lg mb-6 object-cover w-full h-44 transition-transform duration-500 hover:scale-105" />
+        <img src="${item.image}" alt="${item.title}" class="rounded-lg mb-6 object-cover w-full h-44 transition-transform duration-500 hover:scale-105" />
         <h3 class="text-indigo-400 font-bold text-xl mb-3">${item.title}</h3>
         <time datetime="${item.date}" class="italic text-indigo-300 text-sm mb-4 block">${formatDate(item.date)}</time>
         <p class="text-gray-300 flex-grow">${item.content}</p>
         <div class="mt-4 flex flex-wrap gap-2">
           ${item.tags.map(tag => `
-            <span class="text-xs font-semibold bg-transparent backdrop-blur-sm border border-white/20 text-indigo-400 rounded-lg px-3 py-1 select-none transition transform hover:-translate-y-0.5 hover:shadow-lg cursor-default">
-              ${tag}
-            </span>
+            <span class="text-xs font-semibold bg-transparent backdrop-blur-sm border border-white/20 text-indigo-400 rounded-lg px-3 py-1 select-none transition transform hover:-translate-y-0.5 hover:shadow-lg cursor-default">${tag}</span>
           `).join('')}
-        </div>
-      `;
+        </div>`;
       newsList.appendChild(card);
     });
   }
 
-  // Affiche toutes les actualités au chargement
   displayNews(news);
 
-  // Écoute la recherche
   searchInput.addEventListener('input', () => {
-    const query = searchInput.value.toLowerCase().trim();
-    const filteredNews = news.filter(item =>
-      item.title.toLowerCase().includes(query) ||
-      item.content.toLowerCase().includes(query) ||
-      item.tags.some(tag => tag.toLowerCase().includes(query))
+    const q = searchInput.value.toLowerCase().trim();
+    const filtered = news.filter(n =>
+      n.title.toLowerCase().includes(q) ||
+      n.content.toLowerCase().includes(q) ||
+      n.tags.some(tag => tag.toLowerCase().includes(q))
     );
-    displayNews(filteredNews);
+    displayNews(filtered);
   });
 </script>
