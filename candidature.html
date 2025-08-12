@@ -168,19 +168,19 @@ nav a {
   </div>
 
 <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
-  <div class="relative w-180">
+  <div class="relative w-full">
     <select
       name="Poste"
       required
-      class="appearance-none w-full p-4 rounded-lg bg-white/10 border border-white/20 text-white text-center focus:ring-2 focus:ring-indigo-500 focus:outline-none pr-10 cursor-pointer backdrop-blur-sm shadow-md hover:bg-white/20 transition"
+      class="appearance-none w-full p-4 rounded-xl bg-gradient-to-r from-white/10 to-white/5 border border-white/30 text-white text-center focus:ring-2 focus:ring-indigo-500 focus:outline-none pr-10 cursor-pointer backdrop-blur-md shadow-lg hover:from-white/20 hover:to-white/10 transition-all duration-300 ease-in-out"
     >
       <option value="" disabled selected class="bg-gray-900 text-gray-400">👤 Poste souhaité</option>
-      <option value="🛒 Vendeur">🛒 Vendeur</option>
-      <option value="⛽ Pompiste">⛽ Pompiste</option>
-      <option value="📦 Exportateur">📦 Exportateur</option>
+      <option value="🛒 Vendeur" class="bg-gray-800 text-white">🛒 Vendeur</option>
+      <option value="⛽ Pompiste" class="bg-gray-800 text-white">⛽ Pompiste</option>
+      <option value="📦 Exportateur" class="bg-gray-800 text-white">📦 Exportateur</option>
     </select>
     <!-- Icône flèche -->
-    <svg class="w-5 h-5 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <svg class="w-5 h-5 text-indigo-400 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
     </svg>
   </div>
