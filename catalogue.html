@@ -263,10 +263,8 @@ nav a {
   </div>
 
 <script>
-
-let cart = [];
-
-const products = [
+let products = [
+  // Exemple de produits, à remplacer ou charger dynamiquement
   { id: 1, name: "Grosse Perceuse", price: 12, category: "Quincaillerie", image: "https://via.placeholder.com/100?text=Marteau" },
   { id: 2, name: "Perceuse", price: 10, category: "Quincaillerie", image: "https://i.goopics.net/axel0q.png" },
   { id: 3, name: "Foret de perceuse", price: 700, category: "Quincaillerie", image: "https://i.goopics.net/v71n0s.png" },
@@ -311,7 +309,11 @@ const products = [
   { id: 42, name: "Crème Glacée", price: 3, category: "Menu", image: "https://via.placeholder.com/100?text=Clé" },
   { id: 43, name: "Ramune Exotique", price: 35, category: "Menu", image: "https://via.placeholder.com/100?text=Clé" },
   { id: 44, name: "Ramen Boeuf", price: 35, category: "Menu", image: "https://via.placeholder.com/100?text=Clé" },
+
+
 ];
+
+let cart = [];
 
 // Affichage des produits filtrés, triés et recherchés
 function renderProducts() {
