@@ -216,25 +216,11 @@ nav a {
 </form>
 
 <script>
-  // Optionnel : limiter la date minimum à aujourd'hui
-  const dateInput = document.getElementById('dateInput');
-  const today = new Date().toISOString().split('T')[0];
-  dateInput.setAttribute('min', today);
-</script>
-
- <!-- Pied de page -->
-  <footer class="text-center py-6 text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700 mt-12">
-    &copy; 2025 LTD Grove Street. Tous droits réservés.
-  </footer>
-
-
-<script>
   const form = document.getElementById('appointmentForm');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Récupérer les valeurs du formulaire
     const formData = new FormData(form);
     const Nom = formData.get('Nom') || "Non spécifié";
     const Tel = formData.get('Numéro de Téléphone') || "Non spécifié";
@@ -245,15 +231,25 @@ nav a {
     const Motivations = formData.get('Vos Motivations') || "Non spécifiées";
     const Commentaire = formData.get('Commentaire') || "Aucun";
 
-    // Vérifier champs obligatoires
     if (!Nom || !Tel || !DateNaissance || !Disponibilites || !Poste) {
       alert("Merci de remplir tous les champs obligatoires.");
       return;
     }
 
-    // Construire le message Discord au format embed
+    // Construire la description en liste markdown
+    const description = `
+- 👤 **Nom complet:** ${Nom}
+- 📞 **Téléphone:** ${Tel}
+- 🎂 **Date de naissance:** ${DateNaissance}
+- 📅 **Disponibilités:** ${Disponibilites}
+- 💼 **Poste souhaité:** ${Poste}
+- 📖 **Présentation:** ${Presentation}
+- 🔥 **Motivations:** ${Motivations}
+- 📝 **Commentaire:** ${Commentaire}
+    `;
+
     const payload = {
-      content: "<@&1298348457995800638>",  // Ping du rôle (ajuste si besoin)
+      content: "<@&1298348457995800638>",
       embeds: [
         {
           title: "📝 __**Nouvelle candidature LTD Grove Street**__",
@@ -261,16 +257,7 @@ nav a {
           thumbnail: {
             url: "https://i.goopics.net/5dh7x3.png"
           },
-          fields: [
-            { name: "👤 Nom complet", value: Nom, inline: true },
-            { name: "📞 Téléphone", value: Tel, inline: true },
-            { name: "🎂 Date de naissance", value: DateNaissance, inline: true },
-            { name: "📅 Disponibilités", value: Disponibilites, inline: true },
-            { name: "💼 Poste souhaité", value: Poste, inline: true },
-            { name: "📖 Présentation", value: Presentation, inline: false },
-            { name: "🔥 Motivations", value: Motivations, inline: false },
-            { name: "📝 Commentaire", value: Commentaire, inline: false }
-          ],
+          description: description,
           image: {
             url: "https://i.goopics.net/bk7273.png"
           },
@@ -283,7 +270,6 @@ nav a {
       ]
     };
 
-    // Ton webhook Discord
     const webhookUrl = "https://discord.com/api/webhooks/1404696865030672484/8NGXojmjpJnBGP_VLOKdscSE3l5KEW8TQMqlieQQ3ZusPWUiMuWmbatb8WhlhlDY01JM";
 
     try {
