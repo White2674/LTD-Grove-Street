@@ -263,7 +263,6 @@ nav a {
   </div>
 
 <script>
-
 let products = [
   // Exemple de produits, à remplacer ou charger dynamiquement
   { id: 1, name: "Grosse Perceuse", price: 12, category: "Quincaillerie", image: "https://via.placeholder.com/100?text=Marteau" },
@@ -479,8 +478,8 @@ document.getElementById('nav-toggle').addEventListener('click', () => {
 
 // Lancement initial
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('categorySelect').value = 'all'; // Forcer la catégorie par défaut
-  renderProducts(); // Afficher les produits dès l'arrivée sur la page
+  document.getElementById('categorySelect').value = 'all'; // Forcer la catégorie 'toutes'
+  renderProducts();  // Affiche les produits au chargement initial
 });
 
 </script>
