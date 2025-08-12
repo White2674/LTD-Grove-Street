@@ -132,73 +132,75 @@ nav a {
     </span> 
   </h2>
 
-  <form class="space-y-8" id="appointmentForm" method="POST" novalidate>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <input
-        type="text"
-        name="Nom"
-        placeholder="Nom complet"
-        required
-        class="p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-      />
-      <input
-        type="text"
-        name="Numéro de Téléphone"
-        placeholder="Numéro de Téléphone"
-        required
-        class="p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-      />
-    </div>
+<form class="space-y-8" id="appointmentForm" method="POST" novalidate>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <input
+      type="text"
+      name="Nom"
+      placeholder="Nom complet"
+      required
+      class="p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+    />
+    <input
+      type="text"
+      name="Numéro de Téléphone"
+      placeholder="Numéro de Téléphone"
+      required
+      class="p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+    />
+  </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <input
-        type="text"
-        name="Date"
-        placeholder="Date de naissance"
-        required
-        class="p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-      />
-      <input
-        type="text"
-        name="Vos Disponibilités"
-        placeholder="Vos Disponibilités"
-        required
-        class="p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-      />
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <input
-        type="text"
-        name="Poste"
-        placeholder="Poste souhaité"
-        required
-        class="p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-      />
-    </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <input
+      type="text"
+      name="Date"
+      placeholder="Date de naissance"
+      required
+      class="p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+    />
+    <input
+      type="text"
+      name="Vos Disponibilités"
+      placeholder="Vos Disponibilités"
+      required
+      class="p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+    />
+  </div>
 
-    <textarea
-      name="Votre Présentation"
-      rows="5"
-      placeholder="Présentez-vous : parlez-nous de qui vous êtes, de ce que vous aimez faire dans la vie etc..."
-      class="w-full p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 resize-none focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-    ></textarea>
-    </div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <select
+    name="Poste"
+    required
+    class="p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+  >
+    <option value="" disabled selected>Poste souhaité</option>
+    <option value="vendeur">Vendeur</option>
+    <option value="pompiste">Pompiste</option>
+    <option value="exportateur">Exportateur</option>
+  </select>
+</div>
 
-    <textarea
-      name="Vos Motivations"
-      rows="5"
-      placeholder="Expliquez-nous ce qui vous motive à rejoindre le LTD Grove Street"
-      class="w-full p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 resize-none focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-    ></textarea>
+  <textarea
+    name="Votre Présentation"
+    rows="5"
+    placeholder="Présentez-vous : parlez-nous de qui vous êtes, de ce que vous aimez faire dans la vie etc..."
+    class="w-full p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 resize-none focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+  ></textarea>
 
-    <button
-      type="submit"
-      class="w-full py-4 bg-indigo-600 hover:bg-indigo-700 rounded-lg font-semibold text-white transition shadow-lg"
-    >
-      Envoyer sa candidature
-    </button>
-  </form>
-</section>
+  <textarea
+    name="Vos Motivations"
+    rows="5"
+    placeholder="Expliquez-nous ce qui vous motive à rejoindre le LTD Grove Street"
+    class="w-full p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 resize-none focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+  ></textarea>
+
+  <button
+    type="submit"
+    class="w-full py-4 bg-indigo-600 hover:bg-indigo-700 rounded-lg font-semibold text-white transition shadow-lg"
+  >
+    Envoyer sa candidature
+  </button>
+</form>
 
 <script>
   // Optionnel : limiter la date minimum à aujourd'hui
