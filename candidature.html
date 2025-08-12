@@ -238,15 +238,30 @@ nav a {
 
     // Construire la description en liste markdown
     const description = `
-- 👤 **Nom complet:** ${Nom}
-- 📞 **Téléphone:** ${Tel}
-- 🎂 **Date de naissance:** ${DateNaissance}
-- 📅 **Disponibilités:** ${Disponibilites}
-- 💼 **Poste souhaité:** ${Poste}
-- 📖 **Présentation:** ${Presentation}
-- 🔥 **Motivations:** ${Motivations}
-- 📝 **Commentaire:** ${Commentaire}
-    `;
+👤 **__Nom complet :__**  
+${Nom}
+
+📞 **__Téléphone :__**  
+${Tel}
+
+🎂 *__*Date de naissance :__**  
+${DateNaissance}
+
+📅 **__Disponibilités :__**  
+${Disponibilites}
+
+💼 **__Poste souhaité :__**  
+${Poste}
+
+📖 **__Présentation :__**  
+${Presentation}
+
+📩 **__Motivations :__**  
+${Motivations}
+
+📝 **__Commentaire :__**  
+${Commentaire}
+`;
 
     const payload = {
       content: "<@&1298348457995800638>",
