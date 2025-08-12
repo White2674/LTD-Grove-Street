@@ -237,7 +237,7 @@ nav a {
     }
 
     // Construire la description en liste markdown
-    const description = 
+    const description = `
 👤 **__Nom complet :__**  
 ${Nom}
 
@@ -261,10 +261,10 @@ ${Motivations}
 
 📝 **__Commentaire :__**  
 ${Commentaire}
-;
+`;
 
     const payload = {
-      content: "<@&1298348457995800638>",
+      content: "<@X>",
       embeds: [
         {
           title: "📝 __**Nouvelle candidature LTD Grove Street**__",
