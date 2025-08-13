@@ -178,14 +178,20 @@ nav a {
     &copy; 2025 LTD Grove Street. Tous droits réservés.
   </footer>
 
-  <!-- Caddie flottant -->
-  <button
-    id="cartButton"
-    class="fixed bottom-6 right-6 bg-indigo-600 text-white p-3 rounded-full shadow-lg z-50 hover:bg-indigo-700"
-    aria-label="Afficher le panier"
+<!-- Caddie flottant style LTD Grove Street -->
+<button
+  id="cartButton"
+  class="fixed bottom-6 right-6 bg-white/10 backdrop-blur-md text-indigo-400 p-4 rounded-full shadow-lg border border-white/20 flex items-center space-x-2 transition transform hover:-translate-y-1 hover:shadow-2xl hover:text-indigo-300 z-50"
+  aria-label="Afficher le panier"
+>
+  <span class="text-2xl">🛒</span>
+  <span
+    id="cartCount"
+    class="inline-block bg-indigo-500 text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full"
   >
-    🛒 <span id="cartCount">0</span>
-  </button>
+    0
+  </span>
+</button>
 
   <!-- Slide-over panier -->
   <div id="cartModal" class="fixed inset-0 bg-black/50 hidden z-50" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
