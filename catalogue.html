@@ -494,74 +494,63 @@ nav a {
 })();
 </script>
 
-<script>
 function validateOrder() {
   if (cart.length === 0) {
-    alert("Votre commande est vide.");
+    alert("Votre panier est vide.");
     return;
   }
 
-  // Récupérer les infos client
-  const fullName = document.getElementById('fullName')?.value.trim();
-  const phoneNumber = document.getElementById('phoneNumber')?.value.trim();
-  const deliveryTime = document.getElementById('deliveryTime')?.value.trim();
-  const comment = document.getElementById('comment')?.value.trim();
+  // Préparer le message à envoyer
+  const orderLines = cart.map(item =>
+    `**${item.name}** x ${item.quantity} = ${(item.price * item.quantity).toFixed(2)} $`
+  ).join('\n');
 
-  if (!fullName || !phoneNumber || !deliveryTime) {
-    alert("Veuillez remplir le nom, le téléphone et l'heure de livraison.");
-    return;
-  }
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const grandTotal = total + 250; // frais fixes
 
-  // Construire la liste des articles
-  let itemList = "";
-  cart.forEach(item => {
-    itemList += `• ${item.name} x${item.quantity} — $${(item.price * item.quantity).toFixed(2)}\n`;
-  });
+  // Données de livraison (à récupérer depuis un formulaire dans ta page)
+  // Ici un exemple avec des inputs HTML avec id: 'customerName', 'customerAddress', 'customerPhone'
+  const customerName = document.getElementById('customerName')?.value || "Non renseigné";
+  const customerAddress = document.getElementById('customerAddress')?.value || "Non renseigné";
+  const customerPhone = document.getElementById('customerPhone')?.value || "Non renseigné";
 
-  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const fixedFee = 250;
-  const grandTotal = totalPrice + fixedFee;
+  const webhookUrl = "https://discord.com/api/webhooks/TON_WEBHOOK_ID/TON_WEBHOOK_TOKEN";
 
-  // Préparer le payload Discord
-  const payload = {
-    content: "",
-    embeds: [
-      {
-        title: "🧾 Nouvelle commande entreprise",
-        color: 0x3498db,
-        fields: [
-          { name: "👤 Client", value: `${fullName}\n📞 ${phoneNumber}\n⏰ Livraison souhaitée : ${deliveryTime}`, inline: false },
-          { name: "🧾 Commande", value: itemList, inline: false },
-          { name: "💰 Total", value: `$${totalPrice.toFixed(2)}`, inline: true },
-          { name: "🚚 Frais fixes", value: `$${fixedFee.toFixed(2)}`, inline: true },
-          { name: "💵 Total général", value: `$${grandTotal.toFixed(2)}`, inline: false },
-          { name: "📝 Commentaire", value: comment || "Aucun commentaire", inline: false }
-        ],
-        footer: { text: "Commande envoyée depuis le site web" },
-        timestamp: new Date().toISOString()
-      }
-    ]
+  const discordPayload = {
+    username: "Commande Boutique",
+    embeds: [{
+      title: "Nouvelle commande reçue",
+      color: 0x5865F2,
+      fields: [
+        { name: "Client", value: customerName, inline: true },
+        { name: "Adresse", value: customerAddress, inline: true },
+        { name: "Téléphone", value: customerPhone, inline: true },
+        { name: "Produits", value: orderLines },
+        { name: "Total (hors frais)", value: `${total.toFixed(2)} $`, inline: true },
+        { name: "Frais fixes", value: `250 $`, inline: true },
+        { name: "Total TTC", value: `${grandTotal.toFixed(2)} $`, inline: true }
+      ],
+      timestamp: new Date().toISOString(),
+      footer: { text: "Boutique en ligne" }
+    }]
   };
 
-  // Webhook Discord
-  const webhookUrl = "https://discord.com/api/webhooks/1405047503077773403/NS2kpJTnJQbpaKEEJ577XfwtU7at6tjec3X_kXfK7G2dCP1oJgzTT4wdcauaFlEWE4MK";
-
   fetch(webhookUrl, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(discordPayload)
   })
   .then(response => {
-    if (!response.ok) throw new Error("Erreur lors de l'envoi du webhook");
-    alert("✅ Commande envoyée avec succès !");
-    cart = [];
-    renderCart();
-    toggleCart();
-    document.getElementById('orderForm').reset();
+    if (response.ok) {
+      alert("Commande envoyée avec succès !");
+      cart = [];  // vider le panier
+      renderCart();
+    } else {
+      alert("Erreur lors de l'envoi de la commande.");
+    }
   })
-  .catch(err => {
-    console.error("Erreur Discord webhook:", err);
-    alert("❌ Erreur lors de l'envoi vers Discord.");
+  .catch(error => {
+    console.error("Erreur fetch webhook :", error);
+    alert("Erreur réseau lors de l'envoi de la commande.");
   });
 }
-</script>
