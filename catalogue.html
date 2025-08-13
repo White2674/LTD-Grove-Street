@@ -505,23 +505,28 @@ nav a {
   const phone = document.getElementById('customerPhone').value.trim();
   const time = document.getElementById('deliveryTime').value.trim();
   const comment = document.getElementById('comments').value.trim();
-  const totalArticles = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const fraisLivraison = 250; // frais fixes
-  const grandTotal = totalArticles + fraisLivraison;
-  
+
   if (!name || !phone) {
     alert("Merci de remplir au minimum votre nom et téléphone.");
     return;
   }
 
-  // Création du descriptif des articles
+  const totalArticles = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const grandTotal = totalArticles + fraisLivraison;
+
   let orderDetails = "";
   cart.forEach(item => {
     orderDetails += `• ${item.name} x${item.quantity} — ${item.price.toFixed(2)} $\n`;
   });
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const grandTotal = total + 250;
+  console.log("Total articles:", totalArticles);
+  console.log("Frais livraison:", fraisLivraison);
+  console.log("Grand total:", grandTotal);
+  console.log("Order details:", orderDetails);
+
+  alert("Commande prête à être envoyée ! (envoi Discord bloqué côté front-end)");
+}
 
 // Préparation du message pour Discord
 const message = {
