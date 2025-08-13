@@ -524,14 +524,14 @@ nav a {
   const message = {
     content: "<@NO STRESS, JE VAIS PAS VOUS PING>",
     embeds: [{
-      title: "# 🛒 Nouvelle commande reçue",
+      title: "**__🛒 Nouvelle commande reçue__**",
       color: 0x4CAF50,
       fields: [
         { name: "**__Nom & Prénom__**", value: name, inline: false },
         { name: "**__Téléphone__**", value: phone, inline: false },
         { name: "**__Heure de livraison__**", value: time || "Non précisée", inline: false },
         { name: "**__Commentaire__**", value: comment || "Aucun", inline: false },
-        { name: "Articles", value: orderDetails || "Aucun article", inline: false },
+        { name: "**__Articles__**", value: orderDetails || "Aucun article", inline: false },
         { name: "**__Total commande__**", value: grandTotal.toFixed(2) + " $", inline: false }
       ],
       timestamp: new Date()
