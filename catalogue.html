@@ -521,18 +521,22 @@ nav a {
   const grandTotal = total + 250;
 
   // Préparation du message pour Discord
-  const message = {
+const message = {
   content: "<@NO STRESS, JE VAIS PAS VOUS PING>",
   embeds: [{
+    author: {
+      name: "LTD - Nouvelle commande reçue",
+      icon_url: "https://i.goopics.net/5dh7x3.png" // Logo LTD
+    },
     title: "**__🛒 Nouvelle commande reçue__**",
     color: 0x4CAF50,
     fields: [
-      { name: "**__Nom & Prénom__**", value: name, inline: false },
-      { name: "**__Téléphone__**", value: phone, inline: false },
-      { name: "**__Heure de livraison__**", value: time || "Non précisée", inline: false },
-      { name: "**__Commentaire__**", value: comment || "Aucun", inline: false },
-      { name: "**__Articles__**", value: orderDetails || "Aucun article", inline: false },
-      { name: "**__Total commande__**", value: grandTotal.toFixed(2) + " $", inline: false }
+      { name: "**__👤 Nom & Prénom__**", value: name, inline: false },
+      { name: "**__📲 Téléphone__**", value: phone, inline: false },
+      { name: "**__⏰ Heure de livraison__**", value: time || "Non précisée", inline: false },
+      { name: "**__📩 Commentaire__**", value: comment || "Aucun", inline: false },
+      { name: "**__🛒 Articles__**", value: orderDetails || "Aucun article", inline: false },
+      { name: "**__💰 Total commande__**", value: grandTotal.toFixed(2) + " $", inline: false }
     ],
     image: {
       url: "https://i.goopics.net/bk7273.png"
