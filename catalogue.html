@@ -522,17 +522,17 @@ nav a {
 
   // Préparation du message pour Discord
   const message = {
-    content: "**Nouvelle commande reçue 🛒**",
+    content: "<@NO STRESS, JE VAIS PAS VOUS PING>",
     embeds: [{
-      title: "📦 Détails de la commande",
+      title: "# 🛒 Nouvelle commande reçue",
       color: 0x4CAF50,
       fields: [
-        { name: "Nom & Prénom", value: name, inline: false },
-        { name: "Téléphone", value: phone, inline: false },
-        { name: "Heure de livraison", value: time || "Non précisée", inline: false },
-        { name: "Commentaire", value: comment || "Aucun", inline: false },
+        { name: "**__Nom & Prénom__**", value: name, inline: false },
+        { name: "**__Téléphone__**", value: phone, inline: false },
+        { name: "**__Heure de livraison__**", value: time || "Non précisée", inline: false },
+        { name: "**__Commentaire__**", value: comment || "Aucun", inline: false },
         { name: "Articles", value: orderDetails || "Aucun article", inline: false },
-        { name: "Total commande", value: grandTotal.toFixed(2) + " $", inline: false }
+        { name: "**__Total commande__**", value: grandTotal.toFixed(2) + " $", inline: false }
       ],
       timestamp: new Date()
     }]
