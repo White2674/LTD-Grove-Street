@@ -505,16 +505,18 @@ function validateOrder() {
     return;
   }
 
-  // Préparer le message
+  // Construire la description des articles
   const itemsDescription = cart.map(item =>
-    `${item.quantity} x ${item.name} à ${item.price.toFixed(2)} $`
+    `${item.quantity} × ${item.name} à ${item.price.toFixed(2)} $`
   ).join('\n');
 
+  // Calculs des totaux
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const grandTotal = total + 250;
+  const grandTotal = total + 250; // frais fixes
 
+  // Préparation du payload pour Discord
   const message = {
-    content: "Nouvelle commande reçue !",
+    content: "🛒 Nouvelle commande reçue !",
     embeds: [{
       title: "Détails de la commande",
       color: 5814783, // couleur indigo
@@ -538,9 +540,10 @@ function validateOrder() {
     }]
   };
 
-  // URL de ton webhook Discord à remplacer ici :
+  // Ton webhook Discord (à remplacer par le tien)
   const webhookUrl = "https://discord.com/api/webhooks/1405047503077773403/NS2kpJTnJQbpaKEEJ577XfwtU7at6tjec3X_kXfK7G2dCP1oJgzTT4wdcauaFlEWE4MK";
 
+  // Envoi de la commande au webhook Discord
   fetch(webhookUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -548,14 +551,18 @@ function validateOrder() {
   })
   .then(response => {
     if (response.ok) {
-      alert("Commande validée et envoyée sur Discord !");
-      cart = []; // vider le panier après validation
-      renderCart();
-      toggleCart();
+      alert("✅ Commande validée et envoyée sur Discord !");
+      cart = [];          // Vider le panier
+      renderCart();       // Mettre à jour l'affichage
+      toggleCart();       // Fermer le panneau du panier
     } else {
-      alert("Erreur lors de l'envoi de la commande.");
+      alert("❌ Erreur lors de l'envoi de la commande.");
+      console.error("Erreur Discord:", response.status, response.statusText);
     }
   })
-  .catch(() => alert("Erreur réseau lors de l'envoi de la commande."));
+  .catch(error => {
+    alert("❌ Erreur réseau lors de l'envoi de la commande.");
+    console.error("Erreur réseau:", error);
+  });
 }
 </script>
