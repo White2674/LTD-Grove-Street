@@ -536,6 +536,8 @@ const message = {
       { name: "**__⏰ Heure de livraison__**", value: time || "Non précisée", inline: false },
       { name: "**__📩 Commentaire__**", value: comment || "Aucun", inline: false },
       { name: "**__🛒 Articles__**", value: orderDetails || "Aucun article", inline: false },
+      { name: "**__💵 Total articles__**", value: totalArticles.toFixed(2) + " $", inline: false },
+      { name: "**__🚚 Frais de livraison__**", value: fraisLivraison.toFixed(2) + " $", inline: false },
       { name: "**__💰 Total commande__**", value: grandTotal.toFixed(2) + " $", inline: false }
     ],
     image: {
