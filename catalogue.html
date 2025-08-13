@@ -438,8 +438,8 @@ itemEl.innerHTML = `
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const grandTotal = total + 250; // exemple de frais fixes
 
-  cartTotalItemsEl.textContent = ${total.toFixed(2)} $;
-  cartGrandTotalEl.textContent = ${grandTotal.toFixed(2)} $;
+  cartTotalItemsEl.textContent = total.toFixed(2) + " $";
+  cartGrandTotalEl.textContent = grandTotal.toFixed(2) + " $";
   cartCountEl.textContent = cart.reduce((sum, i) => sum + i.quantity, 0);
 }
 
