@@ -494,68 +494,76 @@ nav a {
 })();
 </script>
 
-<script>
-  // Ton webhook Discord (général)
-  const generalWebhookUrl = "https://discord.com/api/webhooks/1326263608228708493/MglHvJ_xRFd6aJB10-d1u2kE-KtkjLnYss1oVr44dvOc0aQ5QWEZU1bfGNRtQBVzl5Qy";
-
-  // Exemple : produit sélectionné depuis le catalogue
-  function sendToDiscord(product) {
-    const payload = {
-      content: "<@JE VAIS PAS VOUS PING, DON'T STRESS>", // Mention d’un rôle (optionnel)
-      embeds: [
-        {
-          title: "# 🛒 Nouvelle commande",
-          color: 0x00ff00,
-          thumbnail: { url: product.image || "" },
-          fields: [
-            { name: "📦 Produit", value: product.name || "Sans nom", inline: true },
-            { name: "💰 Prix", value: `$${product.price.toFixed(2)}`, inline: true },
-            { name: "📅 Date", value: new Date().toLocaleString(), inline: false }
-          ],
-          footer: { text: "Commande envoyée depuis le site web" },
-          timestamp: new Date().toISOString()
-        }
-      ]
-    };
-
-    fetch(generalWebhookUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    })
-    .then(res => {
-      if (!res.ok) throw new Error("Erreur webhook");
-      alert("✅ Commande envoyée sur Discord !");
-    })
-    .catch(err => {
-      console.error("Erreur Discord webhook:", err);
-      alert("❌ Erreur lors de l'envoi vers Discord.");
-    });
+</script>
+function validateOrder() {
+  if (cart.length === 0) {
+    alert("Votre commande est vide.");
+    return;
   }
 
-  // Exemple d'ajout d'un bouton dans le rendu de chaque produit
-  function renderProducts(products) {
-    const grid = document.getElementById("productGrid");
-    grid.innerHTML = "";
-    products.forEach(p => {
-      const card = document.createElement("div");
-      card.className = "p-4 border rounded-lg shadow";
-      card.innerHTML = `
-        <img src="${p.image}" alt="${p.name}" class="w-full h-40 object-cover mb-2">
-        <h2 class="text-lg font-bold">${p.name}</h2>
-        <p class="text-gray-700">$${p.price.toFixed(2)}</p>
-        <button class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Commander</button>
-      `;
-      card.querySelector("button").addEventListener("click", () => sendToDiscord(p));
-      grid.appendChild(card);
-    });
-  }
+  // Construire la liste des articles au format texte pour Discord
+  let itemList = "";
+  cart.forEach(item => {
+    itemList += `• ${item.name} x${item.quantity} – $${(item.price * item.quantity).toFixed(2)}\n`;
+  });
 
-  // Exemple de données
-  const products = [
-    { name: "Produit A", price: 10, image: "https://via.placeholder.com/150" },
-    { name: "Produit B", price: 15, image: "https://via.placeholder.com/150" }
-  ];
+  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const fixedFee = 250; // tes frais fixes
+  const grandTotal = totalPrice + fixedFee;
 
-  renderProducts(products);
+  // Préparer le payload Discord
+  const payload = {
+    content: "<@&1297858230495739915>", // Mention du rôle à adapter
+    embeds: [
+      {
+        title: "🧾 Nouvelle commande entreprise",
+        color: 0x3498db,
+        fields: [
+          {
+            name: "__🧾 Commande__",
+            value: itemList || "Aucun article",
+            inline: false
+          },
+          {
+            name: "__💰 Total__",
+            value: `$${totalPrice.toFixed(2)}`,
+            inline: true
+          },
+          {
+            name: "__🚚 Frais fixes__",
+            value: `$${fixedFee.toFixed(2)}`,
+            inline: true
+          },
+          {
+            name: "__💵 Total général__",
+            value: `$${grandTotal.toFixed(2)}`,
+            inline: false
+          }
+        ],
+        footer: {
+          text: "Commande envoyée depuis le site web"
+        },
+        timestamp: new Date().toISOString()
+      }
+    ]
+  };
+
+  // URL webhook Discord
+  const webhookUrl = "https://discord.com/api/webhooks/TON_WEBHOOK_ICI";
+
+  fetch(webhookUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  }).then(response => {
+    if (!response.ok) throw new Error("Erreur lors de l'envoi du webhook");
+    alert("✅ Commande envoyée avec succès !");
+    cart = [];
+    renderCart();
+    toggleCart();
+  }).catch(err => {
+    console.error("Erreur Discord webhook:", err);
+    alert("❌ Erreur lors de l'envoi vers Discord.");
+  });
+}
 </script>
