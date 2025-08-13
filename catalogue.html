@@ -203,64 +203,62 @@ nav a {
         <!-- Les produits ajoutés apparaîtront ici -->
       </div>
 
-      <!-- Résumé avec totaux -->
-      <div id="cartSummary" class="space-y-2 text-sm bg-indigo-50 dark:bg-gray-800 p-3 rounded border border-indigo-200 dark:border-gray-700">
-        <div class="flex justify-between">
-          <span>Total des articles :</span>
-          <span id="cartTotalItems">0$</span>
-        </div>
-        <div class="flex justify-between">
-          <span>Frais de livraison :</span>
-          <span>250$</span>
-        </div>
-        <div class="flex justify-between font-semibold text-base border-t pt-2 border-gray-300 dark:border-gray-600">
-          <span>Total commande :</span>
-          <span id="cartGrandTotal">0$</span>
-        </div>
-      </div>
-
-      <div class="px-4 space-y-4 mt-4">
-        <div>
-          <label for="customerName" class="block mb-1 font-semibold text-sm">Nom & Prénom</label>
-          <input
-            id="customerName"
-            type="text"
-            placeholder="Votre nom complet"
-            class="w-full p-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-          />
-        </div>
-        <div>
-          <label for="customerPhone" class="block mb-1 font-semibold text-sm">Numéro de téléphone</label>
-          <input
-            id="customerPhone"
-            type="tel"
-            placeholder="0123-456789"
-            class="w-full p-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-          />
-        </div>
-        <div>
-          <label for="deliveryTime" class="block mb-1 font-semibold text-sm">Heure de livraison souhaitée</label>
-          <input
-            id="deliveryTime"
-            type="time"
-            class="w-full p-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-          />
-        </div>
-        <div>
-          <label for="comments" class="block mb-1 font-semibold text-sm">Commentaire</label>
-          <textarea
-            id="comments"
-            placeholder="Indiquez toute précision utile..."
-            rows="3"
-            class="w-full p-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-          ></textarea>
-        </div>
-        <button class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition" onclick="validateOrder()">
-          ✅ Valider la commande
-        </button>
-      </div>
-    </div>
+<!-- Résumé avec totaux -->
+<div id="cartSummary" class="space-y-2 text-sm bg-indigo-50 dark:bg-gray-800 p-3 rounded border border-indigo-200 dark:border-gray-700">
+  <div class="flex justify-between">
+    <span>Total des articles :</span>
+    <span id="cartTotalItems">0$</span>
   </div>
+  <div class="flex justify-between">
+    <span>Frais de livraison :</span>
+    <span>250$</span>
+  </div>
+  <div class="flex justify-between font-semibold text-base border-t pt-2 border-gray-300 dark:border-gray-600">
+    <span>Total commande :</span>
+    <span id="cartGrandTotal">0$</span>
+  </div>
+</div>
+
+<div class="px-4 space-y-4 mt-4">
+  <div>
+    <label for="customerName" class="block mb-1 font-semibold text-white text-sm">Nom & Prénom</label>
+    <input
+      id="customerName"
+      type="text"
+      placeholder="Votre nom complet"
+      class="w-full p-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+    />
+  </div>
+  <div>
+    <label for="customerPhone" class="block mb-1 font-semibold text-white text-sm">Numéro de téléphone</label>
+    <input
+      id="customerPhone"
+      type="tel"
+      placeholder="0123-456789"
+      class="w-full p-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+    />
+  </div>
+  <div>
+    <label for="deliveryTime" class="block mb-1 font-semibold text-white text-sm">Heure de livraison souhaitée</label>
+    <input
+      id="deliveryTime"
+      type="time"
+      class="w-full p-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+    />
+  </div>
+  <div>
+    <label for="comments" class="block mb-1 font-semibold text-white text-sm">Commentaire</label>
+    <textarea
+      id="comments"
+      placeholder="Indiquez toute précision utile..."
+      rows="3"
+      class="w-full p-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+    ></textarea>
+  </div>
+  <button class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition" onclick="validateOrder()">
+    ✅ Valider la commande
+  </button>
+</div>
 
 <script>
 /* === Catalogue + Panier (robuste) === */
