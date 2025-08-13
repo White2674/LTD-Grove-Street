@@ -505,6 +505,9 @@ nav a {
   const phone = document.getElementById('customerPhone').value.trim();
   const time = document.getElementById('deliveryTime').value.trim();
   const comment = document.getElementById('comments').value.trim();
+  const totalArticles = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const fraisLivraison = 250; // frais fixes
+  const grandTotal = totalArticles + fraisLivraison;
   
   if (!name || !phone) {
     alert("Merci de remplir au minimum votre nom et téléphone.");
