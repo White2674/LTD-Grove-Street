@@ -501,28 +501,41 @@ function validateOrder() {
     return;
   }
 
-  // Construire la liste des articles en texte brut pour Discord
+  // Récupérer les infos client
+  const fullName = document.getElementById('fullName')?.value.trim();
+  const phoneNumber = document.getElementById('phoneNumber')?.value.trim();
+  const deliveryTime = document.getElementById('deliveryTime')?.value.trim();
+  const comment = document.getElementById('comment')?.value.trim();
+
+  if (!fullName || !phoneNumber || !deliveryTime) {
+    alert("Veuillez remplir le nom, le téléphone et l'heure de livraison.");
+    return;
+  }
+
+  // Construire la liste des articles
   let itemList = "";
   cart.forEach(item => {
     itemList += `• ${item.name} x${item.quantity} — $${(item.price * item.quantity).toFixed(2)}\n`;
   });
 
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const fixedFee = 250; // frais fixes
+  const fixedFee = 250;
   const grandTotal = totalPrice + fixedFee;
 
-  // Payload webhook Discord (tu peux ajouter la mention de rôle dans content si besoin)
+  // Préparer le payload Discord
   const payload = {
-    content: "", // Optionnel : "@role ou @here" si tu veux mentionner un rôle
+    content: "",
     embeds: [
       {
         title: "🧾 Nouvelle commande entreprise",
         color: 0x3498db,
         fields: [
+          { name: "👤 Client", value: `${fullName}\n📞 ${phoneNumber}\n⏰ Livraison souhaitée : ${deliveryTime}`, inline: false },
           { name: "🧾 Commande", value: itemList, inline: false },
           { name: "💰 Total", value: `$${totalPrice.toFixed(2)}`, inline: true },
           { name: "🚚 Frais fixes", value: `$${fixedFee.toFixed(2)}`, inline: true },
-          { name: "💵 Total général", value: `$${grandTotal.toFixed(2)}`, inline: false }
+          { name: "💵 Total général", value: `$${grandTotal.toFixed(2)}`, inline: false },
+          { name: "📝 Commentaire", value: comment || "Aucun commentaire", inline: false }
         ],
         footer: { text: "Commande envoyée depuis le site web" },
         timestamp: new Date().toISOString()
@@ -530,7 +543,7 @@ function validateOrder() {
     ]
   };
 
-  // Ton webhook Discord
+  // Webhook Discord
   const webhookUrl = "https://discord.com/api/webhooks/1326263608228708493/MglHvJ_xRFd6aJB10-d1u2kE-KtkjLnYss1oVr44dvOc0aQ5QWEZU1bfGNRtQBVzl5Qy";
 
   fetch(webhookUrl, {
@@ -544,6 +557,7 @@ function validateOrder() {
     cart = [];
     renderCart();
     toggleCart();
+    document.getElementById('orderForm').reset();
   })
   .catch(err => {
     console.error("Erreur Discord webhook:", err);
