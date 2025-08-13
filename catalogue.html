@@ -499,70 +499,66 @@ nav a {
 </script>
 
 <script>
-function validateOrder() {
-  if (cart.length === 0) {
-    alert("Votre panier est vide.");
-    return;
-  }
-
-  // Construire la description des articles
-  const itemsDescription = cart.map(item =>
-    `${item.quantity} × ${item.name} à ${item.price.toFixed(2)} $`
-  ).join('\n');
-
-  // Calculs des totaux
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const grandTotal = total + 250; // frais fixes
-
-  // Préparation du payload pour Discord
-  const message = {
-    content: "🛒 Nouvelle commande reçue !",
-    embeds: [{
-      title: "Détails de la commande",
-      color: 5814783, // couleur indigo
-      fields: [
-        {
-          name: "Articles",
-          value: itemsDescription || "Aucun article"
-        },
-        {
-          name: "Total HT",
-          value: `${total.toFixed(2)} $`,
-          inline: true
-        },
-        {
-          name: "Total TTC (avec frais fixes)",
-          value: `${grandTotal.toFixed(2)} $`,
-          inline: true
-        }
-      ],
-      timestamp: new Date().toISOString()
-    }]
-  };
-
-  // Ton webhook Discord (à remplacer par le tien)
-  const webhookUrl = "https://discord.com/api/webhooks/1405047503077773403/NS2kpJTnJQbpaKEEJ577XfwtU7at6tjec3X_kXfK7G2dCP1oJgzTT4wdcauaFlEWE4MK";
-
-  // Envoi de la commande au webhook Discord
-  fetch(webhookUrl, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(message)
-  })
-  .then(response => {
-    if (response.ok) {
-      alert("✅ Commande validée et envoyée sur Discord !");
-      cart = [];          // Vider le panier
-      renderCart();       // Mettre à jour l'affichage
-      toggleCart();       // Fermer le panneau du panier
-    } else {
-      alert("❌ Erreur lors de l'envoi de la commande.");
-      console.error("Erreur Discord:", response.status, response.statusText);
+  async function validateOrder() {
+    if (!cart || cart.length === 0) {
+      alert("Votre panier est vide.");
+      return;
     }
-  })
-  .catch(error => {
-    alert("❌ Erreur réseau lors de l'envoi de la commande.");
-    console.error("Erreur réseau:", error);
-  });
-}
+
+    // Construire la description des articles
+    const itemsDescription = cart.map(item =>
+      `${item.quantity} × ${item.name} à ${item.price.toFixed(2)} $`
+    ).join('\n');
+
+    // Calcul des totaux
+    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const grandTotal = total + 250; // frais fixes
+
+    // Préparer le payload Discord
+    const payload = {
+      content: "🛒 Nouvelle commande reçue !",
+      embeds: [{
+        title: "Détails de la commande",
+        color: 5814783, // couleur indigo
+        fields: [
+          {
+            name: "Articles",
+            value: itemsDescription || "Aucun article"
+          },
+          {
+            name: "Total HT",
+            value: `${total.toFixed(2)} $`,
+            inline: true
+          },
+          {
+            name: "Total TTC (avec frais fixes)",
+            value: `${grandTotal.toFixed(2)} $`,
+            inline: true
+          }
+        ],
+        timestamp: new Date().toISOString()
+      }]
+    };
+
+    // Ton webhook Discord ici (à remplacer)
+    const webhookUrl = "https://discord.com/api/webhooks/1405047503077773403/NS2kpJTnJQbpaKEEJ577XfwtU7at6tjec3X_kXfK7G2dCP1oJgzTT4wdcauaFlEWE4MK";
+
+    try {
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) throw new Error(`Erreur lors de l'envoi au webhook Discord : ${response.status}`);
+
+      alert("✅ Commande validée et envoyée sur Discord !");
+      cart = [];        // Vider le panier
+      renderCart();     // Mettre à jour l'affichage
+      toggleCart();     // Fermer le panier
+    } catch (error) {
+      console.error(error);
+      alert("❌ Une erreur est survenue lors de l'envoi de la commande.");
+    }
+  }
 </script>
