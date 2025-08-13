@@ -522,28 +522,28 @@ nav a {
 
   // Préparation du message pour Discord
   const message = {
-    content: "<@NO STRESS, JE VAIS PAS VOUS PING>",
-    embeds: [{
-      title: "**__🛒 Nouvelle commande reçue__**",
-      color: 0x4CAF50,
-      fields: [
-        { name: "**__Nom & Prénom__**", value: name, inline: false },
-        { name: "**__Téléphone__**", value: phone, inline: false },
-        { name: "**__Heure de livraison__**", value: time || "Non précisée", inline: false },
-        { name: "**__Commentaire__**", value: comment || "Aucun", inline: false },
-        { name: "**__Articles__**", value: orderDetails || "Aucun article", inline: false },
-        { name: "**__Total commande__**", value: grandTotal.toFixed(2) + " $", inline: false }
-      ],
-      timestamp: new Date()
-    }]
-      image: {
-        url: "https://i.goopics.net/bk7273.png"
-      },
-      footer: {
-        text: "Demande envoyée via le site LTD",
-        icon_url: "https://i.goopics.net/5dh7x3.png"
-      },
-  };
+  content: "<@NO STRESS, JE VAIS PAS VOUS PING>",
+  embeds: [{
+    title: "**__🛒 Nouvelle commande reçue__**",
+    color: 0x4CAF50,
+    fields: [
+      { name: "**__Nom & Prénom__**", value: name, inline: false },
+      { name: "**__Téléphone__**", value: phone, inline: false },
+      { name: "**__Heure de livraison__**", value: time || "Non précisée", inline: false },
+      { name: "**__Commentaire__**", value: comment || "Aucun", inline: false },
+      { name: "**__Articles__**", value: orderDetails || "Aucun article", inline: false },
+      { name: "**__Total commande__**", value: grandTotal.toFixed(2) + " $", inline: false }
+    ],
+    image: {
+      url: "https://i.goopics.net/bk7273.png"
+    },
+    footer: {
+      text: "Demande envoyée via le site LTD",
+      icon_url: "https://i.goopics.net/5dh7x3.png"
+    },
+    timestamp: new Date()
+  }]
+};
 
   // Ton URL de webhook Discord (⚠️ À remplacer par la tienne)
   const webhookURL = "https://discord.com/api/webhooks/1405047503077773403/NS2kpJTnJQbpaKEEJ577XfwtU7at6tjec3X_kXfK7G2dCP1oJgzTT4wdcauaFlEWE4MK";
