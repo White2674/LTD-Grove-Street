@@ -520,13 +520,14 @@ nav a {
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const grandTotal = total + 250;
 
-  // Préparation du message pour Discord
+// Préparation du message pour Discord
 const message = {
   content: "<@NO STRESS, JE VAIS PAS VOUS PING>",
   embeds: [{
+    // (optionnel) si tu ne veux PAS de logo dans l'embed lui-même, supprime ce bloc 'author'
     author: {
       name: "LTD - Nouvelle commande reçue",
-      icon_url: "https://i.goopics.net/5dh7x3.png" // Logo LTD
+      icon_url: "https://i.goopics.net/5dh7x3.png"
     },
     title: "**__🛒 Nouvelle commande reçue__**",
     color: 0x4CAF50,
@@ -545,9 +546,10 @@ const message = {
       text: "Demande envoyée via le site LTD",
       icon_url: "https://i.goopics.net/5dh7x3.png"
     },
-    timestamp: new Date()
+    timestamp: new Date().toISOString()
   }]
 };
+
 
   // Ton URL de webhook Discord (⚠️ À remplacer par la tienne)
   const webhookURL = "https://discord.com/api/webhooks/1405047503077773403/NS2kpJTnJQbpaKEEJ577XfwtU7at6tjec3X_kXfK7G2dCP1oJgzTT4wdcauaFlEWE4MK";
