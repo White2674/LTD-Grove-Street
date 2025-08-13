@@ -494,6 +494,7 @@ nav a {
 })();
 </script>
 
+<script>
 function validateOrder() {
   if (cart.length === 0) {
     alert("Votre panier est vide.");
@@ -514,7 +515,7 @@ function validateOrder() {
   const customerAddress = document.getElementById('customerAddress')?.value || "Non renseigné";
   const customerPhone = document.getElementById('customerPhone')?.value || "Non renseigné";
 
-  const webhookUrl = "https://discord.com/api/webhooks/TON_WEBHOOK_ID/TON_WEBHOOK_TOKEN";
+  const webhookUrl = "https://discord.com/api/webhooks/1405047503077773403/NS2kpJTnJQbpaKEEJ577XfwtU7at6tjec3X_kXfK7G2dCP1oJgzTT4wdcauaFlEWE4MK";
 
   const discordPayload = {
     username: "Commande Boutique",
@@ -554,3 +555,4 @@ function validateOrder() {
     alert("Erreur réseau lors de l'envoi de la commande.");
   });
 }
+</script>
