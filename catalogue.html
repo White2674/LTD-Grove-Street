@@ -263,227 +263,233 @@ nav a {
   </div>
 
 <script>
-const products = [
-  // Exemple de produits, à remplacer ou charger dynamiquement
-  { id: 1, name: "Grosse Perceuse", price: 12, category: "Quincaillerie", image: "https://via.placeholder.com/100?text=Marteau" },
-  { id: 2, name: "Perceuse", price: 10, category: "Quincaillerie", image: "https://i.goopics.net/axel0q.png" },
-  { id: 3, name: "Foret de perceuse", price: 700, category: "Quincaillerie", image: "https://i.goopics.net/v71n0s.png" },
-  { id: 4, name: "Pile Verte", price: 3, category: "Quincaillerie", image: "https://i.goopics.net/vtrif1.png" },
-  { id: 5, name: "Batterie de voiture", price: 19, category: "Quincaillerie", image: "https://i.goopics.net/ysv2us.png" },
-  { id: 6, name: "Batterie", price: 19, category: "Quincaillerie", image: "https://i.goopics.net/3f7ade.png" },
-  { id: 7, name: "Sachets vides", price: 19, category: "Quincaillerie", image: "https://i.goopics.net/ptten9.png" },
-  { id: 8, name: "Coupeur", price: 14, category: "Quincaillerie", image: "https://i.goopics.net/r6nk0e.png" },
-  { id: 9, name: "Pince pour plaque", price: 22, category: "Quincaillerie", image: "https://i.goopics.net/c7mjon.png" },
-  { id: 10, name: "Huile", price: 8, category: "Quincaillerie", image: "https://i.goopics.net/tfcosx.png" },
-  { id: 11, name: "Huile Shell", price: 14, category: "Quincaillerie", image: "https://i.goopics.net/3bvluj.png" },
-  { id: 12, name: "Huile Noir", price: 12, category: "Quincaillerie", image: "https://i.goopics.net/3jdjm1.png" },
-  { id: 13, name: "Outil", price: 5, category: "Quincaillerie", image: "https://i.goopics.net/ra45d7.png" },
-  { id: 14, name: "Bicarbonate", price: 2, category: "Quincaillerie", image: "https://i.goopics.net/rparl3.png" },
-  { id: 15, name: "Bouteille d'oxygène", price: 450, category: "Quincaillerie", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 16, name: "Canne à pêche", price: 60, category: "Divers Utiles", image: "https://i.goopics.net/2isty2.png" },
-  { id: 17, name: "Appats", price: 10, category: "Divers Utiles", image: "https://i.goopics.net/14ui66.png" },
-  { id: 18, name: "Ballon de Basket", price: 60, category: "Divers Utiles", image: "https://i.goopics.net/v94ydr.png" },
-  { id: 19, name: "Ballon de Foot", price: 60, category: "Divers Utiles", image: "https://i.goopics.net/295q0y.png" },
-  { id: 20, name: "Croquettes", price: 25, category: "Divers Utiles", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 21, name: "Papier à rouler", price: 2, category: "Divers Utiles", image: "https://i.goopics.net/myrlvu.png" },
-  { id: 22, name: "Skateboard", price: 90, category: "Divers Utiles", image: "https://i.goopics.net/agp17n.png" },
-  { id: 23, name: "Spray à Tag", price: 1900, category: "Divers Utiles", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 24, name: "Ticket à gratter", price: 25, category: "Divers Utiles", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 25, name: "Elastique", price: 20, category: "Divers Utiles", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 26, name: "Eponge", price: 1100, category: "Divers Utiles", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 27, name: "BMX", price: 200, category: "Divers Utiles", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 28, name: "Fertilisant", price: 9, category: "Jardinage", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 29, name: "Lumière violette", price: 18, category: "Jardinage", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 30, name: "Pot de Fleur", price: 8, category: "Jardinage", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 31, name: "Table", price: 10, category: "Jardinage", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 32, name: "Tas de Terre", price: 13, category: "Jardinage", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 33, name: "Bac de jardinage", price: 16, category: "Jardinage", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 34, name: "Cisaille", price: 1050, category: "Jardinage", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 35, name: "Colle", price: 3, category: "Papeterie", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 36, name: "Porte Documents", price: 10, category: "Papeterie", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 37, name: "Portefeuille", price: 10, category: "Papeterie", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 38, name: "Trousseau de clés", price: 90, category: "Papeterie", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 39, name: "Menu Découverte", price: 90, category: "Menu", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 40, name: "Menu Festin", price: 120, category: "Menu", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 41, name: "Coca Cola Zero", price: 3, category: "Menu", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 42, name: "Crème Glacée", price: 3, category: "Menu", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 43, name: "Ramune Exotique", price: 35, category: "Menu", image: "https://via.placeholder.com/100?text=Clé" },
-  { id: 44, name: "Ramen Boeuf", price: 35, category: "Menu", image: "https://via.placeholder.com/100?text=Clé" },
+/* === Catalogue + Panier (robuste) === */
 
+(function () {
+  // -- Données produits --
+  const products = [
+    { id: 1, name: "Grosse Perceuse", price: 12, category: "Quincaillerie", image: "https://via.placeholder.com/100?text=Marteau" },
+    { id: 2, name: "Perceuse", price: 10, category: "Quincaillerie", image: "https://i.goopics.net/axel0q.png" },
+    { id: 3, name: "Foret de perceuse", price: 700, category: "Quincaillerie", image: "https://i.goopics.net/v71n0s.png" },
+    { id: 4, name: "Pile Verte", price: 3, category: "Quincaillerie", image: "https://i.goopics.net/vtrif1.png" },
+    { id: 5, name: "Batterie de voiture", price: 19, category: "Quincaillerie", image: "https://i.goopics.net/ysv2us.png" },
+    { id: 6, name: "Batterie", price: 19, category: "Quincaillerie", image: "https://i.goopics.net/3f7ade.png" },
+    { id: 7, name: "Sachets vides", price: 19, category: "Quincaillerie", image: "https://i.goopics.net/ptten9.png" },
+    { id: 8, name: "Coupeur", price: 14, category: "Quincaillerie", image: "https://i.goopics.net/r6nk0e.png" },
+    { id: 9, name: "Pince pour plaque", price: 22, category: "Quincaillerie", image: "https://i.goopics.net/c7mjon.png" },
+    { id: 10, name: "Huile", price: 8, category: "Quincaillerie", image: "https://i.goopics.net/tfcosx.png" },
+    { id: 11, name: "Huile Shell", price: 14, category: "Quincaillerie", image: "https://i.goopics.net/3bvluj.png" },
+    { id: 12, name: "Huile Noir", price: 12, category: "Quincaillerie", image: "https://i.goopics.net/3jdjm1.png" },
+    { id: 13, name: "Outil", price: 5, category: "Quincaillerie", image: "https://i.goopics.net/ra45d7.png" },
+    { id: 14, name: "Bicarbonate", price: 2, category: "Quincaillerie", image: "https://i.goopics.net/rparl3.png" },
+    { id: 15, name: "Bouteille d'oxygène", price: 450, category: "Quincaillerie", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 16, name: "Canne à pêche", price: 60, category: "Divers Utiles", image: "https://i.goopics.net/2isty2.png" },
+    { id: 17, name: "Appats", price: 10, category: "Divers Utiles", image: "https://i.goopics.net/14ui66.png" },
+    { id: 18, name: "Ballon de Basket", price: 60, category: "Divers Utiles", image: "https://i.goopics.net/v94ydr.png" },
+    { id: 19, name: "Ballon de Foot", price: 60, category: "Divers Utiles", image: "https://i.goopics.net/295q0y.png" },
+    { id: 20, name: "Croquettes", price: 25, category: "Divers Utiles", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 21, name: "Papier à rouler", price: 2, category: "Divers Utiles", image: "https://i.goopics.net/myrlvu.png" },
+    { id: 22, name: "Skateboard", price: 90, category: "Divers Utiles", image: "https://i.goopics.net/agp17n.png" },
+    { id: 23, name: "Spray à Tag", price: 1900, category: "Divers Utiles", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 24, name: "Ticket à gratter", price: 25, category: "Divers Utiles", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 25, name: "Elastique", price: 20, category: "Divers Utiles", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 26, name: "Eponge", price: 1100, category: "Divers Utiles", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 27, name: "BMX", price: 200, category: "Divers Utiles", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 28, name: "Fertilisant", price: 9, category: "Jardinage", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 29, name: "Lumière violette", price: 18, category: "Jardinage", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 30, name: "Pot de Fleur", price: 8, category: "Jardinage", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 31, name: "Table", price: 10, category: "Jardinage", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 32, name: "Tas de Terre", price: 13, category: "Jardinage", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 33, name: "Bac de jardinage", price: 16, category: "Jardinage", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 34, name: "Cisaille", price: 1050, category: "Jardinage", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 35, name: "Colle", price: 3, category: "Papeterie", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 36, name: "Porte Documents", price: 10, category: "Papeterie", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 37, name: "Portefeuille", price: 10, category: "Papeterie", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 38, name: "Trousseau de clés", price: 90, category: "Papeterie", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 39, name: "Menu Découverte", price: 90, category: "Menu", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 40, name: "Menu Festin", price: 120, category: "Menu", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 41, name: "Coca Cola Zero", price: 3, category: "Menu", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 42, name: "Crème Glacée", price: 3, category: "Menu", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 43, name: "Ramune Exotique", price: 35, category: "Menu", image: "https://via.placeholder.com/100?text=Clé" },
+    { id: 44, name: "Ramen Boeuf", price: 35, category: "Menu", image: "https://via.placeholder.com/100?text=Clé" },
+  ];
 
-];
+  // --- Variables globales ---
+  let cart = [];
 
-// --- Variables globales ---
-let cart = [];
+  // --- Affichage des produits ---
+  function renderProducts() {
+    const grid = document.getElementById('productGrid');
+    if (!grid) return;
 
-// --- Affichage des produits ---
-function renderProducts() {
-  const grid = document.getElementById('productGrid');
-  if (!grid) return; // si la grille n'existe pas, on sort
+    const searchInput = document.getElementById('searchInput');
+    const sortSelect = document.getElementById('sortSelect');
+    const categorySelect = document.getElementById('categorySelect');
 
-  const searchInput = document.getElementById('searchInput');
-  const sortSelect = document.getElementById('sortSelect');
-  const categorySelect = document.getElementById('categorySelect');
+    const search = searchInput ? searchInput.value.toLowerCase() : '';
+    const sort = sortSelect ? sortSelect.value : '';
+    const category = categorySelect ? categorySelect.value : 'all';
 
-  const search = searchInput ? searchInput.value.toLowerCase() : '';
-  const sort = sortSelect ? sortSelect.value : '';
-  const category = categorySelect ? categorySelect.value : 'all';
+    const filtered = products.filter(p => {
+      const matchesSearch = p.name.toLowerCase().includes(search);
+      const matchesCategory = category === 'all' || p.category === category;
+      return matchesSearch && matchesCategory;
+    });
 
-  console.log("Render products with category:", category, "search:", search, "sort:", sort);
+    if (sort === 'name-asc') filtered.sort((a,b) => a.name.localeCompare(b.name));
+    else if (sort === 'name-desc') filtered.sort((a,b) => b.name.localeCompare(a.name));
+    else if (sort === 'price-asc') filtered.sort((a,b) => a.price - b.price);
+    else if (sort === 'price-desc') filtered.sort((a,b) => b.price - a.price);
 
-  const filtered = products.filter(p => {
-    const matchesSearch = p.name.toLowerCase().includes(search);
-    const matchesCategory = category === 'all' || p.category === category;
-    return matchesSearch && matchesCategory;
-  });
-
-  if (sort === 'name-asc') filtered.sort((a,b) => a.name.localeCompare(b.name));
-  else if (sort === 'name-desc') filtered.sort((a,b) => b.name.localeCompare(a.name));
-  else if (sort === 'price-asc') filtered.sort((a,b) => a.price - b.price);
-  else if (sort === 'price-desc') filtered.sort((a,b) => b.price - a.price);
-
-  grid.innerHTML = filtered.map(p => `
-    <article class="bg-white/10 p-6 rounded-xl shadow-md text-white flex flex-col items-center border border-white/10 transition transform hover:-translate-y-2 hover:shadow-2xl">
-      <img src="${p.image}" alt="${p.name}" class="w-32 h-32 object-cover mb-6 rounded-xl shadow-sm" />
-      <h3 class="text-indigo-400 font-bold text-xl mb-3 text-center">${p.name}</h3>
-      <p class="text-gray-300 mb-3 font-medium">${p.price.toFixed(2)} $</p>
-      <button onclick="addToCart(${p.id})" class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-6 rounded-full font-semibold shadow-md transition-colors duration-300" aria-label="Ajouter ${p.name} au panier">Ajouter au panier</button>
-    </article>
-  `).join('');
-}
-
-// --- Panier ---
-function addToCart(id) {
-  const quantityInput = document.getElementById(`quantity-${id}`);
-  const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
-
-  if (isNaN(quantity) || quantity < 1) {
-    alert("Veuillez entrer une quantité valide.");
-    return;
+    grid.innerHTML = filtered.map(p => `
+      <article class="bg-white/10 p-6 rounded-xl shadow-md text-white flex flex-col items-center border border-white/10 transition transform hover:-translate-y-2 hover:shadow-2xl">
+        <img src="${p.image}" alt="${p.name}" class="w-32 h-32 object-cover mb-6 rounded-xl shadow-sm" />
+        <h3 class="text-indigo-400 font-bold text-xl mb-3 text-center">${p.name}</h3>
+        <p class="text-gray-300 mb-3 font-medium">${p.price.toFixed(2)} $</p>
+        <button onclick="addToCart(${p.id})" class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-6 rounded-full font-semibold shadow-md transition-colors duration-300" aria-label="Ajouter ${p.name} au panier">Ajouter au panier</button>
+      </article>
+    `).join('');
   }
 
-  const prod = products.find(p => p.id === id);
-  if (!prod) return;
+  // --- Panier ---
+  function addToCart(id) {
+    const quantityInput = document.getElementById(`quantity-${id}`);
+    const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+    if (isNaN(quantity) || quantity < 1) return alert("Veuillez entrer une quantité valide.");
 
-  const existing = cart.find(item => item.id === id);
-  if (existing) {
-    existing.quantity += quantity;
-  } else {
-    cart.push({ ...prod, quantity });
-  }
-  renderCart();
-}
+    const prod = products.find(p => p.id === id);
+    if (!prod) return;
 
-function updateQuantity(id, quantity) {
-  quantity = parseInt(quantity);
-  if (isNaN(quantity) || quantity < 1) quantity = 1;
+    const existing = cart.find(item => item.id === id);
+    if (existing) existing.quantity += quantity;
+    else cart.push({ ...prod, quantity });
 
-  const item = cart.find(i => i.id === id);
-  if (item) {
-    item.quantity = quantity;
     renderCart();
   }
-}
 
-function removeFromCart(id) {
-  cart = cart.filter(item => item.id !== id);
-  renderCart();
-}
+  function updateQuantity(id, quantity) {
+    quantity = parseInt(quantity);
+    if (isNaN(quantity) || quantity < 1) quantity = 1;
+    const item = cart.find(i => i.id === id);
+    if (item) {
+      item.quantity = quantity;
+      renderCart();
+    }
+  }
 
-function renderCart() {
-  const cartItemsEl = document.getElementById('cartItems');
-  const cartTotalItemsEl = document.getElementById('cartTotalItems');
-  const cartGrandTotalEl = document.getElementById('cartGrandTotal');
-  const cartCountEl = document.getElementById('cartCount');
+  function removeFromCart(id) {
+    cart = cart.filter(item => item.id !== id);
+    renderCart();
+  }
 
-  if (!cartItemsEl || !cartTotalItemsEl || !cartGrandTotalEl || !cartCountEl) return;
+  function renderCart() {
+    const cartItemsEl = document.getElementById('cartItems');
+    const cartTotalItemsEl = document.getElementById('cartTotalItems');
+    const cartGrandTotalEl = document.getElementById('cartGrandTotal');
+    const cartCountEl = document.getElementById('cartCount');
+    if (!cartItemsEl || !cartTotalItemsEl || !cartGrandTotalEl || !cartCountEl) return;
 
-  cartItemsEl.innerHTML = "";
+    cartItemsEl.innerHTML = "";
+    if (cart.length === 0) {
+      cartItemsEl.innerHTML = '<p class="text-center text-gray-500 dark:text-gray-400 mt-4">Votre panier est vide.</p>';
+    } else {
+      cart.forEach(item => {
+        const itemEl = document.createElement('div');
+        itemEl.className = "flex items-center justify-between py-2 border-b border-gray-300 dark:border-gray-700";
+        itemEl.innerHTML = `
+          <div class="flex items-center space-x-3">
+              <img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-cover rounded" />
+              <div>
+                  <h3 class="font-semibold text-indigo-700 dark:text-indigo-300">${item.name}</h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">${item.price.toFixed(2)} $</p>
+              </div>
+          </div>
+          <div class="flex items-center space-x-2">
+              <input
+                  type="number"
+                  min="1"
+                  value="${item.quantity}"
+                  aria-label="Quantité de ${item.name}"
+                  class="w-16 p-1 text-center border rounded border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                  onchange="updateQuantity(${item.id}, this.value)"
+              />
+              <button onclick="removeFromCart(${item.id})" aria-label="Supprimer ${item.name}" class="text-red-600 hover:text-red-800 text-xl font-bold px-1 leading-none">&times;</button>
+          </div>
+        `;
+        cartItemsEl.appendChild(itemEl);
+      });
+    }
 
-  if (cart.length === 0) {
-    cartItemsEl.innerHTML = '<p class="text-center text-gray-500 dark:text-gray-400 mt-4">Votre panier est vide.</p>';
+    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const grandTotal = total + 250; // frais fixes
+    cartTotalItemsEl.textContent = total.toFixed(2) + " $";
+    cartGrandTotalEl.textContent = grandTotal.toFixed(2) + " $";
+    cartCountEl.textContent = cart.reduce((sum, i) => sum + i.quantity, 0);
+  }
+
+  function toggleCart() {
+    const modal = document.getElementById('cartModal');
+    const panel = document.getElementById('cartPanel');
+    if (!modal || !panel) return;
+
+    const isOpen = !modal.classList.contains('hidden');
+    if (isOpen) {
+      panel.classList.add('translate-x-full');
+      setTimeout(() => modal.classList.add('hidden'), 300);
+    } else {
+      modal.classList.remove('hidden');
+      setTimeout(() => panel.classList.remove('translate-x-full'), 10);
+    }
+  }
+
+  function validateOrder() {
+    alert("Commande validée ! (Fonctionnalité à implémenter)");
+  }
+
+  // --- Init toujours exécutée (même si DOMContentLoaded est déjà passé) ---
+  function initCatalogue() {
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.addEventListener('input', renderProducts);
+
+    const sortSelect = document.getElementById('sortSelect');
+    if (sortSelect) sortSelect.addEventListener('change', renderProducts);
+
+    const categorySelect = document.getElementById('categorySelect');
+    if (categorySelect) {
+      // si l'option 'all' existe on la force au chargement
+      if ([...categorySelect.options].some(o => o.value === 'all')) {
+        categorySelect.value = 'all';
+      }
+      categorySelect.addEventListener('change', renderProducts);
+    }
+
+    const cartButton = document.getElementById('cartButton');
+    if (cartButton) cartButton.addEventListener('click', toggleCart);
+
+    const navToggle = document.getElementById('nav-toggle');
+    if (navToggle) {
+      navToggle.addEventListener('click', () => {
+        const menu = document.getElementById('nav-menu');
+        if (menu) menu.classList.toggle('hidden');
+      });
+    }
+
+    renderProducts();
+    renderCart();
+  }
+
+  // Lance init tout de suite si le DOM est prêt, sinon écoute DOMContentLoaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCatalogue, { once: true });
   } else {
-    cart.forEach(item => {
-      const itemEl = document.createElement('div');
-      itemEl.className = "flex items-center justify-between py-2 border-b border-gray-300 dark:border-gray-700";
-
-      itemEl.innerHTML = `
-        <div class="flex items-center space-x-3">
-            <img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-cover rounded" />
-            <div>
-                <h3 class="font-semibold text-indigo-700 dark:text-indigo-300">${item.name}</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">${item.price.toFixed(2)} $</p>
-            </div>
-        </div>
-        <div class="flex items-center space-x-2">
-            <input
-                type="number"
-                min="1"
-                value="${item.quantity}"
-                aria-label="Quantité de ${item.name}"
-                class="w-16 p-1 text-center border rounded border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-                onchange="updateQuantity(${item.id}, this.value)"
-            />
-            <button onclick="removeFromCart(${item.id})" aria-label="Supprimer ${item.name}" class="text-red-600 hover:text-red-800 text-xl font-bold px-1 leading-none">&times;</button>
-        </div>
-      `;
-      cartItemsEl.appendChild(itemEl);
-    });
+    initCatalogue();
   }
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const grandTotal = total + 250; // frais fixes
-
-  cartTotalItemsEl.textContent = total.toFixed(2) + " $";
-  cartGrandTotalEl.textContent = grandTotal.toFixed(2) + " $";
-  cartCountEl.textContent = cart.reduce((sum, i) => sum + i.quantity, 0);
-}
-
-function toggleCart() {
-  const modal = document.getElementById('cartModal');
-  const panel = document.getElementById('cartPanel');
-  if (!modal || !panel) return;
-
-  const isOpen = !modal.classList.contains('hidden');
-
-  if (isOpen) {
-    panel.classList.add('translate-x-full');
-    setTimeout(() => modal.classList.add('hidden'), 300);
-  } else {
-    modal.classList.remove('hidden');
-    setTimeout(() => panel.classList.remove('translate-x-full'), 10);
-  }
-}
-
-function validateOrder() {
-  alert("Commande validée ! (Fonctionnalité à implémenter)");
-}
-
-// --- Événements sécurisés ---
-document.addEventListener('DOMContentLoaded', () => {
-  const searchInput = document.getElementById('searchInput');
-  if (searchInput) searchInput.addEventListener('input', renderProducts);
-
-  const sortSelect = document.getElementById('sortSelect');
-  if (sortSelect) sortSelect.addEventListener('change', renderProducts);
-
-  const categorySelect = document.getElementById('categorySelect');
-  if (categorySelect) {
-    categorySelect.addEventListener('change', renderProducts);
-    categorySelect.value = 'all';
-  }
-
-  const cartButton = document.getElementById('cartButton');
-  if (cartButton) cartButton.addEventListener('click', toggleCart);
-
-  const navToggle = document.getElementById('nav-toggle');
-  if (navToggle) {
-    navToggle.addEventListener('click', () => {
-      const menu = document.getElementById('nav-menu');
-      if (menu) menu.classList.toggle('hidden');
-    });
-  }
-
-  renderProducts();
-  renderCart();
-});
+  // Expose les fonctions utilisées par les onclick dans le HTML
+  window.addToCart = addToCart;
+  window.updateQuantity = updateQuantity;
+  window.removeFromCart = removeFromCart;
+  window.toggleCart = toggleCart;
+  window.validateOrder = validateOrder;
+})();
+</script>
