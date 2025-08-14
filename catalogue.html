@@ -500,7 +500,7 @@ nav a {
 </script>
 
 <script>
- function validateOrder() {
+function validateOrder() {
   const name = document.getElementById('customerName').value.trim();
   const phone = document.getElementById('customerPhone').value.trim();
   const time = document.getElementById('deliveryTime').value.trim();
@@ -520,48 +520,30 @@ nav a {
     orderDetails += `• ${item.name} x${item.quantity} — ${item.price.toFixed(2)} $\n`;
   });
 
-  console.log("Total articles:", totalArticles);
-  console.log("Frais livraison:", fraisLivraison);
-  console.log("Grand total:", grandTotal);
-  console.log("Order details:", orderDetails);
+  // Création du message Discord à l'intérieur de la fonction
+  const message = {
+    content: "<@NO STRESS, JE VAIS PAS VOUS PING>",
+    embeds: [{
+      title: "**__🛒 Nouvelle commande reçue__**",
+      color: 0x4CAF50,
+      thumbnail: { url: "https://i.goopics.net/5dh7x3.png" },
+      fields: [
+        { name: "**__👤 Nom & Prénom__**", value: name, inline: false },
+        { name: "**__📲 Téléphone__**", value: phone, inline: false },
+        { name: "**__⏰ Heure de livraison__**", value: time || "Non précisée", inline: false },
+        { name: "**__📩 Commentaire__**", value: comment || "Aucun", inline: false },
+        { name: "**__🛒 Articles__**", value: orderDetails || "Aucun article", inline: false },
+        { name: "**__💵 Total articles__**", value: totalArticles.toFixed(2) + " $", inline: false },
+        { name: "**__🚚 Frais de livraison__**", value: fraisLivraison.toFixed(2) + " $", inline: false },
+        { name: "**__💰 Total commande__**", value: grandTotal.toFixed(2) + " $", inline: false }
+      ],
+      image: { url: "https://i.goopics.net/bk7273.png" },
+      footer: { text: "Demande envoyée via le site LTD", icon_url: "https://i.goopics.net/5dh7x3.png" },
+      timestamp: new Date().toISOString()
+    }]
+  };
 
-  alert("Commande prête à être envoyée ! (envoi Discord bloqué côté front-end)");
-}
-
-// Préparation du message pour Discord
-const message = {
-  content: "<@NO STRESS, JE VAIS PAS VOUS PING>",
-  embeds: [{
-    // (optionnel) si tu ne veux PAS de logo dans l'embed lui-même, supprime ce bloc 'author'
-    title: "**__🛒 Nouvelle commande reçue__**",
-    color: 0x4CAF50,
-      thumbnail: {
-        url: "https://i.goopics.net/5dh7x3.png"
-      },
-    fields: [
-      { name: "**__👤 Nom & Prénom__**", value: name, inline: false },
-      { name: "**__📲 Téléphone__**", value: phone, inline: false },
-      { name: "**__⏰ Heure de livraison__**", value: time || "Non précisée", inline: false },
-      { name: "**__📩 Commentaire__**", value: comment || "Aucun", inline: false },
-      { name: "**__🛒 Articles__**", value: orderDetails || "Aucun article", inline: false },
-      { name: "**__💵 Total articles__**", value: totalArticles.toFixed(2) + " $", inline: false },
-      { name: "**__🚚 Frais de livraison__**", value: fraisLivraison.toFixed(2) + " $", inline: false },
-      { name: "**__💰 Total commande__**", value: grandTotal.toFixed(2) + " $", inline: false }
-    ],
-    image: {
-      url: "https://i.goopics.net/bk7273.png"
-    },
-    footer: {
-      text: "Demande envoyée via le site LTD",
-      icon_url: "https://i.goopics.net/5dh7x3.png"
-    },
-    timestamp: new Date().toISOString()
-  }]
-};
-
-
-  // Ton URL de webhook Discord (⚠️ À remplacer par la tienne)
-  const webhookURL = "https://discord.com/api/webhooks/1405047503077773403/NS2kpJTnJQbpaKEEJ577XfwtU7at6tjec3X_kXfK7G2dCP1oJgzTT4wdcauaFlEWE4MK";
+  const webhookURL = "TON_WEBHOOK_DISCORD_ICI";
 
   fetch(webhookURL, {
     method: "POST",
@@ -571,7 +553,7 @@ const message = {
   .then(res => {
     if (res.ok) {
       alert("Commande envoyée avec succès !");
-      cart = []; // vider le panier
+      cart = [];
       renderCart();
     } else {
       alert("Erreur lors de l'envoi de la commande.");
