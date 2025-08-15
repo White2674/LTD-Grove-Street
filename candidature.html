@@ -262,16 +262,17 @@ Commentaire :
 ${Commentaire}
 `;
 
-    const payload = {
-      content: "<@X>",
-      embeds: [
-        {
-          title: "Nouvelle candidature LTD Grove Street",
-          color: 0x1ABC9C,
-          timestamp: new Date().toISOString()
-        }
-      ]
-    };
+const payload = {
+  content: "<@X>",
+  embeds: [
+    {
+      title: "Nouvelle candidature LTD Grove Street",
+      description: description,
+      color: 0x1ABC9C,
+      timestamp: new Date().toISOString()
+    }
+  ]
+};
 
     const webhookUrl = "https://discord.com/api/webhooks/1404696865030672484/8NGXojmjpJnBGP_VLOKdscSE3l5KEW8TQMqlieQQ3ZusPWUiMuWmbatb8WhlhlDY01JM";
 
