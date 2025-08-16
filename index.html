@@ -83,41 +83,45 @@
       </div>
 
 <!-- Hamburger mobile -->
-<button id="burger" class="md:hidden relative z-50 w-10 h-10 flex flex-col justify-between items-center focus:outline-none">
-  <span class="burger-line block w-full h-1 bg-indigo-600 rounded transition-all duration-300"></span>
-  <span class="burger-line block w-full h-1 bg-indigo-600 rounded transition-all duration-300"></span>
-  <span class="burger-line block w-full h-1 bg-indigo-600 rounded transition-all duration-300"></span>
+<button id="burger" class="md:hidden focus:outline-none">
+  <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="3" y1="6" x2="21" y2="6"></line>
+    <line x1="3" y1="12" x2="21" y2="12"></line>
+    <line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
 </button>
 
 <!-- Menu Mobile -->
-<div id="mobileMenu" class="fixed top-16 left-0 w-full md:hidden bg-indigo-900/95 backdrop-blur-md rounded-b-3xl shadow-xl overflow-hidden transform -translate-y-full transition-transform duration-300">
-  <ul class="flex flex-col gap-4 py-6 text-center text-white font-semibold text-lg">
-    <li><a href="index.html" class="block py-2 hover:text-indigo-400 transition-colors duration-300">Accueil</a></li>
-    <li><a href="catalogue.html" class="block py-2 hover:text-indigo-400 transition-colors duration-300">Catalogue</a></li>
-    <li><a href="stations.html" class="block py-2 hover:text-indigo-400 transition-colors duration-300">Stations Essence</a></li>
-    <li><a href="avis.html" class="block py-2 hover:text-indigo-400 transition-colors duration-300">Avis Clients</a></li>
-    <li><a href="equipe.html" class="block py-2 hover:text-indigo-400 transition-colors duration-300">Notre Équipe</a></li>
-    <li><a href="actualites.html" class="block py-2 hover:text-indigo-400 transition-colors duration-300">Actualités</a></li>
-    <li><a href="contact.html" class="block py-2 hover:text-indigo-400 transition-colors duration-300">Contact</a></li>
+<div id="mobileMenu" class="hidden md:hidden px-6 py-4 bg-indigo-900/90 border-t border-indigo-700 shadow-sm">
+  <ul class="flex flex-col gap-3 text-sm font-semibold text-indigo-700 dark:text-indigo-300">
+    <li><a href="index.html" class="block hover:text-indigo-500 transition-colors duration-300">Accueil</a></li>
+    <li><a href="catalogue.html" class="block hover:text-indigo-500 transition-colors duration-300">Catalogue</a></li>
+    <li><a href="stations.html" class="block hover:text-indigo-500 transition-colors duration-300">Stations Essence</a></li>
+    <li><a href="avis.html" class="block hover:text-indigo-500 transition-colors duration-300">Avis Clients</a></li>
+    <li><a href="equipe.html" class="block hover:text-indigo-500 transition-colors duration-300">Notre Équipe</a></li>
+    <li><a href="actualites.html" class="block hover:text-indigo-500 transition-colors duration-300">Actualités</a></li>
+    <li><a href="contact.html" class="block hover:text-indigo-500 transition-colors duration-300">Contact</a></li>
   </ul>
 </div>
 
 <script>
-const burger = document.getElementById('burger');
-const mobileMenu = document.getElementById('mobileMenu');
-const lines = burger.querySelectorAll('.burger-line');
+  // Toggle menu mobile
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
 
-burger.addEventListener('click', () => {
-  // Toggle menu
-  mobileMenu.classList.toggle('-translate-y-full');
+  burger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
 
-  // Animate hamburger to X
-  lines[0].classList.toggle('rotate-45');
-  lines[0].classList.toggle('translate-y-2');
-  lines[1].classList.toggle('opacity-0');
-  lines[2].classList.toggle('-rotate-45');
-  lines[2].classList.toggle('-translate-y-2');
-});
+  // Ombre barre au scroll
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      header.classList.add('nav-shadow');
+    } else {
+      header.classList.remove('nav-shadow');
+    }
+  });
 </script>
 
 </body>
