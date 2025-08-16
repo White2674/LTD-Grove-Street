@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>LTD Grove Street</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -50,18 +52,19 @@
   </style>
 </head>
 
-<body class="bg-gray-900 shadow-md transition-colors duration-300">
+<body class="bg-gray-900 transition-colors duration-300">
 
-<header id="header" class="fixed top-0 left-0 w-full z-50 bg-white/80 dark:bg-gray-900/80 shadow-md transition-colors duration-300">
-  <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6 md:px-12 font-sans">
+  <!-- HEADER -->
+  <header id="header" class="fixed top-0 left-0 w-full z-50 bg-white/80 dark:bg-gray-900/80 shadow-md transition-colors duration-300">
+    <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6 md:px-12">
 
-    <!-- Logo + Nom -->
-    <a href="#" class="flex items-center gap-3">
-      <img src="https://i.goopics.net/5dh7x3.png" alt="Logo LTD Grove Street" class="w-10 h-10 rounded shadow-md" />
-      <span class="text-indigo-600 dark:text-indigo-400 text-2xl font-extrabold tracking-tight hover:text-indigo-800 dark:hover:text-indigo-300 transition duration-300">
-        LTD Grove Street
-      </span>
-    </a>
+      <!-- Logo + Nom -->
+      <a href="#" class="flex items-center gap-3">
+        <img src="https://i.goopics.net/5dh7x3.png" alt="Logo LTD Grove Street" class="w-10 h-10 rounded shadow-md" />
+        <span class="text-indigo-600 dark:text-indigo-400 text-2xl font-extrabold tracking-tight hover:text-indigo-800 dark:hover:text-indigo-300 transition duration-300">
+          LTD Grove Street
+        </span>
+      </a>
 
       <!-- Menu Desktop -->
       <div class="hidden md:flex items-center gap-6 text-sm font-semibold text-white">
@@ -76,74 +79,59 @@
         </ul>
 
         <!-- Bouton Intranet -->
-        <a href="candidature.html"
-          class="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-purple-600 hover:to-indigo-500 text-white font-semibold text-sm py-2 px-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out whitespace-nowrap ml-6">
+        <a href="candidature.html" class="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-purple-600 hover:to-indigo-500 text-white font-semibold text-sm py-2 px-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out whitespace-nowrap ml-6">
           Poster sa candidature
         </a>
       </div>
 
-<!-- Hamburger mobile -->
-<button id="burger" class="md:hidden focus:outline-none z-50 relative">
-  <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-    <line x1="3" y1="6" x2="21" y2="6"></line>
-    <line x1="3" y1="12" x2="21" y2="12"></line>
-    <line x1="3" y1="18" x2="21" y2="18"></line>
-  </svg>
-</button>
-
-<!-- Menu Mobile Modernisé corrigé -->
-<div id="mobileMenu" class="fixed inset-0 z-50 bg-indigo-900/95 backdrop-blur-sm transform -translate-x-full transition-transform duration-300 ease-in-out">
-  <div class="flex flex-col h-full justify-between px-6 py-8 overflow-y-auto">
-
-    <!-- Close button -->
-    <div class="flex justify-end">
-      <button id="closeBurger" class="text-white text-3xl font-bold focus:outline-none">&times;</button>
+      <!-- Hamburger mobile -->
+      <button id="burger" class="md:hidden focus:outline-none">
+        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
     </div>
 
-    <!-- Menu Items -->
-    <ul class="flex flex-col gap-6 mt-12 text-lg font-semibold text-white">
-      <li><a href="index.html" class="hover:text-indigo-300 transition">Accueil</a></li>
-      <li><a href="catalogue.html" class="hover:text-indigo-300 transition">Catalogue</a></li>
-      <li><a href="stations.html" class="hover:text-indigo-300 transition">Stations Essence</a></li>
-      <li><a href="avis.html" class="hover:text-indigo-300 transition">Avis Clients</a></li>
-      <li><a href="equipe.html" class="hover:text-indigo-300 transition">Notre Équipe</a></li>
-      <li><a href="actualites.html" class="hover:text-indigo-300 transition">Actualités</a></li>
-      <li><a href="contact.html" class="hover:text-indigo-300 transition">Contact</a></li>
-    </ul>
+    <!-- Menu Mobile -->
+    <div id="mobileMenu" class="hidden md:hidden px-6 py-4 bg-indigo-900/90 border-t border-indigo-700 shadow-sm">
+      <ul class="flex flex-col gap-3 text-sm font-semibold text-indigo-100">
+        <li><a href="index.html" class="block hover:text-indigo-300">Accueil</a></li>
+        <li><a href="catalogue.html" class="block hover:text-indigo-300">Catalogue</a></li>
+        <li><a href="stations.html" class="block hover:text-indigo-300">Stations Essence</a></li>
+        <li><a href="avis.html" class="block hover:text-indigo-300">Avis Clients</a></li>
+        <li><a href="equipe.html" class="block hover:text-indigo-300">Notre Équipe</a></li>
+        <li><a href="actualites.html" class="block hover:text-indigo-300">Actualités</a></li>
+        <li><a href="contact.html" class="block hover:text-indigo-300">Contact</a></li>
+      </ul>
+    </div>
+  </header>
 
-    <!-- Bouton Candidature -->
-    <a href="candidature.html" class="mt-12 inline-block text-center bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-purple-600 hover:to-indigo-500 text-white font-semibold text-sm py-3 px-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
-      Poster sa candidature
-    </a>
-  </div>
-</div>
+  <!-- SCRIPT -->
+  <script>
+    // Toggle menu mobile
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-<script>
-  const burger = document.getElementById('burger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const closeBurger = document.getElementById('closeBurger');
+    burger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
 
-  // Ouvrir menu
-  burger.addEventListener('click', () => {
-    mobileMenu.classList.remove('-translate-x-full');
-    mobileMenu.classList.add('translate-x-0');
-  });
+    // Ombre de la barre au scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        header.classList.add('nav-shadow');
+      } else {
+        header.classList.remove('nav-shadow');
+      }
+    });
+  </script>
 
-  // Fermer menu via bouton
-  closeBurger.addEventListener('click', () => {
-    mobileMenu.classList.remove('translate-x-0');
-    mobileMenu.classList.add('-translate-x-full');
-  });
-
-  // Fermer menu en cliquant sur le fond
-  mobileMenu.addEventListener('click', (e) => {
-    if (e.target === mobileMenu) {
-      mobileMenu.classList.remove('translate-x-0');
-      mobileMenu.classList.add('-translate-x-full');
-    }
-  });
-</script>
-
+</body>
+</html>
 
 <!-- Bannière principale -->
 <header class="hero bg-[url('https://i.goopics.net/1f686l.png')] bg-cover bg-center h-[40vh] sm:h-[50vh] md:h-[30vh] flex flex-col justify-center items-center px-4 sm:px-6 text-white text-center relative overflow-hidden rounded-3xl shadow-2xl mt-16">
