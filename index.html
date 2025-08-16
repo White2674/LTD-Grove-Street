@@ -92,38 +92,50 @@
     </button>
   </div>
 
-  <!-- Menu Mobile -->
-  <div id="mobileMenu" class="hidden md:hidden px-6 py-4 bg-indigo-900/90 border-t border-indigo-700 shadow-sm">
-    <ul class="flex flex-col gap-3 text-sm font-semibold text-indigo-700 dark:text-indigo-300">
-      <li><a href="index.html" class="block hover:text-indigo-500">Accueil</a></li>
-      <li><a href="catalogue.html" class="block hover:text-indigo-500">Catalogue</a></li>
-      <li><a href="stations.html" class="block hover:text-indigo-500">Stations Essence</a></li>
-      <li><a href="avis.html" class="block hover:text-indigo-500">Avis Clients</a></li>
-      <li><a href="equipe.html" class="block hover:text-indigo-500">Notre Équipe</a></li>
-      <li><a href="actualites.html" class="block hover:text-indigo-500">Actualités</a></li>
-      <li><a href="contact.html" class="block hover:text-indigo-500">Contact</a></li>
-    </ul>
-  </div>
-</header>
+<!-- Menu Mobile Modernisé -->
+<div id="mobileMenu" class="hidden md:hidden fixed top-0 left-0 w-full h-screen bg-indigo-900/95 backdrop-blur-sm z-40 transform -translate-x-full transition-transform duration-300 ease-in-out">
+  <div class="flex flex-col h-full justify-between px-6 py-8">
+    
+    <!-- Close button -->
+    <div class="flex justify-end">
+      <button id="closeBurger" class="text-white text-3xl font-bold focus:outline-none">&times;</button>
+    </div>
 
-<!-- Script -->
+    <!-- Menu Items -->
+    <ul class="flex flex-col gap-6 mt-12 text-lg font-semibold text-indigo-100">
+      <li><a href="index.html" class="block hover:text-indigo-300 transition">Accueil</a></li>
+      <li><a href="catalogue.html" class="block hover:text-indigo-300 transition">Catalogue</a></li>
+      <li><a href="stations.html" class="block hover:text-indigo-300 transition">Stations Essence</a></li>
+      <li><a href="avis.html" class="block hover:text-indigo-300 transition">Avis Clients</a></li>
+      <li><a href="equipe.html" class="block hover:text-indigo-300 transition">Notre Équipe</a></li>
+      <li><a href="actualites.html" class="block hover:text-indigo-300 transition">Actualités</a></li>
+      <li><a href="contact.html" class="block hover:text-indigo-300 transition">Contact</a></li>
+    </ul>
+
+    <!-- Bouton Candidature -->
+    <a href="candidature.html" class="mt-12 inline-block text-center bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-purple-600 hover:to-indigo-500 text-white font-semibold text-sm py-3 px-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
+      Poster sa candidature
+    </a>
+  </div>
+</div>
+
 <script>
-  // Toggle menu mobile
   const burger = document.getElementById('burger');
   const mobileMenu = document.getElementById('mobileMenu');
+  const closeBurger = document.getElementById('closeBurger');
 
   burger.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.remove('-translate-x-full');
   });
 
-  // Ombre de la barre au scroll
-  const header = document.getElementById('header');
+  closeBurger.addEventListener('click', () => {
+    mobileMenu.classList.add('-translate-x-full');
+  });
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 10) {
-      header.classList.add('nav-shadow');
-    } else {
-      header.classList.remove('nav-shadow');
+  // Close menu if click outside
+  mobileMenu.addEventListener('click', (e) => {
+    if (e.target === mobileMenu) {
+      mobileMenu.classList.add('-translate-x-full');
     }
   });
 </script>
