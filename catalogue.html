@@ -140,9 +140,25 @@ nav a {
       class="flex-1 p-4 rounded-xl border border-white/30 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-indigo-500 backdrop-blur-sm transition shadow-md hover:shadow-lg"
       aria-label="Recherche de produit"
     />
+<style>
+  /* Style des options du select */
+  select option {
+    background-color: #1e293b; /* gris/bleu foncé (Slate-800) */
+    color: white;
+  }
+
+  /* Quand une option est survolée (sur certains navigateurs) */
+  select option:hover {
+    background-color: #374151; /* gris légèrement plus clair (Slate-700) */
+    color: white;
+  }
+</style>
+
 <select
   id="sortSelect"
-  class="w-full lg:w-64 p-4 rounded-xl border border-white/30 bg-black text-white focus:outline-none focus:ring-4 focus:ring-indigo-500 transition shadow-md hover:shadow-lg"
+  class="w-full lg:w-64 p-4 rounded-xl border border-white/30 bg-black text-white 
+         focus:outline-none focus:ring-4 focus:ring-indigo-500 
+         transition shadow-md hover:shadow-lg"
   aria-label="Trier les produits"
 >
   <option value="name-asc">Nom (A → Z)</option>
@@ -153,7 +169,9 @@ nav a {
 
 <select
   id="categorySelect"
-  class="w-full lg:w-64 p-4 rounded-xl border border-white/30 bg-black text-white focus:outline-none focus:ring-4 focus:ring-indigo-500 transition shadow-md hover:shadow-lg"
+  class="w-full lg:w-64 p-4 rounded-xl border border-white/30 bg-black text-white 
+         focus:outline-none focus:ring-4 focus:ring-indigo-500 
+         transition shadow-md hover:shadow-lg"
   aria-label="Filtrer par catégorie"
 >
   <option value="all">Toutes catégories</option>
