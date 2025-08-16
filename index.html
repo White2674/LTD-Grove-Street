@@ -91,9 +91,9 @@
   </svg>
 </button>
 
-<!-- Menu Mobile Modernisé -->
-<div id="mobileMenu" class="fixed inset-0 bg-indigo-900/95 backdrop-blur-sm z-40 transform -translate-x-full transition-transform duration-300 ease-in-out">
-  <div class="flex flex-col h-full justify-between px-6 py-8">
+<!-- Menu Mobile Modernisé corrigé -->
+<div id="mobileMenu" class="fixed inset-0 z-50 bg-indigo-900/95 backdrop-blur-sm transform -translate-x-full transition-transform duration-300 ease-in-out">
+  <div class="flex flex-col h-full justify-between px-6 py-8 overflow-y-auto">
 
     <!-- Close button -->
     <div class="flex justify-end">
@@ -101,7 +101,7 @@
     </div>
 
     <!-- Menu Items -->
-    <ul class="flex flex-col gap-6 mt-12 text-lg font-semibold text-indigo-100">
+    <ul class="flex flex-col gap-6 mt-12 text-lg font-semibold text-white">
       <li><a href="index.html" class="hover:text-indigo-300 transition">Accueil</a></li>
       <li><a href="catalogue.html" class="hover:text-indigo-300 transition">Catalogue</a></li>
       <li><a href="stations.html" class="hover:text-indigo-300 transition">Stations Essence</a></li>
@@ -123,17 +123,23 @@
   const mobileMenu = document.getElementById('mobileMenu');
   const closeBurger = document.getElementById('closeBurger');
 
+  // Ouvrir menu
   burger.addEventListener('click', () => {
-    mobileMenu.style.transform = 'translateX(0)';
+    mobileMenu.classList.remove('-translate-x-full');
+    mobileMenu.classList.add('translate-x-0');
   });
 
+  // Fermer menu via bouton
   closeBurger.addEventListener('click', () => {
-    mobileMenu.style.transform = 'translateX(-100%)';
+    mobileMenu.classList.remove('translate-x-0');
+    mobileMenu.classList.add('-translate-x-full');
   });
 
+  // Fermer menu en cliquant sur le fond
   mobileMenu.addEventListener('click', (e) => {
     if (e.target === mobileMenu) {
-      mobileMenu.style.transform = 'translateX(-100%)';
+      mobileMenu.classList.remove('translate-x-0');
+      mobileMenu.classList.add('-translate-x-full');
     }
   });
 </script>
