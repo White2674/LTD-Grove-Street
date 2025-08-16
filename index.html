@@ -10,13 +10,15 @@
     body {
       font-family: 'Inter', sans-serif;
     }
+
     /* Underline animé */
-nav a {
-  position: relative;
-  color: white; /* texte blanc */
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
+    nav a {
+      position: relative;
+      color: white;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
     nav a::after {
       content: '';
       position: absolute;
@@ -28,11 +30,13 @@ nav a {
       transition: width 0.3s ease;
       border-radius: 2px;
     }
+
     nav a:hover::after, nav a.active::after {
       width: 100%;
     }
+
     nav a:hover {
-      color: #4338ca; /* indigo-700 */
+      color: #4338ca;
     }
 
     /* Ombre barre navigation au scroll */
@@ -44,7 +48,7 @@ nav a {
     }
   </style>
 </head>
-<body class="bg-gray-900 shadow-md transition-colors duration-300">
+<body class="bg-gray-900 text-white transition-colors duration-300">
 
 <header id="header" class="fixed top-0 left-0 w-full z-50 bg-white/80 dark:bg-gray-900/80 shadow-md transition-colors duration-300">
   <nav class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6 md:px-12 font-sans">
@@ -56,23 +60,22 @@ nav a {
       </span>
     </a>
 
-<!-- Menu Desktop -->
-<nav class="hidden md:flex items-center justify-between gap-6 text-sm font-semibold text-white">
-  <ul class="flex items-center gap-6">
-    <li><a href="index.html" class="hover:text-indigo-300 transition">Accueil</a></li>
-    <li><a href="catalogue.html" class="hover:text-indigo-300 transition">Catalogue</a></li>
-    <li><a href="stations.html" class="hover:text-indigo-300 transition">Stations Essence</a></li>
-    <li><a href="avis.html" class="hover:text-indigo-300 transition">Avis Clients</a></li>
-    <li><a href="equipe.html" class="hover:text-indigo-300 transition">Notre Équipe</a></li>
-    <li><a href="actualites.html" class="hover:text-indigo-300 transition">Actualités</a></li>
-    <li><a href="contact.html" class="hover:text-indigo-300 transition">Contact</a></li>
-  </ul>
-  <!-- Bouton Intranet -->
-  <a href="candidature.html"
-     class="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-purple-600 hover:to-indigo-500 text-white font-semibold text-sm py-2 px-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out whitespace-nowrap ml-6">
-    Poster sa candidature
-  </a>
-</nav>
+    <!-- Menu Desktop -->
+    <nav class="hidden md:flex items-center justify-between gap-6 text-sm font-semibold text-white">
+      <ul class="flex items-center gap-6">
+        <li><a href="#accueil" class="hover:text-indigo-300 transition">Accueil</a></li>
+        <li><a href="#catalogue" class="hover:text-indigo-300 transition">Catalogue</a></li>
+        <li><a href="#stations" class="hover:text-indigo-300 transition">Stations Essence</a></li>
+        <li><a href="#avis" class="hover:text-indigo-300 transition">Avis Clients</a></li>
+        <li><a href="#equipe" class="hover:text-indigo-300 transition">Notre Équipe</a></li>
+        <li><a href="#actualites" class="hover:text-indigo-300 transition">Actualités</a></li>
+        <li><a href="#contact" class="hover:text-indigo-300 transition">Contact</a></li>
+      </ul>
+      <a href="#candidature"
+         class="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-purple-600 hover:to-indigo-500 text-white font-semibold text-sm py-2 px-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out whitespace-nowrap ml-6">
+        Poster sa candidature
+      </a>
+    </nav>
 
     <!-- Hamburger mobile -->
     <button id="burger" class="md:hidden focus:outline-none">
@@ -85,59 +88,67 @@ nav a {
     </button>
   </nav>
 
-<!-- Menu Mobile -->
-<div id="mobileMenu" 
-     class="hidden absolute top-full left-0 w-full px-6 py-6 bg-gray-900/95 backdrop-blur-lg border-t border-indigo-700 shadow-lg z-40">
-  <ul class="flex flex-col gap-4 text-base font-semibold text-white">
-    <li>
-      <a href="index.html" class="block py-2 px-3 rounded-lg hover:bg-indigo-700/30 hover:text-indigo-300 transition-all duration-300">
-        Accueil
-      </a>
-    </li>
-    <li>
-      <a href="catalogue.html" class="block py-2 px-3 rounded-lg hover:bg-indigo-700/30 hover:text-indigo-300 transition-all duration-300">
-        Catalogue
-      </a>
-    </li>
-    <li>
-      <a href="stations.html" class="block py-2 px-3 rounded-lg hover:bg-indigo-700/30 hover:text-indigo-300 transition-all duration-300">
-        Stations Essence
-      </a>
-    </li>
-    <li>
-      <a href="avis.html" class="block py-2 px-3 rounded-lg hover:bg-indigo-700/30 hover:text-indigo-300 transition-all duration-300">
-        Avis Clients
-      </a>
-    </li>
-    <li>
-      <a href="equipe.html" class="block py-2 px-3 rounded-lg hover:bg-indigo-700/30 hover:text-indigo-300 transition-all duration-300">
-        Notre Équipe
-      </a>
-    </li>
-    <li>
-      <a href="actualites.html" class="block py-2 px-3 rounded-lg hover:bg-indigo-700/30 hover:text-indigo-300 transition-all duration-300">
-        Actualités
-      </a>
-    </li>
-    <li>
-      <a href="contact.html" class="block py-2 px-3 rounded-lg hover:bg-indigo-700/30 hover:text-indigo-300 transition-all duration-300">
-        Contact
-      </a>
-    </li>
-    <li>
-      <a href="candidature.html" 
-         class="block mt-4 text-center bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-purple-600 hover:to-indigo-500 text-white font-semibold py-3 px-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
+  <!-- Menu Mobile -->
+  <div id="mobileMenu" 
+       class="hidden absolute top-full left-0 w-full px-6 py-6 bg-gray-900/95 backdrop-blur-lg border-t border-indigo-700 shadow-lg z-40">
+    <ul class="flex flex-col gap-4 text-base font-semibold text-white">
+      <li><a href="#accueil" class="block py-2 px-3 rounded-lg hover:bg-indigo-700/30 hover:text-indigo-300 transition-all duration-300">Accueil</a></li>
+      <li><a href="#catalogue" class="block py-2 px-3 rounded-lg hover:bg-indigo-700/30 hover:text-indigo-300 transition-all duration-300">Catalogue</a></li>
+      <li><a href="#stations" class="block py-2 px-3 rounded-lg hover:bg-indigo-700/30 hover:text-indigo-300 transition-all duration-300">Stations Essence</a></li>
+      <li><a href="#avis" class="block py-2 px-3 rounded-lg hover:bg-indigo-700/30 hover:text-indigo-300 transition-all duration-300">Avis Clients</a></li>
+      <li><a href="#equipe" class="block py-2 px-3 rounded-lg hover:bg-indigo-700/30 hover:text-indigo-300 transition-all duration-300">Notre Équipe</a></li>
+      <li><a href="#actualites" class="block py-2 px-3 rounded-lg hover:bg-indigo-700/30 hover:text-indigo-300 transition-all duration-300">Actualités</a></li>
+      <li><a href="#contact" class="block py-2 px-3 rounded-lg hover:bg-indigo-700/30 hover:text-indigo-300 transition-all duration-300">Contact</a></li>
+      <li><a href="#candidature" 
+             class="block mt-4 text-center bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-purple-600 hover:to-indigo-500 text-white font-semibold py-3 px-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
         Poster sa candidature
-      </a>
-    </li>
-  </ul>
-</div>
+      </a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- Contenu principal -->
+<main class="pt-28"> <!-- padding pour header fixe -->
+  <section id="accueil" class="min-h-screen bg-gray-800 flex items-center justify-center">
+    <h1 class="text-5xl font-bold">Bienvenue sur LTD Grove Street 🚀</h1>
+  </section>
+
+  <section id="catalogue" class="min-h-screen bg-gray-700 flex items-center justify-center">
+    <h2 class="text-4xl font-semibold">Catalogue</h2>
+  </section>
+
+  <section id="stations" class="min-h-screen bg-gray-600 flex items-center justify-center">
+    <h2 class="text-4xl font-semibold">Stations Essence</h2>
+  </section>
+
+  <section id="avis" class="min-h-screen bg-gray-500 flex items-center justify-center">
+    <h2 class="text-4xl font-semibold">Avis Clients</h2>
+  </section>
+
+  <section id="equipe" class="min-h-screen bg-gray-400 flex items-center justify-center">
+    <h2 class="text-4xl font-semibold">Notre Équipe</h2>
+  </section>
+
+  <section id="actualites" class="min-h-screen bg-gray-300 flex items-center justify-center">
+    <h2 class="text-4xl font-semibold">Actualités</h2>
+  </section>
+
+  <section id="contact" class="min-h-screen bg-gray-200 text-gray-900 flex items-center justify-center">
+    <h2 class="text-4xl font-semibold">Contact</h2>
+  </section>
+
+  <section id="candidature" class="min-h-screen bg-indigo-600 flex items-center justify-center text-white">
+    <h2 class="text-4xl font-semibold">Poster sa candidature</h2>
+  </section>
+</main>
 
 <script>
   // Toggle menu mobile
-burger.addEventListener('click', () => {
-  mobileMenu.classList.toggle('hidden');
-});
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
 
   // Ombre barre au scroll
   const header = document.getElementById('header');
@@ -150,6 +161,7 @@ burger.addEventListener('click', () => {
   });
 </script>
 
+</body>
 </html>
 
 <!-- Bannière principale -->
