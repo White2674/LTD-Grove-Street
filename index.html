@@ -86,28 +86,28 @@ nav a {
   </nav>
 
 <!-- Menu Mobile -->
-  <div id="mobileMenu" class="hidden md:hidden px-6 py-4 bg-indigo-900/90 border-t border-indigo-700 shadow-sm">
-    <ul class="flex flex-col gap-3 text-sm font-semibold text-indigo-700 dark:text-indigo-300">
-      <li><a href="index.html" class="block hover:text-indigo-500">Accueil</a></li>
-      <li><a href="catalogue.html" class="block hover:text-indigo-500">Catalogue</a></li>
-      <li><a href="stations.html" class="block hover:text-indigo-500">Stations Essence</a></li>
-      <li><a href="avis.html" class="block hover:text-indigo-500">Avis Clients</a></li>
-      <li><a href="equipe.html" class="block hover:text-indigo-500">Notre Équipe</a></li>
-      <li><a href="actualites.html" class="block hover:text-indigo-500">Actualités</a></li>
-      <li><a href="contact.html" class="block hover:text-indigo-500">Contact</a></li>
-      <li><a href="candidature.html" class="block hover:text-indigo-500">Poster sa candidature</a></li>
-    </ul>
-  </div>
-</header>
+<div id="mobileMenu" 
+     class="fixed inset-0 hidden flex-col items-center justify-center bg-gray-900/95 backdrop-blur-lg z-40 transition-all duration-300">
+  <ul class="flex flex-col gap-8 text-lg font-semibold text-white text-center">
+    <li><a href="index.html" class="relative hover:text-indigo-400 transition">Accueil</a></li>
+    <li><a href="catalogue.html" class="relative hover:text-indigo-400 transition">Catalogue</a></li>
+    <li><a href="stations.html" class="relative hover:text-indigo-400 transition">Stations Essence</a></li>
+    <li><a href="avis.html" class="relative hover:text-indigo-400 transition">Avis Clients</a></li>
+    <li><a href="equipe.html" class="relative hover:text-indigo-400 transition">Notre Équipe</a></li>
+    <li><a href="actualites.html" class="relative hover:text-indigo-400 transition">Actualités</a></li>
+    <li><a href="contact.html" class="relative hover:text-indigo-400 transition">Contact</a></li>
+  </ul>
+</div>
 
 <script>
   // Toggle menu mobile
-  const burger = document.getElementById('burger');
-  const mobileMenu = document.getElementById('mobileMenu');
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
 
-  burger.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-  });
+burger.addEventListener('click', () => {
+  mobileMenu.classList.toggle('hidden');
+  mobileMenu.classList.toggle('flex');
+});
 
   // Ombre barre au scroll
   const header = document.getElementById('header');
