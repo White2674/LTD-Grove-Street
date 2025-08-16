@@ -238,52 +238,45 @@ nav a {
 
     // Construire la description en liste markdown
     const description = `
-👤 Nom complet :  
+Nom complet :  
 ${Nom}
 
-📞 Téléphone : 
+Téléphone : 
 ${Tel}
 
-🎂 Date de naissance :  
+Date de naissance :  
 ${DateNaissance}
 
-📅 Disponibilités : 
+Disponibilités : 
 ${Disponibilites}
 
-💼 Poste souhaité :
+Poste souhaité :
 ${Poste}
 
-📖 Présentation :
+Présentation :
 ${Presentation}
 
-📩 Motivations :
+Motivations :
 ${Motivations}
 
-📝 Commentaire :
+Commentaire :
 ${Commentaire}
 `;
 
-    const payload = {
-      content: "<@X>",
-      embeds: [
-        {
-          title: "📝 Nouvelle candidature LTD Grove Street",
-          color: 0x1ABC9C,
-          thumbnail: {
-            url: "https://i.goopics.net/5dh7x3.png"
-          },
-          description: description,
-          image: {
-            url: "https://i.goopics.net/bk7273.png"
-          },
-          footer: {
-            text: "Candidature envoyée via le site LTD Grove Street",
-            icon_url: "https://i.goopics.net/5dh7x3.png"
-          },
-          timestamp: new Date().toISOString()
-        }
-      ]
-    };
+const payload = {
+  content: "<@X>",
+  embeds: [
+    {
+      title: "Nouvelle candidature LTD Grove Street",
+      color: 0x1ABC9C,
+      description: description,
+      footer: {
+        text: "Candidature envoyée via le site LTD Grove Street"
+      },
+      timestamp: new Date().toISOString()
+    }
+  ]
+};
 
     const webhookUrl = "https://discord.com/api/webhooks/1404696865030672484/8NGXojmjpJnBGP_VLOKdscSE3l5KEW8TQMqlieQQ3ZusPWUiMuWmbatb8WhlhlDY01JM";
 
