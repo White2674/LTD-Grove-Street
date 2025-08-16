@@ -86,7 +86,8 @@ nav a {
   </nav>
 
 <!-- Menu Mobile -->
-<div id="mobileMenu" class="hidden md:hidden px-6 py-6 bg-gray-900/95 backdrop-blur-lg border-t border-indigo-700 shadow-lg">
+<div id="mobileMenu" 
+     class="hidden absolute top-full left-0 w-full px-6 py-6 bg-gray-900/95 backdrop-blur-lg border-t border-indigo-700 shadow-lg z-40">
   <ul class="flex flex-col gap-4 text-base font-semibold text-white">
     <li>
       <a href="index.html" class="block py-2 px-3 rounded-lg hover:bg-indigo-700/30 hover:text-indigo-300 transition-all duration-300">
@@ -134,12 +135,8 @@ nav a {
 
 <script>
   // Toggle menu mobile
-const burger = document.getElementById('burger');
-const mobileMenu = document.getElementById('mobileMenu');
-
 burger.addEventListener('click', () => {
   mobileMenu.classList.toggle('hidden');
-  mobileMenu.classList.toggle('flex');
 });
 
   // Ombre barre au scroll
