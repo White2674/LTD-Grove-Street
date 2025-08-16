@@ -82,28 +82,32 @@
         </a>
       </div>
 
-<!-- Hamburger mobile -->
-<button id="burger" class="md:hidden focus:outline-none">
-  <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-    <line x1="3" y1="6" x2="21" y2="6"></line>
-    <line x1="3" y1="12" x2="21" y2="12"></line>
-    <line x1="3" y1="18" x2="21" y2="18"></line>
-  </svg>
-</button>
+<!-- Header -->
+<header id="header" class="relative">
+  <!-- Hamburger mobile -->
+  <button id="burger" class="md:hidden focus:outline-none">
+    <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </button>
 
-<!-- Menu Mobile -->
-<div id="mobileMenu" class="hidden md:hidden px-6 py-4 bg-indigo-900/90 border-t border-indigo-700 shadow-sm">
-  <ul class="flex flex-col gap-3 text-sm font-semibold text-indigo-700 dark:text-indigo-300">
-    <li><a href="index.html" class="block hover:text-indigo-500 transition-colors duration-300">Accueil</a></li>
-    <li><a href="catalogue.html" class="block hover:text-indigo-500 transition-colors duration-300">Catalogue</a></li>
-    <li><a href="stations.html" class="block hover:text-indigo-500 transition-colors duration-300">Stations Essence</a></li>
-    <li><a href="avis.html" class="block hover:text-indigo-500 transition-colors duration-300">Avis Clients</a></li>
-    <li><a href="equipe.html" class="block hover:text-indigo-500 transition-colors duration-300">Notre Équipe</a></li>
-    <li><a href="actualites.html" class="block hover:text-indigo-500 transition-colors duration-300">Actualités</a></li>
-    <li><a href="contact.html" class="block hover:text-indigo-500 transition-colors duration-300">Contact</a></li>
-  </ul>
-</div>
+  <!-- Menu Mobile -->
+  <div id="mobileMenu" class="hidden md:hidden px-6 py-4 bg-indigo-900/90 border-t border-indigo-700 shadow-sm">
+    <ul class="flex flex-col gap-3 text-sm font-semibold text-indigo-700 dark:text-indigo-300">
+      <li><a href="index.html" class="block hover:text-indigo-500">Accueil</a></li>
+      <li><a href="catalogue.html" class="block hover:text-indigo-500">Catalogue</a></li>
+      <li><a href="stations.html" class="block hover:text-indigo-500">Stations Essence</a></li>
+      <li><a href="avis.html" class="block hover:text-indigo-500">Avis Clients</a></li>
+      <li><a href="equipe.html" class="block hover:text-indigo-500">Notre Équipe</a></li>
+      <li><a href="actualites.html" class="block hover:text-indigo-500">Actualités</a></li>
+      <li><a href="contact.html" class="block hover:text-indigo-500">Contact</a></li>
+    </ul>
+  </div>
+</header>
 
+<!-- Script -->
 <script>
   // Toggle menu mobile
   const burger = document.getElementById('burger');
@@ -113,8 +117,9 @@
     mobileMenu.classList.toggle('hidden');
   });
 
-  // Ombre barre au scroll
+  // Ombre de la barre au scroll
   const header = document.getElementById('header');
+
   window.addEventListener('scroll', () => {
     if (window.scrollY > 10) {
       header.classList.add('nav-shadow');
