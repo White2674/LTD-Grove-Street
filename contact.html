@@ -136,38 +136,42 @@
     avec la Direction
   </h2>
 
-  <form class="space-y-8" id="appointmentForm" method="POST" novalidate>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+   <!-- Message de confirmation (caché au départ) -->
+  <div id="successMessage" class="hidden text-center text-green-400 font-semibold mb-6">
+    ✅ Votre demande a bien été transmise ! Nous vous contacterons rapidement.
+  </div>
+
+  <form class="space-y-6" id="appointmentForm" method="POST" novalidate>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <input
         type="text"
         name="Nom"
         placeholder="Nom complet"
         required
-        class="p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+        class="p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
       />
       <input
         type="text"
         name="Numéro de Téléphone"
         placeholder="Numéro de Téléphone"
         required
-        class="p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+        class="p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
       />
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <input
         type="date"
         name="DateRendezVous"
         required
-        class="p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-        min=""
+        class="p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
         id="dateInput"
       />
       <input
         type="time"
         name="HeureRendezVous"
         required
-        class="p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+        class="p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
       />
     </div>
 
@@ -175,12 +179,12 @@
       name="Commentaire"
       rows="5"
       placeholder="Objet et détails de votre demande de rendez-vous"
-      class="w-full p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 resize-none focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+      class="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 resize-none focus:ring-2 focus:ring-indigo-500 focus:outline-none"
     ></textarea>
 
     <button
       type="submit"
-      class="w-full py-4 bg-indigo-600 hover:bg-indigo-700 rounded-lg font-semibold text-white transition shadow-lg"
+      class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 rounded-lg font-semibold text-white transition shadow-lg"
     >
       Envoyer la demande
     </button>
@@ -188,10 +192,25 @@
 </section>
 
 <script>
-  // Optionnel : limiter la date minimum à aujourd'hui
-  const dateInput = document.getElementById('dateInput');
-  const today = new Date().toISOString().split('T')[0];
-  dateInput.setAttribute('min', today);
+  const form = document.getElementById("appointmentForm");
+  const successMessage = document.getElementById("successMessage");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // Empêche le rechargement de la page
+
+    // Ici tu pourrais envoyer les données vers ton serveur avec fetch()
+
+    // Affiche le message de succès
+    successMessage.classList.remove("hidden");
+
+    // Vide le formulaire
+    form.reset();
+
+    // Cache le message après 5 secondes (optionnel)
+    setTimeout(() => {
+      successMessage.classList.add("hidden");
+    }, 5000);
+  });
 </script>
 
  <!-- Pied de page -->
