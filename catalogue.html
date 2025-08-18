@@ -259,7 +259,7 @@
     <input
       id="customerPhone"
       type="tel"
-      placeholder="123-4567"
+      placeholder="0123-456789"
       class="w-full p-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
     />
   </div>
@@ -285,7 +285,34 @@
   </button>
 </div>
 
+<!-- Script à placer ici, juste avant </body> -->
 <script>
+function validateOrder() {
+  const name = document.getElementById('customerName').value.trim();
+  const phone = document.getElementById('customerPhone').value.trim();
+  const deliveryTime = document.getElementById('deliveryTime').value.trim();
+
+  if (!name || !phone || !deliveryTime) {
+    alert("Veuillez remplir tous les champs obligatoires !");
+    return;
+  }
+
+  alert("✅ Commande envoyée avec succès !");
+
+  cart = [];
+  renderCart();
+
+  document.getElementById('customerName').value = '';
+  document.getElementById('customerPhone').value = '';
+  document.getElementById('deliveryTime').value = '';
+  document.getElementById('comments').value = '';
+}
+</script>
+</body>
+</html>
+
+<script>
+
 /* === Catalogue + Panier (robuste) === */
 
 (function () {
@@ -296,8 +323,8 @@
     { id: 3, name: "Foret de perceuse", price: 700, category: "Quincaillerie", image: "https://i.goopics.net/v71n0s.png" },
     { id: 4, name: "Pile Verte", price: 3, category: "Quincaillerie", image: "https://i.goopics.net/vtrif1.png" },
     { id: 5, name: "Batterie de voiture", price: 19, category: "Quincaillerie", image: "https://i.goopics.net/ysv2us.png" },
-    { id: 6, name: "Batterie", price: 19, category: "Quincaillerie", image: "https://i.goopics.net/3f7ade.png" },
-    { id: 7, name: "Sachets vides", price: 19, category: "Quincaillerie", image: "https://i.goopics.net/ptten9.png" },
+    { id: 6, name: "Batterie", price: 9, category: "Quincaillerie", image: "https://i.goopics.net/3f7ade.png" },
+    { id: 7, name: "Sachets vides", price: 5, category: "Quincaillerie", image: "https://i.goopics.net/ptten9.png" },
     { id: 8, name: "Coupeur", price: 14, category: "Quincaillerie", image: "https://i.goopics.net/r6nk0e.png" },
     { id: 9, name: "Pince pour plaque", price: 22, category: "Quincaillerie", image: "https://i.goopics.net/c7mjon.png" },
     { id: 10, name: "Huile", price: 8, category: "Quincaillerie", image: "https://i.goopics.net/tfcosx.png" },
