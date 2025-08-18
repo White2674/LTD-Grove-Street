@@ -564,8 +564,8 @@ function validateOrder() {
   const comment = document.getElementById('comments').value.trim();
   const fraisLivraison = 250; // frais fixes
 
-  if (!name || !phone) {
-    alert("Merci de remplir au minimum votre nom et téléphone.");
+  if (!name || !phone || !time) {
+    alert("Merci de remplir tous les champs obligatoires (Nom, Téléphone et Heure).");
     return;
   }
 
@@ -577,30 +577,28 @@ function validateOrder() {
     orderDetails += `• ${item.name} x${item.quantity} — ${item.price.toFixed(2)} $\n`;
   });
 
-  // Création du message Discord à l'intérieur de la fonction
+  // Structure du message envoyé sur Discord
   const message = {
-    content: "<@NO STRESS, JE VAIS PAS VOUS PING>",
     embeds: [{
-      title: "**__🛒 Nouvelle commande reçue__**",
+      title: "🛒 Nouvelle commande reçue",
       color: 0x4CAF50,
       thumbnail: { url: "https://i.goopics.net/5dh7x3.png" },
       fields: [
-        { name: "**__👤 Nom & Prénom__**", value: name, inline: false },
-        { name: "**__📲 Téléphone__**", value: phone, inline: false },
-        { name: "**__⏰ Heure de livraison__**", value: time || "Non précisée", inline: false },
-        { name: "**__📩 Commentaire__**", value: comment || "Aucun", inline: false },
-        { name: "**__🛒 Articles__**", value: orderDetails || "Aucun article", inline: false },
-        { name: "**__💵 Total articles__**", value: totalArticles.toFixed(2) + " $", inline: false },
-        { name: "**__🚚 Frais de livraison__**", value: fraisLivraison.toFixed(2) + " $", inline: false },
-        { name: "**__💰 Total commande__**", value: grandTotal.toFixed(2) + " $", inline: false }
+        { name: "👤 Nom & Prénom", value: name },
+        { name: "📲 Téléphone", value: phone },
+        { name: "⏰ Heure de livraison", value: time || "Non précisée" },
+        { name: "📩 Commentaire", value: comment || "Aucun" },
+        { name: "🛒 Articles", value: orderDetails || "Aucun article" },
+        { name: "💵 Total articles", value: totalArticles.toFixed(2) + " $" },
+        { name: "🚚 Frais de livraison", value: fraisLivraison.toFixed(2) + " $" },
+        { name: "💰 Total commande", value: grandTotal.toFixed(2) + " $" }
       ],
-      image: { url: "https://i.goopics.net/bk7273.png" },
-      footer: { text: "Demande envoyée via le site LTD", icon_url: "https://i.goopics.net/5dh7x3.png" },
+      footer: { text: "Commande envoyée via LTD Grove Street" },
       timestamp: new Date().toISOString()
     }]
   };
 
-  const webhookURL = "https://discord.com/api/webhooks/1405047503077773403/NS2kpJTnJQbpaKEEJ577XfwtU7at6tjec3X_kXfK7G2dCP1oJgzTT4wdcauaFlEWE4MK";
+  const webhookURL = "https://discord.com/api/webhooks/XXX/YYY"; // remplace par ton webhook
 
   fetch(webhookURL, {
     method: "POST",
@@ -609,16 +607,27 @@ function validateOrder() {
   })
   .then(res => {
     if (res.ok) {
-      alert("Commande envoyée avec succès !");
+      alert("✅ Commande envoyée avec succès !");
+      
+      // 🔹 Vide le panier
       cart = [];
       renderCart();
+
+      // 🔹 Vide les champs du formulaire
+      document.getElementById('customerName').value = '';
+      document.getElementById('customerPhone').value = '';
+      document.getElementById('deliveryTime').value = '';
+      document.getElementById('comments').value = '';
+
+      // 🔹 Ferme le panier après envoi
+      toggleCart();
     } else {
-      alert("Erreur lors de l'envoi de la commande.");
+      alert("⚠️ Erreur lors de l'envoi de la commande.");
     }
   })
   .catch(err => {
     console.error(err);
-    alert("Impossible de contacter le serveur Discord.");
+    alert("❌ Impossible de contacter le serveur Discord.");
   });
 }
 </script>
