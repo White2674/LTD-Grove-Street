@@ -375,7 +375,7 @@ function validateOrder() {
     { id: 55, name: "Pancakes Protéinés", price: 14, category: "Power", image: "https://i.goopics.net/cbbw3w.png" },    
   ];
 
-  // --- Variables globales ---
+    // --- Variables globales ---
   let cart = []; 
   window.cart = cart;
 
@@ -504,10 +504,6 @@ function validateOrder() {
     }
   }
 
-  function validateOrder() {
-    alert("Commande validée ! (Fonctionnalité à implémenter)");
-  }
-
   // --- Init toujours exécutée (même si DOMContentLoaded est déjà passé) ---
   function initCatalogue() {
     const searchInput = document.getElementById('searchInput');
@@ -553,42 +549,42 @@ function validateOrder() {
   window.removeFromCart = removeFromCart;
   window.toggleCart = toggleCart;
   window.validateOrder = validateOrder;
+  window.renderCart = renderCart;    // <— AJOUT
 })();
 </script>
 
 <script>
-function validateOrder() {
+async function validateOrder(e) {
+  e?.preventDefault();
+
   const name = document.getElementById('customerName').value.trim();
   const phone = document.getElementById('customerPhone').value.trim();
   const time = document.getElementById('deliveryTime').value.trim();
   const comment = document.getElementById('comments').value.trim();
-  const fraisLivraison = 250; // frais fixes
+  const fraisLivraison = 250;
 
   if (!name || !phone || !time) {
     alert("Merci de remplir tous les champs obligatoires (Nom, Téléphone et Heure).");
     return;
   }
 
-  const totalArticles = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const totalArticles = window.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const grandTotal = totalArticles + fraisLivraison;
 
-  let orderDetails = "";
-  cart.forEach(item => {
-    orderDetails += `• ${item.name} x${item.quantity} — ${item.price.toFixed(2)} $\n`;
-  });
+  const orderDetails = window.cart
+    .map(item => `• ${item.name} x${item.quantity} — ${item.price.toFixed(2)} $`)
+    .join("\n") || "Aucun article";
 
-  // Structure du message envoyé sur Discord
   const message = {
     embeds: [{
       title: "🛒 Nouvelle commande reçue",
       color: 0x4CAF50,
-      thumbnail: { url: "https://i.goopics.net/5dh7x3.png" },
       fields: [
-        { name: "👤 Nom & Prénom", value: name },
-        { name: "📲 Téléphone", value: phone },
-        { name: "⏰ Heure de livraison", value: time || "Non précisée" },
+        { name: "👤 Nom & Prénom", value: name || "Non spécifié" },
+        { name: "📲 Téléphone", value: phone || "Non spécifié" },
+        { name: "⏰ Heure de livraison", value: time || "Non spécifiée" },
         { name: "📩 Commentaire", value: comment || "Aucun" },
-        { name: "🛒 Articles", value: orderDetails || "Aucun article" },
+        { name: "🛒 Articles", value: orderDetails },
         { name: "💵 Total articles", value: totalArticles.toFixed(2) + " $" },
         { name: "🚚 Frais de livraison", value: fraisLivraison.toFixed(2) + " $" },
         { name: "💰 Total commande", value: grandTotal.toFixed(2) + " $" }
@@ -598,36 +594,35 @@ function validateOrder() {
     }]
   };
 
-  const webhookURL = "https://discord.com/api/webhooks/1405047503077773403/NS2kpJTnJQbpaKEEJ577XfwtU7at6tjec3X_kXfK7G2dCP1oJgzTT4wdcauaFlEWE4MK"; // remplace par ton webhook
+  const webhookURL = "https://discord.com/api/webhooks/1404696865030672484/8NGXojmjpJnBGP_VLOKdscSE3l5KEW8TQMqlieQQ3ZusPWUiMuWmbatb8WhlhlDY01JM";
 
-  fetch(webhookURL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(message)
-  })
-  .then(res => {
-    if (res.ok) {
-      alert("✅ Commande envoyée avec succès !");
-      
-      // 🔹 Vide le panier
-      cart = [];
-      renderCart();
+  try {
+    const res = await fetch(webhookURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(message)
+    });
 
-      // 🔹 Vide les champs du formulaire
-      document.getElementById('customerName').value = '';
-      document.getElementById('customerPhone').value = '';
-      document.getElementById('deliveryTime').value = '';
-      document.getElementById('comments').value = '';
+    const body = await res.text();
+    if (!res.ok) throw new Error(body || "Envoi webhook refusé");
 
-      // 🔹 Ferme le panier après envoi
-      toggleCart();
-    } else {
-      alert("⚠️ Erreur lors de l'envoi de la commande.");
-    }
-  })
-  .catch(err => {
+    // ✅ Vider le panier (sans casser la référence)
+    window.cart.length = 0;
+    window.renderCart();
+
+    // ✅ Vider les champs
+    document.getElementById('customerName').value = '';
+    document.getElementById('customerPhone').value = '';
+    document.getElementById('deliveryTime').value = '';
+    document.getElementById('comments').value = '';
+
+    // ✅ Fermer le panneau
+    window.toggleCart();
+
+    alert("✅ Commande envoyée avec succès !");
+  } catch (err) {
     console.error(err);
-    alert("❌ Impossible de contacter le serveur Discord.");
-  });
+    alert("❌ Erreur : " + err.message);
+  }
 }
 </script>
