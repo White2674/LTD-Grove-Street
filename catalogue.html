@@ -575,32 +575,28 @@ async function validateOrder(e) {
     .map(item => `• ${item.name} x${item.quantity} — ${item.price.toFixed(2)} $`)
     .join("\n") || "Aucun article";
 
-const payload = {
-  embeds: [{
-    title: "**__🛒 Nouvelle commande reçue__**",
-    color: 0x4CAF50,
-    thumbnail: { 
-      url: "https://i.goopics.net/djqxay.png"  // ✅ Logo en haut à droite
-    },
-    fields: [
-      { name: "**__👤 Nom & Prénom__**", value: name || "Non spécifié" },
-      { name: "**__📲 Téléphone__**", value: phone || "Non spécifié" },
-      { name: "**__⏰ Heure de livraison__**", value: time || "Non spécifiée" },
-      { name: "**__📩 Commentaire__**", value: comment || "Aucun" },
-      { name: "**__🛒 Articles__**", value: orderDetails },
-      { name: "**__💵 Total articles__**", value: totalArticles.toFixed(2) + " $" },
-      { name: "**__🚚 Frais de livraison__**", value: fraisLivraison.toFixed(2) + " $" },
-      { name: "**__💰 Total commande__**", value: grandTotal.toFixed(2) + " $" }
-    ],
-    image: { 
-      url: "https://i.goopics.net/bk7273.png" // ✅ Bannière en bas
-    },
-    footer: { 
-      text: "Commande envoyée via LTD Grove Street" 
-    },
-    timestamp: new Date().toISOString()
-  }]
-};
+  const payload = {
+    content: "<@&1310186028287393882>", // ✅ ping du rôle
+    allowed_mentions: { parse: ["roles"] },
+    embeds: [{
+      title: "**__🛒 Nouvelle commande reçue__**",
+      color: 0x4CAF50,
+      thumbnail: { url: "https://i.goopics.net/djqxay.png" },
+      fields: [
+        { name: "**__👤 Nom & Prénom__**", value: name || "Non spécifié" },
+        { name: "**__📲 Téléphone__**", value: phone || "Non spécifié" },
+        { name: "**__⏰ Heure de livraison__**", value: time || "Non spécifiée" },
+        { name: "**__📩 Commentaire__**", value: comment || "Aucun" },
+        { name: "**__🛒 Articles__**", value: orderDetails },
+        { name: "**__💵 Total articles__**", value: totalArticles.toFixed(2) + " $" },
+        { name: "**__🚚 Frais de livraison__**", value: fraisLivraison.toFixed(2) + " $" },
+        { name: "**__💰 Total commande__**", value: grandTotal.toFixed(2) + " $" }
+      ],
+      image: { url: "https://i.goopics.net/bk7273.png" },
+      footer: { text: "Commande envoyée via LTD Grove Street" },
+      timestamp: new Date().toISOString()
+    }]
+  };
 
   const webhookURL = "https://discord.com/api/webhooks/1405047503077773403/NS2kpJTnJQbpaKEEJ577XfwtU7at6tjec3X_kXfK7G2dCP1oJgzTT4wdcauaFlEWE4MK";
 
@@ -608,13 +604,13 @@ const payload = {
     const res = await fetch(webhookURL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(message)
+      body: JSON.stringify(payload)
     });
 
     const body = await res.text();
     if (!res.ok) throw new Error(body || "Envoi webhook refusé");
 
-    // ✅ Vider le panier (sans casser la référence)
+    // ✅ Vider le panier
     window.cart.length = 0;
     window.renderCart();
 
