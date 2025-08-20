@@ -236,8 +236,11 @@
       return;
     }
 
-    const payload = {
-      content: "<@1298348457995800638>",
+const payload = {
+  content: "<@&1298348457995800638>",
+  allowed_mentions: {
+    parse: ["roles"] // ✅ autorise le ping des rôles
+  },
       embeds: [
         {
           title: "📅 __**Nouvelle demande de rendez-vous LTD**__",
